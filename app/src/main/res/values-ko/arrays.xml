@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="SpinnerItemsClearType">
+    <item>Marvelous Full Combo</item>
+    <item>Perfect Full Combo</item>
+    <item>Full Combo</item>
+    <item>Good Full Combo</item>
+    <item>Life4 Clear</item>
+    <item>Clear</item>
+    <item>Rank E</item>
+    <item>NoPlay</item>
+  </string-array>
+  <string-array name="SpinnerItemsGestures">
+    <item>메뉴를 표시</item>
+    <item>선택중인 곡의 모든 보면을 표시</item>
+    <item>스코어를 GATE에서 받아오기</item>
+    <item>스코어를 직접 편집</item>
+    <item>라이벌 스코어를 GATE에서 받아오기</item>
+    <item>라이벌 스코어를 직접 편집</item>
+    <item>라이벌 스코어 편집 메뉴를 표시</item>
+    <item>마이 리스트에 등록</item>
+    <item>현재의 마이 리스트에서 삭제</item>
+  </string-array>
+  <string-array name="SpinnerItemsSortType">
+    <item>ABC</item>
+    <item>스코어</item>
+    <item>댄스 레벨</item>
+    <item>풀콤보 종류별</item>
+    <item>최대 콤보수</item>
+    <item>플레이 횟수</item>
+    <item>클리어 횟수</item>
+    <item>난이도</item>
+    <item>보면 종류별</item>
+    <item>SP/DP</item>
+    <item>ID</item>
+    <item>라이벌 스코어</item>
+    <item>라이벌 댄스 레벨</item>
+    <item>라이벌 풀콤보 종류별</item>
+    <item>라이벌 최대 콤보수</item>
+    <item>라이벌과의 스코어 차</item>
+    <item>라이벌과의 스코어 차의 절대값</item>
+    <item>BPM 최대값</item>
+    <item>BPM 최소값</item>
+    <item>BPM 평균값</item>
+    <item>시리즈 타이틀</item>
+  </string-array>
+  <string-array name="SpinnerItemsStatisticalTableAxis">
+    <item>난이도</item>
+    <item>보면 종류별</item>
+    <item>시리즈 타이틀</item>
+    <item>풀콤보 종류별</item>
+    <item>댄스 레벨</item>
+    <item>900,/800,/700,/...</item>
+    <item>990,/980,/970,/...</item>
+    <item>,990/,980/,970/...</item>
+  </string-array>
+</resources>

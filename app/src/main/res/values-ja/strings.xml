@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="strings____Dialog_UpdateInfo____updates">
+[2022/11/12] 0.133.22111200\n
+* Fix: ログインページの仕様変更に伴う日本語以外のGATEログイン不可を修正。
+    </string>
+    
+    <string name="strings_global____app_name">DDR Score Manager A</string>
+    
+    <string name="strings_global____leader">...</string>
+    <string name="strings_global____ok">OK</string>
+    <string name="strings_global____save">Save</string>
+    <string name="strings_global____cancel">Cancel</string>
+    
+    <string name="editcopyformats">フォーマットを編集......</string>
+    
+    <string name="copyformats">コピーフォーマットの編集</string>
+    <string name="copyformatlegends">* 凡例\n\n%t% - 曲名\n%p:b:B:D:E:C% - 譜面種別\n%y:SP:DP% - SP/DP\n%d% - 難易度\n%s% - スコア\n%l% - ダンスレベル\n%f:MFC:PFC:FC:GFC:Life4:NoFC% - フルコン種別\n%c% - 最大コンボ数\n%e% - クリア回数\n%a% - プレイ回数\n\n* スコア, 難易度, 最大コンボ数, クリア回数, プレイ回数 では以下のオプションが有効です.\n\n“%s0%” -> “0987650”\n“%s %” -> “ 987650”\n“%s0,%” -> “0,987,650”\n</string>
+    
+    <string name="score">スコア</string>
+    <string name="scoremax">最高値</string>
+    <string name="scoremin">最低値</string>
+    <string name="scoremedian">中央値</string>
+    <string name="scoreaverage">平均値</string>
+    <string name="scorevariance">分散値</string>
+    <string name="dancelevel">ダンスレベル</string>
+    <string name="fullcombotype">フルコン種別</string>
+    <string name="difficulty">難易度</string>
+    <string name="patterntype">譜面種別</string>
+    <string name="version">シリーズタイトル</string>
+    
+    <string name="refresh_musiclist">楽曲一覧を更新</string>
+    <string name="no_update">更新はありませんでした</string>
+    <string name="musiclist_updated">楽曲一覧が更新されました</string>
+    <string name="invalid_data">無効なデータを受信しました</string>
+    <string name="editing">楽曲データは現在編集中です。　しばらく待ってから更新を行ってください。</string>
+    <string name="timedout">接続がタイムアウトしました。\n更新をキャンセルします。</string>
+    
+    <string name="visible_item">表示項目</string>
+    
+    <string name="show_maxcombo">最大コンボ数</string>
+    <string name="show_score">スコア</string>
+    <string name="show_dancelevel">ダンスレベル</string>
+    <string name="show_playcount">プレイ回数</string>
+    <string name="show_clearcount">クリア回数</string>
+    
+    <string name="visible_password">パスワードを表示</string>
+    <string name="input_ddr_sa_id_password">ID/Password の入力</string>
+    <string name="input_ddr_sa_information">DDR Skill Attack で使用している DDR-CODE と Password を入力してください。\nパスワードは暗号化して端末に保存されます。</string>
+    <string name="authenticating">認証処理中...</string>
+    <string name="authentication_failure">認証に失敗しました。\nID/Password を確認してください。</string>
+    <string name="authentication_succeed">認証に成功しました。\nエクスポートボタンでエクスポートできます。</string>
+    <string name="export_check_title">DDR SA にエクスポート</string>
+    <string name="export_check">エクスポートを実行しますか？</string>
+    <string name="exporting">エクスポートしています...</string>
+    <string name="export_succeed">エクスポートに成功しました。</string>
+    <string name="exported_scores">以下のスコアデータが更新されました。</string>
+    <string name="exported_count">更新された譜面数: </string>
+    
+    <string name="music_list">楽曲一覧</string>
+    <string name="auto_update_music_list">楽曲一覧の自動更新</string>
+    <string name="update_music_list_now">楽曲一覧の更新</string>
+    
+    <string name="error_noitem">取得対象がありません</string>
+    <string name="textsizesetting_preview">サイズを変更すると、下部のプレビューに反映されます。</string>
+    <string name="use_old_draw">旧方式の描画を使う</string>
+    
+    <string name="name_different_alert">取得しようとしている楽曲の曲名が公式サイトと異なっています。　（製作者に報告をお願いします）</string>
+    <string name="illegal_id_alert">楽曲IDが不正です。　「楽曲IDとスコアを取得」を試してください。</string>
+    
+    <string name="show_comments">コメントを表示する</string>
+    <string name="reset_socres">スコアデータのリセット</string>
+    
+    <string name="shock_arrow">ショックアロー</string>
+    <string name="shock_arrow_only">のみ</string>
+    <string name="shock_arrow_include">含める</string>
+    <string name="shock_arrow_exclude">除く</string>
+    
+    <string name="dialog_gettin_status">ステータス取得中</string>
+    <string name="dialog_log_get_status">ステータスページを取得中...</string>
+    
+    <string name="title_activity_status">Player Status</string>
+    
+	<string name="dialog_title_get_recent">Recent を取得中</string>
+	
+	<string name="title_activity_change_log">Change log</string>
+	<string name="menu_change_log">アプリの更新履歴</string>
+	
+	<string name="dialog_log_get_rival_list">ライバル一覧を取得中</string>
+	
+	<string name="title_activity_gate_login">ログイン</string>
+	<string name="message_gate_login">GATE にログインしてください。</string>
+    <string name="message_gate_login_manually">ログインを確認したらバックボタンで戻ってください。</string>
+	<string name="message_gate_loggedin">ログインを確認しました。</string>
+	<string name="message_gate_loggedin_failed">ログインを確認できませんでした。</string>
+	<string name="message_gate_already_logged_in_but_shown">ログイン済みですがデータの取得ができませんでした。　ベーシックコースに加入していますか？</string>
+		
+	<string name="dialog_sou_myscore">マイスコア</string>
+    <string name="dialog_sou_rivalscore">ライバルスコア</string>
+    
+    <string name="toast_added_to_mylist1"></string>
+    <string name="toast_added_to_mylist2"> に追加しました。</string>
+    	
+    <string name="waiting">待機中...</string>
+    <string name="waiting_remaining">後</string>
+    <string name="waiting_seconds">秒</string>
+    
+    <string name="dialog_copy_to_clipboard">クリップボードにコピー</string>
+    <string name="dialog_copied_to_clipboard">クリップボードにコピーしました</string>
+    <string name="dialog_from_gate">GATE から取得</string>
+    <string name="dialog_direct_edit">直接編集</string>
+    <string name="dialog_input_score">スコアを入力</string>
+    <string name="dialog_input_max_combo">コンボを入力</string>
+    <string name="dialog_input_play_count">プレイ回数を入力</string>
+    <string name="dialog_input_clear_count">クリア回数を入力</string>
+    <string name="dialog_disp_all_pattern">すべての譜面を表示</string>
+    <string name="dialog_add_to_list">マイリストに追加</string>
+    <string name="dialog_new_list">--- 新規作成 ---</string>
+    <string name="sort_new">--- 新規作成 ---</string>
+    <string name="edit_filter_name">フィルタ名の編集</string>
+    <string name="edit_sort_name">ソート名の編集</string>
+    <string name="dialog_remove_from_list">このリストから除外</string>
+    
+    <string name="there_is_no_items">表示するアイテムがないか、表示に時間がかかっています。　しばらく待ってもアイテムが表示されない場合、カテゴリとフィルタの設定を確認してください。</string>
+    
+    <string name="sou_progress_title">スコアを取得中</string>
+    <string name="sou_progress_message">(゜д゜;)(Д゜ )彡(Д゜ #)(*゜д゜*)( ゜д)(（д゜ *）（Д゜ ）9m(゜д゜#)(*゜д゜*)(д゜ #)彡(д゜ ;)(゜д゜ )（゜д゜）</string>
+    <string name="sou_dialog_title">(゜Д゜)</string>
+    <string name="sou_dialog_message">"(（д゜ #）（. ゜д゜）(（゛д゛ ）(# ゜д)彡(（゜Д゜ ）9m（* ゜д）彡(（ ゜д゜#）彡( ゜Д)(д゜ ;)(#゜Д゜)(#゜д゜)(゜д゜ )( ゜Д゜#)( ゜д゜;)( ゜Д゜)彡(#゜д゜)(' ゜д)(（*゜д゜）彡（, ゜Д゜;）(' ゜д)（ ゜д゜;）（* ゜д）（д゜ ）(' ゜Д)(( ゜д゜ )彡(д゜,;)(（д゜ *）（Д゛ ;）(゜д゜;)(Д゜ *)( ゜д゜;)（゜д゜）(* ゜д)(' ゜д)(（д゜ ;）彡（д゜ *）(（'゜д゜`）（. ゜д゜ ）(Д゜ )(゜Д゜ ,)(Д゜ .)(;,゜Д)(. ゜Д)（д゜ ;）（゜ー゜）（Д゜ ）彡(゜д゜`)(（ ゜Д゜）（#゜Д゜）(（Д゜ ）（ ゛д゛#）(' ゜Д)(д゜ *)(*゜д゜)( ゜Д゜#)(' ゜д)(' ゜Д)(（ ゜Д）彡（゜д゜`）(*゜д゜)( ゜Д゜#)(д゜ #)(*゜Д゜)（゜Д゜）(（* ゜д）(д゛ )((゜Д゜`)(Д゜ `)(（* ゜Д）('゜Д゜)(' ゜д)((゜Д゜`)（゜д゜`）(（゜д゜#）(# ゜д)彡(゜д゜`)(（゜д゜#）（ ゛д゛ ）(*゜Д゜)(#゜д゜)(*゜д゜*)(д゜ #)彡(д゜ ;)(゜д゜ )（゜д゜）(（* ゜д）('゜д゜)(（д゜ *）( ゜д゜ )彡(゜д゜`)(（ ゛д゛）（ ゜Д゜#）(（゜Д゜ ）9m(# ゜Д)(゜д゜;)(Д゜ *)( ゜д゜;)(д゜ *)（゜д゜）?"</string>
+    <string name="sou_dialog_wakegawakaranaiyo">わけがわからないよ</string>
+    <string name="sou_dialog_title_lang">警告</string>
+    <string name="sou_dialog_message_lang">現在リストに表示されているすべての譜面のスコア・コンボを取得します。この機能は極めて低速です。 また、GATEサーバに負荷をかけるのを避けるため、最低限の使用に留めてください。  取得する対象を選択してください。</string>
+    
+    <string name="get_from_list">GATE からスコアとフルコン情報を取得</string>
+    <string name="get_from_list_message">GATE からスコアとフルコン情報を取得します。</string>
+    <string name="manage_rivals_add_rival">ライバルを追加</string>
+    <string name="manage_rivals_add_rival_message">旧バージョンのスコアマネージャのスコアをライバルデータとして登録する場合は空白でOKをタップしてください</string>
+    <string name="manage_rivals_from_gate_title">ライバルリストの取得</string>
+    <string name="manage_rivals_from_gate">GATE サーバからライバルリストを取得します。DDR-CODE がすでにリストに存在する場合は名前が編集されます。</string>
+    <string name="manage_rivals_from_gate_warning_title">Warning!</string>
+    <string name="manage_rivals_from_gate_warning">GATE アカウント上でライバル登録されていないライバルデータは端末から抹消されます。 本当に上書きで実行しますか？</string>
+    <string name="manage_rivals_from_gate_overwrite">上書き</string>
+    <string name="manage_rivals_from_gate_add">OK</string>
+    <string name="manage_rivals_only_my_score">マイスコアのみ表示</string>
+    <string name="manage_rivals_scores_from_old_ddr_sm">旧スコアマネージャでのスコア</string>
+    
+    <string name="global_setting_set_pfc1">一覧から取得時に下記点数以上なら PFCとして保存する </string>
+    
+    <string name="title_activity_manage_rivals">Rivals</string>
+    <string name="manage_rivals_invalid_ddr_code">DDR-CODE が不正です！</string>
+    <string name="manage_rivals_id">DDR-CODE</string>
+    <string name="manage_rivals_name">Dancer-Name</string>
+    <string name="manage_rivals_edit_rival">ライバルの編集</string>
+    
+    <string name="rival_score">ライバル比較</string>
+    <string name="rival_score_only_my_score">マイスコアのみ</string>
+    
+    <string name="filter">フィルタ</string>
+    <string name="sort">ソート</string>
+    <string name="colon">:</string>
+    <string name="filter_new">--- 新規作成 ---</string>
+    <string name="menu_icon_content_description">menu</string>
+    <string name="sou_icon_content_description">(゜Д゜)</string>
+    <string name="title_activity_score_list">DDR Score Manager A</string>
+    <string name="title_activity_score_edit">Score Edit</string>
+    <string name="title_activity_music_detail">Music Detail</string>
+    <string name="title_activity_from_gate_list">スコア取得</string>
+    <string name="title_activity_from_gate">Connecting to GATE...</string>
+    <string name="title_activity_pager_score_list">DDR Score Manager A</string>
+    <string name="title_activity_global_setting">Global Setting</string>
+    
+    <string name="global_setting_advanced">高度</string>
+    <string name="global_setting_advanced_useasyncdraw">非同期で描画する</string>
+    <string name="global_setting_preference">共通設定</string>
+    <string name="global_setting_general">全般</string>
+    <string name="global_setting_closecategoryonbackpressed">バックキーでカテゴリを閉じる</string>
+    <string name="global_setting_gate">GATE</string>
+    <string name="global_setting_froma3">A3のスコアを取得</string>
+    <string name="global_setting_overwritelowerscore">取得したスコアが低い場合も上書き</string>
+    <string name="global_setting_overwritefullcombo">「Goodフルコンボ」を、取得した「フルコンボ」で上書き</string>
+    <string name="global_setting_overwritelife4">「Life4クリア」を、取得した「未フルコン」で上書き</string>
+    <string name="global_setting_logout_gate">GATEに手動でログイン</string>
+    <string name="global_setting_appearance">表示設定</string>
+    <string name="global_setting_textsizesetting">フォントサイズの変更</string>
+    <string name="global_setting_gestures">操作</string>
+    <string name="global_setting_gestures_enableFlick">左右フリックでカテゴリを変更</string>
+    <string name="global_setting_gestures_onitemclicked">リストアイテムのタップ</string>
+    <string name="global_setting_gestures_onitemlongclicked">リストアイテムのロングタップ</string>
+    <string name="global_setting_filterandsort">フィルタとソート</string>
+    <string name="global_setting_filtersetting">　編集　</string>
+    <string name="global_setting_removetab">タブを減らす</string>
+    <string name="global_setting_addtab">タブを増やす</string>
+    <string name="global_setting_importexport">インポート/エクスポート</string>
+    <string name="global_setting_import">スコアのリストア</string>
+    <string name="global_setting_export">スコアのバックアップ</string>
+    <string name="global_setting_import_mylist">マイリストのリストア</string>
+    <string name="global_setting_export_mylist">マイリストのバックアップ</string>
+    <string name="global_setting_ad">Ad</string>
+    <string name="global_setting_showad">広告を表示する (`・ω・´)</string>
+
+    <string name="filter_setting_score_edit">範囲の編集</string>
+
+    <string name="global_setting_dialog_backup_mylist">マイリストのバックアップ</string>
+    <string name="global_setting_dialog_restore_mylist">マイリストのリストア</string>
+    <string name="global_setting_dialog_backuptoA_mylist">マイリストのバックアップを </string>
+    <string name="global_setting_dialog_backuptoB_mylist"> に出力します。</string>
+    <string name="global_setting_dialog_restorefromA_mylist">バックアップデータ </string>
+    <string name="global_setting_dialog_restorefromB_mylist"> からマイリストを読み込みます。 すでに同じマイリストが存在する場合でも、新規で作成されます。</string>
+    <string name="global_setting_exportedA_mylist">バックアップデータを </string>
+    <string name="global_setting_exportedB_mylist"> に出力しました。</string>
+    <string name="global_setting_exportfailed_mylist">失敗しました。</string>
+    <string name="global_setting_exportnoone_mylist">マイリストがありません。</string>
+    <string name="global_setting_importedA_mylist"></string>
+    <string name="global_setting_importedB_mylist"> からデータを読み込みました。</string>
+    <string name="global_setting_importfailed_mylist">失敗しました。</string>
+    <string name="global_setting_importnoone_mylist">バックアップデータにマイリストが含まれていませんでした。</string>
+    
+    <string name="global_setting_logout_message">ログアウトを完了するにはアプリを再起動してください。</string>
+    
+    <string name="global_setting_dialog_backup">スコアのバックアップ</string>
+    <string name="global_setting_dialog_restore">スコアのリストア</string>
+    <string name="global_setting_dialog_reset_scores">スコアデータのリセット</string>
+    <string name="global_setting_dialog_reset_scores_main">既存のデータは上書きされますので注意してください。</string>
+    <string name="global_setting_dialog_backuptoA">スコアデータのバックアップを </string>
+    <string name="global_setting_dialog_backuptoB"> に出力します。</string>
+    <string name="global_setting_dialog_restorefromA">バックアップデータ </string>
+    <string name="global_setting_dialog_restorefromB"> からスコアを読み込みます。既存のデータは上書きされますので注意してください。</string>
+    <string name="global_setting_exportedA">バックアップデータを </string>
+    <string name="global_setting_exportedB"> に出力しました。</string>
+    <string name="global_setting_exportfailed">失敗しました。</string>
+    <string name="global_setting_importedA"></string>
+    <string name="global_setting_importedB"> からデータを読み込みました。</string>
+    <string name="global_setting_importfailed">失敗しました。</string>
+    <string name="global_setting_importzero">スコアデータが0個のため読み込みを中断しました。</string>
+    
+    <string name="filter_setting_edit_tab_name">設定名の編集</string>
+    <string name="filter_setting_delete">削除</string>
+    <string name="filter_setting_deleteconferm">このフィルタとソートの設定を削除します。よろしいですか?</string>
+    <string name="filter_setting_filter">フィルタ</string>
+    <string name="filter_setting_pattern_type">譜面種別</string>
+    <string name="filter_setting_showcwhenonlyc">Challenge 以外が存在しない場合は Challenge を表示</string>
+    <string name="filter_setting_showewhennoc">Challenge が存在しない場合は Expert を表示</string>
+    <string name="filter_setting_difficulty">難易度</string>
+    <string name="filter_setting_seriestitle">シリーズタイトル</string>
+    <string name="filter_setting_rank">ダンスレベル</string>
+    <string name="filter_setting_fullcombo">フルコン種別</string>
+    <string name="filter_setting_score">スコア</string>
+    <string name="filter_setting_combo">最大コンボ数</string>
+    <string name="filter_setting_playcount">プレイ回数</string>
+    <string name="filter_setting_clearcount">クリア回数</string>
+    <string name="filter_setting_rival_win_lose">ライバル勝敗</string>
+    <string name="filter_setting_rival_win">Win</string>
+    <string name="filter_setting_rival_lose">Lose</string>
+    <string name="filter_setting_rival_draw">Draw</string>
+    <string name="filter_setting_rival_score">ライバルスコア</string>
+    <string name="filter_setting_rival_combo">ライバル最大コンボ数</string>
+    <string name="filter_setting_rival_playcount">ライバルプレイ回数</string>
+    <string name="filter_setting_rival_clearcount">ライバルクリア回数</string>
+    <string name="filter_setting_score_diff">ライバルとのスコア差</string>
+    <string name="filter_setting_combo_diff">ライバルとの最大コンボ差</string>
+    <string name="filter_setting_play_count_diff">ライバルとのプレイ回数差</string>
+    <string name="filter_setting_clear_count_diff">ライバルとのクリア回数差</string>
+    <string name="filter_setting_score_divider">～</string>
+    <string name="filter_setting_rank_rival">ライバルダンスレベル</string>
+    <string name="filter_setting_fullcombo_rival">ライバルフルコン種別</string>
+    <string name="filter_setting_sort">ソート</string>
+    <string name="filter_setting_sort_asc">昇順</string>
+    <string name="filter_setting_sort_des">降順</string>
+    <string name="filter_setting_nomin">0</string>
+    <string name="filter_setting_nomax">∞</string>
+    <string name="filter_setting_deleted">削除された楽曲</string>
+    <string name="filter_setting_others">その他</string>
+    
+    <string name="score_list_item_height_setter_text">AAA゜</string>
+    
+    <string name="score_edit_state">State</string>
+    <string name="score_edit_score">Score</string>
+    <string name="score_edit_combo">Combo</string>
+    <string name="score_edit_play_count">Play</string>
+    <string name="score_edit_clear_count">Clear</string>
+    <string name="score_edit_reset_data">スコアをリセット</string>
+    
+    <string name="from_gate_list_notif1">スコア一覧ページを表示するとスコアを取得します。</string>
+    
+    <string name="from_gate_notif1">正常に完了すると自動的にリストに戻ります。</string>
+    <string name="from_gate_notif2">GATE のログイン画面が表示された場合は、ログインして再試行してください。</string>
+    
+    <string name="score_list_rival_difference">スコア差: </string>
+    <string name="score_list_rival_difference_edit_error1">値が不正です</string>
+    <string name="score_list_rival_difference_edit_error2">上に1000000に近い値、下に0に近い値を入力してください</string>
+    <string name="score_list_rival_difference_edit_error3">「・」を挟んで内側に0に近い値、外側に1000000に近い値を入力してください</string>
+    
+    <string name="edit_rival_modified">ダンサーネームの変更を行いました。</string>
+    
+    <string name="title_activity_text_size_setting">表示設定</string>
+    
+    <string name="textsizesetting_category_top">カテゴリトップ</string>
+    <string name="textsizesetting_category_subitem">カテゴリサブアイテム</string>
+    
+    <string name="textsizesetting_item_music_level">難易度</string>
+    <string name="textsizesetting_item_music_name">曲名</string>
+    <string name="textsizesetting_item_music_rank">ダンスレベル</string>
+    <string name="textsizesetting_item_music_score">スコア</string>
+    
+    <string name="textsizesetting_item_music_level_x">難易度 (横幅)</string>
+    <string name="textsizesetting_item_music_name_x">曲名 (横幅)</string>
+    <string name="textsizesetting_item_music_rank_x">ダンスレベル (横幅)</string>
+    <string name="textsizesetting_item_music_score_x">スコア (横幅)</string>
+    
+    <string name="textsizesetting_default">デフォルトに戻す</string>
+    
+    <string name="is_full_screen">フルスクリーン (要再起動)</string>
+    <string name="show_title_bar">タイトルバー</string>
+    
+    <string name="menu_show_statisticstable">統計情報</string>
+    <string name="menu_show_verticalaxis">縦軸</string>
+    <string name="menu_show_horizontalaxis">横軸</string>
+    
+    <string name="menu_music_share">テキストとして出力</string>
+    <string name="menu_music_share_copy">クリップボードにコピー</string>
+    <string name="menu_music_share_action_send">他のアプリに送る</string>
+    
+    <string name="menu_refresh_recent">Recent を更新</string>
+    <string name="menu_refresh_status">更新</string>
+    
+		
+	
+    <string name="menu_rival_score">ライバル比較</string>
+    <string name="menu_from_gate_list">一覧からスコア取得</string>
+    <string name="menu_from_gate_list_rival">一覧からスコアを取得</string>
+    <string name="menu_from_gate_list_my_score">マイスコア</string>
+    <string name="menu_sou">(゜Д゜)</string>
+    <string name="menu_sou_">まとめて取得</string>
+	
+    <string name="menu_music_rivals">ライバルスコア</string>
+    
+    <string name="menu_rivals">ライバル</string>
+    
+    <string name="dialog_networkerror">ネットワークエラー</string>
+    <string name="dialog_networkerrorexit">ネットワークエラーが発生しました。電波状況の良いところで再試行してください。</string>
+
+	<string name="strings____Activity_CategorySelect____category_allMusics">All Musics</string>
+	<string name="strings____Activity_CategorySelect____category_difficulty">Difficulty</string>
+	<string name="strings____Activity_CategorySelect____category_seriesTitle">Series Title</string>
+	<string name="strings____Activity_CategorySelect____category_abc">ABC</string>
+	<string name="strings____Activity_CategorySelect____category_rank">Dance Level</string>
+	<string name="strings____Activity_CategorySelect____category_fullcomboType">Full Combo Type</string>
+	<string name="strings____Activity_CategorySelect____category_recent">Recent</string>
+	<string name="strings____Activity_CategorySelect____category_rival">Rival</string>
+	<string name="strings____Activity_CategorySelect____category_rivalWinlose">Win/Lose</string>
+	<string name="strings____Activity_CategorySelect____category_rivalWin">Win</string>
+	<string name="strings____Activity_CategorySelect____category_rivalLose">Lose</string>
+	<string name="strings____Activity_CategorySelect____category_rivalDraw">Draw</string>
+	<string name="strings____Activity_CategorySelect____category_mylist">My List</string>
+	<string name="strings____Activity_CategorySelect____notif_ast">*</string>
+	<string name="strings____Activity_CategorySelect____notif_1">このアプリは、GATEサーバからWebサイトの情報を取得する機能を具備します。</string>
+	<string name="strings____Activity_CategorySelect____notif_2">GATEサーバへの負荷を避けるため、取得機能の使用は最小限に留めてください。</string>
+	<string name="strings____Activity_CategorySelect____notif_3">広告はタップして確認することで24時間非表示にできます。</string>
+		
+    <!-- 
+    Activity DdrSa
+     -->
+    
+    <string name="strings____Dialog_DdrSaDeleteAuthenticate____deleteAuthenticationData">\n認証を解除\n</string>
+    <string name="strings____Dialog_DdrSaDeleteAuthenticate____confirm">認証情報を削除します</string>
+    <string name="strings____Dialog_DdrSaDeleteAuthenticate____deleteSucceed">削除しました。</string>
+    
+    <!-- 
+    Activity DdrSa
+     -->
+    
+    <string name="strings____Activity_DdrSa____exportToDdrSa">DDR Skill Attack 連携</string>
+    <string name="strings____Activity_DdrSa____authenticatedId">認証済みID: </string>
+    <string name="strings____Activity_DdrSa____authenticatedIdDefault">認証されていません。\n認証ボタンを押して DDR Skill Attack の認証を行ってください。</string>
+    <string name="strings____Activity_DdrSa____export">\n\nエクスポート\n\n</string>
+    <string name="strings____Activity_DdrSa____openDdrSa">DDR Skill Attack ウェブサイトを開く</string>
+    <string name="strings____Activity_DdrSa____openUserPage">ユーザページを開く</string>
+    <string name="strings____Activity_DdrSa____authenticateDdrSa">\n認証する\n</string>
+    <string name="strings____Activity_DdrSa____deleteAuthenticationData">\n認証を解除\n</string>
+    
+    <!-- 
+    Activity CategorySelect
+    Activity ManageRivals
+    Activity ScoreList
+     -->
+    
+	<string name="strings____Dialog_FromGate__Dialog_FromGateList____logGetScoreList">スコア取得中</string>
+	<string name="strings____Dialog_FromGate__Dialog_FromGateList____logGetPageCount">ページ数を取得中...</string>
+	<string name="strings____Dialog_FromGate__Dialog_FromGateList____logGetPage">スコアページを取得中...</string>
+	
+    <!-- 
+    Activity CategorySelect
+    Activity ManageRivals
+    Activity ScoreList
+    -->
+    
+    <string name="strings____Dialog_GetScores____getScore">スコアの一括取得</string>
+	<string name="strings____Dialog_GetScores____getScoreMessage">GATE サーバからすべての曲のスコアとフルコン情報をまとめて取得します。取得するプレータイプを選択してください。</string>
+	<string name="strings____Dialog_GetScores____getScoreTypeSp">SP</string>
+	<string name="strings____Dialog_GetScores____getScoreTypeDp">DP</string>
+	
+    <!-- 
+    Activity CategorySelect
+    Activity ScoreList
+     -->
+    
+    <string name="strings____Dialog_MyList____editMylistName">マイリスト名の編集</string>
+    <string name="strings____Dialog_MyList____deleteMylist">マイリストを削除</string>
+    <string name="strings____Dialog_MyList____deleteConferm">このマイリストを削除します。よろしいですか?</string>
+    
+    <!-- 
+    Activity ScoreList
+     -->
+
+    <string name="strings____Dialog_Omikuji____omikuji">おみくじ選曲</string>
+		
+    <!-- 
+    Activity CategorySelect
+    Activity GlobalSetting
+     -->
+    
+    <string name="strings____Dialog_UpdateMusicList____refreshingMusiclist">楽曲一覧の更新チェック中...</string>
+    
+    <!-- 
+    Activity ManageRivals
+     -->
+    
+	<string name="strings____Menu_ManageRivals____getScore">Gate から取得</string>
+    <string name="strings____Menu_ManageRivals____active">比較対象にする</string>
+	<string name="strings____Menu_ManageRivals____readfromclip">クリップボードから読み込み</string>
+    <string name="strings____Menu_ManageRivals____moveUp">上に移動</string>
+    <string name="strings____Menu_ManageRivals____moveDown">下に移動</string>
+    <string name="strings____Menu_ManageRivals____edit">CODEとNAMEの編集</string>
+    <string name="strings____Menu_ManageRivals____removeRival">消去</string>
+    
+	<string name="strings____ManageRivals____cantreadfromclip">クリップボードからスコアを読み込めませんでした</string>
+	<string name="strings____ManageRivals____readfromclip_done">読み込みに成功しました</string>
+	<string name="strings____ManageRivals____readfromclip_title">DDR Score Manager 2013 のデータの読み込み</string>
+	<string name="strings____ManageRivals____readfromclip_info">DDR Score Manager 2013 (旧スコアマネージャ) のスコアデータをライバルデータとして使用することができます。旧スコアマネージャにて「メニュー」→「共通設定」→「インポート/エクスポート」→「スコアデータベースのコピー」を実施後にこのメニューにてデータの読み込みを行ってください。</string>
+			
+    <!-- 
+    Activity CategorySelect
+     -->
+    
+    <string name="strings____Menu_MyList____editMylistName">マイリスト名を編集</string>
+    <string name="strings____Menu_MyList____deleteMylist">マイリストを削除</string>
+    
+    <!-- 
+    Activity CategorySelect
+    Activity ScoreList
+     -->
+    
+    <string name="strings____Menu_System____preference">共通設定</string>
+    <string name="strings____Menu_System____statistics">統計</string>
+    <string name="strings____Menu_System____showStatus">プレイヤ情報を表示</string>
+    <string name="strings____Menu_System____manageRivals">ライバル管理</string>
+    <string name="strings____Menu_System____ddrSa">DDR SA 連携</string>
+	<string name="strings____Menu_System____getScore">GATEサーバから一括取得（標準）</string>
+	<string name="strings____Menu_System____getScoreDetail">GATEサーバから一括取得（詳細）</string>
+ 	<string name="strings____Menu_System____openOcrMode">eAmusementアプリのスコア画像から読み込み</string>
+	<string name="strings____Menu_System____omikuji">おみくじ選曲</string>
+		
+    <!-- 
+    Activity CategorySelect
+     -->
+    
+    <string name="strings_____Dialog_UpdateInfo____versionInfoTitle">アップデート情報</string>
+    
+</resources>

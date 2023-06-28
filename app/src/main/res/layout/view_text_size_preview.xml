@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="1dp"
+            android:background="#666666"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <LinearLayout
+            android:id="@+id/layoutCategoryTop"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/category_toplevel_item_background_color"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="#99ff99"
+                android:paddingRight="5dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="0sp" />
+
+            <TextView
+                android:id="@+id/categoryTop"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="Category Preview"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="0sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/series2013"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/list_item_background_color"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:background="#ffffff"
+                    android:paddingRight="5dp"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="0sp" />
+
+                <TextView
+                    android:id="@+id/categorySubItem"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="1"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="Category subitem"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@drawable/list_item_text_color"
+                    android:textSize="0sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/list_item_background_color" >
+
+            <TextView
+                android:id="@+id/musicId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="123"
+                android:textColor="#666666"
+                android:textSize="0sp"
+                android:typeface="monospace" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+
+
+
+
+                <TextView
+                    android:id="@+id/musicLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="12"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#00ff00"
+                    android:textSize="0sp"
+                    android:textStyle="bold"
+                    android:typeface="monospace" />
+
+
+
+                <LinearLayout
+                    android:id="@+id/patternTypeParent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+
+
+
+                    <TextView
+                        android:id="@+id/patternTypeD"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#00ff00"
+                        android:paddingRight="5dp"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="0sp" />
+
+
+
+
+
+
+                    <TextView
+                        android:id="@+id/patternTypeS"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="0sp" />
+
+
+
+
+
+
+
+                    <TextView
+                        android:id="@+id/patternTypeD2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#00ff00"
+                        android:paddingRight="5dp"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="0sp" />
+
+                </LinearLayout>
+
+
+
+
+
+                <TextView
+                    android:id="@+id/musicName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="3dp"
+                    android:layout_weight="1"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="Music Name ～曲名～ Ver.A"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@drawable/list_item_text_color"
+                    android:textSize="0sp" />
+
+
+
+
+                <TextView
+                    android:id="@+id/musicRank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="-3dp"
+                    android:gravity="right"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="AAA゜"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffcc"
+                    android:textSize="0sp"
+                    android:textStyle="bold"
+                    android:typeface="serif" />
+
+
+                <TextView
+                    android:id="@+id/heightSetter"
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="-3dp"
+                    android:gravity="right"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="@string/score_list_item_height_setter_text"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#00000000"
+                    android:textSize="0sp"
+                    android:textStyle="bold"
+                    android:typeface="serif" />
+
+
+
+
+                <TextView
+                    android:id="@+id/musicScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:gravity="right"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="1,000,000"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff"
+                    android:textSize="0sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="5dp"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="0sp" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </LinearLayout>

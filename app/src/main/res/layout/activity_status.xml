@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/titleBar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#003399" >
+
+        <ImageView
+            android:id="@+id/sou"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:contentDescription="@string/sou_icon_content_description"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:text="@string/title_activity_status"
+            android:textSize="18sp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <ImageView
+            android:id="@+id/refresh"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/menu_button_background_color"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_popup_sync" />
+
+        <ImageView
+            android:id="@+id/menuButton"
+            android:visibility="gone"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/menu_button_background_color"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/menu_icon_content_description"
+            android:src="@android:drawable/ic_menu_sort_by_size" />
+
+    </LinearLayout>
+    
+    <ScrollView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" >
+	
+	    <LinearLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical" >
+		    
+		    <LinearLayout
+		        android:visibility="gone"
+		        android:id="@+id/mgr"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="vertical" >
+		
+		    </LinearLayout>
+
+	        <TextView
+	            android:layout_width="fill_parent"
+	            android:layout_height="2dp"
+	            android:background="#ff999999"
+	            android:textAppearance="?android:attr/textAppearance" />
+	        
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="Dancer Data"
+	            android:layout_marginRight="10dp"
+	            android:textColor="#ffffffff"
+	            android:textAppearance="?android:attr/textAppearance" />
+	        
+		    <TableLayout
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginBottom="10dp"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content" >
+
+		        <TableRow
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content" >
+			            
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text="Player"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+	
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text=":"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+			        <TextView
+			            android:id="@+id/dancerName"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+		        </TableRow>
+
+		        <TableRow
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content" >
+			        
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text="DDR-CODE"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+	
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text=":"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+			        <TextView
+			            android:id="@+id/ddrCode"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+		        </TableRow>
+
+		        <TableRow
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content" >
+			        
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text="Area"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+	
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text=":"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+			        <TextView
+			            android:id="@+id/area"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+		        </TableRow>
+		        
+		        <TableRow
+		            android:visibility="gone"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content" >
+			        
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text="Enjoy Level"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+	
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text=":"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+			        <LinearLayout
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content" >
+				            
+				        <TextView
+				            android:id="@+id/enjoyLevel"
+				            android:layout_width="wrap_content"
+				            android:layout_height="wrap_content"
+				            android:textAppearance="?android:attr/textAppearance" />
+					            
+				        <TextView
+				            android:layout_width="wrap_content"
+				            android:layout_height="wrap_content"
+				            android:text="(next: "
+				            android:layout_marginLeft="5dp"
+				            android:layout_marginRight="5dp"
+				            android:textColor="#ffcccccc"
+				            android:textAppearance="?android:attr/textAppearanceSmall" />
+		
+				        <TextView
+				            android:id="@+id/enjoyLevelNext"
+				            android:layout_width="wrap_content"
+				            android:layout_height="wrap_content"
+				            android:textAppearance="?android:attr/textAppearanceSmall" />
+					            
+				        <TextView
+				            android:layout_width="wrap_content"
+				            android:layout_height="wrap_content"
+				            android:text=")"
+				            android:textColor="#ffcccccc"
+				            android:textAppearance="?android:attr/textAppearanceSmall" />
+		
+			        </LinearLayout>
+			        
+		        </TableRow>
+		        
+		        <TableRow
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content" >
+			        
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text="Play Count"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+	
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text=":"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+			        <TextView
+			            android:id="@+id/playCount"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+		        </TableRow>
+		        
+		        <TableRow
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content" >
+			        
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text="Last Play"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+	
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text=":"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+			        <TextView
+			            android:id="@+id/lastPlay"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+		        </TableRow>
+		        
+		    </TableLayout>
+		    
+	        <TextView
+	            android:layout_width="fill_parent"
+	            android:layout_height="2dp"
+	            android:background="#ff999999"
+	            android:textAppearance="?android:attr/textAppearance" />
+       
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="SP"
+	            android:layout_marginRight="10dp"
+	            android:textColor="#ffffffff"
+	            android:textAppearance="?android:attr/textAppearance" />
+
+		    <TableLayout
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginBottom="10dp"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content" >
+
+		        <TableRow
+		            android:visibility="gone"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content" >
+			            
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text="Class"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+	
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text=":"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+			        <TextView
+			            android:id="@+id/spShougou"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+		        </TableRow>
+		        
+		        <TableRow
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content" >
+			            
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text="Play Count"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+	
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text=":"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+			        <TextView
+			            android:id="@+id/spPlayCount"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+		        </TableRow>
+		        
+		        <TableRow
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content" >
+			            
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text="Last Play"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+	
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text=":"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+			        <TextView
+			            android:id="@+id/spLastPlay"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+		        </TableRow>
+		        
+		    </TableLayout>
+	        
+	        <TextView
+	            android:layout_width="fill_parent"
+	            android:layout_height="2dp"
+	            android:background="#ff999999"
+	            android:textAppearance="?android:attr/textAppearance" />
+       
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="DP"
+	            android:layout_marginRight="10dp"
+	            android:textColor="#ffffffff"
+	            android:textAppearance="?android:attr/textAppearance" />
+
+		    <TableLayout
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginBottom="10dp"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content" >
+
+		        <TableRow
+		            android:visibility="gone"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content" >
+			            
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text="Class"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+	
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text=":"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+			        <TextView
+			            android:id="@+id/dpShougou"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+		        </TableRow>
+		        
+		        <TableRow
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content" >
+			            
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text="Play Count"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+	
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text=":"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+			        <TextView
+			            android:id="@+id/dpPlayCount"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+		        </TableRow>
+		        
+		        <TableRow
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content" >
+			            
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text="Last Play"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+	
+			        <TextView
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text=":"
+			            android:layout_marginRight="10dp"
+			            android:textColor="#ffcccccc"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+			        <TextView
+			            android:id="@+id/dpLastPlay"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:textAppearance="?android:attr/textAppearance" />
+			        
+		        </TableRow>
+		        
+		    </TableLayout>
+
+		    <Button
+		        android:id="@+id/showstatisticstable"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/menu_show_statisticstable" />
+	        
+	    </LinearLayout>
+	   
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/adContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+    </LinearLayout>
+    
+</LinearLayout>

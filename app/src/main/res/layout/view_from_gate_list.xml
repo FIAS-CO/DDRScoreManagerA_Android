@@ -1,0 +1,114 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#000000"
+    android:orientation="vertical" >
+
+    <HorizontalScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:id="@+id/adContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+    </LinearLayout>
+   
+    </HorizontalScrollView>
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:visibility="gone"
+        android:fadingEdge="horizontal|vertical" />
+
+    <TextView
+        android:id="@+id/log2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:textAppearance="?android:attr/textAppearance" />
+    
+    <TextView
+        android:id="@+id/log3"
+        android:layout_width="fill_parent"
+        android:layout_height="3dp"
+        android:visibility="gone"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:background="#999999"
+        android:textAppearance="?android:attr/textAppearance" />
+    
+    <TextView
+        android:id="@+id/log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearance" />
+
+    <ProgressBar
+        android:id="@+id/webProgress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/progress_color"
+        android:max="102"
+        android:minHeight="5dp"
+        android:progressDrawable="@drawable/progress_color" />
+
+    <ProgressBar
+        android:id="@+id/mainProgress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/progress_color"
+        android:progressDrawable="@drawable/progress_color" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp" >
+
+        <TextView
+            android:id="@+id/percent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:text="0%"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/current"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:text="0"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:text="/"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+        <TextView
+            android:id="@+id/max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:text="\?"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+    </LinearLayout>
+
+</LinearLayout>

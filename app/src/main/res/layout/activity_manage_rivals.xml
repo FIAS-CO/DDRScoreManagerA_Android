@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/titleBar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="#003399" >
+
+        <ImageView
+            android:id="@+id/sou"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:contentDescription="@string/sou_icon_content_description"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:text="@string/title_activity_manage_rivals"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <ImageView
+            android:id="@+id/fromGateButton"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/menu_button_background_color"
+            android:contentDescription="@string/menu_icon_content_description"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_menu_set_as" />
+
+        <ImageView
+            android:id="@+id/menuButton"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:background="@drawable/menu_button_background_color"
+            android:contentDescription="@string/menu_icon_content_description"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_menu_add" />
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/manage_rivals_id"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/manage_rivals_name"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/rivalList"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_weight="1" >
+
+    </ListView>
+
+    <LinearLayout
+        android:id="@+id/adContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+    </LinearLayout>
+
+</LinearLayout>

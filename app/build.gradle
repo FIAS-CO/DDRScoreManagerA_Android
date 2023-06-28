@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        linanfine {
+            keyAlias 'linanfine'
+            keyPassword 'B366dsta5nedS*5r5ts'
+            storeFile file('../../androidkeystonelinanfine')
+            storePassword 'B366dsta5nedS*5r5ts'
+        }
+    }
+    compileSdkVersion 31
+    defaultConfig {
+        applicationId "jp.linanfine.dsma"
+        minSdkVersion 19
+        targetSdkVersion 31
+        //multiDexEnabled true
+    }
+    //buildToolsVersion "25.0.2"
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.linanfine
+        }
+        debug {
+            signingConfig signingConfigs.linanfine
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    productFlavors {
+    }
+}
+
+dependencies {
+    implementation 'com.google.android.gms:play-services-ads:+'
+    //compile 'com.android.support:multidex:1.0.0'
+}

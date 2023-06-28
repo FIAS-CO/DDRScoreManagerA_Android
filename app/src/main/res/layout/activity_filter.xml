@@ -1,0 +1,2345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="#002266" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/sou_icon_content_description"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tabName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#002266"
+            android:padding="10dp"
+            android:scrollHorizontally="true"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <ImageView
+            android:id="@+id/editTabName"
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:background="@drawable/menu_button_background_color"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/filter_setting_edit_tab_name"
+            android:src="@android:drawable/ic_menu_edit" />
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="60dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/menu_button_background_color"
+            android:contentDescription="@string/filter_setting_delete"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_delete" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#003399" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#003399"
+                    android:padding="10dp"
+                    android:text="@string/filter_setting_filter"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_pattern_type"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <CheckBox
+                    android:id="@+id/bSP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="bSP" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/BSP"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="BSP" />
+
+                    <CheckBox
+                        android:id="@+id/BDP"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="BDP" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/DSP"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="DSP" />
+
+                    <CheckBox
+                        android:id="@+id/DDP"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="DDP" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/ESP"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="ESP" />
+
+                    <CheckBox
+                        android:id="@+id/EDP"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="EDP" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/CSP"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="CSP" />
+
+                    <CheckBox
+                        android:id="@+id/CDP"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="CDP" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:baselineAligned="false"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
+                        android:id="@+id/shockArrowSPGroup"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/shock_arrow"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+					    <RadioGroup android:id="@+id/shockArrowSP"
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content">
+
+					        <RadioButton
+					            android:id="@+id/shockArrowSPOnly"
+					            android:layout_width="wrap_content"
+					            android:layout_height="wrap_content"
+					            android:text="@string/shock_arrow_only"
+					            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+					        <RadioButton
+					            android:id="@+id/shockArrowSPInclude"
+					            android:layout_width="wrap_content"
+					            android:layout_height="wrap_content"
+					            android:text="@string/shock_arrow_include"
+					            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+					        <RadioButton
+					            android:id="@+id/shockArrowSPExclude"
+					            android:layout_width="wrap_content"
+					            android:layout_height="wrap_content"
+					            android:text="@string/shock_arrow_exclude"
+					            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+					    </RadioGroup>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/shockArrowDPGroup"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/shock_arrow"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+					    <RadioGroup android:id="@+id/shockArrowDP"
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content">
+
+					        <RadioButton
+					            android:id="@+id/shockArrowDPOnly"
+					            android:layout_width="wrap_content"
+					            android:layout_height="wrap_content"
+					            android:text="@string/shock_arrow_only"
+					            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+					        <RadioButton
+					            android:id="@+id/shockArrowDPInclude"
+					            android:layout_width="wrap_content"
+					            android:layout_height="wrap_content"
+					            android:text="@string/shock_arrow_include"
+					            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+					        <RadioButton
+					            android:id="@+id/shockArrowDPExclude"
+					            android:layout_width="wrap_content"
+					            android:layout_height="wrap_content"
+					            android:text="@string/shock_arrow_exclude"
+					            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+					    </RadioGroup>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/allowOnlyChallenge"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/filter_setting_showcwhenonlyc" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/allowExpertWhenNoChallenge"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/filter_setting_showewhennoc" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_difficulty"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+
+
+                    <CheckBox
+                        android:id="@+id/dif1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="1" />
+
+
+
+                    <CheckBox
+                        android:id="@+id/dif2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="2" />
+
+
+
+                    <CheckBox
+                        android:id="@+id/dif3"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="3" />
+
+
+
+                    <CheckBox
+                        android:id="@+id/dif4"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="4" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+
+
+                    <CheckBox
+                        android:id="@+id/dif5"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="5" />
+
+
+
+
+                    <CheckBox
+                        android:id="@+id/dif6"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="6" />
+
+
+
+                    <CheckBox
+                        android:id="@+id/dif7"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="7" />
+
+
+
+                    <CheckBox
+                        android:id="@+id/dif8"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="8" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+
+
+
+                    <CheckBox
+                        android:id="@+id/dif9"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="9" />
+
+
+
+                    <CheckBox
+                        android:id="@+id/dif10"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="10" />
+
+
+
+                    <CheckBox
+                        android:id="@+id/dif11"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="11" />
+
+
+
+                    <CheckBox
+                        android:id="@+id/dif12"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="12" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+
+
+                    <CheckBox
+                        android:id="@+id/dif13"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="13" />
+
+
+
+                    <CheckBox
+                        android:id="@+id/dif14"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="14" />
+
+
+
+                    <CheckBox
+                        android:id="@+id/dif15"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="15" />
+
+
+
+                    <CheckBox
+                        android:id="@+id/dif16"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="16" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+
+
+                    <CheckBox
+                        android:id="@+id/dif17"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="17" />
+
+
+
+                    <CheckBox
+                        android:id="@+id/dif18"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="18" />
+
+
+
+                    <CheckBox
+                        android:id="@+id/dif19"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="19" />
+
+
+
+
+                    <CheckBox
+                        android:id="@+id/dif20"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="20"
+                        android:visibility="invisible" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_seriestitle"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+
+
+                    <CheckBox
+                        android:id="@+id/serA3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="A3" />
+
+                    <CheckBox
+                        android:id="@+id/serA20PLUS"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="A20 PLUS" />
+
+                    <CheckBox
+                        android:id="@+id/serA20"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="A20" />
+
+                    <CheckBox
+                        android:id="@+id/serA"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="A" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+
+
+                    <CheckBox
+                        android:id="@+id/ser2014"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="2014" />
+
+                    <CheckBox
+                        android:id="@+id/ser2013"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="2013" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+
+
+                    <CheckBox
+                        android:id="@+id/serX3"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="X3" />
+
+
+                    <CheckBox
+                        android:id="@+id/serX3vs2nd"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="X3 (2nd MIX)"
+                        android:visibility="gone" />
+
+
+                    <CheckBox
+                        android:id="@+id/serX2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="X2" />
+
+
+                    <CheckBox
+                        android:id="@+id/serX"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="X" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+
+
+
+
+
+                    <CheckBox
+                        android:id="@+id/serSN2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Super NOVA2" />
+
+
+
+
+                    <CheckBox
+                        android:id="@+id/serSN"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Super NOVA" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+
+
+
+
+                    <CheckBox
+                        android:id="@+id/serEXTREME"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="EXTREME" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+
+                    <CheckBox
+                        android:id="@+id/serMAX2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="MAX2" />
+
+
+                    <CheckBox
+                        android:id="@+id/serMAX"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="MAX" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+
+
+
+                    <CheckBox
+                        android:id="@+id/ser5th"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="5th" />
+
+
+
+
+                    <CheckBox
+                        android:id="@+id/ser4th"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="4th" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+
+
+                    <CheckBox
+                        android:id="@+id/ser3rd"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="3rd" />
+
+
+
+                    <CheckBox
+                        android:id="@+id/ser2nd"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="2nd" />
+
+
+
+                    <CheckBox
+                        android:id="@+id/ser1st"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="1st" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_rank"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/rankAAA"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="AAA" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/rankAAp"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="AA+" />
+
+                    <CheckBox
+                        android:id="@+id/rankAA"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="AA" />
+
+                    <CheckBox
+                        android:id="@+id/rankAAm"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="AA-" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/rankAp"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="A+" />
+
+                    <CheckBox
+                        android:id="@+id/rankA"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="A" />
+
+                    <CheckBox
+                        android:id="@+id/rankAm"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="A-" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/rankBp"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="B+" />
+
+                    <CheckBox
+                        android:id="@+id/rankB"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="B" />
+
+                    <CheckBox
+                        android:id="@+id/rankBm"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="B-" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/rankCp"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="C+" />
+
+                    <CheckBox
+                        android:id="@+id/rankC"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="C" />
+
+                    <CheckBox
+                        android:id="@+id/rankCm"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="C-" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/rankDp"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="D+" />
+
+                    <CheckBox
+                        android:id="@+id/rankD"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="D" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/rankE"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="E" />
+
+                    <CheckBox
+                        android:id="@+id/rankNoPlay"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="NoPlay" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_fullcombo"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/fcMFC"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="MFC" />
+
+                    <CheckBox
+                        android:id="@+id/fcPFC"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="PFC" />
+
+                    <CheckBox
+                        android:id="@+id/fcFC"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="FC" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/fcGFC"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="GFC" />
+
+                    <CheckBox
+                        android:id="@+id/fcLife4"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Life4" />
+
+                    <CheckBox
+                        android:id="@+id/fcNoFC"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="No Full Combo" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_score"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp" >
+
+	                <TextView
+	                    android:id="@+id/scoreMin"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#333333"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_marginLeft="5dp"
+	                    android:layout_marginRight="5dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:text="@string/filter_setting_score_divider"
+	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	                <TextView
+	                    android:id="@+id/scoreMax"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#333333"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <ImageView
+	                    android:id="@+id/editScore"
+	                    android:layout_width="60dp"
+	                    android:layout_height="50dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:background="@drawable/menu_button_background_color"
+	                    android:scaleType="fitCenter"
+	                    android:contentDescription="@string/menu_icon_content_description"
+	                    android:src="@android:drawable/ic_menu_edit" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_combo"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp" >
+
+	                <TextView
+	                    android:id="@+id/comboMin"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_marginLeft="5dp"
+	                    android:layout_marginRight="5dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:text="@string/filter_setting_score_divider"
+	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	                <TextView
+	                    android:id="@+id/comboMax"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <ImageView
+	                    android:id="@+id/editCombo"
+	                    android:layout_width="60dp"
+	                    android:layout_height="50dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:background="@drawable/menu_button_background_color"
+	                    android:scaleType="fitCenter"
+	                    android:contentDescription="@string/menu_icon_content_description"
+	                    android:src="@android:drawable/ic_menu_edit" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_playcount"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp" >
+
+	                <TextView
+	                    android:id="@+id/playCountMin"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_marginLeft="5dp"
+	                    android:layout_marginRight="5dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:text="@string/filter_setting_score_divider"
+	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	                <TextView
+	                    android:id="@+id/playCountMax"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <ImageView
+	                    android:id="@+id/editPlayCount"
+	                    android:layout_width="60dp"
+	                    android:layout_height="50dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:background="@drawable/menu_button_background_color"
+	                    android:scaleType="fitCenter"
+	                    android:contentDescription="@string/menu_icon_content_description"
+	                    android:src="@android:drawable/ic_menu_edit" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_clearcount"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp" >
+
+	                <TextView
+	                    android:id="@+id/clearCountMin"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_marginLeft="5dp"
+	                    android:layout_marginRight="5dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:text="@string/filter_setting_score_divider"
+	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	                <TextView
+	                    android:id="@+id/clearCountMax"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <ImageView
+	                    android:id="@+id/editClearCount"
+	                    android:layout_width="60dp"
+	                    android:layout_height="50dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:background="@drawable/menu_button_background_color"
+	                    android:scaleType="fitCenter"
+	                    android:contentDescription="@string/menu_icon_content_description"
+	                    android:src="@android:drawable/ic_menu_edit" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_rank_rival"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/rankAAArival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="AAA" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/rankAAprival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="AA+" />
+
+                    <CheckBox
+                        android:id="@+id/rankAArival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="AA" />
+
+                    <CheckBox
+                        android:id="@+id/rankAAmrival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="AA-" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/rankAprival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="A+" />
+
+                    <CheckBox
+                        android:id="@+id/rankArival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="A" />
+
+                    <CheckBox
+                        android:id="@+id/rankAmrival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="A-" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/rankBprival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="B+" />
+
+                    <CheckBox
+                        android:id="@+id/rankBrival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="B" />
+
+                    <CheckBox
+                        android:id="@+id/rankBmrival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="B-" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/rankCprival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="C+" />
+
+                    <CheckBox
+                        android:id="@+id/rankCrival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="C" />
+
+                    <CheckBox
+                        android:id="@+id/rankCmrival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="C-" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/rankDprival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="D+" />
+
+                    <CheckBox
+                        android:id="@+id/rankDrival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="D" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/rankErival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="E" />
+
+                    <CheckBox
+                        android:id="@+id/rankNoPlayrival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="NoPlay" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_fullcombo_rival"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/fcMFCrival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="MFC" />
+
+                    <CheckBox
+                        android:id="@+id/fcPFCrival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="PFC" />
+
+                    <CheckBox
+                        android:id="@+id/fcFCrival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="FC" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/fcGFCrival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="GFC" />
+
+                    <CheckBox
+                        android:id="@+id/fcLife4rival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Life4" />
+
+                    <CheckBox
+                        android:id="@+id/fcNoFCrival"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="No Full Combo" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_rival_score"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp" >
+
+	                <TextView
+	                    android:id="@+id/scoreMinRival"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#333333"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_marginLeft="5dp"
+	                    android:layout_marginRight="5dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:text="@string/filter_setting_score_divider"
+	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	                <TextView
+	                    android:id="@+id/scoreMaxRival"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#333333"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <ImageView
+	                    android:id="@+id/editScoreRival"
+	                    android:layout_width="60dp"
+	                    android:layout_height="50dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:background="@drawable/menu_button_background_color"
+	                    android:scaleType="fitCenter"
+	                    android:contentDescription="@string/menu_icon_content_description"
+	                    android:src="@android:drawable/ic_menu_edit" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_rival_combo"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp" >
+
+	                <TextView
+	                    android:id="@+id/comboMinRival"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_marginLeft="5dp"
+	                    android:layout_marginRight="5dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:text="@string/filter_setting_score_divider"
+	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	                <TextView
+	                    android:id="@+id/comboMaxRival"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <ImageView
+	                    android:id="@+id/editComboRival"
+	                    android:layout_width="60dp"
+	                    android:layout_height="50dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:background="@drawable/menu_button_background_color"
+	                    android:scaleType="fitCenter"
+	                    android:contentDescription="@string/menu_icon_content_description"
+	                    android:src="@android:drawable/ic_menu_edit" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_rival_playcount"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp" >
+
+	                <TextView
+	                    android:id="@+id/playCountMinRival"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_marginLeft="5dp"
+	                    android:layout_marginRight="5dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:text="@string/filter_setting_score_divider"
+	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	                <TextView
+	                    android:id="@+id/playCountMaxRival"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <ImageView
+	                    android:id="@+id/editPlayCountRival"
+	                    android:layout_width="60dp"
+	                    android:layout_height="50dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:background="@drawable/menu_button_background_color"
+	                    android:scaleType="fitCenter"
+	                    android:contentDescription="@string/menu_icon_content_description"
+	                    android:src="@android:drawable/ic_menu_edit" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_rival_clearcount"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp" >
+
+	                <TextView
+	                    android:id="@+id/clearCountMinRival"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_marginLeft="5dp"
+	                    android:layout_marginRight="5dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:text="@string/filter_setting_score_divider"
+	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	                <TextView
+	                    android:id="@+id/clearCountMaxRival"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <ImageView
+	                    android:id="@+id/editClearCountRival"
+	                    android:layout_width="60dp"
+	                    android:layout_height="50dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:background="@drawable/menu_button_background_color"
+	                    android:scaleType="fitCenter"
+	                    android:contentDescription="@string/menu_icon_content_description"
+	                    android:src="@android:drawable/ic_menu_edit" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_rival_win_lose"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/rivalWin"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/filter_setting_rival_win" />
+
+                    <CheckBox
+                        android:id="@+id/rivalLose"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/filter_setting_rival_lose" />
+
+                    <CheckBox
+                        android:id="@+id/rivalDraw"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/filter_setting_rival_draw" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+               	android:layout_marginLeft="5dp"  >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_score_diff"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#ffffff"
+	                    android:text="+"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:id="@+id/scoreDifferencePlusMin"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#333333"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_marginLeft="5dp"
+	                    android:layout_marginRight="5dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:text="@string/filter_setting_score_divider"
+	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#ffffff"
+	                    android:text="+"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:id="@+id/scoreDifferencePlusMax"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#333333"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+		            <ImageView
+		                android:id="@+id/editScoreDifferenceP"
+		                android:layout_width="60dp"
+		                android:layout_height="50dp"
+		                android:layout_gravity="center_vertical"
+		                android:background="@drawable/menu_button_background_color"
+		                android:scaleType="fitCenter"
+		                android:contentDescription="@string/menu_icon_content_description"
+		                android:src="@android:drawable/ic_menu_edit" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#ffffff"
+	                    android:text="-"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:id="@+id/scoreDifferenceMinusMin"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#333333"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_marginLeft="5dp"
+	                    android:layout_marginRight="5dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:text="@string/filter_setting_score_divider"
+	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#ffffff"
+	                    android:text="-"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:id="@+id/scoreDifferenceMinusMax"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#333333"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+		            <ImageView
+		                android:id="@+id/editScoreDifferenceM"
+		                android:layout_width="60dp"
+		                android:layout_height="50dp"
+		                android:layout_gravity="center_vertical"
+		                android:background="@drawable/menu_button_background_color"
+		                android:scaleType="fitCenter"
+		                android:contentDescription="@string/menu_icon_content_description"
+		                android:src="@android:drawable/ic_menu_edit" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+               	android:layout_marginLeft="5dp"  >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_combo_diff"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#ffffff"
+	                    android:text="+"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:id="@+id/comboDifferencePlusMin"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_marginLeft="5dp"
+	                    android:layout_marginRight="5dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:text="@string/filter_setting_score_divider"
+	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#ffffff"
+	                    android:text="+"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:id="@+id/comboDifferencePlusMax"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+		            <ImageView
+		                android:id="@+id/editComboDifferenceP"
+		                android:layout_width="60dp"
+		                android:layout_height="50dp"
+		                android:layout_gravity="center_vertical"
+		                android:background="@drawable/menu_button_background_color"
+		                android:scaleType="fitCenter"
+		                android:contentDescription="@string/menu_icon_content_description"
+		                android:src="@android:drawable/ic_menu_edit" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#ffffff"
+	                    android:text="-"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:id="@+id/comboDifferenceMinusMin"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_marginLeft="5dp"
+	                    android:layout_marginRight="5dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:text="@string/filter_setting_score_divider"
+	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#ffffff"
+	                    android:text="-"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:id="@+id/comboDifferenceMinusMax"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+		            <ImageView
+		                android:id="@+id/editComboDifferenceM"
+		                android:layout_width="60dp"
+		                android:layout_height="50dp"
+		                android:layout_gravity="center_vertical"
+		                android:background="@drawable/menu_button_background_color"
+		                android:scaleType="fitCenter"
+		                android:contentDescription="@string/menu_icon_content_description"
+		                android:src="@android:drawable/ic_menu_edit" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+               	android:layout_marginLeft="5dp"  >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_play_count_diff"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#ffffff"
+	                    android:text="+"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:id="@+id/playCountDifferencePlusMin"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_marginLeft="5dp"
+	                    android:layout_marginRight="5dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:text="@string/filter_setting_score_divider"
+	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#ffffff"
+	                    android:text="+"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:id="@+id/playCountDifferencePlusMax"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+		            <ImageView
+		                android:id="@+id/editPlayCountDifferenceP"
+		                android:layout_width="60dp"
+		                android:layout_height="50dp"
+		                android:layout_gravity="center_vertical"
+		                android:background="@drawable/menu_button_background_color"
+		                android:scaleType="fitCenter"
+		                android:contentDescription="@string/menu_icon_content_description"
+		                android:src="@android:drawable/ic_menu_edit" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#ffffff"
+	                    android:text="-"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:id="@+id/playCountDifferenceMinusMin"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_marginLeft="5dp"
+	                    android:layout_marginRight="5dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:text="@string/filter_setting_score_divider"
+	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#ffffff"
+	                    android:text="-"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:id="@+id/playCountDifferenceMinusMax"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+		            <ImageView
+		                android:id="@+id/editPlayCountDifferenceM"
+		                android:layout_width="60dp"
+		                android:layout_height="50dp"
+		                android:layout_gravity="center_vertical"
+		                android:background="@drawable/menu_button_background_color"
+		                android:scaleType="fitCenter"
+		                android:contentDescription="@string/menu_icon_content_description"
+		                android:src="@android:drawable/ic_menu_edit" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+               	android:layout_marginLeft="5dp"  >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_clear_count_diff"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#ffffff"
+	                    android:text="+"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:id="@+id/clearCountDifferencePlusMin"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_marginLeft="5dp"
+	                    android:layout_marginRight="5dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:text="@string/filter_setting_score_divider"
+	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#ffffff"
+	                    android:text="+"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:id="@+id/clearCountDifferencePlusMax"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+		            <ImageView
+		                android:id="@+id/editClearCountDifferenceP"
+		                android:layout_width="60dp"
+		                android:layout_height="50dp"
+		                android:layout_gravity="center_vertical"
+		                android:background="@drawable/menu_button_background_color"
+		                android:scaleType="fitCenter"
+		                android:contentDescription="@string/menu_icon_content_description"
+		                android:src="@android:drawable/ic_menu_edit" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#ffffff"
+	                    android:text="-"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:id="@+id/clearCountDifferenceMinusMin"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_marginLeft="5dp"
+	                    android:layout_marginRight="5dp"
+	                    android:layout_gravity="center_vertical"
+	                    android:text="@string/filter_setting_score_divider"
+	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#ffffff"
+	                    android:text="-"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	                <TextView
+	                    android:id="@+id/clearCountDifferenceMinusMax"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center_vertical"
+	                    android:textColor="#cccccc"
+	                    android:typeface="monospace"
+	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+		            <ImageView
+		                android:id="@+id/editClearCountDifferenceM"
+		                android:layout_width="60dp"
+		                android:layout_height="50dp"
+		                android:layout_gravity="center_vertical"
+		                android:background="@drawable/menu_button_background_color"
+		                android:scaleType="fitCenter"
+		                android:contentDescription="@string/menu_icon_content_description"
+		                android:src="@android:drawable/ic_menu_edit" />
+		            
+                </LinearLayout>
+                
+            </LinearLayout>
+       
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_others"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/othersDeleted"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/filter_setting_deleted" />
+
+                </LinearLayout>
+            
+            </LinearLayout>
+                
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/adContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+    </LinearLayout>
+   
+</LinearLayout>

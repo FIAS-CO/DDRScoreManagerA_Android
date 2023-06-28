@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#000000</color>
+    <color name="midnightgray">#111111</color>
+    <color name="white">#ffffff</color>
+    <color name="salmonpink">#ffcccccc</color>
+    <color name="lightred">#ff333333</color>
+    <color name="red">#ff000000</color>
+    <color name="darkred">#33000000</color>
+    <color name="smokered">#66111133</color>
+    <color name="lightgreen">#99ffffff</color>
+    <color name="darkgray">#333333</color>
+    <color name="emeraldblue">#0099ff</color>
+    <color name="midnightgraylight">#1c1c1c</color>
+    <color name="gray">#333333</color>
+    <color name="skyblue">#3333ff</color>
+</resources>

@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <string name="strings____Dialog_UpdateInfo____updates">
+[2022/11/12] 0.133.22111200\n
+* Fix: 로그인 페이지의 사양 변경에 따른 일본어 이외의 GATE 로그인 불가.
+   </string>
+
+  <string name="strings_global____app_name">DDR Score Manager A</string>
+  <string name="strings_global____leader">...</string>
+  <string name="strings_global____ok">OK</string>
+  <string name="strings_global____save">Save</string>
+  <string name="strings_global____cancel">Cancel</string>
+
+  <string name="editcopyformats">포맷을 편집...</string>
+  
+  <string name="copyformats">포맷을 편집</string>
+  <string name="copyformatlegends">* 범례\n\n%t% - 곡명\n%p:b:B:D:E:C% - 보면 종류별\n%y:SP:DP% - SP/DP\n%d% - 난이도\n%s% - 스코어\n%l% - 댄스 레벨\n%f:MFC:PFC:FC:GFC:Life4:NoFC% - 풀콤보 종류별\n%c% - 최대 콤보\n%e% - 클리어 횟수\n%a% - 플레이 횟수\n\n* 스코어, 난이도, 최대 콤보, 클리어 횟수, 플레이 횟수  경우 다음 옵션을 사용할 수 있습니다.\n\n“%s0%” -> “0987650”\n“%s %” -> “ 987650”\n“%s0,%” -> “0,987,650”</string>
+    
+  <string name="score">스코어</string>
+  <string name="scoremax">최고점수</string>
+  <string name="scoremin">최저점수</string>
+  <string name="scoremedian">중앙값</string>
+  <string name="scoreaverage">평균 점수</string>
+  <string name="scorevariance">분산치</string>
+  <string name="dancelevel">댄스 레벨</string>
+  <string name="fullcombotype">풀콤보 종류별</string>
+  <string name="difficulty">난이도</string>
+  <string name="patterntype">보면 종류별</string>
+  <string name="version">시리즈 타이틀</string>
+  <string name="refresh_musiclist">곡 리스트를 업데이트</string>
+  <string name="no_update">업데이트가 없었습니다.</string>
+  <string name="musiclist_updated">곡 리스트가 업데이트되었습니다.</string>
+  <string name="invalid_data">잘못된 데이터를 받았습니다.</string>
+  <string name="editing">곡 데이터는 현재 편집중입니다. 잠시 기다리신 후 업데이트 하여 주십시오.</string>
+  <string name="timedout">연결 시간이 초과되었습니다.\n업데이트를 취소합니다.</string>
+  <string name="visible_item">표시 항목</string>
+  <string name="show_maxcombo">최대 콤보수</string>
+  <string name="show_score">스코어</string>
+  <string name="show_dancelevel">댄스 레벨</string>
+  <string name="show_playcount">플레이 횟수</string>
+  <string name="show_clearcount">클리어 횟수</string>
+  <string name="visible_password">패스워드를 표시</string>
+  <string name="input_ddr_sa_id_password">ID/Password를 입력</string>
+  <string name="input_ddr_sa_information">DDR Skill Attack 에서 사용하고 있는 DDR-CODE 와 Password 를 입력해 주십시오.\n패스워드는 암호화되어 단말기에 저장됩니다.</string>
+  <string name="authenticating">인증 처리중...</string>
+  <string name="authentication_failure">인증에 실패했습니다.\nID/Password 를 확인해 주십시오.</string>
+  <string name="authentication_succeed">인증에 성공했습니다.\n보내기 버튼으로 데이터를 보낼 수 있습니다.</string>
+  <string name="export_check_title">DDR SA 로 데이터 보내기</string>
+  <string name="export_check">데이터를 보내시겠습니까?</string>
+  <string name="exporting">데이터를 보내는 중입니다...</string>
+  <string name="export_succeed">데이터 보내기에 성공하였습니다.</string>
+  <string name="exported_scores">아래의 스코어 데이터가 업데이트 되었습니다.</string>
+  <string name="exported_count">업데이트된 보면 수: </string>
+  <string name="music_list">곡 리스트</string>
+  <string name="auto_update_music_list">곡 리스트의 자동 업데이트</string>
+  <string name="update_music_list_now">곡 리스트의 업데이트</string>
+  <string name="error_noitem">스코어를 받아올 대상이 없습니다</string>
+  <string name="textsizesetting_preview">사이즈를 변경하면, 아래의 프리뷰에 반영됩니다.</string>
+  <string name="use_old_draw">구버전의 드로잉 방식을 사용</string>
+  <string name="name_different_alert">받아오려 하는 곡의 곡명이 공식 사이트와 다릅니다.(제작자에게 보고를 부탁드립니다)</string>
+  <string name="illegal_id_alert">곡의 ID가 맞지 않습니다.\'곡 ID와 스코어를 받아오기\'를 시도해 주십시오.</string>
+  <string name="show_comments">코멘트를 표시하기</string>
+  <string name="reset_socres">스코어 데이터의 초기화</string>
+  <string name="shock_arrow">쇼크 애로우</string>
+  <string name="shock_arrow_only">만</string>
+  <string name="shock_arrow_include">포함</string>
+  <string name="shock_arrow_exclude">제외</string>
+  <string name="dialog_gettin_status">스테이터스를 받아오는 중</string>
+  <string name="dialog_log_get_status">스테이터스 페이지를 받아오는 중...</string>
+  <string name="title_activity_status">Player Status</string>
+  <string name="dialog_title_get_recent">Recent 를 받아오는 중</string>
+  <string name="title_activity_change_log">Change log</string>
+  <string name="menu_change_log">어플리케이션의 업데이트 이력</string>
+  <string name="dialog_log_get_rival_list">라이벌 리스트를 받아오는 중</string>
+  <string name="title_activity_gate_login">로그인</string>
+  <string name="message_gate_login">GATE 에 로그인하여 주십시오.</string>
+  <string name="message_gate_login_manually">GATE에 로그인을 확인한 후 뒤로 버튼으로 돌아 가기.</string>
+  <string name="message_gate_loggedin">로그인을 확인하였습니다.</string>
+  <string name="message_gate_loggedin_failed">로그인을 확인하지 못하였습니다.</string>
+  <string name="message_gate_already_logged_in_but_shown">로그인 중이지만 데이터를 받아오지 못했습니다. 베이직 코스에 가입중입니까?</string>
+  <string name="dialog_sou_myscore">내 스코어</string>
+  <string name="dialog_sou_rivalscore">라이벌 스코어</string>
+  <string name="toast_added_to_mylist1"></string>
+  <string name="toast_added_to_mylist2">에 추가했습니다</string>
+  <string name="waiting">기다리는 중...</string>
+  <string name="waiting_remaining">앞으로</string>
+  <string name="waiting_seconds">초</string>
+  <string name="dialog_copy_to_clipboard">클립 보드에 복사</string>
+    <string name="dialog_copied_to_clipboard">클립 보드에 복사했습니다</string>
+  <string name="dialog_from_gate">GATE 에서 받아오기</string>
+  <string name="dialog_direct_edit">직접 편집</string>
+  <string name="dialog_input_score">스코어를 입력</string>
+  <string name="dialog_input_max_combo">콤보를 입력</string>
+  <string name="dialog_input_play_count">플레이 횟수를 입력</string>
+  <string name="dialog_input_clear_count">클리어 횟수를 입력</string>
+  <string name="dialog_disp_all_pattern">모든 보면을 표시</string>
+  <string name="dialog_add_to_list">마이 리스트에 추가</string>
+  <string name="dialog_new_list">--- 신규 작성 ---</string>
+  <string name="sort_new">--- 신규 작성 ---</string>
+  <string name="edit_filter_name">필터 이름을 편집</string>
+  <string name="edit_sort_name">소트 이름을 편집</string>
+  <string name="dialog_remove_from_list">이 리스트에서 제외</string>
+  <string name="there_is_no_items">표시할 내용이 없거나, 표시에 시간이 걸립니다. 잠시 기다린 후에도 내용이 표시되지 않는 경우, 카테고리와 필터의 설정을 확인해 주십시오.</string>
+  <string name="sou_progress_title">스코어를 받아오는 중</string>
+  <string name="sou_progress_message">(゜д゜;)(Д゜ )彡(Д゜ #)(*゜д゜*)( ゜д)(（д゜ *）（Д゜ ）9m(゜д゜#)(*゜д゜*)(д゜ #)彡(д゜ ;)(゜д゜ )（゜д゜）</string>
+  <string name="sou_dialog_title">(゜Д゜)</string>
+  <string name="sou_dialog_message">"(（д゜ #）（. ゜д゜）(（゛д゛ ）(# ゜д)彡(（゜Д゜ ）9m（* ゜д）彡(（ ゜д゜#）彡( ゜Д)(д゜ ;)(#゜Д゜)(#゜д゜)(゜д゜ )( ゜Д゜#)( ゜д゜;)( ゜Д゜)彡(#゜д゜)(' ゜д)(（*゜д゜）彡（, ゜Д゜;）(' ゜д)（ ゜д゜;）（* ゜д）（д゜ ）(' ゜Д)(( ゜д゜ )彡(д゜,;)(（д゜ *）（Д゛ ;）(゜д゜;)(Д゜ *)( ゜д゜;)（゜д゜）(* ゜д)(' ゜д)(（д゜ ;）彡（д゜ *）(（'゜д゜`）（. ゜д゜ ）(Д゜ )(゜Д゜ ,)(Д゜ .)(;,゜Д)(. ゜Д)（д゜ ;）（゜ー゜）（Д゜ ）彡(゜д゜`)(（ ゜Д゜）（#゜Д゜）(（Д゜ ）（ ゛д゛#）(' ゜Д)(д゜ *)(*゜д゜)( ゜Д゜#)(' ゜д)(' ゜Д)(（ ゜Д）彡（゜д゜`）(*゜д゜)( ゜Д゜#)(д゜ #)(*゜Д゜)（゜Д゜）(（* ゜д）(д゛ )((゜Д゜`)(Д゜ `)(（* ゜Д）('゜Д゜)(' ゜д)((゜Д゜`)（゜д゜`）(（゜д゜#）(# ゜д)彡(゜д゜`)(（゜д゜#）（ ゛д゛ ）(*゜Д゜)(#゜д゜)(*゜д゜*)(д゜ #)彡(д゜ ;)(゜д゜ )（゜д゜）(（* ゜д）('゜д゜)(（д゜ *）( ゜д゜ )彡(゜д゜`)(（ ゛д゛）（ ゜Д゜#）(（゜Д゜ ）9m(# ゜Д)(゜д゜;)(Д゜ *)( ゜д゜;)(д゜ *)（゜д゜）?"</string>
+  <string name="sou_dialog_wakegawakaranaiyo">영문을 모르겠어</string>
+  <string name="sou_dialog_title_lang">경고</string>
+  <string name="sou_dialog_message_lang">현재 리스트에 표시되어 있는 모든 보면의 스코어와 콤보를 받아옵니다. 이 기능은 매우 느립니다. 또, GATE 서버에 부담을 주는 것을 피하기 위해, 최저한의 사용을 부탁드립니다. 받아올 대상을 선택해 주십시오.</string>
+  <string name="get_from_list">GATE 에서 스코어와 풀콤보 정보를 받아오기</string>
+  <string name="get_from_list_message">GATE 에서 스코어와 풀콤보 정보를 받아옵니다.</string>
+  <string name="manage_rivals_add_rival">라이벌을 추가</string>
+  <string name="manage_rivals_add_rival_message">구버전의 스코어 매니저의 스코어를 라이벌 데이터로 등록할 경우에는 비워둔 채로 OK를 탭하여 주십시오.</string>
+  <string name="manage_rivals_from_gate_title">라이벌 리스트를 받아오기</string>
+  <string name="manage_rivals_from_gate">GATE 서버에서 라이벌 리스트를 받아옵니다. DDR-CODE 가 이미 리스트에 있는 경우에는 이름이 편집됩니다.</string>
+  <string name="manage_rivals_from_gate_warning_title">Warning!</string>
+  <string name="manage_rivals_from_gate_warning">GATE 계정에 라이벌 등록되어있지 않은 라이벌 데이터는 단말기에서 삭제됩니다. 정말로 덮어쓰시겠습니까?</string>
+  <string name="manage_rivals_from_gate_overwrite">덮어쓰기</string>
+  <string name="manage_rivals_from_gate_add">OK</string>
+  <string name="manage_rivals_only_my_score">내 스코어만 표시</string>
+  <string name="manage_rivals_scores_from_old_ddr_sm">이전 점수 관리자의 점수</string>
+  <string name="global_setting_set_pfc1">리스트에서 받아올 때 아래 점수 이상이면 PFC로 저장한다</string>
+  <string name="title_activity_manage_rivals">Rivals</string>
+  <string name="manage_rivals_invalid_ddr_code">DDR-CODE 가 올바르지 않습니다!</string>
+  <string name="manage_rivals_id">DDR-CODE</string>
+  <string name="manage_rivals_name">Dancer-Name</string>
+  <string name="manage_rivals_edit_rival">라이벌 편집</string>
+  <string name="rival_score">라이벌 비교</string>
+  <string name="rival_score_only_my_score">내 스코어만</string>
+  <string name="filter">필터</string>
+  <string name="sort">정렬</string>
+  <string name="colon">:</string>
+  <string name="filter_new">--- 신규 작성 ---</string>
+  <string name="menu_icon_content_description">menu</string>
+  <string name="sou_icon_content_description">(゜Д゜)</string>
+  <string name="title_activity_score_list">DDR Score Manager A</string>
+  <string name="title_activity_score_edit">Score Edit</string>
+  <string name="title_activity_music_detail">Music Detail</string>
+  <string name="title_activity_from_gate_list">스코어를 받아오기</string>
+  <string name="title_activity_from_gate">Connecting to GATE...</string>
+  <string name="title_activity_pager_score_list">DDR Score Manager A</string>
+  <string name="title_activity_global_setting">Global Setting</string>
+  <string name="global_setting_advanced">고급 설정</string>
+  <string name="global_setting_advanced_useasyncdraw">비동기 드로잉</string>
+  <string name="global_setting_preference">공통 설정</string>
+  <string name="global_setting_general">일반 설정</string>
+  <string name="global_setting_closecategoryonbackpressed">뒤로가기 키로 카테고리를 닫는다</string>
+  <string name="global_setting_gate">GATE</string>
+  <string name="global_setting_froma3">A3 점수 획득</string>
+  <string name="global_setting_overwritelowerscore">받아온 스코어가 낮은 경우에도 덮어쓰기</string>
+  <string name="global_setting_overwritefullcombo">\'Good 풀콤보\'를, 받아온 결과인 \'풀콤보\'로 덮어쓰기</string>
+  <string name="global_setting_overwritelife4">\'LIFE4 클리어\'를, 받아온 결과인 \'풀콤보 미달성\'으로 덮어쓰기</string>
+  <string name="global_setting_logout_gate">GATE에 수동으로 로그인</string>
+  <string name="global_setting_appearance">표시 설정</string>
+  <string name="global_setting_textsizesetting">폰트 사이즈 변경</string>
+  <string name="global_setting_gestures">조작</string>
+  <string name="global_setting_gestures_enableFlick">좌우 플릭으로 카테고리를 변경</string>
+  <string name="global_setting_gestures_onitemclicked">리스트 항목을 탭</string>
+  <string name="global_setting_gestures_onitemlongclicked">리스트 항목을 길게 탭</string>
+  <string name="global_setting_filterandsort">필터와 정렬</string>
+  <string name="global_setting_filtersetting">편집</string>
+  <string name="global_setting_removetab">탭을 줄인다</string>
+  <string name="global_setting_addtab">탭을 늘린다</string>
+  <string name="global_setting_importexport">받아오기/보내기</string>
+  <string name="global_setting_import">스코어를 복원</string>
+  <string name="global_setting_export">스코어를 백업</string>
+  <string name="global_setting_import_mylist">마이 리스트를 복원</string>
+  <string name="global_setting_export_mylist">마이 리스트를 백업</string>
+  <string name="global_setting_ad">Ad</string>
+  <string name="global_setting_showad">광고를 표시하기 (`・ω・´)</string>
+  <string name="filter_setting_score_edit">범위의 편집</string>
+  <string name="global_setting_dialog_backup_mylist">마이 리스트를 백업</string>
+  <string name="global_setting_dialog_restore_mylist">마이 리스트를 복원</string>
+  <string name="global_setting_dialog_backuptoA_mylist">마이 르스트의 백업을</string>
+  <string name="global_setting_dialog_backuptoB_mylist"> 로 출력합니다.</string>
+  <string name="global_setting_dialog_restorefromA_mylist">백업 데이터</string>
+  <string name="global_setting_dialog_restorefromB_mylist"> 에서 마이 리스트를 읽어들입니다. 이미 같은 마이 리스트가 있는 경우에도, 새로 작성됩니다.</string>
+  <string name="global_setting_exportedA_mylist">백업 데이터를</string>
+  <string name="global_setting_exportedB_mylist"> 로 출력했습니다.</string>
+  <string name="global_setting_exportfailed_mylist">실패하였습니다.</string>
+  <string name="global_setting_exportnoone_mylist">마이 리스트가 없습니다.</string>
+  <string name="global_setting_importedA_mylist"></string>
+  <string name="global_setting_importedB_mylist"> 에서 데이터를 읽어들였습니다.</string>
+  <string name="global_setting_importfailed_mylist">실패하였습니다.</string>
+  <string name="global_setting_importnoone_mylist">백업 데이터에 마이 리스트가 없었습니다.</string>
+  <string name="global_setting_logout_message">로그아웃을 완료하기 위해서는 어플리케이션을 재실행하여 주십시오.</string>
+  <string name="global_setting_dialog_backup">스코어를 백업</string>
+  <string name="global_setting_dialog_restore">스코어를 복원</string>
+  <string name="global_setting_dialog_reset_scores">스코어 데이터릉 초기화</string>
+  <string name="global_setting_dialog_reset_scores_main">기존의 데이터는 덮어씌워지므로 주의하시기 바랍니다.</string>
+  <string name="global_setting_dialog_backuptoA">스코어 데이터의 백업을</string>
+  <string name="global_setting_dialog_backuptoB"> 로 출력합니다.</string>
+  <string name="global_setting_dialog_restorefromA">백업 데이터</string>
+  <string name="global_setting_dialog_restorefromB"> 에서 스코어를 읽어들입니다. 기존의 데이터는 덮어씌워지므로 주의하시기 바랍니다.</string>
+  <string name="global_setting_exportedA">백업 데이터를</string>
+  <string name="global_setting_exportedB"> 로 출력하였습니다.</string>
+  <string name="global_setting_exportfailed">실패하였습니다.</string>
+  <string name="global_setting_importedA"></string>
+  <string name="global_setting_importedB"> 에서 데이터를 읽어들였습니다.</string>
+  <string name="global_setting_importfailed">실패하였습니다.</string>
+  <string name="global_setting_importzero">스코어 데이터가 없으므로 읽어들이는 것을 중단하였습니다.</string>
+  <string name="filter_setting_edit_tab_name">설정 이름을 편집</string>
+  <string name="filter_setting_delete">삭제</string>
+  <string name="filter_setting_deleteconferm">이 필터와 정렬의 설정을 삭제합니다. 괜찮으시겠습니까?</string>
+  <string name="filter_setting_filter">필터</string>
+  <string name="filter_setting_pattern_type">보면 종류별</string>
+  <string name="filter_setting_showcwhenonlyc">Challenge 이외의 난이도가 없는 경우에는 Challenge 를 표시</string>
+  <string name="filter_setting_showewhennoc">Challenge 가 없는 경우에는 Expert 를 표시</string>
+  <string name="filter_setting_difficulty">난이도</string>
+  <string name="filter_setting_seriestitle">시리즈 타이틀</string>
+  <string name="filter_setting_rank">댄스 레벨</string>
+  <string name="filter_setting_fullcombo">풀콤보 종류별</string>
+  <string name="filter_setting_score">스코어</string>
+  <string name="filter_setting_combo">최대 콤보수</string>
+  <string name="filter_setting_playcount">플레이 횟수</string>
+  <string name="filter_setting_clearcount">클리어 횟수</string>
+  <string name="filter_setting_rival_win_lose">라이벌 승패</string>
+  <string name="filter_setting_rival_win">Win</string>
+  <string name="filter_setting_rival_lose">Lose</string>
+  <string name="filter_setting_rival_draw">Draw</string>
+  <string name="filter_setting_rival_score">라이벌 스코어</string>
+  <string name="filter_setting_rival_combo">라이벌 최대 콤보수</string>
+  <string name="filter_setting_rival_playcount">라이벌 플레이 횟수</string>
+  <string name="filter_setting_rival_clearcount">라이벌 클리어 횟수</string>
+  <string name="filter_setting_score_diff">라이벌과의 스코어 차</string>
+  <string name="filter_setting_combo_diff">라이벌과의 최대 콤보 차</string>
+  <string name="filter_setting_play_count_diff">라이벌과의 플레이 횟수 차</string>
+  <string name="filter_setting_clear_count_diff">라이벌과의 클리어 횟수 차</string>
+  <string name="filter_setting_score_divider">～</string>
+  <string name="filter_setting_rank_rival">라이벌 댄스 레벨</string>
+  <string name="filter_setting_fullcombo_rival">라이벌 풀콤보 종류</string>
+  <string name="filter_setting_sort">정렬</string>
+  <string name="filter_setting_sort_asc">오름차순</string>
+  <string name="filter_setting_sort_des">내림차순</string>
+  <string name="filter_setting_nomin">0</string>
+  <string name="filter_setting_nomax">∞</string>
+  <string name="filter_setting_deleted">삭제된 곡</string>
+  <string name="filter_setting_others">그 외</string>
+  <string name="score_list_item_height_setter_text">AAA゜</string>
+  <string name="score_edit_state">State</string>
+  <string name="score_edit_score">Score</string>
+  <string name="score_edit_combo">Combo</string>
+  <string name="score_edit_play_count">Play</string>
+  <string name="score_edit_clear_count">Clear</string>
+  <string name="score_edit_reset_data">스코어를 초기화</string>
+  <string name="from_gate_list_notif1">스코어 리스트 페이지를 표시하면 스코어를 받아옵니다.</string>
+  <string name="from_gate_notif1">정상적으로 완료되면 자동적으로 리스트로 돌아옵니다.</string>
+  <string name="from_gate_notif2">GATE 의 로그인 화면이 표시된 경우, 로그인 후 다시 시도해 주십시오.</string>
+  <string name="score_list_rival_difference">스코어 차: </string>
+  <string name="score_list_rival_difference_edit_error1">값이 올바르지 않습니다</string>
+  <string name="score_list_rival_difference_edit_error2">위로 1000000에 가까운 값, 아래로 0에 가까운 값을 입력해 주십시오.</string>
+  <string name="score_list_rival_difference_edit_error3">\'・\'를 기준으로 안쪽에 0에 가까운 값, 바깥쪽에 1000000에 가까운 값을 입력해 주십시오.</string>
+  <string name="edit_rival_modified">댄서 네임을 변경하였습니다.</string>
+  <string name="title_activity_text_size_setting">표시 설정</string>
+  <string name="textsizesetting_category_top">카테고리 톱 항목</string>
+  <string name="textsizesetting_category_subitem">카테고리 서브 항목</string>
+  <string name="textsizesetting_item_music_level">난이도</string>
+  <string name="textsizesetting_item_music_name">곡명</string>
+  <string name="textsizesetting_item_music_rank">댄스 레벨</string>
+  <string name="textsizesetting_item_music_score">스코어</string>
+  <string name="textsizesetting_item_music_level_x">난이도 (가로폭)</string>
+  <string name="textsizesetting_item_music_name_x">곡명 (가로폭)</string>
+  <string name="textsizesetting_item_music_rank_x">댄스 레벨 (가로폭)</string>
+  <string name="textsizesetting_item_music_score_x">스코어 (가로폭)</string>
+  <string name="textsizesetting_default">초기 설정으로 되돌리기</string>
+  <string name="is_full_screen">전체 화면 (재시작 필요)</string>
+  <string name="show_title_bar">타이틀 바</string>
+  <string name="menu_show_statisticstable">통계 정보</string>
+  <string name="menu_show_verticalaxis">세로폭</string>
+  <string name="menu_show_horizontalaxis">rㅏ로폭</string>
+  <string name="menu_music_share">텍스트로 출력</string>
+  <string name="menu_music_share_copy">클립 보드에 복사</string>
+  <string name="menu_music_share_action_send">다른 어플리케이션으로 보내기</string>
+  <string name="menu_refresh_recent">Recent 를 업데이트</string>
+  <string name="menu_refresh_status">업데이트</string>
+  <string name="menu_rival_score">라이벌 비교</string>
+  <string name="menu_from_gate_list">리스트에서 스코어를 받아오기</string>
+  <string name="menu_from_gate_list_rival">리스트에서 스코어를 받아오기</string>
+  <string name="menu_from_gate_list_my_score">마이 스코어</string>
+  <string name="menu_sou">(゜Д゜)</string>
+  <string name="menu_sou_">한꺼번에 받아오기</string>
+  <string name="menu_music_rivals">라이벌 스코어</string>
+  <string name="menu_rivals">라이벌</string>
+  <string name="dialog_networkerror">네트워크 에러</string>
+  <string name="dialog_networkerrorexit">네트워크 에러가 발생했습니다. 통신 환경이 좋은 곳에서 다시 시도해 주십시오.</string>
+  <string name="strings____Activity_CategorySelect____category_allMusics">All Musics</string>
+  <string name="strings____Activity_CategorySelect____category_difficulty">Difficulty</string>
+  <string name="strings____Activity_CategorySelect____category_seriesTitle">Series Title</string>
+  <string name="strings____Activity_CategorySelect____category_abc">ABC</string>
+  <string name="strings____Activity_CategorySelect____category_rank">Dance Level</string>
+  <string name="strings____Activity_CategorySelect____category_fullcomboType">Full Combo Type</string>
+  <string name="strings____Activity_CategorySelect____category_recent">Recent</string>
+  <string name="strings____Activity_CategorySelect____category_rival">Rival</string>
+  <string name="strings____Activity_CategorySelect____category_rivalWinlose">Win/Lose</string>
+  <string name="strings____Activity_CategorySelect____category_rivalWin">Win</string>
+  <string name="strings____Activity_CategorySelect____category_rivalLose">Lose</string>
+  <string name="strings____Activity_CategorySelect____category_rivalDraw">Draw</string>
+  <string name="strings____Activity_CategorySelect____category_mylist">My List</string>
+  <string name="strings____Activity_CategorySelect____notif_ast">*</string>
+  <string name="strings____Activity_CategorySelect____notif_1">이 어플리케이션은, GATE 서버에서 Web 사이트의 정보를 받아오는 기능을 가지고 있습니다.</string>
+  <string name="strings____Activity_CategorySelect____notif_2">GATE 서버의 부담을 줄이기 위해, 받아오는 기능은 최소한도로 사용해 주십시오.</string>
+  <string name="strings____Activity_CategorySelect____notif_3">광고를 눌러 확인하여 24 시간 광고를 숨길 수 있습니다.</string>
+  <!-- 
+    Activity DdrSa
+     -->
+  <string name="strings____Dialog_DdrSaDeleteAuthenticate____deleteAuthenticationData">\n인증을 해제\n</string>
+  <string name="strings____Dialog_DdrSaDeleteAuthenticate____confirm">인증 정보를 삭제합니다.</string>
+  <string name="strings____Dialog_DdrSaDeleteAuthenticate____deleteSucceed">삭제하였습니다.</string>
+  <!-- 
+    Activity DdrSa
+     -->
+  <string name="strings____Activity_DdrSa____exportToDdrSa">DDR Skill Attack 연동</string>
+  <string name="strings____Activity_DdrSa____authenticatedId">인증 완료 ID: </string>
+  <string name="strings____Activity_DdrSa____authenticatedIdDefault">인증되어 있지 않습니다.\n\'인증하기\' 버튼을 눌러 DDR Skill Attack 에 인증하여주십시오.</string>
+  <string name="strings____Activity_DdrSa____export">\n\n보내기\n\n</string>
+  <string name="strings____Activity_DdrSa____openDdrSa">DDR Skill Attack 웹 사이트를 열기</string>
+  <string name="strings____Activity_DdrSa____openUserPage">유저 페이지를 열기</string>
+  <string name="strings____Activity_DdrSa____authenticateDdrSa">\n인증하기\n</string>
+  <string name="strings____Activity_DdrSa____deleteAuthenticationData">\n인증을 삭제\n</string>
+  <!-- 
+    Activity CategorySelect
+    Activity ManageRivals
+    Activity ScoreList
+     -->
+  <string name="strings____Dialog_FromGate__Dialog_FromGateList____logGetScoreList">스코어를 받아오는 중</string>
+  <string name="strings____Dialog_FromGate__Dialog_FromGateList____logGetPageCount">페이지 수를 받아오는 중...</string>
+  <string name="strings____Dialog_FromGate__Dialog_FromGateList____logGetPage">스코어 페이지를 받아오는 중...</string>
+  <!-- 
+    Activity CategorySelect
+    Activity ManageRivals
+    Activity ScoreList
+    -->
+  <string name="strings____Dialog_GetScores____getScore">스코어를 한꺼번에 받기</string>
+  <string name="strings____Dialog_GetScores____getScoreMessage">GATE 서버에서 모든 곡의 스코어와 풀콤보 정보를 한꺼번에 받습니다. 받아올 플레이 타입을 선택해 주십시오.</string>
+  <string name="strings____Dialog_GetScores____getScoreTypeSp">SP</string>
+  <string name="strings____Dialog_GetScores____getScoreTypeDp">DP</string>
+  <!-- 
+    Activity CategorySelect
+    Activity ScoreList
+     -->
+  <string name="strings____Dialog_MyList____editMylistName">마이 리스트 이름을 편집</string>
+  <string name="strings____Dialog_MyList____deleteMylist">마이 리스트를 삭제</string>
+  <string name="strings____Dialog_MyList____deleteConferm">이 마이 리스트를 삭제합니다. 괜찮으시겠습니까?</string>
+  <!-- 
+    Activity ScoreList
+     -->
+  <string name="strings____Dialog_Omikuji____omikuji">랜덤 선곡</string>
+  <!-- 
+    Activity CategorySelect
+    Activity GlobalSetting
+     -->
+  <string name="strings____Dialog_UpdateMusicList____refreshingMusiclist">곡 리스트의 업데이트 확인중...</string>
+  <!-- 
+    Activity ManageRivals
+     -->
+  <string name="strings____Menu_ManageRivals____getScore">Gate 에서 받아오기</string>
+  <string name="strings____Menu_ManageRivals____active">비교 대상으로 하기</string>
+  <string name="strings____Menu_ManageRivals____readfromclip">클립 보드에서 읽어 오기</string>
+  <string name="strings____Menu_ManageRivals____moveUp">위로 이동</string>
+  <string name="strings____Menu_ManageRivals____moveDown">아래로 이동</string>
+  <string name="strings____Menu_ManageRivals____edit">CODE와 NAME을 편집</string>
+  <string name="strings____Menu_ManageRivals____removeRival">삭제</string>
+
+  <string name="strings____ManageRivals____cantreadfromclip">클립 보드에서 스코어를 읽어 오지 못했습니다</string>
+  <string name="strings____ManageRivals____readfromclip_done">읽어 오기에 성공했습니다</string>
+  <string name="strings____ManageRivals____readfromclip_title">DDR Score Manager 2013의 데이터 읽어오기</string>
+  <string name="strings____ManageRivals____readfromclip_info">DDR Score Manager 2013(구 스코어 매니저)의 스코어 데이터를 라이벌 데이터로 사용할 수 있습니다. 구 스코어 매니저에서 \'Menu\'→\'Preferences\'→\'Import/Export\'→\'Copy score database\'를 실시 후 이 메뉴에서 데이터 읽어오기를 실행해 주십시오.</string>
+  <!-- 
+    Activity CategorySelect
+     -->
+  <string name="strings____Menu_MyList____editMylistName">마이 리스트 이름을 편집</string>
+  <string name="strings____Menu_MyList____deleteMylist">마이 리스트를 삭제</string>
+  <!-- 
+    Activity CategorySelect
+    Activity ScoreList
+     -->
+  <string name="strings____Menu_System____preference">공통 설정</string>
+  <string name="strings____Menu_System____statistics">통계</string>
+  <string name="strings____Menu_System____showStatus">플레이어 정보를 표시</string>
+  <string name="strings____Menu_System____manageRivals">라이벌 관리</string>
+  <string name="strings____Menu_System____ddrSa">DDR SA 연동</string>
+  <string name="strings____Menu_System____getScore">GATE 서버에서 한꺼번에 받아오기（간이）</string>
+  <string name="strings____Menu_System____getScoreDetail">GATE 서버에서 한꺼번에 받아오기（상세）</string>
+  <string name="strings____Menu_System____openOcrMode">eAmusement 어플리케이션의 스코어 그림에서 읽어들이기</string>
+  <string name="strings____Menu_System____omikuji">랜덤 선곡</string>
+  <!-- 
+    Activity CategorySelect
+     -->
+  <string name="strings_____Dialog_UpdateInfo____versionInfoTitle">업데이트 정보</string>
+  
+</resources>

@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="strings____Dialog_UpdateInfo____updates">
+[2022/11/12] 0.133.22111200\n
+* Fix: Cannot login to no-Japanese GATE since the login interface has changed.
+    </string>
+    
+    <string name="strings_global____app_name">DDR Score Manager A</string>
+    
+    <string name="strings_global____leader">...</string>
+    <string name="strings_global____ok">OK</string>
+    <string name="strings_global____save">Save</string>
+    <string name="strings_global____cancel">Cancel</string>
+    
+    <string name="editcopyformats">Edit copy formats...</string>
+    
+    <string name="copyformats">Copy Formats</string>
+    <string name="copyformatlegends">* Legends.\n
+\n
+%t% - Music Title\n
+%p:b:B:D:E:C% - Pattern Type\n
+%y:SP:DP% - Play Style\n
+%d% - Difficulty\n
+%s% - Score\n
+%l% - Dance Level\n
+%f:MFC:PFC:FC:GFC:Life4:NoFC% - FullCombo Type\n
+%c% - Max Combo\n
+%e% - Clear Count\n
+%a% - Play Count\n
+\n
+* Following options are available for Score, Difficulty, Max Combo, Clear Count, Play Count.\n
+\n
+“%s0%” -> “0987650”\n
+“%s %” -> “ 987650”\n
+“%s0,%” -> “0,987,650”\n
+	</string>
+    
+    <string name="score">Scores</string>
+    <string name="scoremax">Max</string>
+    <string name="scoremin">Min</string>
+    <string name="scoremedian">Median</string>
+    <string name="scoreaverage">Average</string>
+    <string name="scorevariance">Variance</string>
+    <string name="dancelevel">Dance Level</string>
+    <string name="fullcombotype">Fullcombo Type</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="patterntype">Pattern Type</string>
+    <string name="version">Series Title</string>
+    
+    <string name="refresh_musiclist">Update Music List</string>
+    <string name="no_update">No Update.</string>
+    <string name="musiclist_updated">Updated.</string>
+    <string name="invalid_data">Received invalid data.</string>
+    <string name="editing">Music List File is now editing. Please wait to update.</string>
+    <string name="timedout">Timeout.</string>
+    
+    <string name="visible_item">Visible Item</string>
+    
+    <string name="show_maxcombo">Max Combo</string>
+    <string name="show_score">Score</string>
+    <string name="show_dancelevel">Dance Level</string>
+    <string name="show_playcount">Play Count</string>
+    <string name="show_clearcount">Clear Count</string>
+    
+    <string name="visible_password">Visible password</string>
+    <string name="input_ddr_sa_id_password">Input ID/Password</string>
+    <string name="input_ddr_sa_information">Input DDR-CODE and Password on DDR Skill Attack.\nApp will save encrypted password on your phone.</string>
+    <string name="authenticating">Authenticating...</string>
+    <string name="authentication_failure">Authentication Failure.</string>
+    <string name="authentication_succeed">Authentication Succeed. Next, press Export button.</string>
+    <string name="export_check_title">Export to DDA SA</string>
+    <string name="export_check">Do you want to export?</string>
+    <string name="exporting">Exporting...</string>
+    <string name="export_succeed">Export succeed.</string>
+    <string name="exported_scores">Exported</string>
+    <string name="exported_count">Count: </string>
+    
+    <string name="music_list">Music List</string>
+    <string name="auto_update_music_list">Auto Update Music List</string>
+    <string name="update_music_list_now">Update Music List Now</string>
+    
+    <string name="error_noitem">No target</string>
+    <string name="textsizesetting_preview">Change your text size over to preview lower.</string>
+    <string name="use_old_draw">Use old style drawing</string>
+
+    <string name="name_different_alert">Music name web syte had given is different to selected music name.(Please report to us.)</string>
+    <string name="illegal_id_alert">Illegal music id. Please try to "Get music IDs and all scores".</string>
+    
+    <string name="show_comments">Show comments</string>
+    <string name="reset_socres">Reset scores</string>
+    
+    <string name="shock_arrow">Shock Arrows</string>
+    <string name="shock_arrow_only">Only</string>
+    <string name="shock_arrow_include">Include</string>
+    <string name="shock_arrow_exclude">Exclude</string>
+    
+    <string name="dialog_gettin_status">Getting Status</string>
+    <string name="dialog_log_get_status">Getting status page...</string>
+    
+    <string name="title_activity_status">Player Status</string>
+    
+	<string name="dialog_title_get_recent">Getting Recent</string>
+	
+	<string name="title_activity_change_log">Change log</string>
+	
+	<string name="dialog_log_get_rival_list">Getting rival list</string>
+	
+	<string name="title_activity_gate_login">Login</string>
+	<string name="message_gate_login">Please login to GATE</string>
+    <string name="message_gate_login_manually">When you detect you have logged in to GATE, press back button and close this window.</string>
+	<string name="message_gate_loggedin">Logged in</string>
+	<string name="message_gate_loggedin_failed">Failed to login</string>
+	<string name="message_gate_already_logged_in_but_shown">Already logged in, but I couled not get data. Are you GATE "BASIC COURCE" member?</string>
+			
+	<string name="dialog_sou_myscore">Get my scores</string>
+    <string name="dialog_sou_rivalscore">Get rival\'s scores</string>
+    
+    <string name="toast_added_to_mylist1">Added to </string>
+    <string name="toast_added_to_mylist2">.</string>
+    	
+    <string name="waiting">Waiting...</string>
+    <string name="waiting_remaining">Remaining: </string>
+    <string name="waiting_seconds"> seconds</string>
+    
+    <string name="dialog_copy_to_clipboard">Copy to clipboard</string>
+    <string name="dialog_copied_to_clipboard">Copied to clipboard</string>
+    <string name="dialog_from_gate">from Gate</string>
+    <string name="dialog_direct_edit">Direct Edit</string>
+    <string name="dialog_input_score">Input score</string>
+    <string name="dialog_input_max_combo">Input combo</string>
+    <string name="dialog_input_play_count">Input play count</string>
+    <string name="dialog_input_clear_count">Input clear count</string>
+    <string name="dialog_disp_all_pattern">Display all pattern</string>
+    <string name="dialog_add_to_list">Add to MyList</string>
+    <string name="dialog_new_list">--- Create List ---</string>
+    <string name="dialog_remove_from_list">Remove from this MyList</string>
+    
+    <string name="there_is_no_items">Thre is no Items. Please check category you selected and your filter.</string>
+    
+    <string name="sou_progress_title">Getting scores</string>
+    <string name="sou_progress_message">(゜д゜;)(Д゜ )彡(Д゜ #)(*゜д゜*)( ゜д)(（д゜ *）（Д゜ ）9m(゜д゜#)(*゜д゜*)(д゜ #)彡(д゜ ;)(゜д゜ )（゜д゜）</string>
+    <string name="sou_dialog_title">(゜Д゜)</string>
+    <string name="sou_dialog_message">"(（д゜ #）（. ゜д゜）(（゛д゛ ）(# ゜д)彡(（゜Д゜ ）9m（* ゜д）彡(（ ゜д゜#）彡( ゜Д)(д゜ ;)(#゜Д゜)(#゜д゜)(゜д゜ )( ゜Д゜#)( ゜д゜;)( ゜Д゜)彡(#゜д゜)(' ゜д)(（*゜д゜）彡（, ゜Д゜;）(' ゜д)（ ゜д゜;）（* ゜д）（д゜ ）(' ゜Д)(( ゜д゜ )彡(д゜,;)(（д゜ *）（Д゛ ;）(゜д゜;)(Д゜ *)( ゜д゜;)（゜д゜）(* ゜д)(' ゜д)(（д゜ ;）彡（д゜ *）(（'゜д゜`）（. ゜д゜ ）(Д゜ )(゜Д゜ ,)(Д゜ .)(;,゜Д)(. ゜Д)（д゜ ;）（゜ー゜）（Д゜ ）彡(゜д゜`)(（ ゜Д゜）（#゜Д゜）(（Д゜ ）（ ゛д゛#）(' ゜Д)(д゜ *)(*゜д゜)( ゜Д゜#)(' ゜д)(' ゜Д)(（ ゜Д）彡（゜д゜`）(*゜д゜)( ゜Д゜#)(д゜ #)(*゜Д゜)（゜Д゜）(（*゜Д゜）（ ゛д゛#）(（*゜д゜）彡(Д゛ ;)(（*゜Д゜）（゜Д゜*）(' ゜д)(（*゜Д゜）（゜Д゜*）(（* ゜Д）（*゜Д゜*）(' ゜Д)(д゜ )(*゜д゜)(#゜д゜)(( ゜д゜ )彡(д゜,;)(（д゜ *）（Д゛ ;）(' ゜Д)(（゜Д゜ ）9m(# ゜Д)(゜д゜ )(Д゜ *)( ゜д゜;)（゜д゜..(・ω・ )((Д゜ `)（゜Д゜.*）(゜д゜`)( ゜д゜#)(゜д゜*)(（# ゜д）彡( ゛д゛ )( ・ω・)(ω・ )(（ ゜д゜#）彡(゜д゜.;)（д゜..（゜д゜）(（* ゜д）('゜д゜)(（д゜ *）( ゜д゜ )彡(゜д゜`)(（ ゛д゛）（ ゜Д゜#）(（゜Д゜ ）9m(# ゜Д)(゜д゜;)(Д゜ *)( ゜д゜;)(д゜ *)（゜д゜）?"</string>
+    <string name="sou_dialog_wakegawakaranaiyo">I cannot read this message.</string>
+    <string name="sou_dialog_title_lang">Warning</string>
+    <string name="sou_dialog_message_lang">Get all scores displayed. This operation will need a lot of time. Are you sure to continue?</string>
+    
+    <string name="get_from_list">Get scores and fullcombo states from GATE</string>
+    <string name="get_from_list_message">Get scores and frullcombo states from GATE server.</string>
+    <string name="manage_rivals_add_rival">Add new Rival</string>
+    <string name="manage_rivals_add_rival_message">Empty and press OK to add scores from old version DDR SM.</string>
+    <string name="manage_rivals_from_gate_title">Get Rival List</string>
+    <string name="manage_rivals_from_gate">Get Rival List from GATE.</string>
+    <string name="manage_rivals_from_gate_warning_title">Warning!</string>
+    <string name="manage_rivals_from_gate_warning">If the Rival Data is not entered on the GATE, the Rival Data will be removed. You realy want to proceed?</string>
+    <string name="manage_rivals_from_gate_overwrite">Overwrite</string>
+    <string name="manage_rivals_from_gate_add">OK</string>
+    <string name="manage_rivals_only_my_score">Only my scores</string>
+    <string name="manage_rivals_scores_from_old_ddr_sm">Scores from old DDR SM</string>
+    
+    <string name="title_activity_manage_rivals">Rivals</string>
+    <string name="manage_rivals_invalid_ddr_code">Invalid DDR-CODE !</string>
+    <string name="manage_rivals_id">DDR-CODE</string>
+    <string name="manage_rivals_name">Dancer-Name</string>
+    <string name="manage_rivals_edit_rival">Edit Rival data</string>
+    
+    <string name="rival_score">Compare with Rival</string>
+    <string name="rival_score_only_my_score">Only my score</string>
+    
+    <string name="global_setting_set_pfc1">Save as PFC, if higher </string>
+    
+    <string name="filter">Filter</string>
+    <string name="sort">Sort</string>
+    <string name="colon">:</string>
+    <string name="filter_new">--- Create Filter ---</string>
+    <string name="sort_new">--- Create Sort ---</string>
+    <string name="edit_filter_name">Edit filter name</string>
+    <string name="edit_sort_name">Edit sort name</string>
+    <string name="menu_icon_content_description">menu</string>
+    <string name="sou_icon_content_description">(゜Д゜)</string>
+    <string name="title_activity_score_list">DDR Score Manager A</string>
+    <string name="title_activity_score_edit">Score Edit</string>
+    <string name="title_activity_music_detail">Music Detail</string>
+    <string name="title_activity_from_gate_list">Get scores</string>
+    <string name="title_activity_from_gate">Connecting to GATE...</string>
+    <string name="title_activity_pager_score_list">DDR Score Manager A</string>
+    <string name="title_activity_global_setting">Global Setting</string>
+    
+    <string name="global_setting_advanced">Advanced</string>
+    <string name="global_setting_advanced_useasyncdraw">Use Async Draw</string>
+    <string name="global_setting_preference">Preference</string>
+    <string name="global_setting_general">General</string>
+    <string name="global_setting_closecategoryonbackpressed">Close category on Back key is pressed.</string>
+    <string name="global_setting_gate">GATE</string>
+    <string name="global_setting_froma3">Load score data from A3</string>
+    <string name="global_setting_overwritelowerscore">Overwrite lower scores</string>
+    <string name="global_setting_overwritefullcombo">Overwrite \"Good Full Combo\" -> \"Full Combo\"</string>
+    <string name="global_setting_overwritelife4">Overwrite \"Life4\" -> \"No Full Combo\"</string>
+    <string name="global_setting_logout_gate">Login to GATE manually</string>
+    <string name="global_setting_appearance">Appearance</string>
+    <string name="global_setting_textsizesetting">Edit text size</string>
+    <string name="global_setting_filterandsort">Filter and Sort</string>
+    <string name="global_setting_filtersetting">Edit...</string>
+    <string name="global_setting_gestures">Gestures</string>
+    <string name="global_setting_gestures_enableFlick">Change categories on LR Flick</string>
+    <string name="global_setting_gestures_onitemclicked">Item tap</string>
+    <string name="global_setting_gestures_onitemlongclicked">Item long tap</string>
+    <string name="global_setting_removetab">Remove last Tab</string>
+    <string name="global_setting_addtab">Add Tab to last</string>
+    <string name="global_setting_importexport">Import/Export</string>
+    <string name="global_setting_import">Restore Score Data</string>
+    <string name="global_setting_export">Backup Score Data</string>
+    <string name="global_setting_import_mylist">Restore MyList</string>
+    <string name="global_setting_export_mylist">Backup MyList</string>
+    <string name="global_setting_ad">Ad</string>
+    <string name="global_setting_showad">Show Ad :-)</string>
+    
+    <string name="filter_setting_score_edit">Edit</string>
+    
+    <string name="global_setting_dialog_backup_mylist">Backup MyList</string>
+    <string name="global_setting_dialog_restore_mylist">Restore MyList</string>
+    <string name="global_setting_dialog_backuptoA_mylist">Backup to </string>
+    <string name="global_setting_dialog_backuptoB_mylist"> .</string>
+    <string name="global_setting_dialog_restorefromA_mylist">Restore from </string>
+    <string name="global_setting_dialog_restorefromB_mylist"> .</string>
+    <string name="global_setting_exportedA_mylist">Exported to </string>
+    <string name="global_setting_exportedB_mylist"> .</string>
+    <string name="global_setting_exportfailed_mylist">Failed</string>
+    <string name="global_setting_exportnoone_mylist">No MyList exists.</string>
+    <string name="global_setting_importedA_mylist">Imported from </string>
+    <string name="global_setting_importedB_mylist"> .</string>
+    <string name="global_setting_importfailed_mylist">Failed</string>
+    <string name="global_setting_importnoone_mylist">No MyList exists in selected backup data.</string>
+
+    <string name="global_setting_logout_message">Please restart application to complete logout.</string>
+    
+    <string name="global_setting_dialog_backup">Backup Score Data</string>
+    <string name="global_setting_dialog_restore">Restore Score Data</string>
+    <string name="global_setting_dialog_reset_scores">Reset Score Data</string>
+    <string name="global_setting_dialog_reset_scores_main">Warning: This operation overwrite to score data exists.</string>
+    <string name="global_setting_dialog_backuptoA">Backup Score Data to </string>
+    <string name="global_setting_dialog_backuptoB">　.</string>
+    <string name="global_setting_dialog_restorefromA">Restore Score Data from </string>
+    <string name="global_setting_dialog_restorefromB">　. Warning: This operation overwrite to score data exists.</string>
+    <string name="global_setting_exportedA">Exported to </string>
+    <string name="global_setting_exportedB"> .</string>
+    <string name="global_setting_exportfailed">Failed.</string>
+    <string name="global_setting_importedA">Imported from </string>
+    <string name="global_setting_importedB"> .</string>
+    <string name="global_setting_importfailed">Failed.</string>
+    <string name="global_setting_importzero">Terminated import because score data is empty.</string>
+    
+    <string name="filter_setting_edit_tab_name">Edit</string>
+    <string name="filter_setting_delete">Delete</string>
+    <string name="filter_setting_deleteconferm">Are you sure to delete this filter/sort ?</string>
+    <string name="filter_setting_filter">Filter</string>
+    <string name="filter_setting_pattern_type">Pattern Type</string>
+    <string name="filter_setting_showcwhenonlyc">Display Challenge pattern when only Challenge pattern.</string>
+    <string name="filter_setting_showewhennoc">Display Expert pattern when no Challenge pattern.</string>
+    <string name="filter_setting_difficulty">Difficulty</string>
+    <string name="filter_setting_seriestitle">Series Title</string>
+    <string name="filter_setting_rank">Dance Level</string>
+    <string name="filter_setting_fullcombo">Full Combo Type</string>
+    <string name="filter_setting_rank_rival">Rival Dance Level</string>
+    <string name="filter_setting_score">Score Range</string>
+    <string name="filter_setting_combo">Max Combo Range</string>
+    <string name="filter_setting_playcount">Play Count Range</string>
+    <string name="filter_setting_clearcount">Clear Count Range</string>
+    <string name="filter_setting_rival_win_lose">Win/Lose</string>
+    <string name="filter_setting_rival_win">Win</string>
+    <string name="filter_setting_rival_lose">Lose</string>
+    <string name="filter_setting_rival_draw">Draw</string>
+    <string name="filter_setting_rival_score">Rival Score Range</string>
+    <string name="filter_setting_rival_combo">Rival Max Combo Range</string>
+    <string name="filter_setting_rival_playcount">Rival Play Count Range</string>
+    <string name="filter_setting_rival_clearcount">Rival Clear Count Range</string>
+    <string name="filter_setting_score_diff">Score Difference</string>
+    <string name="filter_setting_combo_diff">Max Combo Diference</string>
+    <string name="filter_setting_play_count_diff">Play Count Diference</string>
+    <string name="filter_setting_clear_count_diff">Clear Count Diference</string>
+    <string name="filter_setting_score_divider">to</string>
+    <string name="filter_setting_fullcombo_rival">Rival Full Combo Type</string>
+    <string name="filter_setting_sort">Sort</string>
+    <string name="filter_setting_sort_asc">Asc</string>
+    <string name="filter_setting_sort_des">Des</string>
+    <string name="filter_setting_nomin">0</string>
+    <string name="filter_setting_nomax">Inf.</string>
+    <string name="filter_setting_deleted">Deleted Musics</string>
+    <string name="filter_setting_others">Others</string>
+    
+    <string name="score_list_item_height_setter_text">AAA゜</string>
+    
+    <string name="score_edit_state">State</string>
+    <string name="score_edit_score">Score</string>
+    <string name="score_edit_combo">Combo</string>
+    <string name="score_edit_play_count">Play</string>
+    <string name="score_edit_clear_count">Clear</string>
+    <string name="score_edit_reset_data">Reset Data</string>
+    
+    <string name="from_gate_list_notif1">Scores are got when score page is displayed.</string>
+    
+    <string name="from_gate_notif1">Automaticaly return to list when succeed getting data.</string>
+    <string name="from_gate_notif2">If displayed the GATE login form, please log in and retry to get score.</string>
+    
+    <string name="score_list_rival_difference">Difference: </string>
+    <string name="score_list_rival_difference_edit_error1">Invalid value</string>
+    <string name="score_list_rival_difference_edit_error2">Under: to 0, Over: to 1000000</string>
+    <string name="score_list_rival_difference_edit_error3">Inner: to 0, Outer: to 1000000</string>
+    
+    <string name="edit_rival_modified">Edited dancer name.</string>
+    
+    <string name="title_activity_text_size_setting">TextSizeSetting</string>
+    
+    <string name="textsizesetting_category_top">Category Top</string>
+    <string name="textsizesetting_category_subitem">Category SubItem</string>
+    
+    <string name="textsizesetting_item_music_level">Level</string>
+    <string name="textsizesetting_item_music_name">Music Name</string>
+    <string name="textsizesetting_item_music_rank">Dance Level</string>
+    <string name="textsizesetting_item_music_score">Score</string>
+    
+    <string name="textsizesetting_item_music_level_x">Level (X Scale)</string>
+    <string name="textsizesetting_item_music_name_x">Music Name (X Scale)</string>
+    <string name="textsizesetting_item_music_rank_x">Dance Level (X Scale)</string>
+    <string name="textsizesetting_item_music_score_x">Score (X Scale)</string>
+    
+    <string name="textsizesetting_default">Restore default</string>
+    
+    <string name="is_full_screen">Full Screen View (Require Restart)</string>
+    <string name="show_title_bar">Show Title Bar</string>
+    
+    <string name="menu_show_statisticstable">Statistics Table</string>
+    <string name="menu_show_verticalaxis">VAx</string>
+    <string name="menu_show_horizontalaxis">HAx</string>
+    
+    <string name="menu_music_share">Output to text</string>
+    <string name="menu_music_share_copy">Copy to Clipboard</string>
+    <string name="menu_music_share_action_send">Send to other App</string>
+    
+    <string name="menu_refresh_recent">Refresh Recent</string>
+    <string name="menu_refresh_status">Refresh</string>
+    
+    <string name="menu_change_log">App Change log</string>
+    
+		
+	
+    <string name="menu_rival_score">Compare with Rival</string>
+    <string name="menu_from_gate_list">Get scores from LIST</string>
+    <string name="menu_from_gate_list_rival">Get scores from LIST</string>
+    <string name="menu_from_gate_list_my_score">My scores</string>
+    <string name="menu_sou">(゜Д゜)</string>
+    <string name="menu_sou_">Get scores all displayed</string>
+	
+    <string name="menu_music_rivals">Rival</string>
+    
+    <string name="menu_rivals">Rivals</string>
+
+    <string name="dialog_networkerror">Network error</string>
+    <string name="dialog_networkerrorexit">Network error is occured. Please check network state and retry.</string>
+
+	<string name="strings____Activity_CategorySelect____category_allMusics">All Musics</string>
+	<string name="strings____Activity_CategorySelect____category_difficulty">Difficulty</string>
+	<string name="strings____Activity_CategorySelect____category_seriesTitle">Series Title</string>
+	<string name="strings____Activity_CategorySelect____category_abc">ABC</string>
+	<string name="strings____Activity_CategorySelect____category_rank">Dance Level</string>
+	<string name="strings____Activity_CategorySelect____category_fullcomboType">Full Combo Type</string>
+	<string name="strings____Activity_CategorySelect____category_recent">Recent</string>
+	<string name="strings____Activity_CategorySelect____category_rival">Rival</string>
+	<string name="strings____Activity_CategorySelect____category_rivalWinlose">Win/Lose</string>
+	<string name="strings____Activity_CategorySelect____category_rivalWin">Win</string>
+	<string name="strings____Activity_CategorySelect____category_rivalLose">Lose</string>
+	<string name="strings____Activity_CategorySelect____category_rivalDraw">Draw</string>
+	<string name="strings____Activity_CategorySelect____category_mylist">My List</string>
+	<string name="strings____Activity_CategorySelect____notif_ast">*</string>
+	<string name="strings____Activity_CategorySelect____notif_1">DDR Score Manager can detect score data from the GATE server.</string>
+	<string name="strings____Activity_CategorySelect____notif_2">For keeping the GATE server service, please do not initiate a lot of access.</string>
+	<string name="strings____Activity_CategorySelect____notif_3">You can hide Ad while 24-hours by making sure to tap it.</string>
+		
+    <!-- 
+    Activity DdrSa
+     -->
+    
+    <string name="strings____Dialog_DdrSaDeleteAuthenticate____deleteAuthenticationData">\nDelete Authentication Data\n</string>
+    <string name="strings____Dialog_DdrSaDeleteAuthenticate____confirm">Delete authentiction data</string>
+    <string name="strings____Dialog_DdrSaDeleteAuthenticate____deleteSucceed">Deleted</string>
+    
+    <!-- 
+    Activity DdrSa
+     -->
+    
+    <string name="strings____Activity_DdrSa____exportToDdrSa">DDR Skill Attack</string>
+    <string name="strings____Activity_DdrSa____authenticatedId">Authenticated ID: </string>
+    <string name="strings____Activity_DdrSa____authenticatedIdDefault">Not authenticated. \nPress Authenticate button and authenticate DDR Skill Attack.</string>
+    <string name="strings____Activity_DdrSa____export">\n\nExport\n\n</string>
+    <string name="strings____Activity_DdrSa____openDdrSa">Open DDR Skill Attack web site</string>
+    <string name="strings____Activity_DdrSa____openUserPage">Open user page</string>
+    <string name="strings____Activity_DdrSa____authenticateDdrSa">\nAuthenticate DDR Skill Attack\n</string>
+    <string name="strings____Activity_DdrSa____deleteAuthenticationData">\nDelete Authentication Data\n</string>
+    
+    <!-- 
+    Activity CategorySelect
+    Activity ManageRivals
+    Activity ScoreList
+     -->
+    
+	<string name="strings____Dialog_FromGate__Dialog_FromGateList____logGetScoreList">Getting scores</string>
+	<string name="strings____Dialog_FromGate__Dialog_FromGateList____logGetPageCount">Getting page count...</string>
+	<string name="strings____Dialog_FromGate__Dialog_FromGateList____logGetPage">Getting score pages...</string>
+	
+    <!-- 
+    Activity CategorySelect
+    Activity ManageRivals
+    Activity ScoreList
+    -->
+
+    <string name="strings____Dialog_GetScores____getScore">Get all Scores and fullcombo states</string>
+	<string name="strings____Dialog_GetScores____getScoreMessage">Get all scores and fullcombo states from GATE server.</string>
+	<string name="strings____Dialog_GetScores____getScoreTypeSp">SP</string>
+	<string name="strings____Dialog_GetScores____getScoreTypeDp">DP</string>
+	
+    <!-- 
+    Activity CategorySelect
+    Activity ScoreList
+     -->
+    
+    <string name="strings____Dialog_MyList____editMylistName">Edit MyList Name</string>
+    <string name="strings____Dialog_MyList____deleteMylist">Delete MyList</string>
+    <string name="strings____Dialog_MyList____deleteConferm">Are you sure to delete this MyList?</string>
+    
+    <!-- 
+    Activity ScoreList
+     -->
+
+    <string name="strings____Dialog_Omikuji____omikuji">Random pickup</string>
+		
+    <!-- 
+    Activity CategorySelect
+    Activity GlobalSetting
+     -->
+    
+    <string name="strings____Dialog_UpdateMusicList____refreshingMusiclist">Checking Music List Update...</string>
+    
+    <!-- 
+    Activity ManageRivals
+     -->
+    
+	<string name="strings____Menu_ManageRivals____getScore">from GATE (standard)</string>
+	<string name="strings____Menu_ManageRivals____active">Active</string>
+	<string name="strings____Menu_ManageRivals____readfromclip">Read from clipboard</string>
+	<string name="strings____Menu_ManageRivals____moveUp">Move UP</string>
+    <string name="strings____Menu_ManageRivals____moveDown">Move DOWN</string>
+    <string name="strings____Menu_ManageRivals____edit">Edit code&amp;name</string>
+    <string name="strings____Menu_ManageRivals____removeRival">Remove</string>
+    
+	<string name="strings____ManageRivals____cantreadfromclip">No scores detected from clipboard</string>
+	<string name="strings____ManageRivals____readfromclip_done">Succeed</string>
+	<string name="strings____ManageRivals____readfromclip_title">Read from DDR Score Manager 2013</string>
+	<string name="strings____ManageRivals____readfromclip_info">You can use scoredata from DDR Score Manager 2013 (old DDR SM version). On old score manager,\"Menu\"->\"Preferences\"->\"Import/Export\"->\"Copy score database\". And import on this menu.</string>
+			
+    <!-- 
+    Activity CategorySelect
+     -->
+    
+    <string name="strings____Menu_MyList____editMylistName">Edit MyList Name</string>
+    <string name="strings____Menu_MyList____deleteMylist">Delete MyList</string>
+    
+    <!-- 
+    Activity CategorySelect
+    Activity ScoreList
+     -->
+    
+    <string name="strings____Menu_System____preference">Preferences</string>
+    <string name="strings____Menu_System____statistics">Statistics</string>
+    <string name="strings____Menu_System____manageRivals">Manage Rivals</string>
+    <string name="strings____Menu_System____ddrSa">DDR SA</string>
+    <string name="strings____Menu_System____showStatus">Show Player Status</string>
+	<string name="strings____Menu_System____getScore">from GATE (standard)</string>
+	<string name="strings____Menu_System____getScoreDetail">from GATE (detail)</string>
+	<string name="strings____Menu_System____openOcrMode">from eA Score Image</string>
+	<string name="strings____Menu_System____omikuji">Random pickup</string>
+		
+    <!-- 
+    Activity CategorySelect
+     -->
+
+    <string name="strings_____Dialog_UpdateInfo____versionInfoTitle">Update Info</string>
+    
+</resources>

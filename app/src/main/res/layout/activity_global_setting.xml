@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/titleBar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="#002266" >
+
+        <ImageView
+            android:id="@+id/sou"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/sou_icon_content_description"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/global_setting_preference"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#003399" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#003399"
+                    android:padding="10dp"
+                    android:text="@string/global_setting_general"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+                <CheckBox
+                    android:id="@+id/closeCategoryOnBackKeyPressed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/global_setting_closecategoryonbackpressed" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#003399" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#003399"
+                    android:padding="10dp"
+                    android:text="@string/music_list"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+                <CheckBox
+                    android:id="@+id/autoUpdateMusicList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/auto_update_music_list" />
+
+            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/updateMusicList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/update_music_list_now" />
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#003399" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#003399"
+                    android:padding="10dp"
+                    android:text="@string/global_setting_gate"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                	android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <RadioButton
+                        android:id="@+id/radioButton1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:clickable="false"
+                        android:text="@string/global_setting_set_pfc1" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp" >
+
+                        <TextView
+                            android:id="@+id/setpfc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="10dp"
+                            android:text="0,999,990"
+                            android:textColor="#333333"
+                            android:textAppearance="?android:attr/textAppearance" />
+
+		            <ImageView
+		                android:id="@+id/editSetPfc"
+		                android:layout_width="60dp"
+		                android:layout_height="wrap_content"
+		                android:layout_gravity="center_vertical"
+		                android:background="@drawable/menu_button_background_color"
+		                android:scaleType="fitCenter"
+		                android:contentDescription="@string/menu_icon_content_description"
+		                android:src="@android:drawable/ic_menu_edit" />
+		            
+                    </LinearLayout>
+                    
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/fromA3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/global_setting_froma3" />
+
+                <CheckBox
+                    android:id="@+id/overwriteLowerScores"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/global_setting_overwritelowerscore" />
+
+
+                <CheckBox
+                android:visibility="gone"
+                    android:id="@+id/overwriteFullCombo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/global_setting_overwritefullcombo" />
+
+                <CheckBox
+                    android:id="@+id/overwriteLife4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/global_setting_overwritelife4" />
+                
+                <Button
+                    android:id="@+id/logout"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_margin="5dp"
+                    android:text="@string/global_setting_logout_gate" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#003399" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#003399"
+                    android:padding="10dp"
+                    android:text="@string/global_setting_filterandsort"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal" >
+
+                    <Spinner
+                        android:id="@+id/filterPage"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:id="@+id/filterSetting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/global_setting_filtersetting" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="right"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/filterPageDel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="@string/global_setting_removetab" />
+
+                    <Button
+                        android:id="@+id/filterPageAdd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="@string/global_setting_addtab" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#003399" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#003399"
+                    android:padding="10dp"
+                    android:text="@string/global_setting_appearance"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/fullScreen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/is_full_screen" />
+                
+                <CheckBox
+                    android:id="@+id/titleBarVisible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_title_bar" />
+                
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal" >
+	
+                    <Button
+                        android:id="@+id/textsizeSetting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/global_setting_textsizesetting" />
+
+                </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#003399" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#003399"
+                    android:padding="10dp"
+                    android:text="@string/visible_item"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            </LinearLayout>
+                
+            <CheckBox
+                android:id="@+id/showMaxCombo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_maxcombo" />
+            
+            <CheckBox
+                android:id="@+id/showScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_score" />
+            
+            <CheckBox
+                android:id="@+id/showDanceLevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_dancelevel" />
+            
+            <CheckBox
+                android:id="@+id/showPlayCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_playcount" />
+            
+            <CheckBox
+                android:id="@+id/showClearCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_clearcount" />
+            
+            <CheckBox
+                android:id="@+id/showComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_comments" />
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#003399" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#003399"
+                    android:padding="10dp"
+                    android:text="@string/global_setting_gestures"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/gestureEnableFlick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/global_setting_gestures_enableFlick" />
+            
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical" >
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center_vertical"
+                       android:layout_margin="5dp"
+                       android:text="@string/global_setting_gestures_onitemclicked"
+                       android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                   <Spinner
+                       android:id="@+id/gestureOnItemClicked"
+                       android:layout_width="fill_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="20dp"
+                       android:entries="@array/SpinnerItemsGestures" />
+
+                </LinearLayout>
+            
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical" >
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center_vertical"
+                       android:layout_margin="5dp"
+                       android:text="@string/global_setting_gestures_onitemlongclicked"
+                       android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                   <Spinner
+                       android:id="@+id/gestureOnItemLongClicked"
+                       android:layout_width="fill_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="20dp"
+                       android:entries="@array/SpinnerItemsGestures" />
+
+                </LinearLayout>
+            
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#003399" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#003399"
+                    android:padding="10dp"
+                    android:text="@string/global_setting_importexport"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            </LinearLayout>
+
+                <LinearLayout
+                	android:visibility="gone"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical" >
+
+                    <Button
+                        android:id="@+id/resetscores"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/reset_socres" />
+
+                    <Button
+                        android:id="@+id/importbackupdata"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/global_setting_import" />
+
+                    <Button
+                        android:id="@+id/exportbackupdata"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/global_setting_export" />
+
+                    <Button
+                        android:id="@+id/importmylist"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/global_setting_import_mylist" />
+
+                    <Button
+                        android:id="@+id/exportmylist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/global_setting_export_mylist" />
+                    
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#003399"
+                android:visibility="gone" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#003399"
+                    android:padding="10dp"
+                    android:text="@string/global_setting_ad"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal"
+                android:visibility="gone" >
+
+                <CheckBox
+                    android:id="@+id/showAd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/global_setting_showad" />
+                
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#003399" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#003399"
+                    android:padding="10dp"
+                    android:text="@string/global_setting_advanced"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
+
+                <CheckBox
+                    android:id="@+id/useOldStyleDraw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/use_old_draw" />
+                
+                <CheckBox
+                    android:id="@+id/useAsyncDraw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/global_setting_advanced_useasyncdraw" />
+                
+            </LinearLayout>
+            
+            <Button
+                android:id="@+id/debug"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="500dp"
+                android:text="Debug" />
+
+        </LinearLayout>
+        
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/adContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+    </LinearLayout>
+   
+</LinearLayout>

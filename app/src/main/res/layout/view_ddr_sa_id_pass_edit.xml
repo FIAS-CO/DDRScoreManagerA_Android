@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="5dp"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/input_ddr_sa_information"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+	    
+	<EditText
+	    android:id="@+id/ddrCode"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:digits="0123456789-"
+	    android:hint="0000-0000"
+	    android:imeOptions="actionDone|flagNoEnterAction"
+	    android:inputType="number"
+	    android:maxLength="9"
+	    android:maxLines="1"
+	    android:selectAllOnFocus="true"
+	    android:singleLine="true" >
+
+	</EditText>
+
+	<EditText
+	    android:id="@+id/password"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:hint="Password"
+	    android:imeOptions="actionDone|flagNoEnterAction"
+	    android:inputType="textPassword"
+	    android:maxLength="16"
+	    android:maxLines="1"
+	    android:selectAllOnFocus="true"
+	    android:singleLine="true" >
+
+	</EditText>
+
+	<CheckBox
+	    android:id="@+id/visiblePassword"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="right"
+	    android:text="@string/visible_password" />
+	
+</LinearLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="SpinnerItemsClearType">  
+		 <item>Marvelous Full Combo</item>  
+		 <item>Perfect Full Combo</item>  
+		 <item>Full Combo</item>  
+		 <item>Good Full Combo</item>  
+		 <item>Life4 Clear</item>  
+ 		 <item>Clear</item>  
+		 <item>Rank E</item>
+		 <item>NoPlay</item>  
+	</string-array>  
+  
+    <string-array name="SpinnerItemsGestures">  
+		 <item>Show Menu</item>  
+		 <item>Show All Patterns</item>  
+		 <item>from GATE</item>  
+		 <item>Direct Edit</item>  
+		 <item>from GATE Rival Score</item>  
+		 <item>Direct Edit Rival Score</item>  
+		 <item>Show Rival Score Edit Menu</item>  
+		 <item>Add to MyList</item>  
+		 <item>Remove from Current MyList</item>  
+	</string-array>  
+  
+    <string-array name="SpinnerItemsSortType">  
+		 <item>ABC</item>  
+		 <item>Score</item>  
+		 <item>Dance Level</item>  
+		 <item>Full Combo Type</item>  
+		 <item>Combo Count</item>
+		 <item>Play Count</item>
+		 <item>Clear Count</item>
+		 <item>Difficulty</item>  
+		 <item>Pattern Type</item>  
+		 <item>SP/DP</item>  
+		 <item>ID</item>  
+		 <item>Rival Score</item>  
+		 <item>Rival Dance Level</item>  
+		 <item>Rival Full Combo Type</item>  
+		 <item>Rival Combo Count</item>
+		 <item>Rival Score Difference</item>  
+		 <item>Rival Score Difference Abs</item>  
+		 <item>Max BPM</item>    
+		 <item>Min BPM</item>    
+		 <item>Ave BPM</item>  
+		 <item>Series Title</item>  
+	</string-array>  
+  
+    <string-array name="SpinnerItemsStatisticalTableAxis">  
+		 <item>Difficulty</item>  
+		 <item>Pattern Type</item>  
+		 <item>Series Title</item>  
+		 <item>Full Combo Type</item>  
+		 <item>Dance Level</item>  
+		 <item>900,/800,/700,/...</item>  
+		 <item>990,/980,/970,/...</item>  
+		 <item>,990/,980/,970/...</item>  
+	</string-array>  
+  
+</resources>

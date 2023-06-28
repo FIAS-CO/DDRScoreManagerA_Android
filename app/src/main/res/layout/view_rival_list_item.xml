@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rival_list_item_background_color"
+    android:paddingBottom="10dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="10dp" >
+
+        <TextView
+            android:id="@+id/ddrCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="@string/manage_rivals_id"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@drawable/list_item_text_color" />
+
+        <TextView
+            android:id="@+id/dancerName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="@string/manage_rivals_name"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@drawable/list_item_text_color" />
+
+        <ImageView
+            android:id="@+id/imageActive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/btn_star_big_off" />
+    
+</LinearLayout>

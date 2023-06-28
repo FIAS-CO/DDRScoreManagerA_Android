@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="5dp"
+    android:orientation="vertical" >
+	    
+	<EditText
+	    android:id="@+id/ddrCode"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:digits="0123456789-"
+	    android:hint="0000-0000"
+	    android:imeOptions="actionDone|flagNoEnterAction"
+	    android:inputType="number"
+	    android:maxLength="9"
+	    android:maxLines="1"
+	    android:selectAllOnFocus="true"
+	    android:singleLine="true" >
+
+	</EditText>
+
+	<EditText
+	    android:id="@+id/dancerName"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:hint="Dancer Name"
+	    android:imeOptions="actionDone|flagNoEnterAction"
+	    android:maxLength="30"
+	    android:maxLines="1"
+	    android:selectAllOnFocus="true"
+	    android:singleLine="true" >
+
+	</EditText>
+	
+</LinearLayout>

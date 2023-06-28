@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#000000"
+    android:orientation="vertical" >
+
+    <HorizontalScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:id="@+id/adContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+    </LinearLayout>
+   
+    </HorizontalScrollView>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="3dp"
+        android:layout_marginBottom="8dp"
+        android:background="#000000"
+        android:textAppearance="?android:attr/textAppearance" />
+    
+    <TextView
+        android:id="@+id/name"
+        android:layout_marginLeft="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+   
+    <TextView
+        android:id="@+id/pattern"
+        android:layout_marginLeft="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+   
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="3dp"
+        android:layout_marginBottom="8dp"
+        android:background="#000000"
+        android:textAppearance="?android:attr/textAppearance" />
+    
+    <ProgressBar
+        android:id="@+id/mainProgress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/progress_color"
+        android:progressDrawable="@drawable/progress_color" />
+    
+    <LinearLayout
+        android:id="@+id/itemContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+    </LinearLayout>
+    
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="8dp"
+        android:background="#000000"
+        android:textAppearance="?android:attr/textAppearance" />
+    
+</LinearLayout>

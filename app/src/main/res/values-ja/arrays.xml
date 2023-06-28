@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="SpinnerItemsClearType">  
+		 <item>Marvelous Full Combo</item>  
+		 <item>Perfect Full Combo</item>  
+		 <item>Full Combo</item>  
+		 <item>Good Full Combo</item>  
+		 <item>Life4 Clear</item>  
+ 		 <item>Clear</item>  
+		 <item>Rank E</item>
+		 <item>NoPlay</item>  
+	</string-array>  
+  
+    <string-array name="SpinnerItemsGestures">  
+		 <item>メニューを表示</item>  
+		 <item>選択中の曲の全譜面を表示</item>  
+		 <item>スコアを GATE から取得</item>  
+		 <item>スコアの直接編集</item>  
+		 <item>ライバルスコアを GATE から取得</item>  
+		 <item>ライバルスコアの直接編集</item>  
+		 <item>ライバルスコア編集メニューを表示</item>  
+		 <item>マイリストに登録</item>  
+		 <item>現在のマイリストから削除</item>  
+	</string-array>  
+  
+    <string-array name="SpinnerItemsSortType">  
+		 <item>ABC</item>  
+		 <item>スコア</item>  
+		 <item>ダンスレベル</item>  
+		 <item>フルコン種別</item>  
+		 <item>最大コンボ数</item>
+		 <item>プレイ回数</item>
+		 <item>クリア回数</item>
+		 <item>難易度</item>  
+		 <item>譜面種別</item>  
+		 <item>SP/DP</item>  
+		 <item>ID</item>  
+		 <item>ライバルスコア</item>  
+		 <item>ライバルダンスレベル</item>  
+		 <item>ライバルフルコン種別</item>  
+		 <item>ライバル最大コンボ数</item>
+		 <item>ライバルとのスコア差</item>  
+		 <item>ライバルとのスコア差の絶対値</item>  
+		 <item>BPM 最大値</item>    
+		 <item>BPM 最小値</item>    
+		 <item>BPM 平均値</item>  
+		 <item>シリーズタイトル</item>  
+	</string-array>  
+  
+    <string-array name="SpinnerItemsStatisticalTableAxis">  
+		 <item>難易度</item>  
+		 <item>譜面種別</item>  
+		 <item>シリーズタイトル</item>  
+		 <item>フルコン種別</item>  
+		 <item>ダンスレベル</item>  
+		 <item>900,/800,/700,/...</item>  
+		 <item>990,/980,/970,/...</item>  
+		 <item>,990/,980/,970/...</item>  
+	</string-array>  
+  
+</resources>

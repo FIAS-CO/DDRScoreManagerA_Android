@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/titleBar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#003399" >
+
+        <ImageView
+            android:id="@+id/sou"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:contentDescription="@string/sou_icon_content_description"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:text="@string/menu_show_statisticstable"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/refresh"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/menu_button_background_color"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_popup_sync"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/menuButton"
+            android:visibility="gone"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/menu_button_background_color"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/menu_icon_content_description"
+            android:src="@android:drawable/ic_menu_sort_by_size" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+	    <LinearLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/filterLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:baselineAligned="true" >
+
+        <LinearLayout
+            android:id="@+id/filterWrapper"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="#666666"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="top"
+                android:layout_margin="2dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="@string/filter"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:id="@+id/filterSetting"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:background="@drawable/menu_button_background_color"
+                    android:contentDescription="@string/menu_icon_content_description"
+                    android:scaleType="fitStart"
+                    android:src="@android:drawable/ic_menu_sort_by_size" />
+            </LinearLayout>
+
+            <Spinner
+                android:id="@+id/filterSelect"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:baselineAligned="true" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:text="@string/menu_show_verticalaxis"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+            <Spinner
+                android:id="@+id/verticalAxis"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_weight="1"
+                android:entries="@array/SpinnerItemsStatisticalTableAxis" />
+            
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:baselineAligned="true" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:text="@string/menu_show_horizontalaxis"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+            <Spinner
+                android:id="@+id/horizontalAxis"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_weight="1"
+                android:entries="@array/SpinnerItemsStatisticalTableAxis" />
+            
+    </LinearLayout>
+    
+		    <LinearLayout
+		        android:id="@+id/mgr"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="vertical" >
+		
+		    </LinearLayout>
+	        
+	    </LinearLayout>
+	   
+    </ScrollView>
+    
+    <LinearLayout
+        android:id="@+id/adContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+    </LinearLayout>
+    
+</LinearLayout>
