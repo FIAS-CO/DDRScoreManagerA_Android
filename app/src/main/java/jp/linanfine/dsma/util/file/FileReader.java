@@ -116,7 +116,7 @@ public class FileReader {
         ret[2] = pref.getString("Format2", "%t% %p:b:B:D:E:C%%y:SP:DP% (%d0%) %l:AAA:AA+:AA:AA-:A+:A:A-:B+:B:B-:C+:C:C-:D+:D:E:-% %s0,%/%c0% %f:MFC:PFC:FC:GFC:Life4:NoFC% (%e0%/%a0%)");
         return ret;
     }
-    
+
     public static void saveCopyFormats(Context context, String[] formats) {
 		SharedPreferences pref = context.getSharedPreferences("CopyFormats.txt", Context.MODE_PRIVATE);
 		Editor e = pref.edit();
@@ -125,7 +125,7 @@ public class FileReader {
         e.putString("Format2", formats[2]);
 		e.commit();
     }
-    
+
   	public static void convertOldFilterSortSetting(Context context)
 	{
 		SharedPreferences pref = context.getSharedPreferences("PagerSetting", Context.MODE_PRIVATE);
@@ -164,10 +164,13 @@ public class FileReader {
 				adContainer.removeAllViews();
 				long now = new Date().getTime();
 				long lastopened = readLastAdTapTime(act.getApplicationContext());
-				if ( now - lastopened > 86400000) 
+				if ( now - lastopened > 86400000)
 				{
 				AdView adGoogle = new AdView(activity);
 				adGoogle.setAdSize(AdSize.BANNER);
+
+                // Sample AdMob app ID: ca-app-pub-3940256099942544/6300978111
+				// product app ID: ca-app-pub-8151928728657048/2728579739
 				adGoogle.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
 				adGoogle.setAdListener(new AdListener() {
 					public void onAdLeftApplication() {
@@ -214,30 +217,30 @@ public class FileReader {
 	    	Toast.makeText(context, context.getResources().getString(R.string.global_setting_exportnoone_mylist), Toast.LENGTH_LONG).show();
 	    	return;
 	    }
-	    
+
 		String fileName = "ddr_score_manager_mylist_backup.zds";
 		String path;
-		
+
 		{
 			path = Environment.getExternalStorageDirectory().toString()+"/jp.linanfine.dsm/";
 		}
-		
+
 		File pathDir = new File(path);
 		if(!pathDir.exists())
 		{
 			pathDir.mkdir();
 		}
-		
+
 	    ZipOutputStream zos = null;
 	    //byte[] buf = new byte[1024];
 
 	    try {
 	        zos = new ZipOutputStream(new FileOutputStream(path+fileName));
-	    } catch (FileNotFoundException e) { 
+	    } catch (FileNotFoundException e) {
 	    	Toast.makeText(context, context.getResources().getString(R.string.global_setting_exportfailed_mylist), Toast.LENGTH_LONG).show();
-	    	return; 
+	    	return;
 	    }
-	    
+
 		for(int i = 0; i < count; ++i)
 		{
 			String name = readMyListName(context, i);
@@ -251,7 +254,7 @@ public class FileReader {
 			} catch (IOException e1) { continue; }
 
         	//BufferedWriter bw;
-        	
+
         	try {
 				zos.write((name+"\n").getBytes());
 			} catch (IOException e1) { continue; }
@@ -267,7 +270,7 @@ public class FileReader {
 			try {
 				zos.closeEntry();
 			} catch (IOException e) { continue; }
-			
+
 		}
 
 	    try {
@@ -283,34 +286,34 @@ public class FileReader {
 
 		String fileName = "ddr_score_manager_mylist_backup.zds";
 		String path;
-		
+
 		{
 			path = Environment.getExternalStorageDirectory().toString()+"/jp.linanfine.dsm/";
 		}
-		
+
 	    ZipInputStream zin = null;
 	    //BufferedOutputStream out = null;
 	    @SuppressWarnings("unused")
 		ZipEntry zipEntry = null;
-	    
+
 	    try {
 			zin = new ZipInputStream(new FileInputStream(path+fileName));
-		} catch (FileNotFoundException e) { 
+		} catch (FileNotFoundException e) {
 			Toast.makeText(context, context.getResources().getString(R.string.global_setting_importfailed_mylist), Toast.LENGTH_LONG).show();
-			return; 
+			return;
 		}
-	    
+
     	int myListCount = readMyListCount(context);
     	int firstCount = myListCount;
         while (true) {
-        	
+
         	try {
 				if((zipEntry = zin.getNextEntry()) == null)
 				{
 					break;
 				}
 			} catch (IOException e1) { break; }
-        	
+
             {
             	BufferedReader br;
             	br = new BufferedReader(new InputStreamReader(zin));
@@ -341,13 +344,13 @@ public class FileReader {
             try {
 				zin.closeEntry();
 			} catch (IOException e) { continue; }
-            
+
         }
 
 	    try {
 			zin.close();
 		} catch (IOException e) { return; }
-	    
+
 	    if(firstCount != myListCount)
 	    {
 	    	Toast.makeText(context, context.getResources().getString(R.string.global_setting_importedA)+path+fileName+context.getResources().getString(R.string.global_setting_importedB), Toast.LENGTH_LONG).show();
@@ -362,30 +365,30 @@ public class FileReader {
 	{
 		String fileName = "ddr_score_manager_score_backup.zds";
 		String path;
-		
+
 		{
 			path = Environment.getExternalStorageDirectory().toString()+"/jp.linanfine.dsm/";
 		}
-		
+
 		File pathDir = new File(path);
 		if(!pathDir.exists())
 		{
 			pathDir.mkdir();
 		}
-		
+
 	    InputStream is = null;
 	    ZipOutputStream zos = null;
 	    byte[] buf = new byte[1024];
-	    
+
 	    //Log.e("DSM", path+fileName);
-	    
+
 	    try {
 	        zos = new ZipOutputStream(new FileOutputStream(path+fileName));
-	    } catch (FileNotFoundException e) { 
+	    } catch (FileNotFoundException e) {
 	    	Toast.makeText(context, context.getResources().getString(R.string.global_setting_importfailed), Toast.LENGTH_LONG).show();
-	    	return; 
+	    	return;
 	    }
-	    
+
 	    do
 	    {
 	    	ArrayList<RivalData> rivals = readRivals(context);
@@ -394,7 +397,7 @@ public class FileReader {
 			try {
 				zos.putNextEntry(ze);
 			} catch (IOException e1) { continue; }
-			
+
 			for(RivalData r: rivals)
 			{
 				try {
@@ -408,19 +411,19 @@ public class FileReader {
 			try {
 				zos.closeEntry();
 			} catch (IOException e) { continue; }
-			
+
 	    } while(false);
-	    
+
 		for(File item: context.getFilesDir().listFiles())
 		{
 			if(!item.isFile())
 			{
 				continue;
 			}
-			
+
 			String entryName = item.toString();
 			entryName = entryName.substring(entryName.lastIndexOf('/')+1);
-			
+
 			if(!entryName.startsWith("ScoreData"))
 			{
 				continue;
@@ -429,7 +432,7 @@ public class FileReader {
 			try {
 				is = new FileInputStream(item);
 			} catch (FileNotFoundException e) { continue; }
-			
+
 			ZipEntry ze = new ZipEntry(entryName);
 			try {
 				zos.putNextEntry(ze);
@@ -437,7 +440,7 @@ public class FileReader {
 
             int len = 0;
             try {
-				while ((len = is.read(buf)) != -1) 
+				while ((len = is.read(buf)) != -1)
 				{
 				    zos.write(buf, 0, len);
 				}
@@ -450,9 +453,9 @@ public class FileReader {
 			try {
 				zos.closeEntry();
 			} catch (IOException e) { continue; }
-			
+
 		}
-	    
+
 	    try {
 			zos.close();
 		} catch (IOException e) { return; }
@@ -465,42 +468,42 @@ public class FileReader {
 	{
 		String fileName = "ddr_score_manager_score_backup.zds";
 		String path;
-		
+
 		{
 			path = Environment.getExternalStorageDirectory().toString()+"/jp.linanfine.dsm/";
 		}
-		
+
 	    ZipInputStream zin = null;
 	    BufferedOutputStream out = null;
 	    ZipEntry zipEntry = null;
-	    
+
 	    try {
 			zin = new ZipInputStream(new FileInputStream(path+fileName));
-		} catch (FileNotFoundException e) { 
+		} catch (FileNotFoundException e) {
 			Toast.makeText(context, context.getResources().getString(R.string.global_setting_importfailed), Toast.LENGTH_LONG).show();
-			return; 
+			return;
 		}
-	    
+
         while (true) {
-        	
+
         	try {
 				if((zipEntry = zin.getNextEntry()) == null)
 				{
 					break;
 				}
 			} catch (IOException e1) { break; }
-        	
+
             File newfile = new File(zipEntry.getName());
- 
+
             //Log.e("DSM", newfile.getName());
             if(newfile.getName().startsWith("ScoreData"))
             {
-	            	
+
 	            // 出力用ファイルストリームの生成
 	            try {
 					out = new BufferedOutputStream(new FileOutputStream(context.getFilesDir().toString() + "/" + newfile.getName()));
 				} catch (FileNotFoundException e) { continue; }
-	 
+
 	            // エントリの内容を出力
 	    	    int len = 0;
 	            byte[] buffer = new byte[1024];
@@ -509,11 +512,11 @@ public class FileReader {
 					    out.write(buffer, 0, len);
 					}
 				} catch (IOException e) { continue; }
-	 
+
 	            try {
 					out.close();
 				} catch (IOException e) { continue; }
-	            
+
 	            out = null;
 
             }
@@ -542,13 +545,13 @@ public class FileReader {
             try {
 				zin.closeEntry();
 			} catch (IOException e) { continue; }
-            
+
         }
 
 	    try {
 			zin.close();
 		} catch (IOException e) { return; }
-	    
+
 	    Toast.makeText(context, context.getResources().getString(R.string.global_setting_importedA)+path+fileName+context.getResources().getString(R.string.global_setting_importedB), Toast.LENGTH_LONG).show();
 
 	}
@@ -588,16 +591,16 @@ public class FileReader {
 	}
 	public static GestureAction getGestureAction(int typenum)
 	{
-		return 
+		return
 			typenum == 0 ? GestureAction.ShowItemMenu :
 			typenum == 1 ? GestureAction.OpenOwnMusic :
 			typenum == 2 ? GestureAction.FromGate :
 			typenum == 3 ? GestureAction.DirectEdit :
 			typenum == 4 ? GestureAction.RivalFromGate :
 			typenum == 5 ? GestureAction.RivalDirectEdit :
-			typenum == 6 ? GestureAction.SelectRivalAction : 
-			typenum == 7 ? GestureAction.AddToMyList : 
-			typenum == 8 ? GestureAction.RemoveFromMyList : 
+			typenum == 6 ? GestureAction.SelectRivalAction :
+			typenum == 7 ? GestureAction.AddToMyList :
+			typenum == 8 ? GestureAction.RemoveFromMyList :
 			GestureAction.None;
 	}
 	public static GestureSettings readGestureSettings(Context context)
@@ -690,7 +693,7 @@ public class FileReader {
 			saveActiveRival(context, count-1);
 		}
         String[] fileList = context.fileList();
-        for(String file: fileList) 
+        for(String file: fileList)
         {
             if(!"ScoreData.txt".equals(file) && file.startsWith("ScoreData"))
             {
@@ -942,7 +945,7 @@ public class FileReader {
 	}
 	private static PatternType getPatternType(int patnum)
 	{
-		return 
+		return
 				(patnum==0)?PatternType.bSP:
 				(patnum==1)?PatternType.BSP:
 				(patnum==2)?PatternType.DSP:
@@ -1134,7 +1137,7 @@ public class FileReader {
 	}
 	public static int getMusicSortTypeNum(MusicSortType sorttype)
 	{
-		return 
+		return
 				sorttype == MusicSortType.MusicName ? 0 :
 				sorttype == MusicSortType.Score ? 1 :
 				sorttype == MusicSortType.Rank ? 2 :
@@ -1155,7 +1158,7 @@ public class FileReader {
 				sorttype == MusicSortType.ComboCount ? 17 :
 				sorttype == MusicSortType.PlayCount ? 18 :
 				sorttype == MusicSortType.ClearCount ? 19 :
-				sorttype == MusicSortType.RivalComboCount ? 20 : 
+				sorttype == MusicSortType.RivalComboCount ? 20 :
 				sorttype == MusicSortType.RivalPlayCount ? 21 :
 				sorttype == MusicSortType.RivalClearCount ? 22 :
 				0;
@@ -1182,7 +1185,7 @@ public class FileReader {
 				e.putInt("5thType", typenum);
 				e.putBoolean("5thOrder", sort._5thOrder==SortOrder.Ascending);
 				e.commit();
-		
+
 	}
 	public static void saveActiveMusicFilter(Context context, int id)
 	{
@@ -1724,7 +1727,7 @@ public class FileReader {
             {
                 is = context.getAssets().open("UpdatesGP.txt");
                 br = new BufferedReader(new InputStreamReader(is));
-       
+
                 String str;
                 while((str = br.readLine()) != null)
                 {
@@ -1741,7 +1744,7 @@ public class FileReader {
         }
         catch (IOException e)
         {
-            
+
         }
         return sb.toString();
 	}
@@ -1769,7 +1772,7 @@ public class FileReader {
         	MusicScore ms = new MusicScore();
         	int spi = 0;
         	++spi;
-        	ms.bSP.Rank = 
+        	ms.bSP.Rank =
         			sp[spi].equals("AAA") ? MusicRank.AAA :
             			sp[spi].equals("AA+") ? MusicRank.AAp :
                 			sp[spi].equals("AA") ? MusicRank.AA :
@@ -1790,17 +1793,17 @@ public class FileReader {
         	++spi;
         	ms.bSP.Score = Integer.valueOf(sp[spi]);
         	++spi;
-        	ms.bSP.FullComboType = 
-        			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo : 
-        			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo : 
-    				sp[spi].equals("FullCombo") ? FullComboType.FullCombo : 
-        			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo : 
-        			sp[spi].equals("Life4") ? FullComboType.Life4 : 
+        	ms.bSP.FullComboType =
+        			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
+        			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
+    				sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
+        			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
+        			sp[spi].equals("Life4") ? FullComboType.Life4 :
         			FullComboType.None;
         	++spi;
         	ms.bSP.MaxCombo = Integer.valueOf(sp[spi]);
         	++spi;
-        	ms.BSP.Rank = 
+        	ms.BSP.Rank =
         			sp[spi].equals("AAA") ? MusicRank.AAA :
             			sp[spi].equals("AA+") ? MusicRank.AAp :
                 			sp[spi].equals("AA") ? MusicRank.AA :
@@ -1821,17 +1824,17 @@ public class FileReader {
         	++spi;
         	ms.BSP.Score = Integer.valueOf(sp[spi]);
         	++spi;
-        	ms.BSP.FullComboType = 
-        			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo : 
-        			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo : 
-    				sp[spi].equals("FullCombo") ? FullComboType.FullCombo : 
-        			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo : 
-        			sp[spi].equals("Life4") ? FullComboType.Life4 : 
+        	ms.BSP.FullComboType =
+        			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
+        			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
+    				sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
+        			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
+        			sp[spi].equals("Life4") ? FullComboType.Life4 :
         			FullComboType.None;
         	++spi;
         	ms.BSP.MaxCombo = Integer.valueOf(sp[spi]);
         	++spi;
-        	ms.DSP.Rank = 
+        	ms.DSP.Rank =
         			sp[spi].equals("AAA") ? MusicRank.AAA :
             			sp[spi].equals("AA+") ? MusicRank.AAp :
                 			sp[spi].equals("AA") ? MusicRank.AA :
@@ -1852,17 +1855,17 @@ public class FileReader {
         	++spi;
         	ms.DSP.Score = Integer.valueOf(sp[spi]);
         	++spi;
-        	ms.DSP.FullComboType = 
-        			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo : 
-        			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo : 
-    				sp[spi].equals("FullCombo") ? FullComboType.FullCombo : 
-        			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo : 
-        			sp[spi].equals("Life4") ? FullComboType.Life4 : 
+        	ms.DSP.FullComboType =
+        			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
+        			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
+    				sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
+        			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
+        			sp[spi].equals("Life4") ? FullComboType.Life4 :
         			FullComboType.None;
         	++spi;
         	ms.DSP.MaxCombo = Integer.valueOf(sp[spi]);
         	++spi;
-        	ms.ESP.Rank = 
+        	ms.ESP.Rank =
         			sp[spi].equals("AAA") ? MusicRank.AAA :
             			sp[spi].equals("AA+") ? MusicRank.AAp :
                 			sp[spi].equals("AA") ? MusicRank.AA :
@@ -1883,17 +1886,17 @@ public class FileReader {
         	++spi;
         	ms.ESP.Score = Integer.valueOf(sp[spi]);
         	++spi;
-        	ms.ESP.FullComboType = 
-        			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo : 
-        			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo : 
-    				sp[spi].equals("FullCombo") ? FullComboType.FullCombo : 
-        			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo : 
-        			sp[spi].equals("Life4") ? FullComboType.Life4 : 
+        	ms.ESP.FullComboType =
+        			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
+        			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
+    				sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
+        			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
+        			sp[spi].equals("Life4") ? FullComboType.Life4 :
         			FullComboType.None;
         	++spi;
         	ms.ESP.MaxCombo = Integer.valueOf(sp[spi]);
         	++spi;
-        	ms.CSP.Rank = 
+        	ms.CSP.Rank =
         			sp[spi].equals("AAA") ? MusicRank.AAA :
             			sp[spi].equals("AA+") ? MusicRank.AAp :
                 			sp[spi].equals("AA") ? MusicRank.AA :
@@ -1914,17 +1917,17 @@ public class FileReader {
         	++spi;
         	ms.CSP.Score = Integer.valueOf(sp[spi]);
         	++spi;
-        	ms.CSP.FullComboType = 
-        			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo : 
-        			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo : 
-    				sp[spi].equals("FullCombo") ? FullComboType.FullCombo : 
-        			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo : 
-        			sp[spi].equals("Life4") ? FullComboType.Life4 : 
+        	ms.CSP.FullComboType =
+        			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
+        			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
+    				sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
+        			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
+        			sp[spi].equals("Life4") ? FullComboType.Life4 :
         			FullComboType.None;
         	++spi;
         	ms.CSP.MaxCombo = Integer.valueOf(sp[spi]);
         	++spi;
-        	ms.BDP.Rank = 
+        	ms.BDP.Rank =
         			sp[spi].equals("AAA") ? MusicRank.AAA :
             			sp[spi].equals("AA+") ? MusicRank.AAp :
                 			sp[spi].equals("AA") ? MusicRank.AA :
@@ -1945,17 +1948,17 @@ public class FileReader {
         	++spi;
         	ms.BDP.Score = Integer.valueOf(sp[spi]);
         	++spi;
-        	ms.BDP.FullComboType = 
-        			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo : 
-        			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo : 
-    				sp[spi].equals("FullCombo") ? FullComboType.FullCombo : 
-        			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo : 
-        			sp[spi].equals("Life4") ? FullComboType.Life4 : 
+        	ms.BDP.FullComboType =
+        			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
+        			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
+    				sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
+        			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
+        			sp[spi].equals("Life4") ? FullComboType.Life4 :
         			FullComboType.None;
         	++spi;
         	ms.BDP.MaxCombo = Integer.valueOf(sp[spi]);
         	++spi;
-        	ms.DDP.Rank = 
+        	ms.DDP.Rank =
         			sp[spi].equals("AAA") ? MusicRank.AAA :
             			sp[spi].equals("AA+") ? MusicRank.AAp :
                 			sp[spi].equals("AA") ? MusicRank.AA :
@@ -1976,17 +1979,17 @@ public class FileReader {
         	++spi;
         	ms.DDP.Score = Integer.valueOf(sp[spi]);
         	++spi;
-        	ms.DDP.FullComboType = 
-        			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo : 
-        			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo : 
-    				sp[spi].equals("FullCombo") ? FullComboType.FullCombo : 
-        			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo : 
-        			sp[spi].equals("Life4") ? FullComboType.Life4 : 
+        	ms.DDP.FullComboType =
+        			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
+        			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
+    				sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
+        			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
+        			sp[spi].equals("Life4") ? FullComboType.Life4 :
         			FullComboType.None;
         	++spi;
         	ms.DDP.MaxCombo = Integer.valueOf(sp[spi]);
         	++spi;
-        	ms.EDP.Rank = 
+        	ms.EDP.Rank =
         			sp[spi].equals("AAA") ? MusicRank.AAA :
             			sp[spi].equals("AA+") ? MusicRank.AAp :
                 			sp[spi].equals("AA") ? MusicRank.AA :
@@ -2007,17 +2010,17 @@ public class FileReader {
         	++spi;
         	ms.EDP.Score = Integer.valueOf(sp[spi]);
         	++spi;
-        	ms.EDP.FullComboType = 
-        			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo : 
-        			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo : 
-    				sp[spi].equals("FullCombo") ? FullComboType.FullCombo : 
-        			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo : 
-        			sp[spi].equals("Life4") ? FullComboType.Life4 : 
+        	ms.EDP.FullComboType =
+        			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
+        			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
+    				sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
+        			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
+        			sp[spi].equals("Life4") ? FullComboType.Life4 :
         			FullComboType.None;
         	++spi;
         	ms.EDP.MaxCombo = Integer.valueOf(sp[spi]);
         	++spi;
-        	ms.CDP.Rank = 
+        	ms.CDP.Rank =
         			sp[spi].equals("AAA") ? MusicRank.AAA :
             			sp[spi].equals("AA+") ? MusicRank.AAp :
                 			sp[spi].equals("AA") ? MusicRank.AA :
@@ -2038,12 +2041,12 @@ public class FileReader {
         	++spi;
         	ms.CDP.Score = Integer.valueOf(sp[spi]);
         	++spi;
-        	ms.CDP.FullComboType = 
-        			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo : 
-        			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo : 
-    				sp[spi].equals("FullCombo") ? FullComboType.FullCombo : 
-        			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo : 
-        			sp[spi].equals("Life4") ? FullComboType.Life4 : 
+        	ms.CDP.FullComboType =
+        			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
+        			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
+    				sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
+        			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
+        			sp[spi].equals("Life4") ? FullComboType.Life4 :
         			FullComboType.None;
         	++spi;
         	ms.CDP.MaxCombo = Integer.valueOf(sp[spi]);
@@ -2075,7 +2078,7 @@ public class FileReader {
             	MusicScore ms = new MusicScore();
             	int spi = 0;
             	++spi;
-            	ms.bSP.Rank = 
+            	ms.bSP.Rank =
             			sp[spi].equals("AAA") ? MusicRank.AAA :
                 			sp[spi].equals("AA+") ? MusicRank.AAp :
                     			sp[spi].equals("AA") ? MusicRank.AA :
@@ -2096,17 +2099,17 @@ public class FileReader {
             	++spi;
             	ms.bSP.Score = Integer.valueOf(sp[spi]);
             	++spi;
-            	ms.bSP.FullComboType = 
-            			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo : 
-            			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo : 
-        				sp[spi].equals("FullCombo") ? FullComboType.FullCombo : 
-            			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo : 
-            			sp[spi].equals("Life4") ? FullComboType.Life4 : 
+            	ms.bSP.FullComboType =
+            			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
+            			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
+        				sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
+            			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
+            			sp[spi].equals("Life4") ? FullComboType.Life4 :
             			FullComboType.None;
             	++spi;
             	ms.bSP.MaxCombo = Integer.valueOf(sp[spi]);
             	++spi;
-            	ms.BSP.Rank = 
+            	ms.BSP.Rank =
             			sp[spi].equals("AAA") ? MusicRank.AAA :
                 			sp[spi].equals("AA+") ? MusicRank.AAp :
                     			sp[spi].equals("AA") ? MusicRank.AA :
@@ -2127,17 +2130,17 @@ public class FileReader {
             	++spi;
             	ms.BSP.Score = Integer.valueOf(sp[spi]);
             	++spi;
-            	ms.BSP.FullComboType = 
-            			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo : 
-            			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo : 
-        				sp[spi].equals("FullCombo") ? FullComboType.FullCombo : 
-            			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo : 
-            			sp[spi].equals("Life4") ? FullComboType.Life4 : 
+            	ms.BSP.FullComboType =
+            			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
+            			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
+        				sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
+            			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
+            			sp[spi].equals("Life4") ? FullComboType.Life4 :
             			FullComboType.None;
             	++spi;
             	ms.BSP.MaxCombo = Integer.valueOf(sp[spi]);
             	++spi;
-            	ms.DSP.Rank = 
+            	ms.DSP.Rank =
             			sp[spi].equals("AAA") ? MusicRank.AAA :
                 			sp[spi].equals("AA+") ? MusicRank.AAp :
                     			sp[spi].equals("AA") ? MusicRank.AA :
@@ -2158,17 +2161,17 @@ public class FileReader {
             	++spi;
             	ms.DSP.Score = Integer.valueOf(sp[spi]);
             	++spi;
-            	ms.DSP.FullComboType = 
-            			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo : 
-            			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo : 
-        				sp[spi].equals("FullCombo") ? FullComboType.FullCombo : 
-            			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo : 
-            			sp[spi].equals("Life4") ? FullComboType.Life4 : 
+            	ms.DSP.FullComboType =
+            			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
+            			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
+        				sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
+            			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
+            			sp[spi].equals("Life4") ? FullComboType.Life4 :
             			FullComboType.None;
             	++spi;
             	ms.DSP.MaxCombo = Integer.valueOf(sp[spi]);
             	++spi;
-            	ms.ESP.Rank = 
+            	ms.ESP.Rank =
             			sp[spi].equals("AAA") ? MusicRank.AAA :
                 			sp[spi].equals("AA+") ? MusicRank.AAp :
                     			sp[spi].equals("AA") ? MusicRank.AA :
@@ -2189,17 +2192,17 @@ public class FileReader {
             	++spi;
             	ms.ESP.Score = Integer.valueOf(sp[spi]);
             	++spi;
-            	ms.ESP.FullComboType = 
-            			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo : 
-            			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo : 
-        				sp[spi].equals("FullCombo") ? FullComboType.FullCombo : 
-            			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo : 
-            			sp[spi].equals("Life4") ? FullComboType.Life4 : 
+            	ms.ESP.FullComboType =
+            			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
+            			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
+        				sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
+            			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
+            			sp[spi].equals("Life4") ? FullComboType.Life4 :
             			FullComboType.None;
             	++spi;
             	ms.ESP.MaxCombo = Integer.valueOf(sp[spi]);
             	++spi;
-            	ms.CSP.Rank = 
+            	ms.CSP.Rank =
             			sp[spi].equals("AAA") ? MusicRank.AAA :
                 			sp[spi].equals("AA+") ? MusicRank.AAp :
                     			sp[spi].equals("AA") ? MusicRank.AA :
@@ -2220,17 +2223,17 @@ public class FileReader {
             	++spi;
             	ms.CSP.Score = Integer.valueOf(sp[spi]);
             	++spi;
-            	ms.CSP.FullComboType = 
-            			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo : 
-            			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo : 
-        				sp[spi].equals("FullCombo") ? FullComboType.FullCombo : 
-            			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo : 
-            			sp[spi].equals("Life4") ? FullComboType.Life4 : 
+            	ms.CSP.FullComboType =
+            			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
+            			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
+        				sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
+            			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
+            			sp[spi].equals("Life4") ? FullComboType.Life4 :
             			FullComboType.None;
             	++spi;
             	ms.CSP.MaxCombo = Integer.valueOf(sp[spi]);
             	++spi;
-            	ms.BDP.Rank = 
+            	ms.BDP.Rank =
             			sp[spi].equals("AAA") ? MusicRank.AAA :
                 			sp[spi].equals("AA+") ? MusicRank.AAp :
                     			sp[spi].equals("AA") ? MusicRank.AA :
@@ -2251,17 +2254,17 @@ public class FileReader {
             	++spi;
             	ms.BDP.Score = Integer.valueOf(sp[spi]);
             	++spi;
-            	ms.BDP.FullComboType = 
-            			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo : 
-            			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo : 
-        				sp[spi].equals("FullCombo") ? FullComboType.FullCombo : 
-            			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo : 
-            			sp[spi].equals("Life4") ? FullComboType.Life4 : 
+            	ms.BDP.FullComboType =
+            			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
+            			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
+        				sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
+            			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
+            			sp[spi].equals("Life4") ? FullComboType.Life4 :
             			FullComboType.None;
             	++spi;
             	ms.BDP.MaxCombo = Integer.valueOf(sp[spi]);
             	++spi;
-            	ms.DDP.Rank = 
+            	ms.DDP.Rank =
             			sp[spi].equals("AAA") ? MusicRank.AAA :
                 			sp[spi].equals("AA+") ? MusicRank.AAp :
                     			sp[spi].equals("AA") ? MusicRank.AA :
@@ -2282,17 +2285,17 @@ public class FileReader {
             	++spi;
             	ms.DDP.Score = Integer.valueOf(sp[spi]);
             	++spi;
-            	ms.DDP.FullComboType = 
-            			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo : 
-            			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo : 
-        				sp[spi].equals("FullCombo") ? FullComboType.FullCombo : 
-            			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo : 
-            			sp[spi].equals("Life4") ? FullComboType.Life4 : 
+            	ms.DDP.FullComboType =
+            			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
+            			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
+        				sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
+            			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
+            			sp[spi].equals("Life4") ? FullComboType.Life4 :
             			FullComboType.None;
             	++spi;
             	ms.DDP.MaxCombo = Integer.valueOf(sp[spi]);
             	++spi;
-            	ms.EDP.Rank = 
+            	ms.EDP.Rank =
             			sp[spi].equals("AAA") ? MusicRank.AAA :
                 			sp[spi].equals("AA+") ? MusicRank.AAp :
                     			sp[spi].equals("AA") ? MusicRank.AA :
@@ -2313,17 +2316,17 @@ public class FileReader {
             	++spi;
             	ms.EDP.Score = Integer.valueOf(sp[spi]);
             	++spi;
-            	ms.EDP.FullComboType = 
-            			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo : 
-            			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo : 
-        				sp[spi].equals("FullCombo") ? FullComboType.FullCombo : 
-            			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo : 
-            			sp[spi].equals("Life4") ? FullComboType.Life4 : 
+            	ms.EDP.FullComboType =
+            			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
+            			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
+        				sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
+            			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
+            			sp[spi].equals("Life4") ? FullComboType.Life4 :
             			FullComboType.None;
             	++spi;
             	ms.EDP.MaxCombo = Integer.valueOf(sp[spi]);
             	++spi;
-            	ms.CDP.Rank = 
+            	ms.CDP.Rank =
             			sp[spi].equals("AAA") ? MusicRank.AAA :
                 			sp[spi].equals("AA+") ? MusicRank.AAp :
                     			sp[spi].equals("AA") ? MusicRank.AA :
@@ -2344,12 +2347,12 @@ public class FileReader {
             	++spi;
             	ms.CDP.Score = Integer.valueOf(sp[spi]);
             	++spi;
-            	ms.CDP.FullComboType = 
-            			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo : 
-            			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo : 
-        				sp[spi].equals("FullCombo") ? FullComboType.FullCombo : 
-            			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo : 
-            			sp[spi].equals("Life4") ? FullComboType.Life4 : 
+            	ms.CDP.FullComboType =
+            			sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
+            			sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
+        				sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
+            			sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
+            			sp[spi].equals("Life4") ? FullComboType.Life4 :
             			FullComboType.None;
             	++spi;
             	ms.CDP.MaxCombo = Integer.valueOf(sp[spi]);
@@ -2385,7 +2388,7 @@ public class FileReader {
 	        close(in);
 	    }
 		return ret;
-	}	
+	}
 	public static boolean saveScoreData(Context context, String rivalId, TreeMap<Integer, MusicScore> scores)
 	{
 		FileOutputStream out = null;
@@ -2439,7 +2442,7 @@ public class FileReader {
             {
                 is = context.getAssets().open("MusicNames.txt");
                 br = new BufferedReader(new InputStreamReader(is));
-                
+
 				//FileOutputStream out = context.openFileOutput( "ScoreData.txt", Context.MODE_WORLD_READABLE | Context.MODE_WORLD_WRITEABLE );
 				String fileName = "MusicNames";
 				fileName += ".txt";
@@ -2477,7 +2480,7 @@ public class FileReader {
             {
                 is = context.getAssets().open("ShockArrowExists.txt");
                 br = new BufferedReader(new InputStreamReader(is));
-                
+
 				//FileOutputStream out = context.openFileOutput( "ScoreData.txt", Context.MODE_WORLD_READABLE | Context.MODE_WORLD_WRITEABLE );
 				String fileName = "ShockArrowExists";
 				fileName += ".txt";
@@ -2515,7 +2518,7 @@ public class FileReader {
             {
                 is = context.getAssets().open("WebMusicIds.txt");
                 br = new BufferedReader(new InputStreamReader(is));
-                
+
 				//FileOutputStream out = context.openFileOutput( "ScoreData.txt", Context.MODE_WORLD_READABLE | Context.MODE_WORLD_WRITEABLE );
 				String fileName = "WebMusicIds";
 				fileName += ".txt";
@@ -2576,7 +2579,7 @@ public class FileReader {
 	        close(in);
 	    }
 		return ret;
-	}	
+	}
 	public static boolean saveWebMusicIds(Context context, IdToWebMusicIdList webMusicIds)
 	{
 		FileOutputStream out = null;
@@ -2658,5 +2661,5 @@ public class FileReader {
 	        close(in);
 	    }
 		return ret.toString();
-	}	
+	}
 }
