@@ -10,45 +10,30 @@ import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.text.DecimalFormat;
-import java.util.TreeMap;
 
 //import org.apache.http.HttpException;
 
 import jp.linanfine.dsma.util.common.TextUtil;
 import jp.linanfine.dsma.util.file.FileReader;
-import jp.linanfine.dsma.value.GateSetting;
-import jp.linanfine.dsma.value.ListViewItemArguments;
-import jp.linanfine.dsma.value.MusicScore;
-import jp.linanfine.dsma.value.ScoreData;
-import jp.linanfine.dsma.value.StatusData;
-import jp.linanfine.dsma.value.UniquePattern;
-import jp.linanfine.dsma.value._enum.FullComboType;
-import jp.linanfine.dsma.value._enum.MusicRank;
-import jp.linanfine.dsma.value._enum.PatternType;
 import jp.linanfine.dsma.R;
-import android.annotation.SuppressLint;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class DialogRefreshMusicList {
-	
-	private static String sMusicListVewsionTxt = "https://docs.google.com/spreadsheets/d/1G0coQfw5UB101V_-Fh1oDjg9OY6OtHKVd3vlQNecBmY/export?format=tsv&id=1G0coQfw5UB101V_-Fh1oDjg9OY6OtHKVd3vlQNecBmY&gid=334969595";
-	private static String sMusicNamesTxt = "https://docs.google.com/spreadsheets/d/1G0coQfw5UB101V_-Fh1oDjg9OY6OtHKVd3vlQNecBmY/export?format=tsv&id=1G0coQfw5UB101V_-Fh1oDjg9OY6OtHKVd3vlQNecBmY&gid=0";
-	private static String sShockArrowExistsTxt = "https://docs.google.com/spreadsheets/d/1G0coQfw5UB101V_-Fh1oDjg9OY6OtHKVd3vlQNecBmY/export?format=tsv&id=1G0coQfw5UB101V_-Fh1oDjg9OY6OtHKVd3vlQNecBmY&gid=1975740187";
-	private static String sWebMusicIdsTxt = "https://docs.google.com/spreadsheets/d/1G0coQfw5UB101V_-Fh1oDjg9OY6OtHKVd3vlQNecBmY/export?format=tsv&id=1G0coQfw5UB101V_-Fh1oDjg9OY6OtHKVd3vlQNecBmY&gid=1376903169";
+	private static final String urlBase = "https://docs.google.com/spreadsheets/d/1HA8RH2ozKQTPvvq2BVcVoOSEMVIldRw89tFtNg8Z4V8/export?format=tsv&gid=";
+	private static final String sMusicListVersionTxt = urlBase + "334969595";
+	private static final String sMusicNamesTxt = urlBase + "0";
+	private static final String sShockArrowExistsTxt = urlBase + "1975740187";
+	private static final String sWebMusicIdsTxt = urlBase + "1376903169";
 
 	private Handler mHandler = new Handler();
 	private Activity mParent;
@@ -133,7 +118,7 @@ public class DialogRefreshMusicList {
 					
 					publishProgress(1, 0);
 					{
-				        mRequestUri = sMusicListVewsionTxt;
+				        mRequestUri = sMusicListVersionTxt;
 				        
 				        URL url = new URL(mRequestUri);
 				        URLConnection conn = url.openConnection();
