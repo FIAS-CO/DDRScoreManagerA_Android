@@ -2,8 +2,8 @@
 <resources>
 
   <string name="strings____Dialog_UpdateInfo____updates">
-[2022/11/12] 0.133.22111200\n
-* Fix: 로그인 페이지의 사양 변경에 따른 일본어 이외의 GATE 로그인 불가.
+[2022/11/12] 0.134.23072700\n
+* Fix: 관리자 인수인계에 따른 내부 데이터 업데이트를 진행했습니다.
    </string>
 
   <string name="strings_global____app_name">DDR Score Manager A</string>
