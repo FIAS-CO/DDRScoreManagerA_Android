@@ -1,27 +1,10 @@
 package jp.linanfine.dsma.dialog;
 
-import java.text.DecimalFormat;
-import java.util.TreeMap;
-
-import jp.linanfine.dsma.activity.CategorySelect;
-import jp.linanfine.dsma.activity.ScoreList;
-import jp.linanfine.dsma.util.common.TextUtil;
-import jp.linanfine.dsma.util.file.FileReader;
-import jp.linanfine.dsma.value.GateSetting;
-import jp.linanfine.dsma.value.IdToWebMusicIdList;
-import jp.linanfine.dsma.value.MusicScore;
-import jp.linanfine.dsma.value.ScoreData;
-import jp.linanfine.dsma.value.WebTitleToMusicIdList;
-import jp.linanfine.dsma.value._enum.FullComboType;
-import jp.linanfine.dsma.value._enum.MusicRank;
-import jp.linanfine.dsma.value._enum.PatternType;
-import jp.linanfine.dsma.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.DialogInterface.OnCancelListener;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -33,216 +16,202 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class DialogFromGate {
-	
-	public static int LoginRequestCode = 20002;
-	
-	private Handler mHandler = new Handler();
-	private Activity mParent;
-	private AlertDialog mDialog;
-	private View mView;
-	
-	//private TreeMap<Integer, MusicData> mMusicList;
-	private IdToWebMusicIdList mWebMusicIds;
-	private TreeMap<Integer, MusicScore> mScoreList;
-	private WebView mWebView;
-	private TextView mLogView;
-	private ProgressBar mWebProgress;
-	private GateSetting mGateSetting;
-	private String mRivalId;
-	private String mRivalName;
-	private int mItemId;
-	private String mWebItemId;
-	private PatternType mPattern;
-	private String mRequestUri;
+import java.text.DecimalFormat;
+import java.util.TreeMap;
 
-	private boolean mCanceled = false;
-	
-	@SuppressLint("SetJavaScriptEnabled")
-	public DialogFromGate(Activity parent) {
-		mParent = parent;
-		mView = mParent.getLayoutInflater().inflate(R.layout.view_from_gate, null);
+import jp.linanfine.dsma.R;
+import jp.linanfine.dsma.util.common.TextUtil;
+import jp.linanfine.dsma.util.file.FileReader;
+import jp.linanfine.dsma.value.GateSetting;
+import jp.linanfine.dsma.value.IdToWebMusicIdList;
+import jp.linanfine.dsma.value.MusicScore;
+import jp.linanfine.dsma.value.ScoreData;
+import jp.linanfine.dsma.value._enum.FullComboType;
+import jp.linanfine.dsma.value._enum.MusicRank;
+import jp.linanfine.dsma.value._enum.PatternType;
+
+public class DialogFromGate {
+
+    public static int LoginRequestCode = 20002;
+
+    private Handler mHandler = new Handler();
+    private Activity mParent;
+    private AlertDialog mDialog;
+    private View mView;
+
+    //private TreeMap<Integer, MusicData> mMusicList;
+    private IdToWebMusicIdList mWebMusicIds;
+    private TreeMap<Integer, MusicScore> mScoreList;
+    private WebView mWebView;
+    private TextView mLogView;
+    private ProgressBar mWebProgress;
+    private GateSetting mGateSetting;
+    private String mRivalId;
+    private String mRivalName;
+    private int mItemId;
+    private String mWebItemId;
+    private PatternType mPattern;
+    private String mRequestUri;
+
+    private boolean mCanceled = false;
+
+    @SuppressLint("SetJavaScriptEnabled")
+    public DialogFromGate(Activity parent) {
+        mParent = parent;
+        mView = mParent.getLayoutInflater().inflate(R.layout.view_from_gate, null);
 
         Intent intent = mParent.getIntent();
-        if(intent == null)
-        {
-        	return;
+        if (intent == null) {
+            return;
         }
-        
+
         mWebMusicIds = FileReader.readWebMusicIds(mParent);
-        
-		mWebProgress = (ProgressBar)mView.findViewById(R.id.webProgress);
-		mLogView = (TextView)mView.findViewById(R.id.log);
-		
-		mLogView.setText(mParent.getResources().getString(R.string.strings____Dialog_FromGate__Dialog_FromGateList____logGetPage));
-        
-        WebViewClient client = new WebViewClient() 
-        {
+
+        mWebProgress = (ProgressBar) mView.findViewById(R.id.webProgress);
+        mLogView = (TextView) mView.findViewById(R.id.log);
+
+        mLogView.setText(mParent.getResources().getString(R.string.strings____Dialog_FromGate__Dialog_FromGateList____logGetPage));
+
+        WebViewClient client = new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
-    			view.loadUrl("javascript:window.viewsourceactivity.viewSource(document.documentElement.outerHTML);");
+                view.loadUrl("javascript:window.viewsourceactivity.viewSource(document.documentElement.outerHTML);");
             }
+
             @Override
             public void onPageStarted(WebView view, String url, android.graphics.Bitmap favicon) {
-            	mWebProgress.setProgress(1);
+                mWebProgress.setProgress(1);
             }
-    	};
-    	
-    	WebChromeClient chrome = new WebChromeClient() 
-    	{
-    		public void onProgressChanged(WebView view, int progress) {
-    			mWebProgress.setProgress(1+progress);
-    		}
-    	};
+        };
 
-    	mWebView = (WebView) mView.findViewById(R.id.webView);
-		//mWebView.getSettings().setBlockNetworkImage(true);
-    	mWebView.getSettings().setBuiltInZoomControls(true);
-    	mWebView.setWebViewClient(client);
-    	mWebView.setWebChromeClient(chrome);
+        WebChromeClient chrome = new WebChromeClient() {
+            public void onProgressChanged(WebView view, int progress) {
+                mWebProgress.setProgress(1 + progress);
+            }
+        };
+
+        mWebView = (WebView) mView.findViewById(R.id.webView);
+        //mWebView.getSettings().setBlockNetworkImage(true);
+        mWebView.getSettings().setBuiltInZoomControls(true);
+        mWebView.setWebViewClient(client);
+        mWebView.setWebChromeClient(chrome);
         //mWebView.getSettings().setJavaScriptEnabled(true);
-    	mWebView.getSettings().setJavaScriptEnabled(true);
-    	mWebView.addJavascriptInterface(this, "viewsourceactivity");
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.addJavascriptInterface(this, "viewsourceactivity");
 
-	}
-	
-	public boolean setArguments(AlertDialog dialog, int itemId, PatternType pattern, String rivalId, String rivalName)
-	{
-		boolean ret = true;
-		mDialog = dialog;
+    }
+
+    public boolean setArguments(AlertDialog dialog, int itemId, PatternType pattern, String rivalId, String rivalName) {
+        boolean ret = true;
+        mDialog = dialog;
         mItemId = itemId;
-        if(!mWebMusicIds.containsKey(itemId))
-        {
-        	ret = false;
-        }
-        else if(mWebMusicIds.get(itemId).idOnWebPage == "")
-        {
-        	mWebItemId = "";
-        	ret = false;
-        }
-        else
-        {
-        	mWebItemId = mWebMusicIds.get(itemId).idOnWebPage;
+        if (!mWebMusicIds.containsKey(itemId)) {
+            ret = false;
+        } else if (mWebMusicIds.get(itemId).idOnWebPage == "") {
+            mWebItemId = "";
+            ret = false;
+        } else {
+            mWebItemId = mWebMusicIds.get(itemId).idOnWebPage;
         }
         mPattern = pattern;
         mRivalId = rivalId;
         mRivalName = rivalName;
         mScoreList = FileReader.readScoreList(mParent, mRivalId);
-		mGateSetting = FileReader.readGateSetting(mParent);
-		return ret;
+        mGateSetting = FileReader.readGateSetting(mParent);
+        return ret;
     }
-	
-	public View getView()
-	{
-		return mView;
-	}
-	
-	public void start()
-	{
-		if(mDialog == null)
-		{
-			return;
-		}
-		FileReader.requestAd((LinearLayout)mView.findViewById(R.id.adContainer), mParent);
 
-        int patternInt = 
-    		mPattern == PatternType.bSP ? 0 :
-    		mPattern == PatternType.BSP ? 1 :
-    		mPattern == PatternType.DSP ? 2 :
-    		mPattern == PatternType.ESP ? 3 :
-    		mPattern == PatternType.CSP ? 4 :
-    		mPattern == PatternType.BDP ? 5 :
-    		mPattern == PatternType.DDP ? 6 :
-    		mPattern == PatternType.EDP ? 7 :
-    		mPattern == PatternType.CDP ? 8 :
-    		0;
+    public View getView() {
+        return mView;
+    }
 
-		if(mGateSetting.FromA3)
-		{
-			mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
-		}
-		else{
-			mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra20/p/";
-		}
-
-        if(mRivalId == null)
-        {
-        	mRequestUri += "playdata/music_detail.html?index="+String.valueOf(mWebItemId)+"&diff="+String.valueOf(patternInt);
+    public void start() {
+        if (mDialog == null) {
+            return;
         }
-        else
-        {
-        	mRequestUri += "rival/music_detail.html?index="+String.valueOf(mWebItemId)+"&diff="+String.valueOf(patternInt)+"&rival_id="+mRivalId;
+        FileReader.requestAd((LinearLayout) mView.findViewById(R.id.adContainer), mParent);
+
+        int patternInt =
+                mPattern == PatternType.bSP ? 0 :
+                        mPattern == PatternType.BSP ? 1 :
+                                mPattern == PatternType.DSP ? 2 :
+                                        mPattern == PatternType.ESP ? 3 :
+                                                mPattern == PatternType.CSP ? 4 :
+                                                        mPattern == PatternType.BDP ? 5 :
+                                                                mPattern == PatternType.DDP ? 6 :
+                                                                        mPattern == PatternType.EDP ? 7 :
+                                                                                mPattern == PatternType.CDP ? 8 :
+                                                                                        0;
+
+        if (mGateSetting.FromA3) {
+            mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
+        } else {
+            mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra20/p/";
+        }
+
+        if (mRivalId == null) {
+            mRequestUri += "playdata/music_detail.html?index=" + String.valueOf(mWebItemId) + "&diff=" + String.valueOf(patternInt);
+        } else {
+            mRequestUri += "rival/music_detail.html?index=" + String.valueOf(mWebItemId) + "&diff=" + String.valueOf(patternInt) + "&rival_id=" + mRivalId;
         }
         //String uri = "file:///android_asset/status.html";
         mWebView.loadUrl(mRequestUri);
-	}
-	
-	public void cancel()
-	{
-		mCanceled = true;
+    }
+
+    public void cancel() {
+        mCanceled = true;
         WebView web = (WebView) mView.findViewById(R.id.webView);
         web.stopLoading();
-        if(mDialog != null)
-        {
-        	mDialog.cancel();
+        if (mDialog != null) {
+            mDialog.cancel();
         }
-	}
-	
-	private boolean analyzeScore(String src)
-	{
-		Log.d("SRC", src);
+    }
+
+    private boolean analyzeScore(String src) {
+        Log.d("SRC", src);
         WebView web = (WebView) mView.findViewById(R.id.webView);
-    	String uri = web.getUrl();
-    	//boolean loggedin = false;
-		Log.d("POINT", "0.0");
-		Log.d(uri, mRequestUri);
-    	if(!uri.equals(mRequestUri))
-    	{
-			Log.d("POINT", "0.1");
-        	if(mRivalId == null)
-            {
-				Log.d("POINT", "0.2");
-        		return false;
+        String uri = web.getUrl();
+        //boolean loggedin = false;
+        Log.d("POINT", "0.0");
+        Log.d(uri, mRequestUri);
+        if (!uri.equals(mRequestUri)) {
+            Log.d("POINT", "0.1");
+            if (mRivalId == null) {
+                Log.d("POINT", "0.2");
+                return false;
+            } else {
+                Log.d("POINT", "0.3");
+                Toast.makeText(mParent, mRivalId, Toast.LENGTH_LONG).show();
+                if (!uri.contains(mRequestUri.split("&name=")[0])) {
+                    Log.d("POINT", "0.4");
+                    return false;
+                }
             }
-            else
-            {
-				Log.d("POINT", "0.3");
-				Toast.makeText(mParent, mRivalId, Toast.LENGTH_LONG).show();
-            	if (!uri.contains(mRequestUri.split("&name=")[0]))
-            	{
-					Log.d("POINT", "0.4");
-        			return false;
-            	}
+        }
+        ScoreData sd = new ScoreData();
+        src = src;
+        String cmp = "0\"></td>  <td>";
+        Log.d("POINT", "1");
+        if (src.contains(cmp)) {
+            String dr = src.substring(src.indexOf(cmp) + cmp.length());
+            cmp = "<br>";
+            dr = TextUtil.excapeWebTitle(dr.substring(0, dr.indexOf(cmp)).trim());
+            if (!dr.equals(mWebMusicIds.get(mItemId).titleOnWebPage)) {
+                new AlertDialog.Builder(mParent)
+                        .setIcon(android.R.drawable.ic_dialog_info)
+                        .setMessage(mParent.getResources().getString(R.string.name_different_alert) + "\n\n\"" + mWebMusicIds.get(mItemId).titleOnWebPage + "\"\n↓\n\"" + dr + "\"")
+                        .setCancelable(true)
+                        .setPositiveButton(mParent.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+
+                            }
+                        }).show();
+                return true;
             }
-    	}
-    	ScoreData sd = new ScoreData();
-    	src = src;
-		String cmp = "0\"></td>  <td>";
-		Log.d("POINT", "1");
-        if(src.contains(cmp))
-        {
-        	String dr = src.substring(src.indexOf(cmp)+cmp.length());
-        	cmp = "<br>";
-        	dr = TextUtil.excapeWebTitle(dr.substring(0, dr.indexOf(cmp)).trim());
-        	if(!dr.equals(mWebMusicIds.get(mItemId).titleOnWebPage))
-        	{
-        		new AlertDialog.Builder(mParent)
-    	        .setIcon(android.R.drawable.ic_dialog_info)
-    	        .setMessage(mParent.getResources().getString(R.string.name_different_alert)+"\n\n\""+mWebMusicIds.get(mItemId).titleOnWebPage+"\"\n↓\n\""+dr+"\"")
-    	        .setCancelable(true)
-    	        .setPositiveButton(mParent.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-    	            public void onClick(DialogInterface dialog, int whichButton) {
-    	            	
-    	            }
-    	        }).show();
-        		return true;
-        	}
+        } else {
+            return false;
         }
-        else
-        {
-        	return false;
-        }
-		Log.d("POINT", "2");
+        Log.d("POINT", "2");
         cmp = "NO PLAY...";
         //if(src.contains(cmp) || loggedin)
         //{
@@ -260,294 +229,205 @@ public class DialogFromGate {
             )).start();
             return true;*/
         //}
-	//else
-		Log.d("POINT", "3");
-        if(!src.contains(cmp))
-		{
-        if(mCanceled)
-        {
-        	return true;
-        }
-		Log.d("POINT", "4");
-		if(mGateSetting.FromA3)
-		{
-			cmp = "<th>ハイスコア時のランク</th><td>";
-		}
-		else
-		{
-			if (mRivalId == null)
-			{
-				cmp = "<th>ハイスコア時のダンスレベル</th><td>";
-			} else
-			{
-				cmp = "<th>最高ダンスレベル</th><td>";
-			}
-		}
-        if(src.contains(cmp))
-        {
-        	String dr = src.substring(src.indexOf(cmp)+cmp.length());
-        	cmp = "</td>";
-        	dr = dr.substring(0, dr.indexOf(cmp));
-        	if(dr.equals("AAA"))
-        	{
-        		sd.Rank = MusicRank.AAA;
-        	}
-        	else if(dr.equals("AA+"))
-        	{
-        		sd.Rank = MusicRank.AAp;
-        	}
-        	else if(dr.equals("AA"))
-        	{
-        		sd.Rank = MusicRank.AA;
-        	}
-        	else if(dr.equals("AA-"))
-        	{
-        		sd.Rank = MusicRank.AAm;
-        	}
-        	else if(dr.equals("A+"))
-        	{
-        		sd.Rank = MusicRank.Ap;
-        	}
-        	else if(dr.equals("A"))
-        	{
-        		sd.Rank = MusicRank.A;
-        	}
-        	else if(dr.equals("A-"))
-        	{
-        		sd.Rank = MusicRank.Am;
-        	}
-        	else if(dr.equals("B+"))
-        	{
-        		sd.Rank = MusicRank.Bp;
-        	}
-        	else if(dr.equals("B"))
-        	{
-        		sd.Rank = MusicRank.B;
-        	}
-        	else if(dr.equals("B-"))
-        	{
-        		sd.Rank = MusicRank.Bm;
-        	}
-        	else if(dr.equals("C+"))
-        	{
-        		sd.Rank = MusicRank.Cp;
-        	}
-        	else if(dr.equals("C"))
-        	{
-        		sd.Rank = MusicRank.C;
-        	}
-        	else if(dr.equals("C-"))
-        	{
-        		sd.Rank = MusicRank.Cm;
-        	}
-        	else if(dr.equals("D+"))
-        	{
-        		sd.Rank = MusicRank.Dp;
-        	}
-        	else if(dr.equals("D"))
-        	{
-        		sd.Rank = MusicRank.D;
-        	}
-        	else if(dr.equals("E"))
-        	{
-        		sd.Rank = MusicRank.E;
-        	}
-        	else
-        	{
-        		sd.Rank = MusicRank.Noplay;
-        	}
-        }
-        else
-        {
-        	return false;
-        }
-		Log.d("POINT", "5");
-    	cmp = "<th>ハイスコア</th><td>";
-        if(src.contains(cmp))
-        {
-        	String dr = src.substring(src.indexOf(cmp)+cmp.length());
-        	cmp = "</td>";
-        	dr = dr.substring(0, dr.indexOf(cmp));
-        	sd.Score = Integer.valueOf(dr);
-        }
-        else
-        {
-        	Toast.makeText(mParent, "Failed", Toast.LENGTH_LONG).show();
-        }
-		Log.d("POINT", "6");
-    	cmp = "<th>最大コンボ数</th><td>";
-        if(src.contains(cmp))
-        {
-        	String dr = src.substring(src.indexOf(cmp)+cmp.length());
-        	cmp = "</td>";
-        	dr = dr.substring(0, dr.indexOf(cmp));
-        	sd.MaxCombo = Integer.valueOf(dr);
-        }
-        else
-        {
-        	return false;
-        }
-		Log.d("POINT", "7");
-    	if(mRivalId == null)
-        {
-    	cmp = "<th>フルコンボ種別</th><td>";
-        if(src.contains(cmp))
-        {
-        	String dr = src.substring(src.indexOf(cmp)+cmp.length());
-        	cmp = "</td>";
-        	dr = dr.substring(0, dr.indexOf(cmp));
-        	if(dr.equals("グッドフルコンボ"))
-        	{
-        		sd.FullComboType = FullComboType.GoodFullCombo;
-        	}
-        	else if(dr.equals("グレートフルコンボ"))
-        	{
-        		sd.FullComboType = FullComboType.FullCombo;
-        	}
-        	else if(dr.equals("パーフェクトフルコンボ"))
-        	{
-        		sd.FullComboType = FullComboType.PerfectFullCombo;
-        	}
-        	else if(dr.equals("マーベラスフルコンボ"))
-        	{
-        		sd.FullComboType = FullComboType.MerverousFullCombo;
-        	}
-        	else
-        	{
-        		sd.FullComboType = FullComboType.None;
-        	}
-        }
-        else
-        {
-        	return false;
-        }
-		Log.d("POINT", "8");
-    	cmp = "<th>プレー回数</th><td>";
-        if(src.contains(cmp))
-        {
-        	String dr = src.substring(src.indexOf(cmp)+cmp.length());
-        	cmp = "</td>";
-        	dr = dr.substring(0, dr.indexOf(cmp));
-        	sd.PlayCount = Integer.valueOf(dr);
-        }
-        else
-        {
-        	return false;
-        }
-		Log.d("POINT", "9");
-    	cmp = "<th>クリア回数</th><td>";
-        if(src.contains(cmp))
-        {
-        	String dr = src.substring(src.indexOf(cmp)+cmp.length());
-        	cmp = "</td>";
-        	dr = dr.substring(0, dr.indexOf(cmp));
-        	sd.ClearCount = Integer.valueOf(dr);
-        }
-        else
-        {
-        	return false;
-        }
-        }
-    	else
-    	{
-        	cmp = "<th>フルコンボ種別</th><td>";
-            if(src.contains(cmp))
-            {
-            	String dr = src.substring(src.indexOf(cmp)+cmp.length());
-            	cmp = "</td>";
-            	dr = dr.substring(0, dr.indexOf(cmp));
-            	if(dr.equals("グッドフルコンボ"))
-            	{
-            		sd.FullComboType = FullComboType.GoodFullCombo;
-            	}
-            	else if(dr.equals("グレートフルコンボ"))
-            	{
-            		sd.FullComboType = FullComboType.FullCombo;
-            	}
-            	else if(dr.equals("パーフェクトフルコンボ"))
-            	{
-            		sd.FullComboType = FullComboType.PerfectFullCombo;
-            	}
-            	else if(dr.equals("マーベラスフルコンボ"))
-            	{
-            		sd.FullComboType = FullComboType.MerverousFullCombo;
-            	}
-            	else
-            	{
-            		sd.FullComboType = FullComboType.None;
-            	}
+        //else
+        Log.d("POINT", "3");
+        if (!src.contains(cmp)) {
+            if (mCanceled) {
+                return true;
             }
-            else
-            {
-            	return false;
+            Log.d("POINT", "4");
+            if (mGateSetting.FromA3) {
+                cmp = "<th>ハイスコア時のランク</th><td>";
+            } else {
+                if (mRivalId == null) {
+                    cmp = "<th>ハイスコア時のダンスレベル</th><td>";
+                } else {
+                    cmp = "<th>最高ダンスレベル</th><td>";
+                }
             }
-    	}
-	}
-		Log.d("POINT", "10");
+            if (src.contains(cmp)) {
+                String dr = src.substring(src.indexOf(cmp) + cmp.length());
+                cmp = "</td>";
+                dr = dr.substring(0, dr.indexOf(cmp));
+                if (dr.equals("AAA")) {
+                    sd.Rank = MusicRank.AAA;
+                } else if (dr.equals("AA+")) {
+                    sd.Rank = MusicRank.AAp;
+                } else if (dr.equals("AA")) {
+                    sd.Rank = MusicRank.AA;
+                } else if (dr.equals("AA-")) {
+                    sd.Rank = MusicRank.AAm;
+                } else if (dr.equals("A+")) {
+                    sd.Rank = MusicRank.Ap;
+                } else if (dr.equals("A")) {
+                    sd.Rank = MusicRank.A;
+                } else if (dr.equals("A-")) {
+                    sd.Rank = MusicRank.Am;
+                } else if (dr.equals("B+")) {
+                    sd.Rank = MusicRank.Bp;
+                } else if (dr.equals("B")) {
+                    sd.Rank = MusicRank.B;
+                } else if (dr.equals("B-")) {
+                    sd.Rank = MusicRank.Bm;
+                } else if (dr.equals("C+")) {
+                    sd.Rank = MusicRank.Cp;
+                } else if (dr.equals("C")) {
+                    sd.Rank = MusicRank.C;
+                } else if (dr.equals("C-")) {
+                    sd.Rank = MusicRank.Cm;
+                } else if (dr.equals("D+")) {
+                    sd.Rank = MusicRank.Dp;
+                } else if (dr.equals("D")) {
+                    sd.Rank = MusicRank.D;
+                } else if (dr.equals("E")) {
+                    sd.Rank = MusicRank.E;
+                } else {
+                    sd.Rank = MusicRank.Noplay;
+                }
+            } else {
+                return false;
+            }
+            Log.d("POINT", "5");
+            cmp = "<th>ハイスコア</th><td>";
+            if (src.contains(cmp)) {
+                String dr = src.substring(src.indexOf(cmp) + cmp.length());
+                cmp = "</td>";
+                dr = dr.substring(0, dr.indexOf(cmp));
+                sd.Score = Integer.valueOf(dr);
+            } else {
+                Toast.makeText(mParent, "Failed", Toast.LENGTH_LONG).show();
+            }
+            Log.d("POINT", "6");
+            cmp = "<th>最大コンボ数</th><td>";
+            if (src.contains(cmp)) {
+                String dr = src.substring(src.indexOf(cmp) + cmp.length());
+                cmp = "</td>";
+                dr = dr.substring(0, dr.indexOf(cmp));
+                sd.MaxCombo = Integer.valueOf(dr);
+            } else {
+                return false;
+            }
+            Log.d("POINT", "7");
+            if (mRivalId == null) {
+                cmp = "<th>フルコンボ種別</th><td>";
+                if (src.contains(cmp)) {
+                    String dr = src.substring(src.indexOf(cmp) + cmp.length());
+                    cmp = "</td>";
+                    dr = dr.substring(0, dr.indexOf(cmp));
+                    if (dr.equals("グッドフルコンボ")) {
+                        sd.FullComboType = FullComboType.GoodFullCombo;
+                    } else if (dr.equals("グレートフルコンボ")) {
+                        sd.FullComboType = FullComboType.FullCombo;
+                    } else if (dr.equals("パーフェクトフルコンボ")) {
+                        sd.FullComboType = FullComboType.PerfectFullCombo;
+                    } else if (dr.equals("マーベラスフルコンボ")) {
+                        sd.FullComboType = FullComboType.MerverousFullCombo;
+                    } else {
+                        sd.FullComboType = FullComboType.None;
+                    }
+                } else {
+                    return false;
+                }
+                Log.d("POINT", "8");
+                cmp = "<th>プレー回数</th><td>";
+                if (src.contains(cmp)) {
+                    String dr = src.substring(src.indexOf(cmp) + cmp.length());
+                    cmp = "</td>";
+                    dr = dr.substring(0, dr.indexOf(cmp));
+                    sd.PlayCount = Integer.valueOf(dr);
+                } else {
+                    return false;
+                }
+                Log.d("POINT", "9");
+                cmp = "<th>クリア回数</th><td>";
+                if (src.contains(cmp)) {
+                    String dr = src.substring(src.indexOf(cmp) + cmp.length());
+                    cmp = "</td>";
+                    dr = dr.substring(0, dr.indexOf(cmp));
+                    sd.ClearCount = Integer.valueOf(dr);
+                } else {
+                    return false;
+                }
+            } else {
+                cmp = "<th>フルコンボ種別</th><td>";
+                if (src.contains(cmp)) {
+                    String dr = src.substring(src.indexOf(cmp) + cmp.length());
+                    cmp = "</td>";
+                    dr = dr.substring(0, dr.indexOf(cmp));
+                    if (dr.equals("グッドフルコンボ")) {
+                        sd.FullComboType = FullComboType.GoodFullCombo;
+                    } else if (dr.equals("グレートフルコンボ")) {
+                        sd.FullComboType = FullComboType.FullCombo;
+                    } else if (dr.equals("パーフェクトフルコンボ")) {
+                        sd.FullComboType = FullComboType.PerfectFullCombo;
+                    } else if (dr.equals("マーベラスフルコンボ")) {
+                        sd.FullComboType = FullComboType.MerverousFullCombo;
+                    } else {
+                        sd.FullComboType = FullComboType.None;
+                    }
+                } else {
+                    return false;
+                }
+            }
+        }
+        Log.d("POINT", "10");
         MusicScore ms;
-        if(mScoreList.containsKey(mItemId))
-        {
-        	ms = mScoreList.get(mItemId);
-        	mScoreList.remove(mItemId);
-        }
-        else
-        {
-        	ms = new MusicScore();
+        if (mScoreList.containsKey(mItemId)) {
+            ms = mScoreList.get(mItemId);
+            mScoreList.remove(mItemId);
+        } else {
+            ms = new MusicScore();
         }
         ScoreData msd;
-        switch(mPattern)
-        {
+        switch (mPattern) {
             case bSP:
-            	msd = ms.bSP;
-            	break;
+                msd = ms.bSP;
+                break;
             case BSP:
-            	msd = ms.BSP;
-            	break;
+                msd = ms.BSP;
+                break;
             case DSP:
-            	msd = ms.DSP;
-            	break;
+                msd = ms.DSP;
+                break;
             case ESP:
-            	msd = ms.ESP;
-            	break;
+                msd = ms.ESP;
+                break;
             case CSP:
-            	msd = ms.CSP;
-            	break;
+                msd = ms.CSP;
+                break;
             case BDP:
-            	msd = ms.BDP;
-            	break;
+                msd = ms.BDP;
+                break;
             case DDP:
-            	msd = ms.DDP;
-            	break;
+                msd = ms.DDP;
+                break;
             case EDP:
-            	msd = ms.EDP;
-            	break;
+                msd = ms.EDP;
+                break;
             case CDP:
-            	msd = ms.CDP;
-            	break;
-        	default:
-        		msd = new ScoreData();
-        		break;
+                msd = ms.CDP;
+                break;
+            default:
+                msd = new ScoreData();
+                break;
         }
-        
+
         // msd : 元の値
         // sd  : 取得した値
         // 取得した値に元の値を上書きすることによって元の値を維持する
-        
+
         // 「Life4 に未フルコンを上書きする」 が無効
-        if(!mGateSetting.OverWriteLife4)
-        {
-        	// 取得した値が未フルコン
-        	if(sd.FullComboType == FullComboType.None)
-        	{
-            	// 元の値が Life4
-            	if(msd.FullComboType == FullComboType.Life4)
-            	{
-            		// 元のフルコンタイプに戻す
-            		sd.FullComboType = msd.FullComboType;
-            	}
-        	}
+        if (!mGateSetting.OverWriteLife4) {
+            // 取得した値が未フルコン
+            if (sd.FullComboType == FullComboType.None) {
+                // 元の値が Life4
+                if (msd.FullComboType == FullComboType.Life4) {
+                    // 元のフルコンタイプに戻す
+                    sd.FullComboType = msd.FullComboType;
+                }
+            }
         }
-        
+
         // 「取得したFCでGFCを上書き」 が無効
         /*if(!mGateSetting.OverWriteFullCombo)
         {
@@ -562,23 +442,20 @@ public class DialogFromGate {
 	        	}
         	}
         }*/
-        
+
         // 「低いスコアを上書き」 が無効
-        if(!mGateSetting.OverWriteLowerScores)
-        {
-        	// スコアが低かったら
-        	if(sd.Score < msd.Score)
-        	{
-        		// スコアを元に戻す
-        		sd.Score = msd.Score;
-        		sd.Rank = msd.Rank;
-        	}
-        	// コンボが低かったら
-        	if(sd.MaxCombo < msd.MaxCombo)
-        	{
-        		// コンボを元に戻す
-        		sd.MaxCombo = msd.MaxCombo;
-        	}
+        if (!mGateSetting.OverWriteLowerScores) {
+            // スコアが低かったら
+            if (sd.Score < msd.Score) {
+                // スコアを元に戻す
+                sd.Score = msd.Score;
+                sd.Rank = msd.Rank;
+            }
+            // コンボが低かったら
+            if (sd.MaxCombo < msd.MaxCombo) {
+                // コンボを元に戻す
+                sd.MaxCombo = msd.MaxCombo;
+            }
         	/*
         	// 元の値がAAA
         	if(msd.Rank == MusicRank.AAA)
@@ -647,165 +524,151 @@ public class DialogFromGate {
         		}
         	}
         	*/
-        	// 元の値がMFC
-        	if(msd.FullComboType == FullComboType.MerverousFullCombo)
-        	{
-        		// MFCにする
-        		sd.FullComboType = msd.FullComboType;
-        	}
-        	// 元の値がPFC
-        	else if(msd.FullComboType == FullComboType.PerfectFullCombo)
-        	{
-        		// 取得した値がMFCでない
-        		if(sd.FullComboType != FullComboType.MerverousFullCombo)
-        		{
-        			// PFCにする
-        			sd.FullComboType = msd.FullComboType;
-        		}
-        	}
-        	// 元の値がFC
-        	else if(msd.FullComboType == FullComboType.FullCombo)
-        	{
-        		// 取得した値がMFCでもPFCでもない
-        		if(sd.FullComboType != FullComboType.MerverousFullCombo && sd.FullComboType != FullComboType.PerfectFullCombo)
-        		{
-        			// FCにする
-        			sd.FullComboType = msd.FullComboType;
-        		}
-        	}
-        	// 元の値がGFC
-        	else if(msd.FullComboType == FullComboType.GoodFullCombo)
-        	{
-        		// 取得した値がMFCでもPFCでもFCでもない
-        		if(sd.FullComboType != FullComboType.MerverousFullCombo && sd.FullComboType != FullComboType.PerfectFullCombo && sd.FullComboType != FullComboType.FullCombo)
-        		{
-        			// GFCにする
-        			sd.FullComboType = msd.FullComboType;
-        		}
-        	}
-        	// 元の値がその他
-        	else
-        	{
-        		// 取得した値がMFCでもPFCでもFCでもGFCでもない
-        		if(sd.FullComboType != FullComboType.MerverousFullCombo && sd.FullComboType != FullComboType.PerfectFullCombo && sd.FullComboType != FullComboType.FullCombo && sd.FullComboType != FullComboType.GoodFullCombo)
-        		{
-        			// 元の値にもどす
-        			sd.FullComboType = msd.FullComboType;
-        		}
-        	}
+            // 元の値がMFC
+            if (msd.FullComboType == FullComboType.MerverousFullCombo) {
+                // MFCにする
+                sd.FullComboType = msd.FullComboType;
+            }
+            // 元の値がPFC
+            else if (msd.FullComboType == FullComboType.PerfectFullCombo) {
+                // 取得した値がMFCでない
+                if (sd.FullComboType != FullComboType.MerverousFullCombo) {
+                    // PFCにする
+                    sd.FullComboType = msd.FullComboType;
+                }
+            }
+            // 元の値がFC
+            else if (msd.FullComboType == FullComboType.FullCombo) {
+                // 取得した値がMFCでもPFCでもない
+                if (sd.FullComboType != FullComboType.MerverousFullCombo && sd.FullComboType != FullComboType.PerfectFullCombo) {
+                    // FCにする
+                    sd.FullComboType = msd.FullComboType;
+                }
+            }
+            // 元の値がGFC
+            else if (msd.FullComboType == FullComboType.GoodFullCombo) {
+                // 取得した値がMFCでもPFCでもFCでもない
+                if (sd.FullComboType != FullComboType.MerverousFullCombo && sd.FullComboType != FullComboType.PerfectFullCombo && sd.FullComboType != FullComboType.FullCombo) {
+                    // GFCにする
+                    sd.FullComboType = msd.FullComboType;
+                }
+            }
+            // 元の値がその他
+            else {
+                // 取得した値がMFCでもPFCでもFCでもGFCでもない
+                if (sd.FullComboType != FullComboType.MerverousFullCombo && sd.FullComboType != FullComboType.PerfectFullCombo && sd.FullComboType != FullComboType.FullCombo && sd.FullComboType != FullComboType.GoodFullCombo) {
+                    // 元の値にもどす
+                    sd.FullComboType = msd.FullComboType;
+                }
+            }
         }
-        switch(mPattern)
-        {
+        switch (mPattern) {
             case bSP:
-            	ms.bSP = sd;
-            	break;
+                ms.bSP = sd;
+                break;
             case BSP:
-            	ms.BSP = sd;
-            	break;
+                ms.BSP = sd;
+                break;
             case DSP:
-            	ms.DSP = sd;
-            	break;
+                ms.DSP = sd;
+                break;
             case ESP:
-            	ms.ESP = sd;
-            	break;
+                ms.ESP = sd;
+                break;
             case CSP:
-            	ms.CSP = sd;
-            	break;
+                ms.CSP = sd;
+                break;
             case BDP:
-            	ms.BDP = sd;
-            	break;
+                ms.BDP = sd;
+                break;
             case DDP:
-            	ms.DDP = sd;
-            	break;
+                ms.DDP = sd;
+                break;
             case EDP:
-            	ms.EDP = sd;
-            	break;
+                ms.EDP = sd;
+                break;
             case CDP:
-            	ms.CDP = sd;
-            	break;
+                ms.CDP = sd;
+                break;
         }
         mScoreList.put(mItemId, ms);
         FileReader.saveScoreData(mParent, mRivalId, mScoreList);
         DecimalFormat df = new DecimalFormat("0,000,000");
-        String toastString = 
-        		"Complete !!\n\n"+
-        		(mRivalName==null?"":"Rival:  "+mRivalName+"\n")+
-        		"Full Combo :  "+(msd.FullComboType.equals(sd.FullComboType)?"":msd.FullComboType.toString()+" -> ")+sd.FullComboType.toString()+"\n"+
-        		"Rank :  "+(msd.Rank.equals(sd.Rank)?"":(msd.Rank.toString()+" -> "))+sd.Rank.toString()+"\n"+
-        		"Score :  "+(msd.Score==sd.Score?"":(df.format(msd.Score)+" -> "))+df.format(sd.Score)+"\n"+
-        		"Max Combo :  "+(msd.MaxCombo==sd.MaxCombo?"":(String.valueOf(msd.MaxCombo)+" -> "))+String.valueOf(sd.MaxCombo)+"\n"+
-        		(mRivalName==null?"Play Count:  "+(msd.PlayCount==sd.PlayCount?String.valueOf(sd.ClearCount)+"/"+String.valueOf(sd.PlayCount):String.valueOf(msd.ClearCount)+"/"+String.valueOf(msd.PlayCount)+" -> "+String.valueOf(sd.ClearCount)+"/"+String.valueOf(sd.PlayCount)):"");
+        String toastString =
+                "Complete !!\n\n" +
+                        (mRivalName == null ? "" : "Rival:  " + mRivalName + "\n") +
+                        "Full Combo :  " + (msd.FullComboType.equals(sd.FullComboType) ? "" : msd.FullComboType.toString() + " -> ") + sd.FullComboType.toString() + "\n" +
+                        "Rank :  " + (msd.Rank.equals(sd.Rank) ? "" : (msd.Rank.toString() + " -> ")) + sd.Rank.toString() + "\n" +
+                        "Score :  " + (msd.Score == sd.Score ? "" : (df.format(msd.Score) + " -> ")) + df.format(sd.Score) + "\n" +
+                        "Max Combo :  " + (msd.MaxCombo == sd.MaxCombo ? "" : (String.valueOf(msd.MaxCombo) + " -> ")) + String.valueOf(sd.MaxCombo) + "\n" +
+                        (mRivalName == null ? "Play Count:  " + (msd.PlayCount == sd.PlayCount ? String.valueOf(sd.ClearCount) + "/" + String.valueOf(sd.PlayCount) : String.valueOf(msd.ClearCount) + "/" + String.valueOf(msd.PlayCount) + " -> " + String.valueOf(sd.ClearCount) + "/" + String.valueOf(sd.PlayCount)) : "");
         Toast.makeText(mParent, toastString, Toast.LENGTH_LONG).show();
         return true;
-	}
+    }
 
-	private int mRetryCount = 0;
-	@android.webkit.JavascriptInterface
+    private int mRetryCount = 0;
+
+    @android.webkit.JavascriptInterface
     public void viewSource(final String src) {
         mHandler.post(new Runnable() {
             public void run() {
-            	mWebProgress.setProgress(0);
+                mWebProgress.setProgress(0);
 
-            	if(mCanceled)
-            	{
-            		return;
-            	}
-            	try
-            	{
-                	if(!analyzeScore(src))
-                	{
-                		String toastString;
-                		switch(TextUtil.checkLoggedIn(src))
-                		{
-                			// ログイン済みエラーなし
-	                		case 0:
-	                            toastString = 
-                        		"Complete !!\n\n"+
-                        		(mRivalName==null?"":"Rival:  "+mRivalName+"\n")+
-                        		"No Data...";
-                            	Toast.makeText(mParent, toastString, Toast.LENGTH_LONG).show();
-                            	mRetryCount = 0;
-	                			break;
-	                		// ログインしていない
-	                		case 1:
-	                	        Intent intent=new Intent();
-	                	        intent.setClassName("jp.linanfine.dsma","jp.linanfine.dsma.activity.GateLogin");
-	                	        
-	                	        cancel();
-	                	 
-	                	        mParent.startActivityForResult(intent, LoginRequestCode);
-	                	        mRetryCount = 0;
-	                			break;
-	                		// 不明
-	                		case -1:
-                    		    Toast.makeText(mParent, mParent.getResources().getString(R.string.dialog_networkerrorexit), Toast.LENGTH_LONG).show();
-	                			break;
-                		}
-                	}
-                	else
-                	{
-                		mRetryCount = 0;
-                	}
-            	}
-            	catch(Exception e)
-            	{
-            		
-            	}
+                if (mCanceled) {
+                    return;
+                }
+                try {
+                    if (!analyzeScore(src)) {
+                        String toastString;
+                        switch (TextUtil.checkLoggedIn(src)) {
+                            // ログイン済みエラーなし
+                            case 0:
+                                toastString =
+                                        "Complete !!\n\n" +
+                                                (mRivalName == null ? "" : "Rival:  " + mRivalName + "\n") +
+                                                "No Data...";
+                                Toast.makeText(mParent, toastString, Toast.LENGTH_LONG).show();
+                                mRetryCount = 0;
+                                break;
+                            // ログインしていない
+                            case 1:
+                                Intent intent = new Intent();
+                                intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.GateLogin");
 
-                    (new Thread(new Runnable() {
-                        public void run() {
-                    		try { Thread.sleep(1000);} catch (InterruptedException e) {}
-                            mHandler.post(new Runnable() {
-                            	public void run() {
-                                    mDialog.cancel();
-                            	}
-                            });
-                            }
+                                cancel();
+
+                                mParent.startActivityForResult(intent, LoginRequestCode);
+                                mRetryCount = 0;
+                                break;
+                            // 不明
+                            case -1:
+                                Toast.makeText(mParent, mParent.getResources().getString(R.string.dialog_networkerrorexit), Toast.LENGTH_LONG).show();
+                                break;
                         }
-                    )).start();
+                    } else {
+                        mRetryCount = 0;
+                    }
+                } catch (Exception e) {
+
+                }
+
+                (new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                        }
+                        mHandler.post(new Runnable() {
+                            public void run() {
+                                mDialog.cancel();
+                            }
+                        });
+                    }
+                }
+                )).start();
 
             }
         });
     }
-	
+
 }
