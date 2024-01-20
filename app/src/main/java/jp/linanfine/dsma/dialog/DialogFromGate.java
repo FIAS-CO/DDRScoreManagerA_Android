@@ -3,7 +3,6 @@ package jp.linanfine.dsma.dialog;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,16 +32,15 @@ public class DialogFromGate {
 
     public static int LoginRequestCode = 20002;
 
-    private Handler mHandler = new Handler();
-    private Activity mParent;
+    private final Handler mHandler = new Handler();
+    private final Activity mParent;
     private AlertDialog mDialog;
-    private View mView;
+    private final View mView;
 
     //private TreeMap<Integer, MusicData> mMusicList;
     private IdToWebMusicIdList mWebMusicIds;
     private TreeMap<Integer, MusicScore> mScoreList;
     private WebView mWebView;
-    private TextView mLogView;
     private ProgressBar mWebProgress;
     private GateSetting mGateSetting;
     private String mRivalId;
@@ -67,8 +64,8 @@ public class DialogFromGate {
 
         mWebMusicIds = FileReader.readWebMusicIds(mParent);
 
-        mWebProgress = (ProgressBar) mView.findViewById(R.id.webProgress);
-        mLogView = (TextView) mView.findViewById(R.id.log);
+        mWebProgress = mView.findViewById(R.id.webProgress);
+        TextView mLogView = mView.findViewById(R.id.log);
 
         mLogView.setText(mParent.getResources().getString(R.string.strings____Dialog_FromGate__Dialog_FromGateList____logGetPage));
 
@@ -90,7 +87,7 @@ public class DialogFromGate {
             }
         };
 
-        mWebView = (WebView) mView.findViewById(R.id.webView);
+        mWebView = mView.findViewById(R.id.webView);
         //mWebView.getSettings().setBlockNetworkImage(true);
         mWebView.getSettings().setBuiltInZoomControls(true);
         mWebView.setWebViewClient(client);
@@ -107,7 +104,7 @@ public class DialogFromGate {
         mItemId = itemId;
         if (!mWebMusicIds.containsKey(itemId)) {
             ret = false;
-        } else if (mWebMusicIds.get(itemId).idOnWebPage == "") {
+        } else if (mWebMusicIds.get(itemId).idOnWebPage.equals("")) {
             mWebItemId = "";
             ret = false;
         } else {
@@ -129,7 +126,7 @@ public class DialogFromGate {
         if (mDialog == null) {
             return;
         }
-        FileReader.requestAd((LinearLayout) mView.findViewById(R.id.adContainer), mParent);
+        FileReader.requestAd(mView.findViewById(R.id.adContainer), mParent);
 
         int patternInt =
                 mPattern == PatternType.bSP ? 0 :
@@ -150,9 +147,9 @@ public class DialogFromGate {
         }
 
         if (mRivalId == null) {
-            mRequestUri += "playdata/music_detail.html?index=" + String.valueOf(mWebItemId) + "&diff=" + String.valueOf(patternInt);
+            mRequestUri += "playdata/music_detail.html?index=" + mWebItemId + "&diff=" + patternInt;
         } else {
-            mRequestUri += "rival/music_detail.html?index=" + String.valueOf(mWebItemId) + "&diff=" + String.valueOf(patternInt) + "&rival_id=" + mRivalId;
+            mRequestUri += "rival/music_detail.html?index=" + mWebItemId + "&diff=" + patternInt + "&rival_id=" + mRivalId;
         }
         //String uri = "file:///android_asset/status.html";
         mWebView.loadUrl(mRequestUri);
@@ -160,7 +157,7 @@ public class DialogFromGate {
 
     public void cancel() {
         mCanceled = true;
-        WebView web = (WebView) mView.findViewById(R.id.webView);
+        WebView web = mView.findViewById(R.id.webView);
         web.stopLoading();
         if (mDialog != null) {
             mDialog.cancel();
@@ -169,7 +166,7 @@ public class DialogFromGate {
 
     private boolean analyzeScore(String src) {
         Log.d("SRC", src);
-        WebView web = (WebView) mView.findViewById(R.id.webView);
+        WebView web = mView.findViewById(R.id.webView);
         String uri = web.getUrl();
         //boolean loggedin = false;
         Log.d("POINT", "0.0");
@@ -189,23 +186,18 @@ public class DialogFromGate {
             }
         }
         ScoreData sd = new ScoreData();
-        src = src;
         String cmp = "0\"></td>  <td>";
         Log.d("POINT", "1");
         if (src.contains(cmp)) {
             String dr = src.substring(src.indexOf(cmp) + cmp.length());
             cmp = "<br>";
-            dr = TextUtil.excapeWebTitle(dr.substring(0, dr.indexOf(cmp)).trim());
+            dr = TextUtil.escapeWebTitle(dr.substring(0, dr.indexOf(cmp)).trim());
             if (!dr.equals(mWebMusicIds.get(mItemId).titleOnWebPage)) {
                 new AlertDialog.Builder(mParent)
                         .setIcon(android.R.drawable.ic_dialog_info)
                         .setMessage(mParent.getResources().getString(R.string.name_different_alert) + "\n\n\"" + mWebMusicIds.get(mItemId).titleOnWebPage + "\"\n↓\n\"" + dr + "\"")
                         .setCancelable(true)
-                        .setPositiveButton(mParent.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-
-                            }
-                        }).show();
+                        .setPositiveButton(mParent.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {}).show();
                 return true;
             }
         } else {
@@ -249,40 +241,58 @@ public class DialogFromGate {
                 String dr = src.substring(src.indexOf(cmp) + cmp.length());
                 cmp = "</td>";
                 dr = dr.substring(0, dr.indexOf(cmp));
-                if (dr.equals("AAA")) {
-                    sd.Rank = MusicRank.AAA;
-                } else if (dr.equals("AA+")) {
-                    sd.Rank = MusicRank.AAp;
-                } else if (dr.equals("AA")) {
-                    sd.Rank = MusicRank.AA;
-                } else if (dr.equals("AA-")) {
-                    sd.Rank = MusicRank.AAm;
-                } else if (dr.equals("A+")) {
-                    sd.Rank = MusicRank.Ap;
-                } else if (dr.equals("A")) {
-                    sd.Rank = MusicRank.A;
-                } else if (dr.equals("A-")) {
-                    sd.Rank = MusicRank.Am;
-                } else if (dr.equals("B+")) {
-                    sd.Rank = MusicRank.Bp;
-                } else if (dr.equals("B")) {
-                    sd.Rank = MusicRank.B;
-                } else if (dr.equals("B-")) {
-                    sd.Rank = MusicRank.Bm;
-                } else if (dr.equals("C+")) {
-                    sd.Rank = MusicRank.Cp;
-                } else if (dr.equals("C")) {
-                    sd.Rank = MusicRank.C;
-                } else if (dr.equals("C-")) {
-                    sd.Rank = MusicRank.Cm;
-                } else if (dr.equals("D+")) {
-                    sd.Rank = MusicRank.Dp;
-                } else if (dr.equals("D")) {
-                    sd.Rank = MusicRank.D;
-                } else if (dr.equals("E")) {
-                    sd.Rank = MusicRank.E;
-                } else {
-                    sd.Rank = MusicRank.Noplay;
+                switch (dr) {
+                    case "AAA":
+                        sd.Rank = MusicRank.AAA;
+                        break;
+                    case "AA+":
+                        sd.Rank = MusicRank.AAp;
+                        break;
+                    case "AA":
+                        sd.Rank = MusicRank.AA;
+                        break;
+                    case "AA-":
+                        sd.Rank = MusicRank.AAm;
+                        break;
+                    case "A+":
+                        sd.Rank = MusicRank.Ap;
+                        break;
+                    case "A":
+                        sd.Rank = MusicRank.A;
+                        break;
+                    case "A-":
+                        sd.Rank = MusicRank.Am;
+                        break;
+                    case "B+":
+                        sd.Rank = MusicRank.Bp;
+                        break;
+                    case "B":
+                        sd.Rank = MusicRank.B;
+                        break;
+                    case "B-":
+                        sd.Rank = MusicRank.Bm;
+                        break;
+                    case "C+":
+                        sd.Rank = MusicRank.Cp;
+                        break;
+                    case "C":
+                        sd.Rank = MusicRank.C;
+                        break;
+                    case "C-":
+                        sd.Rank = MusicRank.Cm;
+                        break;
+                    case "D+":
+                        sd.Rank = MusicRank.Dp;
+                        break;
+                    case "D":
+                        sd.Rank = MusicRank.D;
+                        break;
+                    case "E":
+                        sd.Rank = MusicRank.E;
+                        break;
+                    default:
+                        sd.Rank = MusicRank.Noplay;
+                        break;
                 }
             } else {
                 return false;
@@ -293,7 +303,7 @@ public class DialogFromGate {
                 String dr = src.substring(src.indexOf(cmp) + cmp.length());
                 cmp = "</td>";
                 dr = dr.substring(0, dr.indexOf(cmp));
-                sd.Score = Integer.valueOf(dr);
+                sd.Score = Integer.parseInt(dr);
             } else {
                 Toast.makeText(mParent, "Failed", Toast.LENGTH_LONG).show();
             }
@@ -303,7 +313,7 @@ public class DialogFromGate {
                 String dr = src.substring(src.indexOf(cmp) + cmp.length());
                 cmp = "</td>";
                 dr = dr.substring(0, dr.indexOf(cmp));
-                sd.MaxCombo = Integer.valueOf(dr);
+                sd.MaxCombo = Integer.parseInt(dr);
             } else {
                 return false;
             }
@@ -314,16 +324,22 @@ public class DialogFromGate {
                     String dr = src.substring(src.indexOf(cmp) + cmp.length());
                     cmp = "</td>";
                     dr = dr.substring(0, dr.indexOf(cmp));
-                    if (dr.equals("グッドフルコンボ")) {
-                        sd.FullComboType = FullComboType.GoodFullCombo;
-                    } else if (dr.equals("グレートフルコンボ")) {
-                        sd.FullComboType = FullComboType.FullCombo;
-                    } else if (dr.equals("パーフェクトフルコンボ")) {
-                        sd.FullComboType = FullComboType.PerfectFullCombo;
-                    } else if (dr.equals("マーベラスフルコンボ")) {
-                        sd.FullComboType = FullComboType.MerverousFullCombo;
-                    } else {
-                        sd.FullComboType = FullComboType.None;
+                    switch (dr) {
+                        case "グッドフルコンボ":
+                            sd.FullComboType = FullComboType.GoodFullCombo;
+                            break;
+                        case "グレートフルコンボ":
+                            sd.FullComboType = FullComboType.FullCombo;
+                            break;
+                        case "パーフェクトフルコンボ":
+                            sd.FullComboType = FullComboType.PerfectFullCombo;
+                            break;
+                        case "マーベラスフルコンボ":
+                            sd.FullComboType = FullComboType.MerverousFullCombo;
+                            break;
+                        default:
+                            sd.FullComboType = FullComboType.None;
+                            break;
                     }
                 } else {
                     return false;
@@ -334,7 +350,7 @@ public class DialogFromGate {
                     String dr = src.substring(src.indexOf(cmp) + cmp.length());
                     cmp = "</td>";
                     dr = dr.substring(0, dr.indexOf(cmp));
-                    sd.PlayCount = Integer.valueOf(dr);
+                    sd.PlayCount = Integer.parseInt(dr);
                 } else {
                     return false;
                 }
@@ -344,7 +360,7 @@ public class DialogFromGate {
                     String dr = src.substring(src.indexOf(cmp) + cmp.length());
                     cmp = "</td>";
                     dr = dr.substring(0, dr.indexOf(cmp));
-                    sd.ClearCount = Integer.valueOf(dr);
+                    sd.ClearCount = Integer.parseInt(dr);
                 } else {
                     return false;
                 }
@@ -354,16 +370,22 @@ public class DialogFromGate {
                     String dr = src.substring(src.indexOf(cmp) + cmp.length());
                     cmp = "</td>";
                     dr = dr.substring(0, dr.indexOf(cmp));
-                    if (dr.equals("グッドフルコンボ")) {
-                        sd.FullComboType = FullComboType.GoodFullCombo;
-                    } else if (dr.equals("グレートフルコンボ")) {
-                        sd.FullComboType = FullComboType.FullCombo;
-                    } else if (dr.equals("パーフェクトフルコンボ")) {
-                        sd.FullComboType = FullComboType.PerfectFullCombo;
-                    } else if (dr.equals("マーベラスフルコンボ")) {
-                        sd.FullComboType = FullComboType.MerverousFullCombo;
-                    } else {
-                        sd.FullComboType = FullComboType.None;
+                    switch (dr) {
+                        case "グッドフルコンボ":
+                            sd.FullComboType = FullComboType.GoodFullCombo;
+                            break;
+                        case "グレートフルコンボ":
+                            sd.FullComboType = FullComboType.FullCombo;
+                            break;
+                        case "パーフェクトフルコンボ":
+                            sd.FullComboType = FullComboType.PerfectFullCombo;
+                            break;
+                        case "マーベラスフルコンボ":
+                            sd.FullComboType = FullComboType.MerverousFullCombo;
+                            break;
+                        default:
+                            sd.FullComboType = FullComboType.None;
+                            break;
                     }
                 } else {
                     return false;
@@ -597,77 +619,63 @@ public class DialogFromGate {
         String toastString =
                 "Complete !!\n\n" +
                         (mRivalName == null ? "" : "Rival:  " + mRivalName + "\n") +
-                        "Full Combo :  " + (msd.FullComboType.equals(sd.FullComboType) ? "" : msd.FullComboType.toString() + " -> ") + sd.FullComboType.toString() + "\n" +
-                        "Rank :  " + (msd.Rank.equals(sd.Rank) ? "" : (msd.Rank.toString() + " -> ")) + sd.Rank.toString() + "\n" +
+                        "Full Combo :  " + (msd.FullComboType.equals(sd.FullComboType) ? "" : msd.FullComboType + " -> ") + sd.FullComboType.toString() + "\n" +
+                        "Rank :  " + (msd.Rank.equals(sd.Rank) ? "" : (msd.Rank + " -> ")) + sd.Rank.toString() + "\n" +
                         "Score :  " + (msd.Score == sd.Score ? "" : (df.format(msd.Score) + " -> ")) + df.format(sd.Score) + "\n" +
-                        "Max Combo :  " + (msd.MaxCombo == sd.MaxCombo ? "" : (String.valueOf(msd.MaxCombo) + " -> ")) + String.valueOf(sd.MaxCombo) + "\n" +
-                        (mRivalName == null ? "Play Count:  " + (msd.PlayCount == sd.PlayCount ? String.valueOf(sd.ClearCount) + "/" + String.valueOf(sd.PlayCount) : String.valueOf(msd.ClearCount) + "/" + String.valueOf(msd.PlayCount) + " -> " + String.valueOf(sd.ClearCount) + "/" + String.valueOf(sd.PlayCount)) : "");
+                        "Max Combo :  " + (msd.MaxCombo == sd.MaxCombo ? "" : (msd.MaxCombo + " -> ")) + sd.MaxCombo + "\n" +
+                        (mRivalName == null ? "Play Count:  " + (msd.PlayCount == sd.PlayCount ? sd.ClearCount + "/" + sd.PlayCount : msd.ClearCount + "/" + msd.PlayCount + " -> " + sd.ClearCount + "/" + sd.PlayCount) : "");
         Toast.makeText(mParent, toastString, Toast.LENGTH_LONG).show();
         return true;
     }
 
-    private int mRetryCount = 0;
-
     @android.webkit.JavascriptInterface
     public void viewSource(final String src) {
-        mHandler.post(new Runnable() {
-            public void run() {
-                mWebProgress.setProgress(0);
+        mHandler.post(() -> {
+            mWebProgress.setProgress(0);
 
-                if (mCanceled) {
-                    return;
-                }
-                try {
-                    if (!analyzeScore(src)) {
-                        String toastString;
-                        switch (TextUtil.checkLoggedIn(src)) {
-                            // ログイン済みエラーなし
-                            case 0:
-                                toastString =
-                                        "Complete !!\n\n" +
-                                                (mRivalName == null ? "" : "Rival:  " + mRivalName + "\n") +
-                                                "No Data...";
-                                Toast.makeText(mParent, toastString, Toast.LENGTH_LONG).show();
-                                mRetryCount = 0;
-                                break;
-                            // ログインしていない
-                            case 1:
-                                Intent intent = new Intent();
-                                intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.GateLogin");
+            if (mCanceled) {
+                return;
+            }
+            try {
+                if (!analyzeScore(src)) {
+                    String toastString;
+                    switch (TextUtil.checkLoggedIn(src)) {
+                        // ログイン済みエラーなし
+                        case 0:
+                            toastString =
+                                    "Complete !!\n\n" +
+                                            (mRivalName == null ? "" : "Rival:  " + mRivalName + "\n") +
+                                            "No Data...";
+                            Toast.makeText(mParent, toastString, Toast.LENGTH_LONG).show();
+                            break;
+                        // ログインしていない
+                        case 1:
+                            Intent intent = new Intent();
+                            intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.GateLogin");
 
-                                cancel();
+                            cancel();
 
-                                mParent.startActivityForResult(intent, LoginRequestCode);
-                                mRetryCount = 0;
-                                break;
-                            // 不明
-                            case -1:
-                                Toast.makeText(mParent, mParent.getResources().getString(R.string.dialog_networkerrorexit), Toast.LENGTH_LONG).show();
-                                break;
-                        }
-                    } else {
-                        mRetryCount = 0;
-                    }
-                } catch (Exception e) {
-
-                }
-
-                (new Thread(new Runnable() {
-                    public void run() {
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                        }
-                        mHandler.post(new Runnable() {
-                            public void run() {
-                                mDialog.cancel();
-                            }
-                        });
+                            mParent.startActivityForResult(intent, LoginRequestCode);
+                            break;
+                        // 不明
+                        case -1:
+                            Toast.makeText(mParent, mParent.getResources().getString(R.string.dialog_networkerrorexit), Toast.LENGTH_LONG).show();
+                            break;
                     }
                 }
-                )).start();
+            } catch (Exception ignored) {
 
             }
+
+            (new Thread(() -> {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ignored) {
+                }
+                mHandler.post(() -> mDialog.cancel());
+            }
+            )).start();
+
         });
     }
 

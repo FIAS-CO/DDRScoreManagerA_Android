@@ -1,52 +1,34 @@
 package jp.linanfine.dsma.dialog;
 
-import java.util.Dictionary;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
-
-import jp.linanfine.dsma.activity.FilterSetting;
-import jp.linanfine.dsma.util.common.TextUtil;
-import jp.linanfine.dsma.util.file.FileReader;
-import jp.linanfine.dsma.value.GateSetting;
-import jp.linanfine.dsma.value.IdToWebMusicIdList;
-import jp.linanfine.dsma.value.MusicData;
-import jp.linanfine.dsma.value.MusicId;
-import jp.linanfine.dsma.value.MusicScore;
-import jp.linanfine.dsma.value.ScoreData;
-import jp.linanfine.dsma.value.WebMusicId;
-import jp.linanfine.dsma.value.WebTitleToMusicIdList;
-import jp.linanfine.dsma.value._enum.FullComboType;
-import jp.linanfine.dsma.value._enum.MusicRank;
-import jp.linanfine.dsma.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
-import android.view.View.OnFocusChangeListener;
-import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.HashMap;
+
+import jp.linanfine.dsma.R;
+import jp.linanfine.dsma.util.common.TextUtil;
+import jp.linanfine.dsma.util.file.FileReader;
+import jp.linanfine.dsma.value.GateSetting;
 
 public class DialogFromGateIds {
 	
 	public static int LoginRequestCode = 20007;
 	
-	private Handler mHandler = new Handler();
-	private Activity mParent;
+	private final Handler mHandler = new Handler();
+	private final Activity mParent;
 	private AlertDialog mDialog;
-	private View mView;
+	private final View mView;
 	
 	//private TreeMap<Integer, MusicData> mMusicList;
 	//private TreeMap<Integer, MusicScore> mScoreList;
@@ -62,11 +44,7 @@ public class DialogFromGateIds {
 	private int mPageCount = 0;
 	private int mCurrentPage = 0;
 	private TextView mLogView = null;
-	private ProgressBar mProgress = null;
-	private TextView mPercent = null;
-	private TextView mCurrent = null;
-	private TextView mMax = null;
-	
+
 	private String mUriH;
 	private String mUriF;
 
@@ -90,12 +68,12 @@ public class DialogFromGateIds {
         //mMusicIds = FileReader.readWebMusicIds(mParent).toWebTitleToMusicIdList();
 		//mGateSetting = FileReader.readGateSetting(mParent);
         
-		mWebProgress = (ProgressBar)mView.findViewById(R.id.webProgress);
-		mLogView = (TextView)mView.findViewById(R.id.log);
-		mPercent = (TextView)mView.findViewById(R.id.percent);
-		mCurrent = (TextView)mView.findViewById(R.id.current);
-		mMax = (TextView)mView.findViewById(R.id.max);
-		mProgress = (ProgressBar)mView.findViewById(R.id.mainProgress);
+		mWebProgress = mView.findViewById(R.id.webProgress);
+		mLogView = mView.findViewById(R.id.log);
+		TextView mPercent = mView.findViewById(R.id.percent);
+		TextView mCurrent = mView.findViewById(R.id.current);
+		TextView mMax = mView.findViewById(R.id.max);
+		ProgressBar mProgress = mView.findViewById(R.id.mainProgress);
 		
 		mProgress.setVisibility(View.INVISIBLE);
 		mPercent.setVisibility(View.INVISIBLE);
@@ -125,7 +103,7 @@ public class DialogFromGateIds {
     		}
     	};
 
-    	mWebView = (WebView) mView.findViewById(R.id.webView);
+    	mWebView = mView.findViewById(R.id.webView);
         //mWebView.getSettings().setBlockNetworkImage(true);
     	mWebView.getSettings().setBuiltInZoomControls(true);
     	mWebView.setWebViewClient(client);
@@ -156,9 +134,9 @@ public class DialogFromGateIds {
 		{
 			return;
 		}
-		mIdList = new HashMap<String, String>();
+		mIdList = new HashMap<>();
 		//mResult = "";
-		FileReader.requestAd((LinearLayout)mView.findViewById(R.id.adContainer), mParent);
+		FileReader.requestAd(mView.findViewById(R.id.adContainer), mParent);
 		String sd;
 		if(mDouble)
 		{
@@ -196,7 +174,7 @@ public class DialogFromGateIds {
 	public void cancel()
 	{
 		mCanceled = true;
-        WebView web = (WebView) mView.findViewById(R.id.webView);
+        WebView web = mView.findViewById(R.id.webView);
         web.stopLoading();
         mPageCount = 1;
         if(mDialog != null)
@@ -228,7 +206,7 @@ public class DialogFromGateIds {
 	private void analyzeScoreList(String src)
 	{
 
-        WebView web = (WebView) mView.findViewById(R.id.webView);
+        WebView web = mView.findViewById(R.id.webView);
     	String uri = web.getUrl();
     	
     	String idDiffEnd;
@@ -277,8 +255,7 @@ public class DialogFromGateIds {
 		String parsingText = src;
 		
 		//StringBuilder sb = new StringBuilder();
-		
-        boolean scoreExists = false;
+
 		while(parsingText.contains(musicBlockStartText))
 		{
 			parsingText = parsingText.substring(parsingText.indexOf(musicBlockStartText)+musicBlockStartTextLength);
@@ -290,9 +267,8 @@ public class DialogFromGateIds {
 			//int musicId = Integer.valueOf(idText);
 			String musicName = musicBlock.substring(musicBlock.indexOf(">")+1);
 			musicName = musicName.substring(0, musicName.indexOf("</")).trim();
-			musicName = TextUtil.excapeWebTitle(musicName);
-			MusicId mi = null;
-			
+			musicName = TextUtil.escapeWebTitle(musicName);
+
 			mIdList.put(idText, musicName);
 			//sb.append(musicId);
 			//sb.append("\t");
@@ -307,138 +283,128 @@ public class DialogFromGateIds {
 
 	@android.webkit.JavascriptInterface
     public void viewSource(final String src) {
-        mHandler.post(new Runnable() {
-            public void run() {
-            	mWebProgress.setProgress(0);
+        mHandler.post(() -> {
+			mWebProgress.setProgress(0);
 
-            	if(mCanceled)
-            	{
-            		return;
-            	}
-            	
-            	if(mPageCount == 0)
-            	{
-            		mPageCount = getPageCount(src);
-            		if(mPageCount == 0)
-            		{
-            			//Toast.makeText(mParent, String.valueOf(mPageCount), Toast.LENGTH_LONG).show();
-            	        Intent intent=new Intent();
-            	        intent.setClassName("jp.linanfine.dsma","jp.linanfine.dsma.activity.GateLogin");
-            	        
-            	        cancel();
-            	 
-            	        mParent.startActivityForResult(intent, LoginRequestCode);
-            	        
-            	        return;
-            		}
-                	//mMax.setText(String.valueOf(mPageCount));
-                	//mProgress.setMax(mPageCount*100);
-            	}
-            	
-            	try
-            	{
-            		analyzeScoreList(src);
-            	}
-            	catch(Exception e)
-            	{
-            		return;
-            	}
-            	
-                //FileReader.saveWebMusicIds(mParent, mMusicIds.toIdToWebMusicIdList());
-            	
-            	try { Thread.sleep(3000);} catch (InterruptedException e) {}
-            	++mCurrentPage;
-            	//mProgress.setProgress(mCurrentPage*100);
-            	//mLogView.setText((mRivalName==null?"My Score\n":("Rival: "+mRivalName+"\n"))+(mDouble?"DP\n":"SP\n")+mParent.getResources().getString(R.string.strings____Dialog_FromGate__Dialog_FromGateList____logGetPage));
-            	//mCurrent.setText(String.valueOf(mCurrentPage));
-            	//mPercent.setText(String.valueOf(100*mCurrentPage/mPageCount)+"%");
-            	if(mCurrentPage >= mPageCount)
-            	{
-            		
-            		if(!mDouble)
-            		{
-            			mDouble = true;
-            			String sd;
-            			if(mDouble)
-            			{
-            				sd = "double";
-            			}
-            			else
-            			{
-            				sd = "single";
-            			}
-            			mCurrentPage = 0;
+			if(mCanceled)
+			{
+				return;
+			}
 
-						mGateSetting = FileReader.readGateSetting(mParent);
-						if(mGateSetting.FromA3)
-						{
-							mUriH = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
-						}
-						else{
-							mUriH = "https://p.eagate.573.jp/game/ddr/ddra20/p/";
-						}
+			if(mPageCount == 0)
+			{
+				mPageCount = getPageCount(src);
+				if(mPageCount == 0)
+				{
+					//Toast.makeText(mParent, String.valueOf(mPageCount), Toast.LENGTH_LONG).show();
+					Intent intent=new Intent();
+					intent.setClassName("jp.linanfine.dsma","jp.linanfine.dsma.activity.GateLogin");
 
-            	        if(mRivalId == null)
-            	        {
-            	        	mUriH += "playdata/music_data_"+sd+".html?offset=";
-            	        	mUriF = "";
-            	        }
-            	        else
-            	        {
-            	        	mUriH += "rival/rival_musicdata_"+sd+".html?offset=";
-            	        	mUriF = "&rival_id="+mRivalId+"&name="+mRivalName;
-            	        }
-            	        //String uri = "file:///android_asset/status.html";
-            	    	mLogView.setText((mRivalName==null?"My Score\n":("Rival: "+mRivalName+"\n"))+(mDouble?"DP\n":"SP\n")+mParent.getResources().getString(R.string.strings____Dialog_FromGate__Dialog_FromGateList____logGetPageCount));
-            	        mWebView.loadUrl(mUriH+"0"+mUriF);
-            	        return;
+					cancel();
 
-            		}
-            		
-            		Toast.makeText(mParent, "Finish.", Toast.LENGTH_LONG).show();
-            		
-            		StringBuilder sb = new StringBuilder();
-            		
-            		for(HashMap.Entry<String, String> v : mIdList.entrySet())
-            		{
-            			sb.append(v.getKey());
-            			sb.append('\t');
-            			sb.append(v.getValue());
-            			sb.append('\n');
-            		}
-            		
-				    //テキスト入力を受け付けるビューを作成します。
-				    final EditText editView = (EditText)mParent.getLayoutInflater().inflate(R.layout.view_multiline_edit_text, null).findViewById(R.id.editText);
-				    editView.setText(sb.toString());
-				    new AlertDialog.Builder(mParent)
-				        .setIcon(android.R.drawable.ic_dialog_info)
-				        .setTitle(mParent.getResources().getString(R.string.strings_global____app_name))
-				        //setViewにてビューを設定します。
-				        .setView(editView)
-				        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-				            public void onClick(DialogInterface dialog, int whichButton) {
-					            
-				            }
-				        })
-				        .show();
+					mParent.startActivityForResult(intent, LoginRequestCode);
 
-            		
-                    (new Thread(new Runnable() {
-                        public void run() {
-                    		try { Thread.sleep(1000);} catch (InterruptedException e) {}
-                            mHandler.post(new Runnable() {
-                            	public void run() {
-                                    mDialog.cancel();
-                            	}
-                            });
-                            }
-                        }
-                    )).start();
-            		return;
-            	}
-        		mWebView.loadUrl(mUriH+String.valueOf(mCurrentPage)+mUriF);
-            }
-        });
+					return;
+				}
+				//mMax.setText(String.valueOf(mPageCount));
+				//mProgress.setMax(mPageCount*100);
+			}
+
+			try
+			{
+				analyzeScoreList(src);
+			}
+			catch(Exception e)
+			{
+				return;
+			}
+
+			//FileReader.saveWebMusicIds(mParent, mMusicIds.toIdToWebMusicIdList());
+
+			try { Thread.sleep(3000);} catch (InterruptedException ignored) {}
+			++mCurrentPage;
+			//mProgress.setProgress(mCurrentPage*100);
+			//mLogView.setText((mRivalName==null?"My Score\n":("Rival: "+mRivalName+"\n"))+(mDouble?"DP\n":"SP\n")+mParent.getResources().getString(R.string.strings____Dialog_FromGate__Dialog_FromGateList____logGetPage));
+			//mCurrent.setText(String.valueOf(mCurrentPage));
+			//mPercent.setText(String.valueOf(100*mCurrentPage/mPageCount)+"%");
+			if(mCurrentPage >= mPageCount)
+			{
+
+				if(!mDouble)
+				{
+					mDouble = true;
+					String sd;
+					if(mDouble)
+					{
+						sd = "double";
+					}
+					else
+					{
+						sd = "single";
+					}
+					mCurrentPage = 0;
+
+					mGateSetting = FileReader.readGateSetting(mParent);
+					if(mGateSetting.FromA3)
+					{
+						mUriH = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
+					}
+					else{
+						mUriH = "https://p.eagate.573.jp/game/ddr/ddra20/p/";
+					}
+
+					if(mRivalId == null)
+					{
+						mUriH += "playdata/music_data_"+sd+".html?offset=";
+						mUriF = "";
+					}
+					else
+					{
+						mUriH += "rival/rival_musicdata_"+sd+".html?offset=";
+						mUriF = "&rival_id="+mRivalId+"&name="+mRivalName;
+					}
+					//String uri = "file:///android_asset/status.html";
+					mLogView.setText((mRivalName==null?"My Score\n":("Rival: "+mRivalName+"\n"))+(mDouble?"DP\n":"SP\n")+mParent.getResources().getString(R.string.strings____Dialog_FromGate__Dialog_FromGateList____logGetPageCount));
+					mWebView.loadUrl(mUriH+"0"+mUriF);
+					return;
+
+				}
+
+				Toast.makeText(mParent, "Finish.", Toast.LENGTH_LONG).show();
+
+				StringBuilder sb = new StringBuilder();
+
+				for(HashMap.Entry<String, String> v : mIdList.entrySet())
+				{
+					sb.append(v.getKey());
+					sb.append('\t');
+					sb.append(v.getValue());
+					sb.append('\n');
+				}
+
+				//テキスト入力を受け付けるビューを作成します。
+				final EditText editView = mParent.getLayoutInflater().inflate(R.layout.view_multiline_edit_text, null).findViewById(R.id.editText);
+				editView.setText(sb.toString());
+				new AlertDialog.Builder(mParent)
+					.setIcon(android.R.drawable.ic_dialog_info)
+					.setTitle(mParent.getResources().getString(R.string.strings_global____app_name))
+					//setViewにてビューを設定します。
+					.setView(editView)
+					.setPositiveButton("OK", (dialog, whichButton) -> {
+
+					})
+					.show();
+
+
+				(new Thread(() -> {
+					try { Thread.sleep(1000);} catch (InterruptedException ignored) {}
+					mHandler.post(() -> mDialog.cancel());
+					}
+				)).start();
+				return;
+			}
+			mWebView.loadUrl(mUriH+ mCurrentPage +mUriF);
+		});
     }
 	
 }

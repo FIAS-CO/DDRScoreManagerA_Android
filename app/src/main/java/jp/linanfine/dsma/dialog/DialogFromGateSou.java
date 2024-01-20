@@ -1,10 +1,24 @@
 package jp.linanfine.dsma.dialog;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Intent;
+import android.os.Handler;
+import android.util.Log;
+import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-import jp.linanfine.dsma.activity.ScoreList;
+import jp.linanfine.dsma.R;
 import jp.linanfine.dsma.util.common.TextUtil;
 import jp.linanfine.dsma.util.file.FileReader;
 import jp.linanfine.dsma.value.GateSetting;
@@ -15,31 +29,15 @@ import jp.linanfine.dsma.value.UniquePattern;
 import jp.linanfine.dsma.value._enum.FullComboType;
 import jp.linanfine.dsma.value._enum.MusicRank;
 import jp.linanfine.dsma.value._enum.PatternType;
-import jp.linanfine.dsma.R;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Handler;
-import android.util.Log;
-import android.view.View;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class DialogFromGateSou {
 	
 	public static int LoginRequestCode = 20003;
 	
-	private Handler mHandler = new Handler();
-	private Activity mParent;
+	private final Handler mHandler = new Handler();
+	private final Activity mParent;
 	private AlertDialog mDialog;
-	private View mView;
+	private final View mView;
 	
 	//private TreeMap<Integer, MusicData> mMusicList;
 	private IdToWebMusicIdList mWebMusicIds;
@@ -86,13 +84,13 @@ public class DialogFromGateSou {
         
         mWebMusicIds = FileReader.readWebMusicIds(mParent);
 
-        mWebProgress = (ProgressBar)mView.findViewById(R.id.webProgress);
-		mLogView = (TextView)mView.findViewById(R.id.log);
-		mLogView2 = (TextView)mView.findViewById(R.id.log2);
-		mPercent = (TextView)mView.findViewById(R.id.percent);
-		mCurrent = (TextView)mView.findViewById(R.id.current);
-		mMax = (TextView)mView.findViewById(R.id.max);
-		mProgress = (ProgressBar)mView.findViewById(R.id.mainProgress);
+        mWebProgress = mView.findViewById(R.id.webProgress);
+		mLogView = mView.findViewById(R.id.log);
+		mLogView2 = mView.findViewById(R.id.log2);
+		mPercent = mView.findViewById(R.id.percent);
+		mCurrent = mView.findViewById(R.id.current);
+		mMax = mView.findViewById(R.id.max);
+		mProgress = mView.findViewById(R.id.mainProgress);
 		
 		mLogView2.setVisibility(View.VISIBLE);
 		mView.findViewById(R.id.log3).setVisibility(View.VISIBLE);
@@ -115,11 +113,11 @@ public class DialogFromGateSou {
     			//try { Thread.sleep(10);} catch (InterruptedException e) {}
     			mWebProgress.setProgress(1+progress);
     			mProgress.setProgress(mCurrentPage*100+(mPageCount==0?0:progress));
-    			mPercent.setText(String.valueOf((100*mCurrentPage+(mPageCount==0?0:progress))/(mPageCount==0?10000:mPageCount))+"%");
+    			mPercent.setText((100 * mCurrentPage + (mPageCount == 0 ? 0 : progress)) / (mPageCount == 0 ? 10000 : mPageCount) +"%");
     		}
     	};
 
-    	mWebView = (WebView) mView.findViewById(R.id.webView);
+    	mWebView = mView.findViewById(R.id.webView);
         //mWebView.getSettings().setBlockNetworkImage(true);
     	mWebView.getSettings().setBuiltInZoomControls(true);
     	mWebView.setWebViewClient(client);
@@ -168,7 +166,7 @@ public class DialogFromGateSou {
 		{
 			return;
 		}
-		FileReader.requestAd((LinearLayout)mView.findViewById(R.id.adContainer), mParent);
+		FileReader.requestAd(mView.findViewById(R.id.adContainer), mParent);
 		mPageCount = mSouList.size();
 		if(mPageCount <= 0)
 		{
@@ -202,17 +200,14 @@ public class DialogFromGateSou {
         mCurrentPage = 0;
         UniquePattern c = mSouList.get(mCurrentPage);
         mItemId = c.MusicId;
-        if(!mWebMusicIds.containsKey(mItemId) || mWebMusicIds.get(mItemId).idOnWebPage == "")
+        if(!mWebMusicIds.containsKey(mItemId) || mWebMusicIds.get(mItemId).idOnWebPage.equals(""))
         {
     		new AlertDialog.Builder(mParent)
-	        .setIcon(android.R.drawable.ic_dialog_alert)
-	        .setMessage(mParent.getResources().getString(R.string.illegal_id_alert))
-	        .setCancelable(true)
-	        .setPositiveButton(mParent.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-	            public void onClick(DialogInterface dialog, int whichButton) {
-	            	
-	            }
-	        }).show();
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setMessage(mParent.getResources().getString(R.string.illegal_id_alert))
+				.setCancelable(true)
+				.setPositiveButton(mParent.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {}).show();
+
     		mDialog.cancel();
         	return;
         }
@@ -221,7 +216,7 @@ public class DialogFromGateSou {
         	mWebItemId = mWebMusicIds.get(mItemId).idOnWebPage;
         }
         mPattern = c.Pattern;
-        mRequestUri = mUriH+String.valueOf(mWebItemId)+mUriM+String.valueOf(getPatternInt(mPattern))+mUriF;
+        mRequestUri = mUriH + mWebItemId + mUriM + getPatternInt(mPattern) +mUriF;
         mLogView.setText("Loading...\n"+(mRivalName==null?"My Score\n":("Rival: "+mRivalName+"\n")) + mPattern.toString() + " : " + c.musics.get(mItemId).Name);
         mWebView.loadUrl(mRequestUri);
 	}
@@ -229,7 +224,7 @@ public class DialogFromGateSou {
 	public void cancel()
 	{
 		mCanceled = true;
-        WebView web = (WebView) mView.findViewById(R.id.webView);
+        WebView web = mView.findViewById(R.id.webView);
         web.stopLoading();
         mPageCount = 1;
         if(mDialog != null)
@@ -241,7 +236,7 @@ public class DialogFromGateSou {
 	private boolean analyzeScore(String src)
 	{
 
-        WebView web = (WebView) mView.findViewById(R.id.webView);
+        WebView web = mView.findViewById(R.id.webView);
     	String uri = web.getUrl();
     	//boolean loggedin = false;
     	if(!uri.equals(mRequestUri))
@@ -258,26 +253,22 @@ public class DialogFromGateSou {
             	}
             }
     	}
-    	src = src;
-    	ScoreData sd = new ScoreData();
+		ScoreData sd = new ScoreData();
 		String cmp = "0\"></td>  <td>";
 		Log.d("", "1");
         if(src.contains(cmp))
         {
         	String dr = src.substring(src.indexOf(cmp)+cmp.length());
         	cmp = "<br>";
-        	dr = TextUtil.excapeWebTitle(dr.substring(0, dr.indexOf(cmp)).trim());
+        	dr = TextUtil.escapeWebTitle(dr.substring(0, dr.indexOf(cmp)).trim());
         	if(!dr.equals(mWebMusicIds.get(mItemId).titleOnWebPage))
         	{
         		new AlertDialog.Builder(mParent)
     	        .setIcon(android.R.drawable.ic_dialog_info)
     	        .setMessage(mParent.getResources().getString(R.string.name_different_alert)+"\n\n"+mWebMusicIds.get(mItemId).titleOnWebPage+"\n↓\n"+dr)
     	        .setCancelable(true)
-    	        .setPositiveButton(mParent.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-    	            public void onClick(DialogInterface dialog, int whichButton) {
-    	            	
-    	            }
-    	        }).show();
+    	        .setPositiveButton(mParent.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {})
+						.show();
         		return true;
         	}
         }
@@ -332,74 +323,60 @@ public class DialogFromGateSou {
         	String dr = src.substring(src.indexOf(cmp)+cmp.length());
         	cmp = "</td>";
         	dr = dr.substring(0, dr.indexOf(cmp));
-        	if(dr.equals("AAA"))
-        	{
-        		sd.Rank = MusicRank.AAA;
-        	}
-        	else if(dr.equals("AA+"))
-        	{
-        		sd.Rank = MusicRank.AAp;
-        	}
-        	else if(dr.equals("AA"))
-        	{
-        		sd.Rank = MusicRank.AA;
-        	}
-        	else if(dr.equals("AA-"))
-        	{
-        		sd.Rank = MusicRank.AAm;
-        	}
-        	else if(dr.equals("A+"))
-        	{
-        		sd.Rank = MusicRank.Ap;
-        	}
-        	else if(dr.equals("A"))
-        	{
-        		sd.Rank = MusicRank.A;
-        	}
-        	else if(dr.equals("A-"))
-        	{
-        		sd.Rank = MusicRank.Am;
-        	}
-        	else if(dr.equals("B+"))
-        	{
-        		sd.Rank = MusicRank.Bp;
-        	}
-        	else if(dr.equals("B"))
-        	{
-        		sd.Rank = MusicRank.B;
-        	}
-        	else if(dr.equals("B-"))
-        	{
-        		sd.Rank = MusicRank.Bm;
-        	}
-        	else if(dr.equals("C+"))
-        	{
-        		sd.Rank = MusicRank.Cp;
-        	}
-        	else if(dr.equals("C"))
-        	{
-        		sd.Rank = MusicRank.C;
-        	}
-        	else if(dr.equals("C-"))
-        	{
-        		sd.Rank = MusicRank.Cm;
-        	}
-        	else if(dr.equals("D+"))
-        	{
-        		sd.Rank = MusicRank.Dp;
-        	}
-        	else if(dr.equals("D"))
-        	{
-        		sd.Rank = MusicRank.D;
-        	}
-        	else if(dr.equals("E"))
-        	{
-        		sd.Rank = MusicRank.E;
-        	}
-        	else
-        	{
-        		sd.Rank = MusicRank.Noplay;
-        	}
+			// TODO 同じ変換処理がいろんなとこにあるはず
+			switch (dr) {
+				case "AAA":
+					sd.Rank = MusicRank.AAA;
+					break;
+				case "AA+":
+					sd.Rank = MusicRank.AAp;
+					break;
+				case "AA":
+					sd.Rank = MusicRank.AA;
+					break;
+				case "AA-":
+					sd.Rank = MusicRank.AAm;
+					break;
+				case "A+":
+					sd.Rank = MusicRank.Ap;
+					break;
+				case "A":
+					sd.Rank = MusicRank.A;
+					break;
+				case "A-":
+					sd.Rank = MusicRank.Am;
+					break;
+				case "B+":
+					sd.Rank = MusicRank.Bp;
+					break;
+				case "B":
+					sd.Rank = MusicRank.B;
+					break;
+				case "B-":
+					sd.Rank = MusicRank.Bm;
+					break;
+				case "C+":
+					sd.Rank = MusicRank.Cp;
+					break;
+				case "C":
+					sd.Rank = MusicRank.C;
+					break;
+				case "C-":
+					sd.Rank = MusicRank.Cm;
+					break;
+				case "D+":
+					sd.Rank = MusicRank.Dp;
+					break;
+				case "D":
+					sd.Rank = MusicRank.D;
+					break;
+				case "E":
+					sd.Rank = MusicRank.E;
+					break;
+				default:
+					sd.Rank = MusicRank.Noplay;
+					break;
+			}
         }
         else
         {
@@ -412,7 +389,7 @@ public class DialogFromGateSou {
         	String dr = src.substring(src.indexOf(cmp)+cmp.length());
         	cmp = "</td>";
         	dr = dr.substring(0, dr.indexOf(cmp));
-        	sd.Score = Integer.valueOf(dr);
+        	sd.Score = Integer.parseInt(dr);
         }
         else
         {
@@ -424,7 +401,7 @@ public class DialogFromGateSou {
         	String dr = src.substring(src.indexOf(cmp)+cmp.length());
         	cmp = "</td>";
         	dr = dr.substring(0, dr.indexOf(cmp));
-        	sd.MaxCombo = Integer.valueOf(dr);
+        	sd.MaxCombo = Integer.parseInt(dr);
         }
         else
         {
@@ -440,26 +417,24 @@ public class DialogFromGateSou {
         	String dr = src.substring(src.indexOf(cmp)+cmp.length());
         	cmp = "</td>";
         	dr = dr.substring(0, dr.indexOf(cmp));
-        	if(dr.equals("グッドフルコンボ"))
-        	{
-        		sd.FullComboType = FullComboType.GoodFullCombo;
-        	}
-        	else if(dr.equals("グレートフルコンボ"))
-        	{
-        		sd.FullComboType = FullComboType.FullCombo;
-        	}
-        	else if(dr.equals("パーフェクトフルコンボ"))
-        	{
-        		sd.FullComboType = FullComboType.PerfectFullCombo;
-        	}
-        	else if(dr.equals("マーベラスフルコンボ"))
-        	{
-        		sd.FullComboType = FullComboType.MerverousFullCombo;
-        	}
-        	else
-        	{
-        		sd.FullComboType = FullComboType.None;
-        	}
+			// TODO 同じ処理がいろんなとこにあるはずなのでまとめる
+			switch (dr) {
+				case "グッドフルコンボ":
+					sd.FullComboType = FullComboType.GoodFullCombo;
+					break;
+				case "グレートフルコンボ":
+					sd.FullComboType = FullComboType.FullCombo;
+					break;
+				case "パーフェクトフルコンボ":
+					sd.FullComboType = FullComboType.PerfectFullCombo;
+					break;
+				case "マーベラスフルコンボ":
+					sd.FullComboType = FullComboType.MerverousFullCombo;
+					break;
+				default:
+					sd.FullComboType = FullComboType.None;
+					break;
+			}
         }
         else
         {
@@ -472,7 +447,7 @@ public class DialogFromGateSou {
         	String dr = src.substring(src.indexOf(cmp)+cmp.length());
         	cmp = "</td>";
         	dr = dr.substring(0, dr.indexOf(cmp));
-        	sd.PlayCount = Integer.valueOf(dr);
+        	sd.PlayCount = Integer.parseInt(dr);
         }
         else
         {
@@ -485,7 +460,7 @@ public class DialogFromGateSou {
         	String dr = src.substring(src.indexOf(cmp)+cmp.length());
         	cmp = "</td>";
         	dr = dr.substring(0, dr.indexOf(cmp));
-        	sd.ClearCount = Integer.valueOf(dr);
+        	sd.ClearCount = Integer.parseInt(dr);
         }
         else
         {
@@ -501,26 +476,23 @@ public class DialogFromGateSou {
             	String dr = src.substring(src.indexOf(cmp)+cmp.length());
             	cmp = "</td>";
             	dr = dr.substring(0, dr.indexOf(cmp));
-            	if(dr.equals("グッドフルコンボ"))
-            	{
-            		sd.FullComboType = FullComboType.GoodFullCombo;
-            	}
-            	else if(dr.equals("グレートフルコンボ"))
-            	{
-            		sd.FullComboType = FullComboType.FullCombo;
-            	}
-            	else if(dr.equals("パーフェクトフルコンボ"))
-            	{
-            		sd.FullComboType = FullComboType.PerfectFullCombo;
-            	}
-            	else if(dr.equals("マーベラスフルコンボ"))
-            	{
-            		sd.FullComboType = FullComboType.MerverousFullCombo;
-            	}
-            	else
-            	{
-            		sd.FullComboType = FullComboType.None;
-            	}
+				switch (dr) {
+					case "グッドフルコンボ":
+						sd.FullComboType = FullComboType.GoodFullCombo;
+						break;
+					case "グレートフルコンボ":
+						sd.FullComboType = FullComboType.FullCombo;
+						break;
+					case "パーフェクトフルコンボ":
+						sd.FullComboType = FullComboType.PerfectFullCombo;
+						break;
+					case "マーベラスフルコンボ":
+						sd.FullComboType = FullComboType.MerverousFullCombo;
+						break;
+					default:
+						sd.FullComboType = FullComboType.None;
+						break;
+				}
             }
             else
             {
@@ -776,11 +748,11 @@ public class DialogFromGateSou {
         String toastString = 
         		(mRivalName==null?"":"Rival: "+mRivalName+"\n") + 
         		mPattern.toString() + " : " + c.musics.get(mItemId).Name+"\n"+
-        		"  Full Combo :  "+(msd.FullComboType.equals(sd.FullComboType)?"":msd.FullComboType.toString()+" -> ")+sd.FullComboType.toString()+"\n"+
-        		"  Rank :  "+(msd.Rank.equals(sd.Rank)?"":(msd.Rank.toString()+" -> "))+sd.Rank.toString()+"\n"+
+        		"  Full Combo :  "+(msd.FullComboType.equals(sd.FullComboType)?"": msd.FullComboType +" -> ")+sd.FullComboType.toString()+"\n"+
+        		"  Rank :  "+(msd.Rank.equals(sd.Rank)?"":(msd.Rank +" -> "))+sd.Rank.toString()+"\n"+
         		"  Score :  "+(msd.Score==sd.Score?"":(df.format(msd.Score)+" -> "))+df.format(sd.Score)+"\n"+
-        		"Max Combo :  "+(msd.MaxCombo==sd.MaxCombo?"":(String.valueOf(msd.MaxCombo)+" -> "))+String.valueOf(sd.MaxCombo)+"\n"+
-        		"Play Count:  "+(msd.PlayCount==sd.PlayCount?String.valueOf(sd.ClearCount)+"/"+String.valueOf(sd.PlayCount):String.valueOf(msd.ClearCount)+"/"+String.valueOf(msd.PlayCount)+" -> "+String.valueOf(sd.ClearCount)+"/"+String.valueOf(sd.PlayCount));
+        		"Max Combo :  "+(msd.MaxCombo==sd.MaxCombo?"":(msd.MaxCombo +" -> "))+ sd.MaxCombo +"\n"+
+        		"Play Count:  "+(msd.PlayCount==sd.PlayCount? sd.ClearCount +"/"+ sd.PlayCount : msd.ClearCount +"/"+ msd.PlayCount +" -> "+ sd.ClearCount +"/"+ sd.PlayCount);
         mLogView2.setText(toastString);
         return true;
 	}
@@ -788,129 +760,113 @@ public class DialogFromGateSou {
 	private int mRetryCount = 0;
 	@android.webkit.JavascriptInterface
     public void viewSource(final String src) {
-        mHandler.post(new Runnable() {
-            public void run() {
-            	mWebProgress.setProgress(0);
-            	
-            	if(mCanceled)
-            	{
-            		return;
-            	}
-            	
-            	try
-            	{
-                	if(!analyzeScore(src))
-                	{
-                		String toastString;
-                		switch(TextUtil.checkLoggedIn(src))
-                		{
-                			// ログイン済みエラーなし
-	                		case 0:
-	                            toastString = 
-                        		"Complete !!\n\n"+
-                        		(mRivalName==null?"":"Rival:  "+mRivalName+"\n")+
-                        		"No Data...";
-	                            mLogView2.setText(toastString);
-                            	mRetryCount = 0;
-	                			break;
-	                		// ログインしていない
-	                		case 1:
-	                	        Intent intent=new Intent();
-	                	        intent.setClassName("jp.linanfine.dsma","jp.linanfine.dsma.activity.GateLogin");
-	                	        
-	                	        cancel();
-	                	 
-	                	        mParent.startActivityForResult(intent, LoginRequestCode);
-	                	        mRetryCount = 0;
-	                            (new Thread(new Runnable() {
-	                                public void run() {
-	                            		try { Thread.sleep(1000);} catch (InterruptedException e) {}
-	                                    mHandler.post(new Runnable() {
-	                                    	public void run() {
-	                                            mDialog.cancel();
-	                                    	}
-	                                    });
-	                                    }
-	                                }
-	                            )).start();
-	                    		return;
-	                		// 不明
-	                		case -1:
-	                    		if(mRetryCount < 3)
-	                    		{
-	                                toastString = 
-	                                		"Retying...";
-	                                Toast.makeText(mParent, toastString, Toast.LENGTH_LONG).show();
-	                                ++mRetryCount;
-	                                --mCurrentPage;
-	                    		}
-	                    		else
-	                    		{
-	                    			Toast.makeText(mParent, mParent.getResources().getString(R.string.dialog_networkerrorexit), Toast.LENGTH_LONG).show();
-	                    		    mDialog.cancel();
-	                    		    return;
-	                    		}
-	                			break;
-                		}
-                	}
-                	else
-                	{
-                		mRetryCount = 0;
-                	}
-            	}
-            	catch(Exception e)
-            	{
-            		return;
-            	}
-            	
-            	try { Thread.sleep(3000);} catch (InterruptedException e) {}
-            	++mCurrentPage;
-            	mProgress.setProgress(mCurrentPage*100);
-            	mCurrent.setText(String.valueOf(mCurrentPage));
-            	mPercent.setText(String.valueOf(mPageCount==0?0:(100*mCurrentPage/mPageCount))+"%");
-            	if(mCurrentPage >= mPageCount)
-            	{
-                	mLogView.setText("Finish.");
-            		Toast.makeText(mParent, "Finish.", Toast.LENGTH_LONG).show();
-                    (new Thread(new Runnable() {
-                        public void run() {
-                    		try { Thread.sleep(1000);} catch (InterruptedException e) {}
-                            mHandler.post(new Runnable() {
-                            	public void run() {
-                                    mDialog.cancel();
-                            	}
-                            });
-                            }
-                        }
-                    )).start();
-            		return;
-            	}
-                UniquePattern c = mSouList.get(mCurrentPage);
-                mItemId = c.MusicId;
-                if(!mWebMusicIds.containsKey(mItemId) || mWebMusicIds.get(mItemId).idOnWebPage == "")
-                {
-            		new AlertDialog.Builder(mParent)
-        	        .setIcon(android.R.drawable.ic_dialog_alert)
-        	        .setMessage(mParent.getResources().getString(R.string.illegal_id_alert))
-        	        .setCancelable(true)
-        	        .setPositiveButton(mParent.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-        	            public void onClick(DialogInterface dialog, int whichButton) {
-        	            	
-        	            }
-        	        }).show();
-            		mDialog.cancel();
-                	return;
-                }
-                else
-                {
-                	mWebItemId = mWebMusicIds.get(mItemId).idOnWebPage;
-                }
-                mPattern = c.Pattern;
-                mRequestUri = mUriH+String.valueOf(mWebItemId)+mUriM+String.valueOf(getPatternInt(mPattern))+mUriF;
-                mLogView.setText("Loading...\n"+(mRivalName==null?"My Score\n":("Rival: "+mRivalName+"\n")) + mPattern.toString() + " : " + c.musics.get(mItemId).Name);
-                mWebView.loadUrl(mRequestUri);
-            }
-        });
+        mHandler.post(() -> {
+			mWebProgress.setProgress(0);
+
+			if(mCanceled)
+			{
+				return;
+			}
+
+			try
+			{
+				if(!analyzeScore(src))
+				{
+					String toastString;
+					switch(TextUtil.checkLoggedIn(src))
+					{
+						// ログイン済みエラーなし
+						case 0:
+							toastString =
+							"Complete !!\n\n"+
+							(mRivalName==null?"":"Rival:  "+mRivalName+"\n")+
+							"No Data...";
+							mLogView2.setText(toastString);
+							mRetryCount = 0;
+							break;
+						// ログインしていない
+						case 1:
+							Intent intent=new Intent();
+							intent.setClassName("jp.linanfine.dsma","jp.linanfine.dsma.activity.GateLogin");
+
+							cancel();
+
+							mParent.startActivityForResult(intent, LoginRequestCode);
+							mRetryCount = 0;
+							(new Thread(() -> {
+								try { Thread.sleep(1000);} catch (InterruptedException ignored) {}
+								mHandler.post(() -> mDialog.cancel());
+								}
+							)).start();
+							return;
+						// 不明
+						case -1:
+							if(mRetryCount < 3)
+							{
+								toastString =
+										"Retying...";
+								Toast.makeText(mParent, toastString, Toast.LENGTH_LONG).show();
+								++mRetryCount;
+								--mCurrentPage;
+							}
+							else
+							{
+								Toast.makeText(mParent, mParent.getResources().getString(R.string.dialog_networkerrorexit), Toast.LENGTH_LONG).show();
+								mDialog.cancel();
+								return;
+							}
+							break;
+					}
+				}
+				else
+				{
+					mRetryCount = 0;
+				}
+			}
+			catch(Exception e)
+			{
+				return;
+			}
+
+			try { Thread.sleep(3000);} catch (InterruptedException ignored) {}
+			++mCurrentPage;
+			mProgress.setProgress(mCurrentPage*100);
+			mCurrent.setText(String.valueOf(mCurrentPage));
+			mPercent.setText((mPageCount == 0 ? 0 : (100 * mCurrentPage / mPageCount)) +"%");
+			if(mCurrentPage >= mPageCount)
+			{
+				mLogView.setText("Finish.");
+				Toast.makeText(mParent, "Finish.", Toast.LENGTH_LONG).show();
+				(new Thread(() -> {
+					try { Thread.sleep(1000);} catch (InterruptedException ignored) {}
+					mHandler.post(() -> mDialog.cancel());
+					}
+				)).start();
+				return;
+			}
+			UniquePattern c = mSouList.get(mCurrentPage);
+			mItemId = c.MusicId;
+			if(!mWebMusicIds.containsKey(mItemId) || mWebMusicIds.get(mItemId).idOnWebPage.equals(""))
+			{
+				new AlertDialog.Builder(mParent)
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setMessage(mParent.getResources().getString(R.string.illegal_id_alert))
+				.setCancelable(true)
+				.setPositiveButton(mParent.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+
+				}).show();
+				mDialog.cancel();
+				return;
+			}
+			else
+			{
+				mWebItemId = mWebMusicIds.get(mItemId).idOnWebPage;
+			}
+			mPattern = c.Pattern;
+			mRequestUri = mUriH+ mWebItemId +mUriM+ getPatternInt(mPattern) +mUriF;
+			mLogView.setText("Loading...\n"+(mRivalName==null?"My Score\n":("Rival: "+mRivalName+"\n")) + mPattern.toString() + " : " + c.musics.get(mItemId).Name);
+			mWebView.loadUrl(mRequestUri);
+		});
     }
 	
 }

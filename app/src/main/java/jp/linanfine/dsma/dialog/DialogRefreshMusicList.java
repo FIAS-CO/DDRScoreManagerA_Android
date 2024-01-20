@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,16 +32,13 @@ public class DialogRefreshMusicList {
     private static final String sShockArrowExistsTxt = urlBase + "1975740187";
     private static final String sWebMusicIdsTxt = urlBase + "1376903169";
 
-    private Handler mHandler = new Handler();
-    private Activity mParent;
+    private final Handler mHandler = new Handler();
+    private final Activity mParent;
     private AlertDialog mDialog;
-    private View mView;
+    private final View mView;
 
-    private TextView mLogView;
     private ProgressBar mWebProgress;
     private String mRequestUri;
-
-    private boolean mCanceled = false;
 
     public DialogRefreshMusicList(Activity parent) {
         mParent = parent;
@@ -53,8 +49,8 @@ public class DialogRefreshMusicList {
             return;
         }
 
-        mWebProgress = (ProgressBar) mView.findViewById(R.id.webProgress);
-        mLogView = (TextView) mView.findViewById(R.id.log);
+        mWebProgress = mView.findViewById(R.id.webProgress);
+        TextView mLogView = mView.findViewById(R.id.log);
 
         mLogView.setText(mParent.getResources().getString(R.string.strings____Dialog_UpdateMusicList____refreshingMusiclist));
 
@@ -72,7 +68,7 @@ public class DialogRefreshMusicList {
         if (mDialog == null) {
             return;
         }
-        FileReader.requestAd((LinearLayout) mView.findViewById(R.id.adContainer), mParent);
+        FileReader.requestAd(mView.findViewById(R.id.adContainer), mParent);
 
         new AsyncTask<Void, Integer, Void>() {
 
@@ -90,7 +86,6 @@ public class DialogRefreshMusicList {
                     Toast.makeText(mParent, mParent.getResources().getString(R.string.editing), Toast.LENGTH_LONG).show();
                 }
             }
-
 
             @Override
             protected Void doInBackground(Void... arg0) {
@@ -278,7 +273,7 @@ public class DialogRefreshMusicList {
                         FileReader.saveMusicListVersion(mParent, version);
                         FileReader.saveText(mParent, MusicNames, "MusicNames.txt");
                         FileReader.saveText(mParent, ShockArrowExists, "ShockArrowExists.txt");
-                        FileReader.saveText(mParent, TextUtil.excapeWebTitle(WebMusicIds), "WebMusicIds.txt");
+                        FileReader.saveText(mParent, TextUtil.escapeWebTitle(WebMusicIds), "WebMusicIds.txt");
                         publishProgress(101, 2);
                     } else {
                         publishProgress(101, 3);
@@ -299,18 +294,12 @@ public class DialogRefreshMusicList {
 
             @Override
             protected void onPostExecute(Void result) {
-                (new Thread(new Runnable() {
-                    public void run() {
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                        }
-                        mHandler.post(new Runnable() {
-                            public void run() {
-                                mDialog.cancel();
-                            }
-                        });
+                (new Thread(() -> {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
                     }
+                    mHandler.post(() -> mDialog.cancel());
                 }
                 )).start();
             }
@@ -320,11 +309,8 @@ public class DialogRefreshMusicList {
     }
 
     public void cancel() {
-        mCanceled = true;
-
         if (mDialog != null) {
             mDialog.cancel();
         }
     }
-
 }
