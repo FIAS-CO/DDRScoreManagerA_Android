@@ -121,7 +121,7 @@ public class CategorySelect extends Activity {
                             break;
                         //case 5: userActionOpenOcrMode(); break;
                     }
-                }                ).show();
+                }).show();
     }
 
     private void userActionOpenPreference() {
@@ -224,7 +224,8 @@ public class CategorySelect extends Activity {
                     mFromGateListGetDouble = true;
                     showDialogFromGateList();
                 })
-                .setNegativeButton(getResources().getString(R.string.strings_global____cancel), (dialog, which) -> {})
+                .setNegativeButton(getResources().getString(R.string.strings_global____cancel), (dialog, which) -> {
+                })
                 .show();
     }
 

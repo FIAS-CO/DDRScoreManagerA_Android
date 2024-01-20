@@ -300,10 +300,8 @@ public class DialogRefreshMusicList {
                     } catch (InterruptedException e) {
                     }
                     mHandler.post(() -> mDialog.cancel());
-                }
-                )).start();
+                })).start();
             }
-
         }.execute();
 
     }

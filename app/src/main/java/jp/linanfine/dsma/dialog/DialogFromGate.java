@@ -197,7 +197,8 @@ public class DialogFromGate {
                         .setIcon(android.R.drawable.ic_dialog_info)
                         .setMessage(mParent.getResources().getString(R.string.name_different_alert) + "\n\n\"" + mWebMusicIds.get(mItemId).titleOnWebPage + "\"\n↓\n\"" + dr + "\"")
                         .setCancelable(true)
-                        .setPositiveButton(mParent.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {}).show();
+                        .setPositiveButton(mParent.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                        }).show();
                 return true;
             }
         } else {
