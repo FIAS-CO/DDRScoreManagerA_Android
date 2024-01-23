@@ -11,6 +11,7 @@ import jp.linanfine.dsma.value.MusicData;
 import jp.linanfine.dsma.value.MusicScore;
 import jp.linanfine.dsma.value.ScoreData;
 import jp.linanfine.dsma.value.UniquePattern;
+import jp.linanfine.dsma.value._enum.MusicRank;
 
 public class TextUtil {
 
@@ -1088,4 +1089,42 @@ public class TextUtil {
         return Html.fromHtml(html.toString());
     }
 
+    public MusicRank toMusicRank(String rank) {
+        switch (rank) {
+            case "AAA":
+                return MusicRank.AAA;
+            case "AA+":
+                return MusicRank.AAp;
+            case "AA":
+                return MusicRank.AA;
+            case "AA-":
+                return MusicRank.AAm;
+            case "A+":
+                return MusicRank.Ap;
+            case "A":
+                return MusicRank.A;
+            case "A-":
+                return MusicRank.Am;
+            case "B+":
+                return MusicRank.Bp;
+            case "B":
+                return MusicRank.B;
+            case "B-":
+                return MusicRank.Bm;
+            case "C+":
+                return MusicRank.Cp;
+            case "C":
+                return MusicRank.C;
+            case "C-":
+                return MusicRank.Cm;
+            case "D+":
+                return MusicRank.Dp;
+            case "D":
+                return MusicRank.D;
+            case "E":
+                return MusicRank.E;
+            default:
+                return MusicRank.Noplay;
+        }
+    }
 }

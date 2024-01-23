@@ -30,6 +30,9 @@ import jp.linanfine.dsma.value._enum.FullComboType;
 import jp.linanfine.dsma.value._enum.MusicRank;
 import jp.linanfine.dsma.value._enum.PatternType;
 
+/**
+ * 曲リスト表示後の[GATEサーバから一括取得(詳細)]関連のコード、のはず
+ */
 public class DialogFromGateSou {
 
     public static int LoginRequestCode = 20003;
@@ -216,13 +219,21 @@ public class DialogFromGateSou {
         }
     }
 
-    private boolean analyzeScore(String src) {
-
+    // TODO analyzeScoreをユニットテストでやれるようにUIまわりのコードを分割したい
+    private boolean _analyzeScore(String src) {
         WebView web = mView.findViewById(R.id.webView);
         String uri = web.getUrl();
+
+        return analyzeScore(src, uri);
+    }
+
+    private boolean analyzeScore(String src, String uri) {
+
         //boolean loggedin = false;
         if (!uri.equals(mRequestUri)) {
             if (mRivalId == null) {
+                // TODO return false条件を抜き出してメソッド外に置く
+                // 一応、途中まで進めないと行けないパターンがないか探す
                 return false;
             } else {
                 if (!uri.contains(mRequestUri.split("&name=")[0])) {
@@ -230,7 +241,7 @@ public class DialogFromGateSou {
                 }
             }
         }
-        ScoreData sd = new ScoreData();
+        ScoreData scoreData = new ScoreData();
         String cmp = "0\"></td>  <td>";
         Log.d("", "1");
         if (src.contains(cmp)) {
@@ -289,58 +300,58 @@ public class DialogFromGateSou {
                 String dr = src.substring(src.indexOf(cmp) + cmp.length());
                 cmp = "</td>";
                 dr = dr.substring(0, dr.indexOf(cmp));
-                // TODO 同じ変換処理がいろんなとこにあるはず
+                // TODO TextUtilに作ったメソッドに置き換える
                 switch (dr) {
                     case "AAA":
-                        sd.Rank = MusicRank.AAA;
+                        scoreData.Rank = MusicRank.AAA;
                         break;
                     case "AA+":
-                        sd.Rank = MusicRank.AAp;
+                        scoreData.Rank = MusicRank.AAp;
                         break;
                     case "AA":
-                        sd.Rank = MusicRank.AA;
+                        scoreData.Rank = MusicRank.AA;
                         break;
                     case "AA-":
-                        sd.Rank = MusicRank.AAm;
+                        scoreData.Rank = MusicRank.AAm;
                         break;
                     case "A+":
-                        sd.Rank = MusicRank.Ap;
+                        scoreData.Rank = MusicRank.Ap;
                         break;
                     case "A":
-                        sd.Rank = MusicRank.A;
+                        scoreData.Rank = MusicRank.A;
                         break;
                     case "A-":
-                        sd.Rank = MusicRank.Am;
+                        scoreData.Rank = MusicRank.Am;
                         break;
                     case "B+":
-                        sd.Rank = MusicRank.Bp;
+                        scoreData.Rank = MusicRank.Bp;
                         break;
                     case "B":
-                        sd.Rank = MusicRank.B;
+                        scoreData.Rank = MusicRank.B;
                         break;
                     case "B-":
-                        sd.Rank = MusicRank.Bm;
+                        scoreData.Rank = MusicRank.Bm;
                         break;
                     case "C+":
-                        sd.Rank = MusicRank.Cp;
+                        scoreData.Rank = MusicRank.Cp;
                         break;
                     case "C":
-                        sd.Rank = MusicRank.C;
+                        scoreData.Rank = MusicRank.C;
                         break;
                     case "C-":
-                        sd.Rank = MusicRank.Cm;
+                        scoreData.Rank = MusicRank.Cm;
                         break;
                     case "D+":
-                        sd.Rank = MusicRank.Dp;
+                        scoreData.Rank = MusicRank.Dp;
                         break;
                     case "D":
-                        sd.Rank = MusicRank.D;
+                        scoreData.Rank = MusicRank.D;
                         break;
                     case "E":
-                        sd.Rank = MusicRank.E;
+                        scoreData.Rank = MusicRank.E;
                         break;
                     default:
-                        sd.Rank = MusicRank.Noplay;
+                        scoreData.Rank = MusicRank.Noplay;
                         break;
                 }
             } else {
@@ -352,7 +363,7 @@ public class DialogFromGateSou {
                 String dr = src.substring(src.indexOf(cmp) + cmp.length());
                 cmp = "</td>";
                 dr = dr.substring(0, dr.indexOf(cmp));
-                sd.Score = Integer.parseInt(dr);
+                scoreData.Score = Integer.parseInt(dr);
             } else {
                 Toast.makeText(mParent, "Failed", Toast.LENGTH_LONG).show();
             }
@@ -361,7 +372,7 @@ public class DialogFromGateSou {
                 String dr = src.substring(src.indexOf(cmp) + cmp.length());
                 cmp = "</td>";
                 dr = dr.substring(0, dr.indexOf(cmp));
-                sd.MaxCombo = Integer.parseInt(dr);
+                scoreData.MaxCombo = Integer.parseInt(dr);
             } else {
                 return false;
             }
@@ -376,19 +387,19 @@ public class DialogFromGateSou {
                     // TODO 同じ処理がいろんなとこにあるはずなのでまとめる
                     switch (dr) {
                         case "グッドフルコンボ":
-                            sd.FullComboType = FullComboType.GoodFullCombo;
+                            scoreData.FullComboType = FullComboType.GoodFullCombo;
                             break;
                         case "グレートフルコンボ":
-                            sd.FullComboType = FullComboType.FullCombo;
+                            scoreData.FullComboType = FullComboType.FullCombo;
                             break;
                         case "パーフェクトフルコンボ":
-                            sd.FullComboType = FullComboType.PerfectFullCombo;
+                            scoreData.FullComboType = FullComboType.PerfectFullCombo;
                             break;
                         case "マーベラスフルコンボ":
-                            sd.FullComboType = FullComboType.MerverousFullCombo;
+                            scoreData.FullComboType = FullComboType.MerverousFullCombo;
                             break;
                         default:
-                            sd.FullComboType = FullComboType.None;
+                            scoreData.FullComboType = FullComboType.None;
                             break;
                     }
                 } else {
@@ -400,7 +411,7 @@ public class DialogFromGateSou {
                     String dr = src.substring(src.indexOf(cmp) + cmp.length());
                     cmp = "</td>";
                     dr = dr.substring(0, dr.indexOf(cmp));
-                    sd.PlayCount = Integer.parseInt(dr);
+                    scoreData.PlayCount = Integer.parseInt(dr);
                 } else {
                     return false;
                 }
@@ -410,7 +421,7 @@ public class DialogFromGateSou {
                     String dr = src.substring(src.indexOf(cmp) + cmp.length());
                     cmp = "</td>";
                     dr = dr.substring(0, dr.indexOf(cmp));
-                    sd.ClearCount = Integer.parseInt(dr);
+                    scoreData.ClearCount = Integer.parseInt(dr);
                 } else {
                     return false;
                 }
@@ -423,19 +434,19 @@ public class DialogFromGateSou {
                     dr = dr.substring(0, dr.indexOf(cmp));
                     switch (dr) {
                         case "グッドフルコンボ":
-                            sd.FullComboType = FullComboType.GoodFullCombo;
+                            scoreData.FullComboType = FullComboType.GoodFullCombo;
                             break;
                         case "グレートフルコンボ":
-                            sd.FullComboType = FullComboType.FullCombo;
+                            scoreData.FullComboType = FullComboType.FullCombo;
                             break;
                         case "パーフェクトフルコンボ":
-                            sd.FullComboType = FullComboType.PerfectFullCombo;
+                            scoreData.FullComboType = FullComboType.PerfectFullCombo;
                             break;
                         case "マーベラスフルコンボ":
-                            sd.FullComboType = FullComboType.MerverousFullCombo;
+                            scoreData.FullComboType = FullComboType.MerverousFullCombo;
                             break;
                         default:
-                            sd.FullComboType = FullComboType.None;
+                            scoreData.FullComboType = FullComboType.None;
                             break;
                     }
                 } else {
@@ -444,59 +455,59 @@ public class DialogFromGateSou {
             }
         }
         Log.d("", "11");
-        MusicScore ms;
+        MusicScore musicScore;
         if (mScoreList.containsKey(mItemId)) {
-            ms = mScoreList.get(mItemId);
+            musicScore = mScoreList.get(mItemId);
             mScoreList.remove(mItemId);
         } else {
-            ms = new MusicScore();
+            musicScore = new MusicScore();
         }
-        ScoreData msd;
+        ScoreData localScoreData;
         switch (mPattern) {
             case bSP:
-                msd = ms.bSP;
+                localScoreData = musicScore.bSP;
                 break;
             case BSP:
-                msd = ms.BSP;
+                localScoreData = musicScore.BSP;
                 break;
             case DSP:
-                msd = ms.DSP;
+                localScoreData = musicScore.DSP;
                 break;
             case ESP:
-                msd = ms.ESP;
+                localScoreData = musicScore.ESP;
                 break;
             case CSP:
-                msd = ms.CSP;
+                localScoreData = musicScore.CSP;
                 break;
             case BDP:
-                msd = ms.BDP;
+                localScoreData = musicScore.BDP;
                 break;
             case DDP:
-                msd = ms.DDP;
+                localScoreData = musicScore.DDP;
                 break;
             case EDP:
-                msd = ms.EDP;
+                localScoreData = musicScore.EDP;
                 break;
             case CDP:
-                msd = ms.CDP;
+                localScoreData = musicScore.CDP;
                 break;
             default:
-                msd = new ScoreData();
+                localScoreData = new ScoreData();
                 break;
         }
 
-        // msd : 元の値
-        // sd  : 取得した値
+        // localScoreData(元msd) : 元の値
+        // scoreData(元sd)  : 取得した値
         // 取得した値に元の値を上書きすることによって元の値を維持する
 
         // 「Life4 に未フルコンを上書きする」 が無効
         if (!mGateSetting.OverWriteLife4) {
             // 取得した値が未フルコン
-            if (sd.FullComboType == FullComboType.None) {
+            if (scoreData.FullComboType == FullComboType.None) {
                 // 元の値が Life4
-                if (msd.FullComboType == FullComboType.Life4) {
+                if (localScoreData.FullComboType == FullComboType.Life4) {
                     // 元のフルコンタイプに戻す
-                    sd.FullComboType = msd.FullComboType;
+                    scoreData.FullComboType = localScoreData.FullComboType;
                 }
             }
         }
@@ -519,15 +530,15 @@ public class DialogFromGateSou {
         // 「低いスコアを上書き」 が無効
         if (!mGateSetting.OverWriteLowerScores) {
             // スコアが低かったら
-            if (sd.Score < msd.Score) {
+            if (scoreData.Score < localScoreData.Score) {
                 // スコアを元に戻す
-                sd.Score = msd.Score;
-                sd.Rank = msd.Rank;
+                scoreData.Score = localScoreData.Score;
+                scoreData.Rank = localScoreData.Rank;
             }
             // コンボが低かったら
-            if (sd.MaxCombo < msd.MaxCombo) {
+            if (scoreData.MaxCombo < localScoreData.MaxCombo) {
                 // コンボを元に戻す
-                sd.MaxCombo = msd.MaxCombo;
+                scoreData.MaxCombo = localScoreData.MaxCombo;
             }
         	/*
         	// 元の値がAAA
@@ -598,84 +609,84 @@ public class DialogFromGateSou {
         	}
         	*/
             // 元の値がMFC
-            if (msd.FullComboType == FullComboType.MerverousFullCombo) {
+            if (localScoreData.FullComboType == FullComboType.MerverousFullCombo) {
                 // MFCにする
-                sd.FullComboType = msd.FullComboType;
+                scoreData.FullComboType = localScoreData.FullComboType;
             }
             // 元の値がPFC
-            else if (msd.FullComboType == FullComboType.PerfectFullCombo) {
+            else if (localScoreData.FullComboType == FullComboType.PerfectFullCombo) {
                 // 取得した値がMFCでない
-                if (sd.FullComboType != FullComboType.MerverousFullCombo) {
+                if (scoreData.FullComboType != FullComboType.MerverousFullCombo) {
                     // PFCにする
-                    sd.FullComboType = msd.FullComboType;
+                    scoreData.FullComboType = localScoreData.FullComboType;
                 }
             }
             // 元の値がFC
-            else if (msd.FullComboType == FullComboType.FullCombo) {
+            else if (localScoreData.FullComboType == FullComboType.FullCombo) {
                 // 取得した値がMFCでもPFCでもない
-                if (sd.FullComboType != FullComboType.MerverousFullCombo && sd.FullComboType != FullComboType.PerfectFullCombo) {
+                if (scoreData.FullComboType != FullComboType.MerverousFullCombo && scoreData.FullComboType != FullComboType.PerfectFullCombo) {
                     // FCにする
-                    sd.FullComboType = msd.FullComboType;
+                    scoreData.FullComboType = localScoreData.FullComboType;
                 }
             }
             // 元の値がGFC
-            else if (msd.FullComboType == FullComboType.GoodFullCombo) {
+            else if (localScoreData.FullComboType == FullComboType.GoodFullCombo) {
                 // 取得した値がMFCでもPFCでもFCでもない
-                if (sd.FullComboType != FullComboType.MerverousFullCombo && sd.FullComboType != FullComboType.PerfectFullCombo && sd.FullComboType != FullComboType.FullCombo) {
+                if (scoreData.FullComboType != FullComboType.MerverousFullCombo && scoreData.FullComboType != FullComboType.PerfectFullCombo && scoreData.FullComboType != FullComboType.FullCombo) {
                     // GFCにする
-                    sd.FullComboType = msd.FullComboType;
+                    scoreData.FullComboType = localScoreData.FullComboType;
                 }
             }
             // 元の値がその他
             else {
                 // 取得した値がMFCでもPFCでもFCでもGFCでもない
-                if (sd.FullComboType != FullComboType.MerverousFullCombo && sd.FullComboType != FullComboType.PerfectFullCombo && sd.FullComboType != FullComboType.FullCombo && sd.FullComboType != FullComboType.GoodFullCombo) {
+                if (scoreData.FullComboType != FullComboType.MerverousFullCombo && scoreData.FullComboType != FullComboType.PerfectFullCombo && scoreData.FullComboType != FullComboType.FullCombo && scoreData.FullComboType != FullComboType.GoodFullCombo) {
                     // 元の値にもどす
-                    sd.FullComboType = msd.FullComboType;
+                    scoreData.FullComboType = localScoreData.FullComboType;
                 }
             }
         }
         switch (mPattern) {
             case bSP:
-                ms.bSP = sd;
+                musicScore.bSP = scoreData;
                 break;
             case BSP:
-                ms.BSP = sd;
+                musicScore.BSP = scoreData;
                 break;
             case DSP:
-                ms.DSP = sd;
+                musicScore.DSP = scoreData;
                 break;
             case ESP:
-                ms.ESP = sd;
+                musicScore.ESP = scoreData;
                 break;
             case CSP:
-                ms.CSP = sd;
+                musicScore.CSP = scoreData;
                 break;
             case BDP:
-                ms.BDP = sd;
+                musicScore.BDP = scoreData;
                 break;
             case DDP:
-                ms.DDP = sd;
+                musicScore.DDP = scoreData;
                 break;
             case EDP:
-                ms.EDP = sd;
+                musicScore.EDP = scoreData;
                 break;
             case CDP:
-                ms.CDP = sd;
+                musicScore.CDP = scoreData;
                 break;
         }
-        mScoreList.put(mItemId, ms);
+        mScoreList.put(mItemId, musicScore);
         FileReader.saveScoreData(mParent, mRivalId, mScoreList);
         DecimalFormat df = new DecimalFormat("0,000,000");
         UniquePattern c = mSouList.get(mCurrentPage);
         String toastString =
                 (mRivalName == null ? "" : "Rival: " + mRivalName + "\n") +
                         mPattern.toString() + " : " + c.musics.get(mItemId).Name + "\n" +
-                        "  Full Combo :  " + (msd.FullComboType.equals(sd.FullComboType) ? "" : msd.FullComboType + " -> ") + sd.FullComboType.toString() + "\n" +
-                        "  Rank :  " + (msd.Rank.equals(sd.Rank) ? "" : (msd.Rank + " -> ")) + sd.Rank.toString() + "\n" +
-                        "  Score :  " + (msd.Score == sd.Score ? "" : (df.format(msd.Score) + " -> ")) + df.format(sd.Score) + "\n" +
-                        "Max Combo :  " + (msd.MaxCombo == sd.MaxCombo ? "" : (msd.MaxCombo + " -> ")) + sd.MaxCombo + "\n" +
-                        "Play Count:  " + (msd.PlayCount == sd.PlayCount ? sd.ClearCount + "/" + sd.PlayCount : msd.ClearCount + "/" + msd.PlayCount + " -> " + sd.ClearCount + "/" + sd.PlayCount);
+                        "  Full Combo :  " + (localScoreData.FullComboType.equals(scoreData.FullComboType) ? "" : localScoreData.FullComboType + " -> ") + scoreData.FullComboType.toString() + "\n" +
+                        "  Rank :  " + (localScoreData.Rank.equals(scoreData.Rank) ? "" : (localScoreData.Rank + " -> ")) + scoreData.Rank.toString() + "\n" +
+                        "  Score :  " + (localScoreData.Score == scoreData.Score ? "" : (df.format(localScoreData.Score) + " -> ")) + df.format(scoreData.Score) + "\n" +
+                        "Max Combo :  " + (localScoreData.MaxCombo == scoreData.MaxCombo ? "" : (localScoreData.MaxCombo + " -> ")) + scoreData.MaxCombo + "\n" +
+                        "Play Count:  " + (localScoreData.PlayCount == scoreData.PlayCount ? scoreData.ClearCount + "/" + scoreData.PlayCount : localScoreData.ClearCount + "/" + localScoreData.PlayCount + " -> " + scoreData.ClearCount + "/" + scoreData.PlayCount);
         mLogView2.setText(toastString);
         return true;
     }
@@ -692,7 +703,7 @@ public class DialogFromGateSou {
             }
 
             try {
-                if (!analyzeScore(src)) {
+                if (!_analyzeScore(src)) {
                     String toastString;
                     switch (TextUtil.checkLoggedIn(src)) {
                         // ログイン済みエラーなし
