@@ -11,7 +11,9 @@ import jp.linanfine.dsma.value.MusicData;
 import jp.linanfine.dsma.value.MusicScore;
 import jp.linanfine.dsma.value.ScoreData;
 import jp.linanfine.dsma.value.UniquePattern;
+import jp.linanfine.dsma.value._enum.FullComboType;
 import jp.linanfine.dsma.value._enum.MusicRank;
+import jp.linanfine.dsma.value._enum.PatternType;
 
 public class TextUtil {
 
@@ -1126,5 +1128,58 @@ public class TextUtil {
             default:
                 return MusicRank.Noplay;
         }
+    }
+
+    public FullComboType toFullComboType(String type) {
+        switch (type) {
+            case "グッドフルコンボ":
+                return FullComboType.GoodFullCombo;
+            case "グレートフルコンボ":
+                return FullComboType.FullCombo;
+            case "パーフェクトフルコンボ":
+                return FullComboType.PerfectFullCombo;
+            case "マーベラスフルコンボ":
+                return FullComboType.MerverousFullCombo;
+            default:
+                return FullComboType.None;
+        }
+    }
+
+    public static int patternTypeToInt(PatternType pattern) {
+
+        switch (pattern) {
+            case BSP:
+                return 1;
+            case DSP:
+                return 2;
+            case ESP:
+                return 3;
+            case CSP:
+                return 4;
+            case BDP:
+                return 5;
+            case DDP:
+                return 6;
+            case EDP:
+                return 7;
+            case CDP:
+                return 8;
+            case bSP:
+            default:
+                return 0;
+        }
+        // TODO 以下と同じ動作になっていることを一応テストする
+//        return
+//                pattern == PatternType.bSP ? 0 :
+//                        pattern == PatternType.BSP ? 1 :
+//                                pattern == PatternType.DSP ? 2 :
+//                                        pattern == PatternType.ESP ? 3 :
+//                                                pattern == PatternType.CSP ? 4 :
+//                                                        pattern == PatternType.BDP ? 5 :
+//                                                                pattern == PatternType.DDP ? 6 :
+//                                                                        pattern == PatternType.EDP ? 7 :
+//                                                                                pattern == PatternType.CDP ? 8 :
+//                                                                                        0;
+
     }
 }
