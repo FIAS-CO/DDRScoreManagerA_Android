@@ -1228,6 +1228,8 @@ public class ScoreList extends Activity {
             str_items.add(getResources().getString(R.string.dialog_disp_all_pattern));
         }
 
+        str_items.add("楽曲メモ");
+
         new AlertDialog.Builder(ScoreList.this)
                 .setTitle(mSelectedItemPattern.Pattern.toString() + " : " + mSelectedMusicData.Name)
                 .setItems((String[]) str_items.toArray(new String[0]), new DialogInterface.OnClickListener() {
