@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -17,7 +16,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
@@ -41,7 +39,7 @@ import jp.linanfine.dsma.value.AppearanceSettingsSp;
 
 public class CategorySelect extends Activity {
 
-    private Handler mHandler = new Handler();
+    private final Handler mHandler = new Handler();
     private View mHandledView;
 
     private boolean mCloseCategoryOnBackKey = false;
@@ -74,12 +72,9 @@ public class CategorySelect extends Activity {
             new AlertDialog.Builder(CategorySelect.this)
                     .setTitle(this.getResources().getString(R.string.strings_____Dialog_UpdateInfo____versionInfoTitle))
                     .setMessage(getResources().getString(R.string.strings____Dialog_UpdateInfo____updates))
-                    .setNegativeButton(this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            if (dialog != null) {
-                                dialog.cancel();
-                                dialog = null;
-                            }
+                    .setNegativeButton(this.getResources().getString(R.string.strings_global____ok), (dialog, which) -> {
+                        if (dialog != null) {
+                            dialog.cancel();
                         }
                     })
                     .show();
@@ -90,7 +85,7 @@ public class CategorySelect extends Activity {
 
             try {
                 Thread.sleep(100);
-            } catch (InterruptedException e) {
+            } catch (InterruptedException ignored) {
             }
         }
     }
@@ -98,7 +93,7 @@ public class CategorySelect extends Activity {
     private void userActionShowSystemMenu() {
 
         //選択項目を準備する。
-        ArrayList<String> str_items = new ArrayList<String>();
+        ArrayList<String> str_items = new ArrayList<>();
         str_items.add(getResources().getString(R.string.strings____Menu_System____preference));
         str_items.add(getResources().getString(R.string.strings____Menu_System____showStatus));
         str_items.add(getResources().getString(R.string.strings____Menu_System____manageRivals));
@@ -107,30 +102,26 @@ public class CategorySelect extends Activity {
         //str_items.add(getResources().getString(R.string.strings____Menu_System____openOcrMode));
 
         new AlertDialog.Builder(CategorySelect.this)
-                .setItems((String[]) str_items.toArray(new String[0]), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                switch (which) {
-                                    case 0:
-                                        userActionOpenPreference();
-                                        break;
-                                    case 1:
-                                        userActionShowStatus();
-                                        break;
-                                    case 2:
-                                        userActionManageRivals();
-                                        break;
-                                    case 3:
-                                        userActionDdrSa();
-                                        break;
-                                    case 4:
-                                        userActionFromGateList();
-                                        break;
-                                    //case 5: userActionOpenOcrMode(); break;
-                                }
-                            }
-                        }
-                ).show();
-
+                .setItems(str_items.toArray(new String[0]), (dialog, which) -> {
+                    switch (which) {
+                        case 0:
+                            userActionOpenPreference();
+                            break;
+                        case 1:
+                            userActionShowStatus();
+                            break;
+                        case 2:
+                            userActionManageRivals();
+                            break;
+                        case 3:
+                            userActionDdrSa();
+                            break;
+                        case 4:
+                            userActionFromGateList();
+                            break;
+                        //case 5: userActionOpenOcrMode(); break;
+                    }
+                }).show();
     }
 
     private void userActionOpenPreference() {
@@ -172,19 +163,13 @@ public class CategorySelect extends Activity {
                 .setTitle(this.getResources().getString(R.string.strings____Dialog_UpdateMusicList____refreshingMusiclist))
                 .setView(mDialogRefreshMusicList.getView())
                 .setCancelable(false)
-                .setNegativeButton(this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        if (mDialogRefreshMusicList != null) {
-                            mDialogRefreshMusicList.cancel();
-                            mDialogRefreshMusicList = null;
-                        }
+                .setNegativeButton(this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> {
+                    if (mDialogRefreshMusicList != null) {
+                        mDialogRefreshMusicList.cancel();
+                        mDialogRefreshMusicList = null;
                     }
                 })
-                .setOnCancelListener(new OnCancelListener() {
-                    public void onCancel(DialogInterface arg0) {
-                        CategorySelect.this.initialize();
-                    }
-                })
+                .setOnCancelListener(arg0 -> CategorySelect.this.initialize())
                 .show());
 
         mDialogRefreshMusicList.start();
@@ -220,12 +205,10 @@ public class CategorySelect extends Activity {
     }
 
     private void userActionOpenOcrMode() {
-
         Intent intent = new Intent();
         intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.OcrMode");
 
         startActivityForResult(intent, 1);
-
     }
 
     private void userActionFromGateList() {
@@ -233,25 +216,17 @@ public class CategorySelect extends Activity {
         new AlertDialog.Builder(CategorySelect.this)
                 .setTitle(getResources().getString(R.string.strings____Dialog_GetScores____getScore))
                 .setMessage(getResources().getString(R.string.strings____Dialog_GetScores____getScoreMessage))
-                .setPositiveButton(getResources().getString(R.string.strings____Dialog_GetScores____getScoreTypeSp), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        mFromGateListGetDouble = false;
-                        showDialogFromGateList();
-                    }
+                .setPositiveButton(getResources().getString(R.string.strings____Dialog_GetScores____getScoreTypeSp), (dialog, which) -> {
+                    mFromGateListGetDouble = false;
+                    showDialogFromGateList();
                 })
-                .setNeutralButton(getResources().getString(R.string.strings____Dialog_GetScores____getScoreTypeDp), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        mFromGateListGetDouble = true;
-                        showDialogFromGateList();
-                    }
+                .setNeutralButton(getResources().getString(R.string.strings____Dialog_GetScores____getScoreTypeDp), (dialog, which) -> {
+                    mFromGateListGetDouble = true;
+                    showDialogFromGateList();
                 })
-                .setNegativeButton(getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
+                .setNegativeButton(getResources().getString(R.string.strings_global____cancel), (dialog, which) -> {
                 })
                 .show();
-
-
     }
 
     private void initialize() {
@@ -265,13 +240,13 @@ public class CategorySelect extends Activity {
         mTopLevelLayout.addView(mMainView);
 
         PackageInfo packageInfo = null;
-        TextView tv = (TextView) findViewById(R.id.version);
+        TextView tv = findViewById(R.id.version);
         try {
             packageInfo = getPackageManager().getPackageInfo("jp.linanfine.dsma", PackageManager.GET_META_DATA);
         } catch (NameNotFoundException e) {
             e.printStackTrace();
         }
-        String ver = "";
+        String ver;
         if (packageInfo != null) {
             ver = "App Version: " + packageInfo.versionName;
         } else {
@@ -423,302 +398,276 @@ public class CategorySelect extends Activity {
         ((TextView) mMainView.findViewById(R.id.subItemSeriesA20PLUS)).setTextSize(ap.CategorySubItemFontSize);
         ((TextView) mMainView.findViewById(R.id.subItemSeriesA3)).setTextSize(ap.CategorySubItemFontSize);
 
-        this.findViewById(R.id.menuButton).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                userActionShowSystemMenu();
-            }
+        this.findViewById(R.id.menuButton).setOnClickListener(v -> userActionShowSystemMenu());
+
+        LinearLayout categoryAllMusics = mMainView.findViewById(R.id.categoryAllMusics);
+        categoryAllMusics.setOnClickListener(view -> {
+
+            categoryClose(true);
+
+            Intent intent = new Intent();
+            //intent.setClassName("jp.linanfine.dsma","jp.linanfine.dsma.activity.ScoreList");
+            intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
+            intent.putExtra("jp.linanfine.dsma.category", "All Musics");
+
+            startActivityForResult(intent, 1);
         });
+        LinearLayout categoryRecents = mMainView.findViewById(R.id.categoryRecents);
+        categoryRecents.setOnClickListener(view -> {
 
-        LinearLayout categoryAllMusics = (LinearLayout) mMainView.findViewById(R.id.categoryAllMusics);
-        categoryAllMusics.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
+            categoryClose(true);
 
+            Intent intent = new Intent();
+            //intent.setClassName("jp.linanfine.dsma","jp.linanfine.dsma.activity.ScoreList");
+            intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
+            intent.putExtra("jp.linanfine.dsma.category", "Recents");
+
+            startActivityForResult(intent, 1);
+        });
+        scrollView = mMainView.findViewById(R.id.scrollView);
+        LinearLayout categoryDifficulty = mMainView.findViewById(R.id.categoryDifficulty);
+        dificulties = mMainView.findViewById(R.id.difficulties);
+        LinearLayout categorySeriesTitle = mMainView.findViewById(R.id.categorySeriesTitle);
+        seriesTitles = mMainView.findViewById(R.id.seriesTitles);
+        LinearLayout categoryABC = mMainView.findViewById(R.id.categoryABC);
+        abcs = mMainView.findViewById(R.id.abcs);
+        LinearLayout categoryRank = mMainView.findViewById(R.id.categoryRank);
+        ranks = mMainView.findViewById(R.id.ranks);
+        LinearLayout categoryFCtype = mMainView.findViewById(R.id.categoryFCtype);
+        fctypes = mMainView.findViewById(R.id.fctypes);
+        LinearLayout categoryRival = mMainView.findViewById(R.id.categoryRival);
+        rivals = mMainView.findViewById(R.id.rivals);
+        LinearLayout categoryWinLoseRival = mMainView.findViewById(R.id.categoryWinLoseRival);
+        rivalwinlose = mMainView.findViewById(R.id.winloseRival);
+        LinearLayout categoryRankRival = mMainView.findViewById(R.id.categoryRankRival);
+        rivalranks = mMainView.findViewById(R.id.ranksRival);
+        LinearLayout categoryFCtypeRival = mMainView.findViewById(R.id.categoryFCtypeRival);
+        rivalfctypes = mMainView.findViewById(R.id.fctypesRival);
+        LinearLayout categoryMyList = mMainView.findViewById(R.id.categoryMyList);
+        mylists = mMainView.findViewById(R.id.mylists);
+        categoryDifficulty.setOnClickListener(view -> {
+            if (dificulties.getVisibility() == View.GONE) {
                 categoryClose(true);
+                mOpenedCategory = 0;
+                dificulties.setVisibility(View.VISIBLE);
+                (new AsyncTask<View, Void, View>() {
+                    @Override
+                    protected View doInBackground(View... params) {
+                        return params[0];
+                    }
 
-                Intent intent = new Intent();
-                //intent.setClassName("jp.linanfine.dsma","jp.linanfine.dsma.activity.ScoreList");
-                intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
-                intent.putExtra("jp.linanfine.dsma.category", "All Musics");
-
-                startActivityForResult(intent, 1);
-            }
-        });
-        LinearLayout categoryRecents = (LinearLayout) mMainView.findViewById(R.id.categoryRecents);
-        categoryRecents.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
-
+                    @Override
+                    protected void onPostExecute(View result) {
+                        int sy = scrollView.getScrollY();
+                        int[] loc = new int[2];
+                        result.getLocationInWindow(loc);
+                        int[] ll = new int[2];
+                        mMainView.findViewById(R.id.scrollView).getLocationInWindow(ll);
+                        scrollView.scrollTo(0, loc[1] - ll[1] + sy);
+                    }
+                }).execute(view);
+            } else {
                 categoryClose(true);
-
-                Intent intent = new Intent();
-                //intent.setClassName("jp.linanfine.dsma","jp.linanfine.dsma.activity.ScoreList");
-                intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
-                intent.putExtra("jp.linanfine.dsma.category", "Recents");
-
-                startActivityForResult(intent, 1);
             }
         });
-        scrollView = (ScrollView) mMainView.findViewById(R.id.scrollView);
-        LinearLayout categoryDifficulty = (LinearLayout) mMainView.findViewById(R.id.categoryDifficulty);
-        dificulties = (LinearLayout) mMainView.findViewById(R.id.difficulties);
-        LinearLayout categorySeriesTitle = (LinearLayout) mMainView.findViewById(R.id.categorySeriesTitle);
-        seriesTitles = (LinearLayout) mMainView.findViewById(R.id.seriesTitles);
-        LinearLayout categoryABC = (LinearLayout) mMainView.findViewById(R.id.categoryABC);
-        abcs = (LinearLayout) mMainView.findViewById(R.id.abcs);
-        LinearLayout categoryRank = (LinearLayout) mMainView.findViewById(R.id.categoryRank);
-        ranks = (LinearLayout) mMainView.findViewById(R.id.ranks);
-        LinearLayout categoryFCtype = (LinearLayout) mMainView.findViewById(R.id.categoryFCtype);
-        fctypes = (LinearLayout) mMainView.findViewById(R.id.fctypes);
-        LinearLayout categoryRival = (LinearLayout) mMainView.findViewById(R.id.categoryRival);
-        rivals = (LinearLayout) mMainView.findViewById(R.id.rivals);
-        LinearLayout categoryWinLoseRival = (LinearLayout) mMainView.findViewById(R.id.categoryWinLoseRival);
-        rivalwinlose = (LinearLayout) mMainView.findViewById(R.id.winloseRival);
-        LinearLayout categoryRankRival = (LinearLayout) mMainView.findViewById(R.id.categoryRankRival);
-        rivalranks = (LinearLayout) mMainView.findViewById(R.id.ranksRival);
-        LinearLayout categoryFCtypeRival = (LinearLayout) mMainView.findViewById(R.id.categoryFCtypeRival);
-        rivalfctypes = (LinearLayout) mMainView.findViewById(R.id.fctypesRival);
-        LinearLayout categoryMyList = (LinearLayout) mMainView.findViewById(R.id.categoryMyList);
-        mylists = (LinearLayout) mMainView.findViewById(R.id.mylists);
-        categoryDifficulty.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
-                if (dificulties.getVisibility() == View.GONE) {
-                    categoryClose(true);
-                    mOpenedCategory = 0;
-                    dificulties.setVisibility(View.VISIBLE);
-                    (new AsyncTask<View, Void, View>() {
-                        @Override
-                        protected View doInBackground(View... params) {
-                            return params[0];
-                        }
+        categorySeriesTitle.setOnClickListener(view -> {
+            if (seriesTitles.getVisibility() == View.GONE) {
+                categoryClose(true);
+                mOpenedCategory = 1;
+                seriesTitles.setVisibility(View.VISIBLE);
+                (new AsyncTask<View, Void, View>() {
+                    @Override
+                    protected View doInBackground(View... params) {
+                        return params[0];
+                    }
 
-                        @Override
-                        protected void onPostExecute(View result) {
-                            int sy = scrollView.getScrollY();
-                            int[] loc = new int[2];
-                            result.getLocationInWindow(loc);
-                            int[] ll = new int[2];
-                            mMainView.findViewById(R.id.scrollView).getLocationInWindow(ll);
-                            scrollView.scrollTo(0, loc[1] - ll[1] + sy);
-                        }
-                    }).execute(view);
-                } else {
-                    categoryClose(true);
-                }
+                    @Override
+                    protected void onPostExecute(View result) {
+                        int sy = scrollView.getScrollY();
+                        int[] loc = new int[2];
+                        result.getLocationInWindow(loc);
+                        int[] ll = new int[2];
+                        mMainView.findViewById(R.id.scrollView).getLocationInWindow(ll);
+                        scrollView.scrollTo(0, loc[1] - ll[1] + sy);
+                    }
+                }).execute(view);
+            } else {
+                categoryClose(true);
             }
         });
-        categorySeriesTitle.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
-                if (seriesTitles.getVisibility() == View.GONE) {
-                    categoryClose(true);
-                    mOpenedCategory = 1;
-                    seriesTitles.setVisibility(View.VISIBLE);
-                    (new AsyncTask<View, Void, View>() {
-                        @Override
-                        protected View doInBackground(View... params) {
-                            return params[0];
-                        }
+        categoryABC.setOnClickListener(view -> {
+            if (abcs.getVisibility() == View.GONE) {
+                categoryClose(true);
+                mOpenedCategory = 2;
+                abcs.setVisibility(View.VISIBLE);
+                (new AsyncTask<View, Void, View>() {
+                    @Override
+                    protected View doInBackground(View... params) {
+                        return params[0];
+                    }
 
-                        @Override
-                        protected void onPostExecute(View result) {
-                            int sy = scrollView.getScrollY();
-                            int[] loc = new int[2];
-                            result.getLocationInWindow(loc);
-                            int[] ll = new int[2];
-                            mMainView.findViewById(R.id.scrollView).getLocationInWindow(ll);
-                            scrollView.scrollTo(0, loc[1] - ll[1] + sy);
-                        }
-                    }).execute(view);
-                } else {
-                    categoryClose(true);
-                }
+                    @Override
+                    protected void onPostExecute(View result) {
+                        int sy = scrollView.getScrollY();
+                        int[] loc = new int[2];
+                        result.getLocationInWindow(loc);
+                        int[] ll = new int[2];
+                        mMainView.findViewById(R.id.scrollView).getLocationInWindow(ll);
+                        scrollView.scrollTo(0, loc[1] - ll[1] + sy);
+                    }
+                }).execute(view);
+            } else {
+                categoryClose(true);
             }
         });
-        categoryABC.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
-                if (abcs.getVisibility() == View.GONE) {
-                    categoryClose(true);
-                    mOpenedCategory = 2;
-                    abcs.setVisibility(View.VISIBLE);
-                    (new AsyncTask<View, Void, View>() {
-                        @Override
-                        protected View doInBackground(View... params) {
-                            return params[0];
-                        }
+        categoryRank.setOnClickListener(view -> {
+            if (ranks.getVisibility() == View.GONE) {
+                categoryClose(true);
+                mOpenedCategory = 3;
+                ranks.setVisibility(View.VISIBLE);
+                (new AsyncTask<View, Void, View>() {
+                    @Override
+                    protected View doInBackground(View... params) {
+                        return params[0];
+                    }
 
-                        @Override
-                        protected void onPostExecute(View result) {
-                            int sy = scrollView.getScrollY();
-                            int[] loc = new int[2];
-                            result.getLocationInWindow(loc);
-                            int[] ll = new int[2];
-                            mMainView.findViewById(R.id.scrollView).getLocationInWindow(ll);
-                            scrollView.scrollTo(0, loc[1] - ll[1] + sy);
-                        }
-                    }).execute(view);
-                } else {
-                    categoryClose(true);
-                }
+                    @Override
+                    protected void onPostExecute(View result) {
+                        int sy = scrollView.getScrollY();
+                        int[] loc = new int[2];
+                        result.getLocationInWindow(loc);
+                        int[] ll = new int[2];
+                        mMainView.findViewById(R.id.scrollView).getLocationInWindow(ll);
+                        scrollView.scrollTo(0, loc[1] - ll[1] + sy);
+                    }
+                }).execute(view);
+            } else {
+                categoryClose(true);
             }
         });
-        categoryRank.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
-                if (ranks.getVisibility() == View.GONE) {
-                    categoryClose(true);
-                    mOpenedCategory = 3;
-                    ranks.setVisibility(View.VISIBLE);
-                    (new AsyncTask<View, Void, View>() {
-                        @Override
-                        protected View doInBackground(View... params) {
-                            return params[0];
-                        }
+        categoryFCtype.setOnClickListener(view -> {
+            if (fctypes.getVisibility() == View.GONE) {
+                categoryClose(true);
+                mOpenedCategory = 4;
+                fctypes.setVisibility(View.VISIBLE);
+                (new AsyncTask<View, Void, View>() {
+                    @Override
+                    protected View doInBackground(View... params) {
+                        return params[0];
+                    }
 
-                        @Override
-                        protected void onPostExecute(View result) {
-                            int sy = scrollView.getScrollY();
-                            int[] loc = new int[2];
-                            result.getLocationInWindow(loc);
-                            int[] ll = new int[2];
-                            mMainView.findViewById(R.id.scrollView).getLocationInWindow(ll);
-                            scrollView.scrollTo(0, loc[1] - ll[1] + sy);
-                        }
-                    }).execute(view);
-                } else {
-                    categoryClose(true);
-                }
+                    @Override
+                    protected void onPostExecute(View result) {
+                        int sy = scrollView.getScrollY();
+                        int[] loc = new int[2];
+                        result.getLocationInWindow(loc);
+                        int[] ll = new int[2];
+                        mMainView.findViewById(R.id.scrollView).getLocationInWindow(ll);
+                        scrollView.scrollTo(0, loc[1] - ll[1] + sy);
+                    }
+                }).execute(view);
+            } else {
+                categoryClose(true);
             }
         });
-        categoryFCtype.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
-                if (fctypes.getVisibility() == View.GONE) {
-                    categoryClose(true);
-                    mOpenedCategory = 4;
-                    fctypes.setVisibility(View.VISIBLE);
-                    (new AsyncTask<View, Void, View>() {
-                        @Override
-                        protected View doInBackground(View... params) {
-                            return params[0];
-                        }
+        categoryRival.setOnClickListener(view -> {
+            if (rivals.getVisibility() == View.GONE) {
+                categoryClose(true);
+                mOpenedCategory = 6;
+                rivals.setVisibility(View.VISIBLE);
+                (new AsyncTask<View, Void, View>() {
+                    @Override
+                    protected View doInBackground(View... params) {
+                        return params[0];
+                    }
 
-                        @Override
-                        protected void onPostExecute(View result) {
-                            int sy = scrollView.getScrollY();
-                            int[] loc = new int[2];
-                            result.getLocationInWindow(loc);
-                            int[] ll = new int[2];
-                            mMainView.findViewById(R.id.scrollView).getLocationInWindow(ll);
-                            scrollView.scrollTo(0, loc[1] - ll[1] + sy);
-                        }
-                    }).execute(view);
-                } else {
-                    categoryClose(true);
-                }
+                    @Override
+                    protected void onPostExecute(View result) {
+                        int sy = scrollView.getScrollY();
+                        int[] loc = new int[2];
+                        result.getLocationInWindow(loc);
+                        int[] ll = new int[2];
+                        mMainView.findViewById(R.id.scrollView).getLocationInWindow(ll);
+                        scrollView.scrollTo(0, loc[1] - ll[1] + sy);
+                    }
+                }).execute(view);
+            } else {
+                categoryClose(true);
             }
         });
-        categoryRival.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
-                if (rivals.getVisibility() == View.GONE) {
-                    categoryClose(true);
-                    mOpenedCategory = 6;
-                    rivals.setVisibility(View.VISIBLE);
-                    (new AsyncTask<View, Void, View>() {
-                        @Override
-                        protected View doInBackground(View... params) {
-                            return params[0];
-                        }
+        categoryWinLoseRival.setOnClickListener(view -> {
+            if (rivalwinlose.getVisibility() == View.GONE) {
+                rivalSubCategoryClose();
+                mOpenedCategory = 7;
+                rivalwinlose.setVisibility(View.VISIBLE);
+                (new AsyncTask<View, Void, View>() {
+                    @Override
+                    protected View doInBackground(View... params) {
+                        return params[0];
+                    }
 
-                        @Override
-                        protected void onPostExecute(View result) {
-                            int sy = scrollView.getScrollY();
-                            int[] loc = new int[2];
-                            result.getLocationInWindow(loc);
-                            int[] ll = new int[2];
-                            mMainView.findViewById(R.id.scrollView).getLocationInWindow(ll);
-                            scrollView.scrollTo(0, loc[1] - ll[1] + sy);
-                        }
-                    }).execute(view);
-                } else {
-                    categoryClose(true);
-                }
+                    @Override
+                    protected void onPostExecute(View result) {
+                        int sy = scrollView.getScrollY();
+                        int[] loc = new int[2];
+                        result.getLocationInWindow(loc);
+                        int[] ll = new int[2];
+                        mMainView.findViewById(R.id.scrollView).getLocationInWindow(ll);
+                        scrollView.scrollTo(0, loc[1] - ll[1] + sy);
+                    }
+                }).execute(view);
+            } else {
+                rivalSubCategoryClose();
             }
         });
-        categoryWinLoseRival.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
-                if (rivalwinlose.getVisibility() == View.GONE) {
-                    rivalSubCategoryClose();
-                    mOpenedCategory = 7;
-                    rivalwinlose.setVisibility(View.VISIBLE);
-                    (new AsyncTask<View, Void, View>() {
-                        @Override
-                        protected View doInBackground(View... params) {
-                            return params[0];
-                        }
+        categoryRankRival.setOnClickListener(view -> {
+            if (rivalranks.getVisibility() == View.GONE) {
+                rivalSubCategoryClose();
+                mOpenedCategory = 8;
+                rivalranks.setVisibility(View.VISIBLE);
+                (new AsyncTask<View, Void, View>() {
+                    @Override
+                    protected View doInBackground(View... params) {
+                        return params[0];
+                    }
 
-                        @Override
-                        protected void onPostExecute(View result) {
-                            int sy = scrollView.getScrollY();
-                            int[] loc = new int[2];
-                            result.getLocationInWindow(loc);
-                            int[] ll = new int[2];
-                            mMainView.findViewById(R.id.scrollView).getLocationInWindow(ll);
-                            scrollView.scrollTo(0, loc[1] - ll[1] + sy);
-                        }
-                    }).execute(view);
-                } else {
-                    rivalSubCategoryClose();
-                }
+                    @Override
+                    protected void onPostExecute(View result) {
+                        int sy = scrollView.getScrollY();
+                        int[] loc = new int[2];
+                        result.getLocationInWindow(loc);
+                        int[] ll = new int[2];
+                        mMainView.findViewById(R.id.scrollView).getLocationInWindow(ll);
+                        scrollView.scrollTo(0, loc[1] - ll[1] + sy);
+                    }
+                }).execute(view);
+            } else {
+                rivalSubCategoryClose();
             }
         });
-        categoryRankRival.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
-                if (rivalranks.getVisibility() == View.GONE) {
-                    rivalSubCategoryClose();
-                    mOpenedCategory = 8;
-                    rivalranks.setVisibility(View.VISIBLE);
-                    (new AsyncTask<View, Void, View>() {
-                        @Override
-                        protected View doInBackground(View... params) {
-                            return params[0];
-                        }
+        categoryFCtypeRival.setOnClickListener(view -> {
+            if (rivalfctypes.getVisibility() == View.GONE) {
+                rivalSubCategoryClose();
+                mOpenedCategory = 9;
+                rivalfctypes.setVisibility(View.VISIBLE);
+                (new AsyncTask<View, Void, View>() {
+                    @Override
+                    protected View doInBackground(View... params) {
+                        return params[0];
+                    }
 
-                        @Override
-                        protected void onPostExecute(View result) {
-                            int sy = scrollView.getScrollY();
-                            int[] loc = new int[2];
-                            result.getLocationInWindow(loc);
-                            int[] ll = new int[2];
-                            mMainView.findViewById(R.id.scrollView).getLocationInWindow(ll);
-                            scrollView.scrollTo(0, loc[1] - ll[1] + sy);
-                        }
-                    }).execute(view);
-                } else {
-                    rivalSubCategoryClose();
-                }
-            }
-        });
-        categoryFCtypeRival.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
-                if (rivalfctypes.getVisibility() == View.GONE) {
-                    rivalSubCategoryClose();
-                    mOpenedCategory = 9;
-                    rivalfctypes.setVisibility(View.VISIBLE);
-                    (new AsyncTask<View, Void, View>() {
-                        @Override
-                        protected View doInBackground(View... params) {
-                            return params[0];
-                        }
-
-                        @Override
-                        protected void onPostExecute(View result) {
-                            int sy = scrollView.getScrollY();
-                            int[] loc = new int[2];
-                            result.getLocationInWindow(loc);
-                            int[] ll = new int[2];
-                            mMainView.findViewById(R.id.scrollView).getLocationInWindow(ll);
-                            scrollView.scrollTo(0, loc[1] - ll[1] + sy);
-                        }
-                    }).execute(view);
-                } else {
-                    rivalSubCategoryClose();
-                }
+                    @Override
+                    protected void onPostExecute(View result) {
+                        int sy = scrollView.getScrollY();
+                        int[] loc = new int[2];
+                        result.getLocationInWindow(loc);
+                        int[] ll = new int[2];
+                        mMainView.findViewById(R.id.scrollView).getLocationInWindow(ll);
+                        scrollView.scrollTo(0, loc[1] - ll[1] + sy);
+                    }
+                }).execute(view);
+            } else {
+                rivalSubCategoryClose();
             }
         });
 
@@ -738,7 +687,7 @@ public class CategorySelect extends Activity {
         mylists.removeAllViews();
         for (int i = 0; i < mylistCount; i++) {
             View item = this.getLayoutInflater().inflate(R.layout.view_categorysubitem, null);
-            TextView text = (TextView) item.findViewById(R.id.text);
+            TextView text = item.findViewById(R.id.text);
             text.setTextSize(ap.CategorySubItemFontSize);
             text.setText(FileReader.readMyListName(this, i));
             mylists.addView(item);
@@ -747,112 +696,106 @@ public class CategorySelect extends Activity {
             android.widget.LinearLayout.LayoutParams llp = new android.widget.LinearLayout.LayoutParams(lp);
             llp.setMargins(20, 0, 0, 0);
             item.setLayoutParams(llp);
-            item.setOnClickListener(new OnClickListener() {
-                public void onClick(View view) {
-                    Intent intent = new Intent();
-                    intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
-                    intent.putExtra("jp.linanfine.dsma.category", "My List");
-                    intent.putExtra("jp.linanfine.dsma.mylistid", view.getId());
+            item.setOnClickListener(view -> {
+                Intent intent = new Intent();
+                intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
+                intent.putExtra("jp.linanfine.dsma.category", "My List");
+                intent.putExtra("jp.linanfine.dsma.mylistid", view.getId());
 
-                    startActivityForResult(intent, 1);
-                }
+                startActivityForResult(intent, 1);
             });
-            item.setOnLongClickListener(new OnLongClickListener() {
-                public boolean onLongClick(View view) {
+            item.setOnLongClickListener(view -> {
 
-                    mGlobalS = ((TextView) view.findViewById(R.id.text)).getText().toString();
-                    mGlobalI = view.getId();
+                mGlobalS = ((TextView) view.findViewById(R.id.text)).getText().toString();
+                mGlobalI = view.getId();
 
-                    //選択項目を準備する。
-                    ArrayList<String> str_items = new ArrayList<String>();
-                    str_items.add(getResources().getString(R.string.strings____Menu_MyList____editMylistName));
-                    str_items.add(getResources().getString(R.string.strings____Menu_MyList____deleteMylist));
+                //選択項目を準備する。
+                ArrayList<String> str_items = new ArrayList<String>();
+                str_items.add(getResources().getString(R.string.strings____Menu_MyList____editMylistName));
+                str_items.add(getResources().getString(R.string.strings____Menu_MyList____deleteMylist));
 
-                    new AlertDialog.Builder(CategorySelect.this)
-                            .setTitle(mGlobalS)
-                            .setItems((String[]) str_items.toArray(new String[0]), new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
+                new AlertDialog.Builder(CategorySelect.this)
+                        .setTitle(mGlobalS)
+                        .setItems(str_items.toArray(new String[0]), (dialog, which) -> {
 
-                                    //選択したアイテムの番号(0～)がwhichに格納される
-                                    switch (which) {
-                                        case 0: {
+                            //選択したアイテムの番号(0～)がwhichに格納される
+                            switch (which) {
+                                case 0: {
 
-                                            //テキスト入力を受け付けるビューを作成します。
-                                            final EditText editView = (EditText) CategorySelect.this.getLayoutInflater().inflate(R.layout.view_singleline_edit_text, null).findViewById(R.id.editText);
-                                            editView.setText(mGlobalS);
-                                            editView.setSelectAllOnFocus(true);
-                                            editView.setOnFocusChangeListener(new OnFocusChangeListener() {
-                                                public void onFocusChange(View view, boolean focused) {
-                                                    if (focused) {
-                                                        mHandledView = view;
-                                                        mHandler.post(new Runnable() {
-                                                            public void run() {
-                                                                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                                                inputMethodManager.showSoftInput(mHandledView, InputMethodManager.SHOW_FORCED);
-                                                            }
-                                                        });
+                                    //テキスト入力を受け付けるビューを作成します。
+                                    final EditText editView = CategorySelect.this.getLayoutInflater().inflate(R.layout.view_singleline_edit_text, null).findViewById(R.id.editText);
+                                    editView.setText(mGlobalS);
+                                    editView.setSelectAllOnFocus(true);
+                                    editView.setOnFocusChangeListener(new OnFocusChangeListener() {
+                                        public void onFocusChange(View view1, boolean focused) {
+                                            if (focused) {
+                                                mHandledView = view1;
+                                                mHandler.post(new Runnable() {
+                                                    public void run() {
+                                                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                                        inputMethodManager.showSoftInput(mHandledView, InputMethodManager.SHOW_FORCED);
                                                     }
+                                                });
+                                            }
+                                        }
+                                    });
+                                    new AlertDialog.Builder(CategorySelect.this)
+                                            .setIcon(drawable.ic_dialog_info)
+                                            .setTitle(CategorySelect.this.getResources().getString(R.string.strings____Dialog_MyList____editMylistName))
+                                            //setViewにてビューを設定します。
+                                            .setView(editView)
+                                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int whichButton) {
+                                                    InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                                    inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                                                    FileReader.saveMyListName(CategorySelect.this, mGlobalI, editView.getText().toString());
+                                                    initialize();
+                                                }
+                                            })
+                                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int whichButton) {
+                                                    InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                                    inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                                                }
+                                            })
+                                            .show();
+
+                                    break;
+                                }
+                                case 1: {
+
+                                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CategorySelect.this);
+                                    // アラートダイアログのタイトルを設定します
+                                    alertDialogBuilder.setIcon(drawable.ic_dialog_alert);
+                                    alertDialogBuilder.setTitle(getResources().getString(R.string.strings____Dialog_MyList____deleteMylist));
+                                    // アラートダイアログのメッセージを設定します
+                                    alertDialogBuilder.setMessage(getResources().getString(R.string.strings____Dialog_MyList____deleteConferm));
+                                    // アラートダイアログの肯定ボタンがクリックされた時に呼び出されるコールバックリスナーを登録します
+                                    alertDialogBuilder.setPositiveButton(getResources().getString(R.string.strings_global____ok),
+                                            new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    FileReader.deleteMyList(CategorySelect.this, mGlobalI);
+                                                    initialize();
                                                 }
                                             });
-                                            new AlertDialog.Builder(CategorySelect.this)
-                                                    .setIcon(android.R.drawable.ic_dialog_info)
-                                                    .setTitle(CategorySelect.this.getResources().getString(R.string.strings____Dialog_MyList____editMylistName))
-                                                    //setViewにてビューを設定します。
-                                                    .setView(editView)
-                                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                                        public void onClick(DialogInterface dialog, int whichButton) {
-                                                            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                                            inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
-                                                            FileReader.saveMyListName(CategorySelect.this, mGlobalI, editView.getText().toString());
-                                                            initialize();
-                                                        }
-                                                    })
-                                                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                                        public void onClick(DialogInterface dialog, int whichButton) {
-                                                            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                                            inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
-                                                        }
-                                                    })
-                                                    .show();
+                                    // アラートダイアログの否定ボタンがクリックされた時に呼び出されるコールバックリスナーを登録します
+                                    alertDialogBuilder.setNegativeButton(getResources().getString(R.string.strings_global____cancel),
+                                            new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                }
+                                            });
+                                    // アラートダイアログのキャンセルが可能かどうかを設定します
+                                    alertDialogBuilder.setCancelable(true);
+                                    AlertDialog alertDialog = alertDialogBuilder.create();
+                                    // アラートダイアログを表示します
+                                    alertDialog.show();
 
-                                            break;
-                                        }
-                                        case 1: {
-
-                                            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CategorySelect.this);
-                                            // アラートダイアログのタイトルを設定します
-                                            alertDialogBuilder.setIcon(drawable.ic_dialog_alert);
-                                            alertDialogBuilder.setTitle(getResources().getString(R.string.strings____Dialog_MyList____deleteMylist));
-                                            // アラートダイアログのメッセージを設定します
-                                            alertDialogBuilder.setMessage(getResources().getString(R.string.strings____Dialog_MyList____deleteConferm));
-                                            // アラートダイアログの肯定ボタンがクリックされた時に呼び出されるコールバックリスナーを登録します
-                                            alertDialogBuilder.setPositiveButton(getResources().getString(R.string.strings_global____ok),
-                                                    new DialogInterface.OnClickListener() {
-                                                        public void onClick(DialogInterface dialog, int which) {
-                                                            FileReader.deleteMyList(CategorySelect.this, mGlobalI);
-                                                            initialize();
-                                                        }
-                                                    });
-                                            // アラートダイアログの否定ボタンがクリックされた時に呼び出されるコールバックリスナーを登録します
-                                            alertDialogBuilder.setNegativeButton(getResources().getString(R.string.strings_global____cancel),
-                                                    new DialogInterface.OnClickListener() {
-                                                        public void onClick(DialogInterface dialog, int which) {
-                                                        }
-                                                    });
-                                            // アラートダイアログのキャンセルが可能かどうかを設定します
-                                            alertDialogBuilder.setCancelable(true);
-                                            AlertDialog alertDialog = alertDialogBuilder.create();
-                                            // アラートダイアログを表示します
-                                            alertDialog.show();
-
-                                            break;
-                                        }
-                                    }
+                                    break;
                                 }
-                            }).show();
+                            }
+                        }).show();
 
-                    return false;
-                }
+                return false;
             });
         }
         categoryMyList.setOnClickListener(new OnClickListener() {
@@ -885,16 +828,14 @@ public class CategorySelect extends Activity {
 
 
         {
-            OnClickListener serClicked = new OnClickListener() {
-                public void onClick(View view) {
-                    String name = ((TextView) ((LinearLayout) view).getChildAt(1)).getText().toString();
+            OnClickListener serClicked = view -> {
+                String name = ((TextView) ((LinearLayout) view).getChildAt(1)).getText().toString();
 
-                    Intent intent = new Intent();
-                    intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
-                    intent.putExtra("jp.linanfine.dsma.category", "Ser" + name);
+                Intent intent = new Intent();
+                intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
+                intent.putExtra("jp.linanfine.dsma.category", "Ser" + name);
 
-                    startActivityForResult(intent, 1);
-                }
+                startActivityForResult(intent, 1);
             };
             mMainView.findViewById(R.id.seriesA3).setOnClickListener(serClicked);
             mMainView.findViewById(R.id.seriesA20PLUS).setOnClickListener(serClicked);
@@ -916,16 +857,14 @@ public class CategorySelect extends Activity {
             mMainView.findViewById(R.id.series3rd).setOnClickListener(serClicked);
             mMainView.findViewById(R.id.series2nd).setOnClickListener(serClicked);
             mMainView.findViewById(R.id.series1st).setOnClickListener(serClicked);
-            OnClickListener difClicked = new OnClickListener() {
-                public void onClick(View view) {
-                    String name = ((TextView) ((LinearLayout) view).getChildAt(1)).getText().toString();
+            OnClickListener difClicked = view -> {
+                String name = ((TextView) ((LinearLayout) view).getChildAt(1)).getText().toString();
 
-                    Intent intent = new Intent();
-                    intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
-                    intent.putExtra("jp.linanfine.dsma.category", "Dif" + name);
+                Intent intent = new Intent();
+                intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
+                intent.putExtra("jp.linanfine.dsma.category", "Dif" + name);
 
-                    startActivityForResult(intent, 1);
-                }
+                startActivityForResult(intent, 1);
             };
             mMainView.findViewById(R.id.difficulty1).setOnClickListener(difClicked);
             mMainView.findViewById(R.id.difficulty2).setOnClickListener(difClicked);
@@ -946,21 +885,21 @@ public class CategorySelect extends Activity {
             mMainView.findViewById(R.id.difficulty17).setOnClickListener(difClicked);
             mMainView.findViewById(R.id.difficulty18).setOnClickListener(difClicked);
             mMainView.findViewById(R.id.difficulty19).setOnClickListener(difClicked);
-            OnClickListener abcClicked = new OnClickListener() {
-                public void onClick(View view) {
-                    String name = ((TextView) ((LinearLayout) view).getChildAt(1)).getText().toString();
 
-                    Intent intent = new Intent();
-                    intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
-                    if (name.equals("NUM")) {
-                        intent.putExtra("jp.linanfine.dsma.category", "Abc***NUM***");
-                    } else {
-                        intent.putExtra("jp.linanfine.dsma.category", "Abc" + name);
-                    }
+            OnClickListener abcClicked = view -> {
+                String name = ((TextView) ((LinearLayout) view).getChildAt(1)).getText().toString();
 
-                    startActivityForResult(intent, 1);
+                Intent intent = new Intent();
+                intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
+                if (name.equals("NUM")) {
+                    intent.putExtra("jp.linanfine.dsma.category", "Abc***NUM***");
+                } else {
+                    intent.putExtra("jp.linanfine.dsma.category", "Abc" + name);
                 }
+
+                startActivityForResult(intent, 1);
             };
+
             mMainView.findViewById(R.id.abcNUM).setOnClickListener(abcClicked);
             mMainView.findViewById(R.id.abcA).setOnClickListener(abcClicked);
             mMainView.findViewById(R.id.abcB).setOnClickListener(abcClicked);
@@ -988,17 +927,17 @@ public class CategorySelect extends Activity {
             mMainView.findViewById(R.id.abcX).setOnClickListener(abcClicked);
             mMainView.findViewById(R.id.abcY).setOnClickListener(abcClicked);
             mMainView.findViewById(R.id.abcZ).setOnClickListener(abcClicked);
-            OnClickListener rankClicked = new OnClickListener() {
-                public void onClick(View view) {
-                    String name = ((TextView) ((LinearLayout) view).getChildAt(1)).getText().toString();
 
-                    Intent intent = new Intent();
-                    intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
-                    intent.putExtra("jp.linanfine.dsma.category", "Rank" + name);
+            OnClickListener rankClicked = view -> {
+                String name = ((TextView) ((LinearLayout) view).getChildAt(1)).getText().toString();
 
-                    startActivityForResult(intent, 1);
-                }
+                Intent intent = new Intent();
+                intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
+                intent.putExtra("jp.linanfine.dsma.category", "Rank" + name);
+
+                startActivityForResult(intent, 1);
             };
+
             mMainView.findViewById(R.id.rankAAA).setOnClickListener(rankClicked);
             mMainView.findViewById(R.id.rankAAp).setOnClickListener(rankClicked);
             mMainView.findViewById(R.id.rankAA).setOnClickListener(rankClicked);
@@ -1016,17 +955,17 @@ public class CategorySelect extends Activity {
             mMainView.findViewById(R.id.rankD).setOnClickListener(rankClicked);
             mMainView.findViewById(R.id.rankE).setOnClickListener(rankClicked);
             mMainView.findViewById(R.id.rankNoPlay).setOnClickListener(rankClicked);
-            OnClickListener fctypeClicked = new OnClickListener() {
-                public void onClick(View view) {
-                    String name = ((TextView) ((LinearLayout) view).getChildAt(1)).getText().toString();
 
-                    Intent intent = new Intent();
-                    intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
-                    intent.putExtra("jp.linanfine.dsma.category", "Fc" + name);
+            OnClickListener fctypeClicked = view -> {
+                String name = ((TextView) ((LinearLayout) view).getChildAt(1)).getText().toString();
 
-                    startActivityForResult(intent, 1);
-                }
+                Intent intent = new Intent();
+                intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
+                intent.putExtra("jp.linanfine.dsma.category", "Fc" + name);
+
+                startActivityForResult(intent, 1);
             };
+
             mMainView.findViewById(R.id.fcMFC).setOnClickListener(fctypeClicked);
             mMainView.findViewById(R.id.fcPFC).setOnClickListener(fctypeClicked);
             mMainView.findViewById(R.id.fcFC).setOnClickListener(fctypeClicked);
@@ -1035,17 +974,17 @@ public class CategorySelect extends Activity {
             mMainView.findViewById(R.id.fcCleared).setOnClickListener(fctypeClicked);
             mMainView.findViewById(R.id.fcFailed).setOnClickListener(fctypeClicked);
             mMainView.findViewById(R.id.fcNoPlay).setOnClickListener(fctypeClicked);
-            OnClickListener rankRivalClicked = new OnClickListener() {
-                public void onClick(View view) {
-                    String name = ((TextView) ((LinearLayout) view).getChildAt(1)).getText().toString();
 
-                    Intent intent = new Intent();
-                    intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
-                    intent.putExtra("jp.linanfine.dsma.category", "RankRival" + name);
+            OnClickListener rankRivalClicked = view -> {
+                String name = ((TextView) ((LinearLayout) view).getChildAt(1)).getText().toString();
 
-                    startActivityForResult(intent, 1);
-                }
+                Intent intent = new Intent();
+                intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
+                intent.putExtra("jp.linanfine.dsma.category", "RankRival" + name);
+
+                startActivityForResult(intent, 1);
             };
+
             mMainView.findViewById(R.id.rankAAARival).setOnClickListener(rankRivalClicked);
             mMainView.findViewById(R.id.rankAApRival).setOnClickListener(rankRivalClicked);
             mMainView.findViewById(R.id.rankAARival).setOnClickListener(rankRivalClicked);
@@ -1063,17 +1002,17 @@ public class CategorySelect extends Activity {
             mMainView.findViewById(R.id.rankDRival).setOnClickListener(rankRivalClicked);
             mMainView.findViewById(R.id.rankERival).setOnClickListener(rankRivalClicked);
             mMainView.findViewById(R.id.rankNoPlayRival).setOnClickListener(rankRivalClicked);
-            OnClickListener fctypeRivalClicked = new OnClickListener() {
-                public void onClick(View view) {
-                    String name = ((TextView) ((LinearLayout) view).getChildAt(1)).getText().toString();
 
-                    Intent intent = new Intent();
-                    intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
-                    intent.putExtra("jp.linanfine.dsma.category", "FcRival" + name);
+            OnClickListener fctypeRivalClicked = view -> {
+                String name = ((TextView) ((LinearLayout) view).getChildAt(1)).getText().toString();
 
-                    startActivityForResult(intent, 1);
-                }
+                Intent intent = new Intent();
+                intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
+                intent.putExtra("jp.linanfine.dsma.category", "FcRival" + name);
+
+                startActivityForResult(intent, 1);
             };
+
             mMainView.findViewById(R.id.fcMFCRival).setOnClickListener(fctypeRivalClicked);
             mMainView.findViewById(R.id.fcPFCRival).setOnClickListener(fctypeRivalClicked);
             mMainView.findViewById(R.id.fcFCRival).setOnClickListener(fctypeRivalClicked);
@@ -1082,17 +1021,17 @@ public class CategorySelect extends Activity {
             mMainView.findViewById(R.id.fcClearedRival).setOnClickListener(fctypeRivalClicked);
             mMainView.findViewById(R.id.fcFailedRival).setOnClickListener(fctypeRivalClicked);
             mMainView.findViewById(R.id.fcNoPlayRival).setOnClickListener(fctypeRivalClicked);
-            OnClickListener winloseRivalClicked = new OnClickListener() {
-                public void onClick(View view) {
-                    String name = ((TextView) ((LinearLayout) view).getChildAt(1)).getText().toString();
 
-                    Intent intent = new Intent();
-                    intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
-                    intent.putExtra("jp.linanfine.dsma.category", "WinLoseRival" + name);
+            OnClickListener winloseRivalClicked = view -> {
+                String name = ((TextView) ((LinearLayout) view).getChildAt(1)).getText().toString();
 
-                    startActivityForResult(intent, 1);
-                }
+                Intent intent = new Intent();
+                intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
+                intent.putExtra("jp.linanfine.dsma.category", "WinLoseRival" + name);
+
+                startActivityForResult(intent, 1);
             };
+
             mMainView.findViewById(R.id.winRival).setOnClickListener(winloseRivalClicked);
             mMainView.findViewById(R.id.loseRival).setOnClickListener(winloseRivalClicked);
             mMainView.findViewById(R.id.drawRival).setOnClickListener(winloseRivalClicked);
@@ -1103,7 +1042,6 @@ public class CategorySelect extends Activity {
             mMainView.findViewById(R.id.loseCloseRival).setOnClickListener(winloseRivalClicked);
             mMainView.findViewById(R.id.drawPlayedRival).setOnClickListener(winloseRivalClicked);
         }
-
 
         switch (mOpenedCategory) {
             case 0:
@@ -1158,12 +1096,10 @@ public class CategorySelect extends Activity {
         }
 
         debugCount = -9;
-        this.findViewById(R.id.sou).setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                ++debugCount;
-                if (debugCount > 0) {
-                    showDialogFromGateIds();
-                }
+        this.findViewById(R.id.sou).setOnClickListener(v -> {
+            ++debugCount;
+            if (debugCount > 0) {
+                showDialogFromGateIds();
             }
         });
 
@@ -1280,12 +1216,10 @@ public class CategorySelect extends Activity {
                         .setTitle(CategorySelect.this.getResources().getString(R.string.strings_global____app_name))
                         .setView(mFromGateIds.getView())
                         .setCancelable(false)
-                        .setNegativeButton(CategorySelect.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                if (mFromGateIds != null) {
-                                    mFromGateIds.cancel();
-                                    mFromGateIds = null;
-                                }
+                        .setNegativeButton(CategorySelect.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> {
+                            if (mFromGateIds != null) {
+                                mFromGateIds.cancel();
+                                mFromGateIds = null;
                             }
                         })
                         .show()
@@ -1310,12 +1244,10 @@ public class CategorySelect extends Activity {
                         .setTitle(CategorySelect.this.getResources().getString(R.string.strings____Dialog_FromGate__Dialog_FromGateList____logGetScoreList) + " (" + (mFromGateListGetDouble ? "DP" : "SP") + ") ...")
                         .setView(mFromGateList.getView())
                         .setCancelable(false)
-                        .setNegativeButton(CategorySelect.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                if (mFromGateList != null) {
-                                    mFromGateList.cancel();
-                                    mFromGateList = null;
-                                }
+                        .setNegativeButton(CategorySelect.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> {
+                            if (mFromGateList != null) {
+                                mFromGateList.cancel();
+                                mFromGateList = null;
                             }
                         })
                         .show()
@@ -1341,7 +1273,7 @@ public class CategorySelect extends Activity {
             FileReader.copyMusicNames(this);
             FileReader.copyShockArrowExists(this);
         }
-        FileReader.requestAd((LinearLayout) this.findViewById(R.id.adContainer), this);
+        FileReader.requestAd(this.findViewById(R.id.adContainer), this);
         if (new Date().getTime() - FileReader.readLastAdTapTime(this) > 86400000) {
             this.findViewById(R.id.adNotif).setVisibility(View.VISIBLE);
         } else {
@@ -1356,7 +1288,7 @@ public class CategorySelect extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         ActivitySetting.setFullScreen(this);
         this.setContentView(view);
-        mTopLevelLayout = (LinearLayout) view.findViewById(R.id.top);
+        mTopLevelLayout = view.findViewById(R.id.top);
         mMainView = this.getLayoutInflater().inflate(R.layout.view_category_select_inner, null);
         mTopLevelLayout.addView(mMainView);
 
