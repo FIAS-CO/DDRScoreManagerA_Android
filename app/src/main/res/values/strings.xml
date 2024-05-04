@@ -2,8 +2,8 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-[2022/11/12] 0.134.23072700\n
-* Fix: Internal data has been updated due to the administrator takeover.
+[2024/05/03] 0.136.24050300\n
+* Fix: Updates were made in preparation for the creation of new functions. There is no change in the look and behavior.
     </string>
     
     <string name="strings_global____app_name">DDR Score Manager A</string>
