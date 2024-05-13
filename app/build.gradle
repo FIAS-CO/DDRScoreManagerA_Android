@@ -25,7 +25,15 @@ android {
     }
 }
 
+var roomVersion = "2.6.1"
 dependencies {
     implementation 'com.google.android.gms:play-services-ads:22.1.0'
     //compile 'com.android.support:multidex:1.0.0'
+
+    // Room components
+    implementation "androidx.room:room-runtime:$roomVersion"
+    annotationProcessor "androidx.room:room-compiler:$roomVersion" // Javaを使用する場合
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:$roomVersion"
 }
