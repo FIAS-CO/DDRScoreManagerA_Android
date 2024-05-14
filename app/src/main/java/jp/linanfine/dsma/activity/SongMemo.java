@@ -37,8 +37,6 @@ public class SongMemo extends Activity {
     private PatternType mPattern;
     private TreeMap<Integer, MusicData> mMusicList;
     private TreeMap<Integer, MusicScore> mScoreList;
-    private String mRivalId;
-    private String mRivalName;
 
     MusicData item;
     MusicScore scoredata;
@@ -67,64 +65,18 @@ public class SongMemo extends Activity {
 
         mItemId = intent.getIntExtra("jp.linanfine.dsma.musicid", -1);
         mPattern = (PatternType) intent.getSerializableExtra("jp.linanfine.dsma.pattern");
-        mRivalId = intent.getStringExtra("jp.linanfine.dsma.rivalid");
-        mRivalName = intent.getStringExtra("jp.linanfine.dsma.rivalname");
+//        mRivalId = intent.getStringExtra("jp.linanfine.dsma.rivalid");
+//        mRivalName = intent.getStringExtra("jp.linanfine.dsma.rivalname");
 
         mMusicList = FileReader.readMusicList(this);
-        mScoreList = FileReader.readScoreList(this, mRivalId);
+//        mScoreList = FileReader.readScoreList(this, mRivalId);
 
-        if (mRivalId != null) {
-            ((TextView) this.findViewById(R.id.title)).setText(mRivalName);
-        }
+//        if (mRivalId != null) {
+//            ((TextView) this.findViewById(R.id.title)).setText(mRivalName);
+//        }
 
-        View editScore = this.findViewById(R.id.editScore);
-        editScore.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
-                //テキスト入力を受け付けるビューを作成します。
-                final EditText editView = (EditText) SongMemo.this.getLayoutInflater().inflate(R.layout.view_digit_edit_text, null).findViewById(R.id.editText);
-                editView.setText(String.valueOf(mScore));
-                editView.setOnFocusChangeListener(new OnFocusChangeListener() {
-                    public void onFocusChange(View view, boolean focused) {
-                        if (focused) {
-                            mHandledView = view;
-                            mHandler.post(new Runnable() {
-                                public void run() {
-                                    InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                    inputMethodManager.showSoftInput(mHandledView, InputMethodManager.SHOW_FORCED);
-                                }
-                            });
-                        }
-                    }
-                });
-                new AlertDialog.Builder(SongMemo.this)
-                        .setIcon(android.R.drawable.ic_dialog_info)
-                        .setTitle(SongMemo.this.getResources().getString(R.string.dialog_input_score))
-                        //setViewにてビューを設定します。
-                        .setView(editView)
-                        .setPositiveButton(SongMemo.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
-                                Editable text = editView.getText();
-                                try {
-                                    int value = Integer.valueOf(text.toString());
-                                    if (0 <= value && value <= 1000000) {
-                                        mScore = value;
-                                        SongMemo.this.setView();
-                                    }
-                                } catch (Exception e) {
-                                }
-                            }
-                        })
-                        .setNegativeButton(SongMemo.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
-                            }
-                        })
-                        .show();
-            }
-        });
+        View memoView = this.findViewById(R.id.editTextTextMultiLine);
+
 
         TextView textView;
 
@@ -275,7 +227,7 @@ public class SongMemo extends Activity {
         Button ok = (Button) this.findViewById(R.id.ok);
         ok.setOnClickListener(view -> {
             mScoreList.put(mItemId, scoredata);
-            FileReader.saveScoreData(SongMemo.this, mRivalId, mScoreList);
+//            FileReader.saveScoreData(SongMemo.this, mRivalId, mScoreList);
             SongMemo.this.finish();
         });
 
