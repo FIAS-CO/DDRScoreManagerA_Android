@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 33
+    namespace 'jp.linanfine.dsma'
+    compileSdk  34
     defaultConfig {
         applicationId "jp.linanfine.dsma"
-        minSdkVersion 19
-        targetSdkVersion 33
+        minSdkVersion 21
+        targetSdk 34
         //multiDexEnabled true
     }
     //buildToolsVersion "25.0.2"
@@ -26,6 +27,6 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.android.gms:play-services-ads:22.1.0'
+    implementation 'com.google.android.gms:play-services-ads:23.1.0'
     //compile 'com.android.support:multidex:1.0.0'
 }
