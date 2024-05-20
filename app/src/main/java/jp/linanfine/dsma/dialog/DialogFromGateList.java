@@ -302,8 +302,6 @@ public class DialogFromGateList {
             titleLinkText = "<a href=\"/game/ddr/ddra3/p/rival/music_detail.html?index=";
         }
         int titleLinkTextLength = titleLinkText.length();
-        String patternBlockStartText = "<td class=\"rank\" id=\"";
-        int patternBlockStartTextLength = patternBlockStartText.length();
         String patternBlockEndText = "</td>";
         int patternBlockEndTextLength = patternBlockEndText.length();
 
@@ -312,12 +310,18 @@ public class DialogFromGateList {
         StringBuilder sb = new StringBuilder();
 
         boolean scoreExists = false;
+        // 楽曲ごとのループ
         while (parsingText.contains(musicBlockStartText)) {
+            // musicBlock を <tr class="data"> 内部に
             parsingText = parsingText.substring(parsingText.indexOf(musicBlockStartText) + musicBlockStartTextLength);
             Log.d("current", parsingText);
             String musicBlock = parsingText.substring(0, parsingText.indexOf(musicBlockEndText));
+
             //Log.e("DSM", musicBlock);
+            // parsingText を次の  <tr class="data"> 以降に
             parsingText = parsingText.substring(musicBlock.length() + musicBlockEndTextLength);
+
+            // musicBlock を曲の index 以降に
             musicBlock = musicBlock.substring(musicBlock.indexOf(titleLinkText) + titleLinkTextLength);
             String idText = musicBlock.substring(0, musicBlock.indexOf(idDiffEnd));
             //int musicId = Integer.valueOf(idText);
@@ -351,21 +355,33 @@ public class DialogFromGateList {
                 ms = new MusicScore();
             }
 
+            // 難易度ごとの<td>をループで回す
+            String patternBlockStartText = "<td class=\"rank\" id=\"";
+            int patternBlockStartTextLength = patternBlockStartText.length();
             while (musicBlock.contains(patternBlockStartText)) {
-                ScoreData sd = new ScoreData();
+                // musicBlock は <td class="rank" id="難易度"> の難易度以降
+                musicBlock = musicBlock.substring(musicBlock.indexOf(patternBlockStartText) + patternBlockStartTextLength);
+                // patternBlock は難易度以降から /td の中
+                String patternBlock = musicBlock.substring(0, musicBlock.indexOf(patternBlockEndText));
+
+                // musicBlock は次の<td>から
+                musicBlock = musicBlock.substring(patternBlock.length() + patternBlockEndTextLength);
 
                 String patternLinkText = titleLinkText + idText + "&amp;diff=";
                 int patternLinkTextLength = patternLinkText.length();
-                musicBlock = musicBlock.substring(musicBlock.indexOf(patternBlockStartText) + patternBlockStartTextLength);
-                String patternBlock = musicBlock.substring(0, musicBlock.indexOf(patternBlockEndText));
-                musicBlock = musicBlock.substring(patternBlock.length() + patternBlockEndTextLength);
+                // patternBlock は <a href= 以降 /td の前まで
                 patternBlock = patternBlock.substring(patternBlock.indexOf(patternLinkText));
                 String diffText = patternBlock.substring(patternLinkTextLength);
                 diffText = diffText.substring(0, diffText.indexOf(idDiffEnd));
                 int diff = Integer.parseInt(diffText);
+
+                // 不明
                 if (patternBlock.contains(">")) {
                     patternBlock = patternBlock.substring(patternBlock.indexOf("<"));
                 }
+
+                ScoreData sd = new ScoreData();
+
                 if (patternBlock.contains("full_none")) {
                     sd.FullComboType = FullComboType.None;
                 } else if (patternBlock.contains("full_good")) {
@@ -385,6 +401,7 @@ public class DialogFromGateList {
                     Log.d(musicData.Name, "a-2");
                 } else {
                     Log.d(musicData.Name, "a-3");
+                    // タグ全部削ってスコア文字列だけ残す
                     String scoreText = patternBlock.replaceAll("<.*?>", "");
                     Log.d(musicData.Name, scoreText);
                     sd.Score = Integer.parseInt(scoreText);
