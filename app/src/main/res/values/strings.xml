@@ -2,7 +2,7 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-[2024/05/17] 0.139.24051700\n
+[2024/05/20] 0.140.24052000\n
 * Fix: Updates were made in preparation for the creation of new functions. There is no change in the look and behavior.
     </string>
     
