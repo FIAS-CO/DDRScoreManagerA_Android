@@ -1,4 +1,22 @@
+疑問
+・↓のDialgFromGateXxxはそれぞれ何をやってる？
+    ・各処理が正しく動いているか確認する必要がある
+
+・やりたいこと
+    ・html解析のシンプル化
+    <td class="rank" id="beginner"> を受け取って処理するメソッドとか作りたい
+
+URL差し替え箇所
+・"https://p.eagate.573.jp/game/ddr/ddra20/p/" を探す
+DialogFromGateStatus
 DialogFromGateList
+DialogFromGateIds
+DialogFromGate
+DialogFromSou
+
+
+
+- DialogFromGateListの処理
 
 ↓の楽曲一覧から取得を始める
 https://p.eagate.573.jp/game/ddr/ddra3/p/playdata/music_data_single.html
@@ -61,7 +79,7 @@ https://p.eagate.573.jp/game/ddr/ddra3/p/playdata/music_data_single.html
 
 
 楽曲名、IDを取得
-mMusicIds から楽曲名でMusicId
+ WebTitleToMusicIdList mMusicIds から楽曲名でMusicId
 
 public class MusicId {
 	public int musicId;
@@ -70,5 +88,41 @@ public class MusicId {
 }
 
 MusicId.musicId で mMusicList から MusicData
+public class MusicData {
+	public int Id;
+	public String Name;
+	public String Ruby;
+	public SeriesTitle SeriesTitle;
+	public int MinBPM;
+	public int MaxBPM;
+	public int Difficulty_bSP;
+	public int Difficulty_BSP;
+	public int Difficulty_DSP;
+	public int Difficulty_ESP;
+	public int Difficulty_CSP;
+	public int Difficulty_BDP;
+	public int Difficulty_DDP;
+	public int Difficulty_EDP;
+	public int Difficulty_CDP;
+	public TreeMap<Integer, BooleanPair> ShockArrowExists;
 
-338行まで
+public class MusicScore {
+	public ScoreData bSP = new ScoreData();
+	public ScoreData BSP = new ScoreData();
+	public ScoreData DSP = new ScoreData();
+	public ScoreData ESP = new ScoreData();
+	public ScoreData CSP = new ScoreData();
+	public ScoreData BDP = new ScoreData();
+	public ScoreData DDP = new ScoreData();
+	public ScoreData EDP = new ScoreData();
+	public ScoreData CDP = new ScoreData();
+}
+
+public class ScoreData {
+	public MusicRank Rank = MusicRank.Noplay;
+	public int Score;
+	public int MaxCombo;
+	public FullComboType FullComboType = jp.linanfine.dsma.value._enum.FullComboType.None;
+	public int PlayCount;
+	public int ClearCount;
+}
