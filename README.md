@@ -19,7 +19,3 @@ https://docs.google.com/spreadsheets/d/10BCNI4sarU2G32P7FLMchKa3IgQThNxFfr3E90L1
 ## バージョンアップ時
 ### 更新内容の記載
 "strings____Dialog_UpdateInfo____updates" で検索
-
-### 広告ID変更
-- AndroidManifest.xml
-- FileReader.java
