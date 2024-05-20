@@ -2,8 +2,8 @@
 <resources>
 
   <string name="strings____Dialog_UpdateInfo____updates">
-[2022/11/12] 0.134.23072700\n
-* Fix: 관리자 인수인계에 따른 내부 데이터 업데이트를 진행했습니다.
+[2024/05/20] 0.140.24052000\n
+* Fix: 신규 기능 생성 준비에 따른 업데이트를 진행했습니다. 외형적인 동작에는 변화가 없습니다.
    </string>
 
   <string name="strings_global____app_name">DDR Score Manager A</string>

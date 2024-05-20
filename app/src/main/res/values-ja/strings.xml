@@ -2,8 +2,8 @@
 <resources>
     
     <string name="strings____Dialog_UpdateInfo____updates">
-[2022/11/12] 0.134.23072700\n
-* Fix: 管理者引き継ぎに伴う内部データの更新を行いました。
+[2024/05/20] 0.140.24052000\n
+* Fix: 新規機能作成準備に伴うアップデートを行いました。見た目の動作に変更はありません。
     </string>
     
     <string name="strings_global____app_name">DDR Score Manager A</string>

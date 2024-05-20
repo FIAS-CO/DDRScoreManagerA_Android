@@ -1,0 +1,74 @@
+DialogFromGateList
+
+↓の楽曲一覧から取得を始める
+https://p.eagate.573.jp/game/ddr/ddra3/p/playdata/music_data_single.html
+
+
+ "<tr class=\"data\"></tr>" の範囲内に楽曲一覧
+
+楽曲個別がこんな感じ
+<tr class="data">
+    <td>
+        <img src="/game/ddr/ddra3/p/images/binary_jk.html?img=6d10P0Pd1PiD1l6DPQdoPD1Q8DP0QlqQ&kind=2" class="jk" width="30">
+        <a href="/game/ddr/ddra3/p/playdata/music_detail.html?index=6d10P0Pd1PiD1l6DPQdoPD1Q8DP0QlqQ" class="music_info cboxelement">蒼が消えるとき</a>
+    </td>
+    <td class="rank" id="beginner">
+        <div class="data_rank">
+            <a href="/game/ddr/ddra3/p/playdata/music_detail.html?index=6d10P0Pd1PiD1l6DPQdoPD1Q8DP0QlqQ&diff=0" class="music_info cboxelement">
+                <img src="/game/ddr/ddra3/p/images/play_data/rank_s_none.png">
+                <img src="/game/ddr/ddra3/p/images/play_data/full_none.png">
+            </a>
+        </div>
+        <div class="data_score" style="display:none;">-</div>
+    </td>
+    <td class="rank" id="basic">
+        <div class="data_rank">
+            <a href="/game/ddr/ddra3/p/playdata/music_detail.html?index=6d10P0Pd1PiD1l6DPQdoPD1Q8DP0QlqQ&diff=1" class="music_info cboxelement">
+                <img src="/game/ddr/ddra3/p/images/play_data/rank_s_none.png">
+                <img src="/game/ddr/ddra3/p/images/play_data/full_none.png">
+            </a>
+        </div>
+        <div class="data_score" style="display:none;">-</div>
+    </td>
+    <td class="rank" id="difficult">
+        <div class="data_rank">
+            <a href="/game/ddr/ddra3/p/playdata/music_detail.html?index=6d10P0Pd1PiD1l6DPQdoPD1Q8DP0QlqQ&diff=2" class="music_info cboxelement">
+                <img src="/game/ddr/ddra3/p/images/play_data/rank_s_aaa.png">
+                <img src="/game/ddr/ddra3/p/images/play_data/full_perfect.png">
+            </a>
+        </div>
+        <div class="data_score" style="display:none;">999640</div>
+    </td>
+    <td class="rank" id="expert">
+        <div class="data_rank">
+            <a href="/game/ddr/ddra3/p/playdata/music_detail.html?index=6d10P0Pd1PiD1l6DPQdoPD1Q8DP0QlqQ&diff=3" class="music_info cboxelement">
+                <img src="/game/ddr/ddra3/p/images/play_data/rank_s_aaa.png">
+                <img src="/game/ddr/ddra3/p/images/play_data/full_great.png">
+            </a>
+        </div>
+        <div class="data_score" style="display:none;">998570</div>
+    </td>
+    <td class="rank" id="challenge">
+        <div class="data_rank">
+            <a href="/game/ddr/ddra3/p/playdata/music_detail.html?index=6d10P0Pd1PiD1l6DPQdoPD1Q8DP0QlqQ&diff=4" class="music_info cboxelement">
+                <img src="/game/ddr/ddra3/p/images/play_data/rank_s_none.png">
+                <img src="/game/ddr/ddra3/p/images/play_data/full_none.png">
+            </a>
+        </div>
+        <div class="data_score" style="display:none;">-</div>
+    </td>
+</tr>
+
+
+楽曲名、IDを取得
+mMusicIds から楽曲名でMusicId
+
+public class MusicId {
+	public int musicId;
+	public String idOnWebPage;
+	public boolean isDeleted;
+}
+
+MusicId.musicId で mMusicList から MusicData
+
+338行まで
