@@ -154,7 +154,7 @@ public class FileReader {
 
                     // Sample AdMob app ID: ca-app-pub-3940256099942544/6300978111
                     // product app ID: ca-app-pub-8151928728657048/2728579739
-                    adGoogle.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
+                    adGoogle.setAdUnitId("ca-app-pub-8151928728657048/2728579739");
                     adGoogle.setAdListener(new AdListener() {
                         public void onAdLeftApplication() {
                             SharedPreferences pref = act.getApplicationContext().getSharedPreferences("AdSetting", Context.MODE_PRIVATE);
