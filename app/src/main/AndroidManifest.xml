@@ -90,6 +90,9 @@
             android:label="@string/strings_global____app_name" >
         </activity>
         <activity
+            android:name="jp.linanfine.dsma.activity.SongMemo">
+        </activity>
+        <activity
             android:name="jp.linanfine.dsma.activity.ScoreDataResponser"
             android:label="DDR Score Manager A"
             android:exported="true">

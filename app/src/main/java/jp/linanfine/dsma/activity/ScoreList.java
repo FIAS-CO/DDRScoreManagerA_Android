@@ -1227,95 +1227,101 @@ public class ScoreList extends Activity {
 
         new AlertDialog.Builder(ScoreList.this)
                 .setTitle(mSelectedItemPattern.Pattern.toString() + " : " + mSelectedMusicData.Name)
-                .setItems((String[]) str_items.toArray(new String[0]), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (mCategory.equals("My List")) {
-                                    if (mActiveRivalId != null && mActiveRivalId != "00000000") {
-                                        switch (which) {
-                                            case 0:
-                                                userActionCopyToClipboard();
-                                                break;
-                                            case 1:
-                                                userActionFromGate();
-                                                break;
-                                            case 2:
-                                                userActionDirectEdit();
-                                                break;
-                                            case 3:
-                                                userActionSelectRivalAction();
-                                                break;
-                                            case 4:
-                                                userActionAddToMyList();
-                                                break;
-                                            case 5:
-                                                userActionRemoveFromMyList();
-                                                break;
-                                            case 6:
-                                                userActionOpenOwnMusic();
-                                                break;
-                                        }
-                                    } else {
-                                        switch (which) {
-                                            case 0:
-                                                userActionCopyToClipboard();
-                                                break;
-                                            case 1:
-                                                userActionFromGate();
-                                                break;
-                                            case 2:
-                                                userActionDirectEdit();
-                                                break;
-                                            case 3:
-                                                userActionAddToMyList();
-                                                break;
-                                            case 4:
-                                                userActionRemoveFromMyList();
-                                                break;
-                                            case 5:
-                                                userActionOpenOwnMusic();
-                                                break;
-                                        }
+                .setItems(str_items.toArray(new String[0]), (dialog, which) -> {
+                            if (mCategory.equals("My List")) {
+                                if (mActiveRivalId != null && !mActiveRivalId.equals("00000000")) {
+                                    switch (which) {
+                                        case 0:
+                                            userActionCopyToClipboard();
+                                            break;
+                                        case 1:
+                                            userActionFromGate();
+                                            break;
+                                        case 2:
+                                            userActionDirectEdit();
+                                            break;
+                                        case 3:
+                                            userActionSelectRivalAction();
+                                            break;
+                                        case 4:
+                                            userActionAddToMyList();
+                                            break;
+                                        case 5:
+                                            userActionRemoveFromMyList();
+                                            break;
+                                        case 6:
+                                            userActionOpenOwnMusic();
+                                            break;
+                                        case 7:
+                                            userActionSongMemo();
                                     }
                                 } else {
-                                    if (mActiveRivalId != null && mActiveRivalId != "00000000") {
-                                        switch (which) {
-                                            case 0:
-                                                userActionCopyToClipboard();
-                                                break;
-                                            case 1:
-                                                userActionFromGate();
-                                                break;
-                                            case 2:
-                                                userActionDirectEdit();
-                                                break;
-                                            case 3:
-                                                userActionSelectRivalAction();
-                                                break;
-                                            case 4:
-                                                userActionAddToMyList();
-                                                break;
-                                            case 5:
-                                                userActionOpenOwnMusic();
-                                                break;
-                                        }
-                                    } else {
-                                        switch (which) {
-                                            case 0:
-                                                userActionCopyToClipboard();
-                                                break;
-                                            case 1:
-                                                userActionFromGate();
-                                                break;
-                                            case 2:
-                                                userActionDirectEdit();
-                                                break;
-                                            case 3:
-                                                userActionAddToMyList();
-                                                break;
-                                            case 4:
-                                                userActionOpenOwnMusic();
-                                                break;
-                                        }
+                                    switch (which) {
+                                        case 0:
+                                            userActionCopyToClipboard();
+                                            break;
+                                        case 1:
+                                            userActionFromGate();
+                                            break;
+                                        case 2:
+                                            userActionDirectEdit();
+                                            break;
+                                        case 3:
+                                            userActionAddToMyList();
+                                            break;
+                                        case 4:
+                                            userActionRemoveFromMyList();
+                                            break;
+                                        case 5:
+                                            userActionOpenOwnMusic();
+                                            break;
+                                        case 6:
+                                            userActionSongMemo();
+                                    }
+                                }
+                            } else {
+                                if (mActiveRivalId != null && mActiveRivalId != "00000000") {
+                                    switch (which) {
+                                        case 0:
+                                            userActionCopyToClipboard();
+                                            break;
+                                        case 1:
+                                            userActionFromGate();
+                                            break;
+                                        case 2:
+                                            userActionDirectEdit();
+                                            break;
+                                        case 3:
+                                            userActionSelectRivalAction();
+                                            break;
+                                        case 4:
+                                            userActionAddToMyList();
+                                            break;
+                                        case 5:
+                                            userActionOpenOwnMusic();
+                                            break;
+                                        case 6:
+                                            userActionSongMemo();
+                                    }
+                                } else {
+                                    switch (which) {
+                                        case 0:
+                                            userActionCopyToClipboard();
+                                            break;
+                                        case 1:
+                                            userActionFromGate();
+                                            break;
+                                        case 2:
+                                            userActionDirectEdit();
+                                            break;
+                                        case 3:
+                                            userActionAddToMyList();
+                                            break;
+                                        case 4:
+                                            userActionOpenOwnMusic();
+                                            break;
+                                        case 5:
+                                            userActionSongMemo();
                                     }
                                 }
                             }
@@ -1429,6 +1435,15 @@ public class ScoreList extends Activity {
                     })
                     .show();
         }
+    }
+
+    private void userActionSongMemo() {
+        Intent intent = new Intent();
+        intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.SongMemo");
+        intent.putExtra("jp.linanfine.dsma.musicid", mSelectedItemPattern.MusicId);
+
+        startActivityForResult(intent, 1);
+
     }
 
     private void initialize() {
