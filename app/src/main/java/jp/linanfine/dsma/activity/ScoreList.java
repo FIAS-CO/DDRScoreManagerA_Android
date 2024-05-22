@@ -1441,9 +1441,9 @@ public class ScoreList extends Activity {
         Intent intent = new Intent();
         intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.SongMemo");
         intent.putExtra("jp.linanfine.dsma.musicid", mSelectedItemPattern.MusicId);
+        intent.putExtra("jp.linanfine.dsma.musicname", mSelectedMusicData.Name);
 
         startActivityForResult(intent, 1);
-
     }
 
     private void initialize() {

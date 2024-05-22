@@ -8,34 +8,27 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.TreeMap;
-
 import jp.linanfine.dsma.R;
 import jp.linanfine.dsma.database.DatabaseClient;
 import jp.linanfine.dsma.database.Memo;
 import jp.linanfine.dsma.database.MemoDao;
 import jp.linanfine.dsma.util.common.ActivitySetting;
 import jp.linanfine.dsma.util.file.FileReader;
-import jp.linanfine.dsma.value.MusicData;
 
 public class SongMemo extends Activity {
 
     private void initialize() {
         Intent intent = getIntent();
 
-        int mItemId = intent.getIntExtra("jp.linanfine.dsma.musicid", -1);
-
-        TreeMap<Integer, MusicData> mMusicList = FileReader.readMusicList(this);
-
-        MusicData item = mMusicList.get(mItemId);
-        assert item != null;
-        ((TextView) this.findViewById(R.id.musicName)).setText(item.Name);
+        int songId = intent.getIntExtra("jp.linanfine.dsma.musicid", -1);
+        String songName = intent.getStringExtra("jp.linanfine.dsma.musicname");
+        ((TextView) this.findViewById(R.id.musicName)).setText(songName);
 
         DatabaseClient dbClient = DatabaseClient.getInstance(this);
         EditText memoView = this.findViewById(R.id.editTextTextMultiLine);
         MemoDao memoDao = dbClient.getAppDatabase().memoDao();
         new Thread(() -> {
-            Memo memo = memoDao.findMemoById(mItemId);
+            Memo memo = memoDao.findMemoById(songId);
             if (memo != null) {
                 runOnUiThread(() -> memoView.setText(memo.text));
             }
@@ -45,7 +38,7 @@ public class SongMemo extends Activity {
 
         Button ok = this.findViewById(R.id.ok);
         ok.setOnClickListener(view -> {
-            new Thread(() -> memoDao.upsert(new Memo(mItemId, memoView.getText().toString()))).start();
+            new Thread(() -> memoDao.upsert(new Memo(songId, memoView.getText().toString()))).start();
             SongMemo.this.finish();
         });
     }
