@@ -115,6 +115,7 @@
     <string name="dialog_input_play_count">プレイ回数を入力</string>
     <string name="dialog_input_clear_count">クリア回数を入力</string>
     <string name="dialog_disp_all_pattern">すべての譜面を表示</string>
+    <string name="dialog_disp_song_memo">楽曲メモ</string>
     <string name="dialog_add_to_list">マイリストに追加</string>
     <string name="dialog_new_list">--- 新規作成 ---</string>
     <string name="sort_new">--- 新規作成 ---</string>

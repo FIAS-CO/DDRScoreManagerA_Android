@@ -132,6 +132,7 @@
     <string name="dialog_input_play_count">Input play count</string>
     <string name="dialog_input_clear_count">Input clear count</string>
     <string name="dialog_disp_all_pattern">Display all pattern</string>
+    <string name="dialog_disp_song_memo">Memo</string>
     <string name="dialog_add_to_list">Add to MyList</string>
     <string name="dialog_new_list">--- Create List ---</string>
     <string name="dialog_remove_from_list">Remove from this MyList</string>

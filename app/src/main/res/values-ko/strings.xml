@@ -95,6 +95,7 @@
   <string name="dialog_input_play_count">플레이 횟수를 입력</string>
   <string name="dialog_input_clear_count">클리어 횟수를 입력</string>
   <string name="dialog_disp_all_pattern">모든 보면을 표시</string>
+  <string name="dialog_disp_song_memo">메모</string>
   <string name="dialog_add_to_list">마이 리스트에 추가</string>
   <string name="dialog_new_list">--- 신규 작성 ---</string>
   <string name="sort_new">--- 신규 작성 ---</string>
