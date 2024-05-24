@@ -2,8 +2,12 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-[2024/05/20] 0.140.24052000\n
-* Fix: Updates were made in preparation for the creation of new functions. There is no change in the look and behavior.
+    <string name="strings____Dialog_UpdateInfo____updates">
+[2024/05/20] 0.141.24052500\n
+* New:You can now save a memo for each song.\n
+Tap the song title and select "Memo" from the menu to open the memo screen.\n
+Please write down the high pitch, options, and points to note, and click the Save button to save the note.\n
+    </string>
     </string>
     
     <string name="strings_global____app_name">DDR Score Manager A</string>

@@ -2,8 +2,10 @@
 <resources>
     
     <string name="strings____Dialog_UpdateInfo____updates">
-[2024/05/20] 0.140.24052000\n
-* Fix: 新規機能作成準備に伴うアップデートを行いました。見た目の動作に変更はありません。
+[2024/05/20] 0.141.24052500\n
+* New:楽曲ごとにメモを保存できるようになりました。\n
+曲名タップで表示されるメニューから「楽曲メモ」を選択するとメモ画面が開きます。\n
+ハイスピ、オプションや気をつけたい箇所などを記載いただき、Saveボタンで保存してください。
     </string>
     
     <string name="strings_global____app_name">DDR Score Manager A</string>
