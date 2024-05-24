@@ -12,6 +12,9 @@ public class Memo {
     @ColumnInfo(name = "text")
     public String text;
 
+    @ColumnInfo(name = "updated_at")
+    public Long updatedAt = System.currentTimeMillis();
+
     public Memo(int id, String text) {
         this.id = id;
         this.text = text;
