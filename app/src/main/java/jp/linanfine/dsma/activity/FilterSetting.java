@@ -126,6 +126,7 @@ public class FilterSetting extends Activity {
 		mMusicFilter.RivalWin = ((CheckBox)FilterSetting.this.findViewById(R.id.rivalWin)).isChecked();
 		mMusicFilter.RivalLose = ((CheckBox)FilterSetting.this.findViewById(R.id.rivalLose)).isChecked();
 		mMusicFilter.RivalDraw = ((CheckBox)FilterSetting.this.findViewById(R.id.rivalDraw)).isChecked();
+		mMusicFilter.SerWorld = ((CheckBox)FilterSetting.this.findViewById(R.id.serWorld)).isChecked();
 		mMusicFilter.SerA3 = ((CheckBox)FilterSetting.this.findViewById(R.id.serA3)).isChecked();
 		mMusicFilter.SerA20PLUS = ((CheckBox)FilterSetting.this.findViewById(R.id.serA20PLUS)).isChecked();
 		mMusicFilter.SerA20 = ((CheckBox)FilterSetting.this.findViewById(R.id.serA20)).isChecked();
@@ -1591,6 +1592,7 @@ public class FilterSetting extends Activity {
 		((TextView)this.findViewById(R.id.clearCountDifferencePlusMin)).setText(mMusicFilter.ClearCountDifferencePlusMin<0?this.getResources().getString(R.string.filter_setting_nomin):String.valueOf(mMusicFilter.ClearCountDifferencePlusMin));
 		((TextView)this.findViewById(R.id.clearCountDifferencePlusMax)).setText(mMusicFilter.ClearCountDifferencePlusMax==Integer.MAX_VALUE?this.getResources().getString(R.string.filter_setting_nomax):String.valueOf(mMusicFilter.ClearCountDifferencePlusMax));
 
+		((CheckBox)this.findViewById(R.id.serWorld)).setChecked(mMusicFilter.SerWorld);
 		((CheckBox)this.findViewById(R.id.serA3)).setChecked(mMusicFilter.SerA3);
 		((CheckBox)this.findViewById(R.id.serA20PLUS)).setChecked(mMusicFilter.SerA20PLUS);
 		((CheckBox)this.findViewById(R.id.serA20)).setChecked(mMusicFilter.SerA20);
@@ -1728,6 +1730,7 @@ public class FilterSetting extends Activity {
 		this.findViewById(R.id.rivalLose).setOnClickListener(ccl);
 		this.findViewById(R.id.rivalDraw).setOnClickListener(ccl);
 
+		this.findViewById(R.id.serWorld).setOnClickListener(ccl);
 		this.findViewById(R.id.serA3).setOnClickListener(ccl);
 		this.findViewById(R.id.serA20PLUS).setOnClickListener(ccl);
 		this.findViewById(R.id.serA20).setOnClickListener(ccl);

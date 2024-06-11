@@ -21,4 +21,5 @@ public enum SeriesTitle {
 	A20,
 	A20PLUS,
 	A3,
+	World,
 }

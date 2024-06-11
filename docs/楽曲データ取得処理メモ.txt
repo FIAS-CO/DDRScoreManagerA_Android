@@ -4,16 +4,19 @@
 ◯ FileReader:887のFromA3をFromNewSiteにする
 ◯ GateSetting も同様
 ・Series Title に World を追加
-    SeriesTitle クラス
-    CategorySelect:840
-    ScoreList:81,346
+    ◯ SeriesTitle クラス
+    ◯ CategorySelect:840
+    ◯ ScoreList:81,346
 ・Statistics
     ScoreList:425をint[20]に？
 ・Filter機能
-    FilterSetting
-    MusicFilter
+    ◯ FilterSetting
+    ◯ MusicFilter
 ・from GATE (standard)
     ・userActionSou
+
+ScoreList;534の変換はなんだ？
+Recentが動くか確認
 
 
 DialogFromGateList

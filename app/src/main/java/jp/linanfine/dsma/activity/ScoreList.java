@@ -78,7 +78,7 @@ public class ScoreList extends Activity {
     /**
      * Series Title配列
      */
-    private static final String[] SERIES_TITLE_LIST = {"SerA3", "SerA20 PLUS", "SerA20", "SerA", "Ser2014", "Ser2013", "SerX3", "SerX2", "SerX",
+    private static final String[] SERIES_TITLE_LIST = {"SerWorld", "SerA3", "SerA20 PLUS", "SerA20", "SerA", "Ser2014", "Ser2013", "SerX3", "SerX2", "SerX",
             "SerSuperNOVA 2", "SerSuperNOVA", "SerEXTREME", "SerMAX2", "SerMAX", "Ser5th", "Ser4th", "Ser3rd",
             "Ser2nd", "Ser1st"};
 
@@ -383,6 +383,8 @@ public class ScoreList extends Activity {
                 return 17;
             case A3:
                 return 18;
+            case World:
+                return 19;
             default:
                 return -1;
         }
@@ -422,7 +424,7 @@ public class ScoreList extends Activity {
         int fctypeNoFC = 0;
         int[] difficulties = new int[21];
         int[] patternTypes = new int[9];
-        int[] versions = new int[19];
+        int[] versions = new int[20];
         ArrayList<Integer> scores = new ArrayList<Integer>();
         UniquePattern pat;
         ScoreData noScore = new ScoreData();
@@ -1948,6 +1950,7 @@ public class ScoreList extends Activity {
 	        	if(mCategory.equals("Dif18")) mMusicFilter.Dif18 = true;
 	        	if(mCategory.equals("Dif19")) mMusicFilter.Dif19 = true;*/
             } else if (mCategory.startsWith("Ser")) {
+                if (!mCategory.equals("SerWorld")) mMusicFilter.SerWorld = false;
                 if (!mCategory.equals("SerA3")) mMusicFilter.SerA3 = false;
                 if (!mCategory.equals("SerA20 PLUS")) mMusicFilter.SerA20PLUS = false;
                 if (!mCategory.equals("SerA20")) mMusicFilter.SerA20 = false;

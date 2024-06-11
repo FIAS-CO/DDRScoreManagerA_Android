@@ -1341,6 +1341,7 @@ public class FileReader {
         e.putInt("ClearCountDifferenceMinusMax", filter.ClearCountDifferenceMinusMax);
         e.putInt("ClearCountDifferencePlusMin", filter.ClearCountDifferencePlusMin);
         e.putInt("ClearCountDifferencePlusMax", filter.ClearCountDifferencePlusMax);
+        e.putBoolean("SerWorld", filter.SerWorld);
         e.putBoolean("SerA3", filter.SerA3);
         e.putBoolean("SerA20PLUS", filter.SerA20PLUS);
         e.putBoolean("SerA20", filter.SerA20);
@@ -1486,6 +1487,7 @@ public class FileReader {
         ret.ClearCountDifferenceMinusMax = pref.getInt("ClearCountDifferenceMinusMax", Integer.MIN_VALUE);
         ret.ClearCountDifferencePlusMin = pref.getInt("ClearCountDifferencePlusMin", -1);
         ret.ClearCountDifferencePlusMax = pref.getInt("ClearCountDifferencePlusMax", Integer.MAX_VALUE);
+        ret.SerWorld = pref.getBoolean("SerWorld", true);
         ret.SerA3 = pref.getBoolean("SerA3", true);
         ret.SerA20PLUS = pref.getBoolean("SerA20PLUS", true);
         ret.SerA20 = pref.getBoolean("SerA20", true);

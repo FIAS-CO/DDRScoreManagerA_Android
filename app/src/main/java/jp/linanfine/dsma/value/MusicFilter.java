@@ -94,6 +94,7 @@ public class MusicFilter {
 	public boolean Dif18 = true;
 	public boolean Dif19 = true;
 
+	public boolean SerWorld = true;
 	public boolean SerA3 = true;
 	public boolean SerA20PLUS = true;
 	public boolean SerA20 = true;
@@ -358,6 +359,7 @@ public class MusicFilter {
 			myscore = scoreData;
 		}
 
+		if(!SerWorld && music.SeriesTitle == SeriesTitle.World) return false;
 		if(!SerA3 && music.SeriesTitle == SeriesTitle.A3) return false;
 		if(!SerA20PLUS && music.SeriesTitle == SeriesTitle.A20PLUS) return false;
 		if(!SerA20 && music.SeriesTitle == SeriesTitle.A20) return false;

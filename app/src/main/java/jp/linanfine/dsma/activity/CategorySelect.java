@@ -397,6 +397,7 @@ public class CategorySelect extends Activity {
         ((TextView) mMainView.findViewById(R.id.subItemSeriesA20)).setTextSize(ap.CategorySubItemFontSize);
         ((TextView) mMainView.findViewById(R.id.subItemSeriesA20PLUS)).setTextSize(ap.CategorySubItemFontSize);
         ((TextView) mMainView.findViewById(R.id.subItemSeriesA3)).setTextSize(ap.CategorySubItemFontSize);
+        ((TextView) mMainView.findViewById(R.id.subItemSeriesWorld)).setTextSize(ap.CategorySubItemFontSize);
 
         this.findViewById(R.id.menuButton).setOnClickListener(v -> userActionShowSystemMenu());
 
@@ -837,6 +838,7 @@ public class CategorySelect extends Activity {
 
                 startActivityForResult(intent, 1);
             };
+            mMainView.findViewById(R.id.seriesWorld).setOnClickListener(serClicked);
             mMainView.findViewById(R.id.seriesA3).setOnClickListener(serClicked);
             mMainView.findViewById(R.id.seriesA20PLUS).setOnClickListener(serClicked);
             mMainView.findViewById(R.id.seriesA20).setOnClickListener(serClicked);
