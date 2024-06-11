@@ -1606,7 +1606,8 @@ public class FileReader {
                                                                                                                                                             sp[curr].equals("A") ? SeriesTitle.A :
                                                                                                                                                                     sp[curr].equals("A20") ? SeriesTitle.A20 :
                                                                                                                                                                             sp[curr].equals("A20 PLUS") ? SeriesTitle.A20PLUS :
-                                                                                                                                                                                    SeriesTitle.A3);
+                                                                                                                                                                                    sp[curr].equals("A3") ? SeriesTitle.A3 :
+                                                                                                                                                                                            SeriesTitle.World);
                     ++curr;
                     md.MinBPM = "?".equals(sp[curr]) ? 0 : Integer.parseInt(sp[curr]);
                     ++curr;
