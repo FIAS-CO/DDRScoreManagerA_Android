@@ -887,7 +887,7 @@ public class FileReader {
     public static void saveGateSetting(Context context, GateSetting setting) {
         SharedPreferences pref = context.getSharedPreferences("GateSetting", Context.MODE_PRIVATE);
         Editor e = pref.edit();
-        e.putBoolean("FromA3", setting.FromA3);
+        e.putBoolean("FromNewSite", setting.FromNewSite);
         e.putBoolean("OWL4", setting.OverWriteLife4);
         e.putBoolean("OWFC", setting.OverWriteFullCombo);
         e.putBoolean("OWLS", setting.OverWriteLowerScores);
@@ -899,7 +899,7 @@ public class FileReader {
         GateSetting ret = new GateSetting();
         //SharedPreferences pref = context.getSharedPreferences("GateSetting", Context.MODE_WORLD_READABLE | Context.MODE_WORLD_WRITEABLE);
         SharedPreferences pref = context.getSharedPreferences("GateSetting", Context.MODE_PRIVATE);
-        ret.FromA3 = pref.getBoolean("FromA3", true);
+        ret.FromNewSite = pref.getBoolean("FromNewSite", true);
         ret.OverWriteLife4 = pref.getBoolean("OWL4", false);
         ret.OverWriteFullCombo = pref.getBoolean("OWFC", false);
         ret.OverWriteLowerScores = pref.getBoolean("OWLS", true);

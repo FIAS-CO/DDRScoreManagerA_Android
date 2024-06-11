@@ -171,7 +171,7 @@ public class DialogFromGateSou {
         mMax.setText(String.valueOf(mPageCount));
 
         mGateSetting = FileReader.readGateSetting(mParent);
-        if (mGateSetting.FromA3) {
+        if (mGateSetting.FromNewSite) {
             mUriH = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
         } else {
             mUriH = "https://p.eagate.573.jp/game/ddr/ddra20/p/";
@@ -286,7 +286,7 @@ public class DialogFromGateSou {
                 return true;
             }
             Log.d("", "4");
-            if (mGateSetting.FromA3) {
+            if (mGateSetting.FromNewSite) {
                 cmp = "<th>ハイスコア時のランク</th><td>";
             } else {
                 if (mRivalId == null) {

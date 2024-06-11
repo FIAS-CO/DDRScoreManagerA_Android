@@ -176,10 +176,10 @@
                 </LinearLayout>
 
                 <CheckBox
-                    android:id="@+id/fromA3"
+                    android:id="@+id/fromNewSite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/global_setting_froma3" />
+                    android:text="@string/global_setting_from_new_site" />
 
                 <CheckBox
                     android:id="@+id/overwriteLowerScores"

@@ -1,8 +1,8 @@
 ・新曲データ準備
 ・とりあえずすべてのURLを差し替え
-・「Load score data from A3」を「Load score data from World」変更
-・FileReader:887のFromA3をFromNewSiteにする
-・GateSetting も同様
+◯「Load score data from A3」を「Load score data from World」へ変更
+◯ FileReader:887のFromA3をFromNewSiteにする
+◯ GateSetting も同様
 ・Series Title に World を追加
     SeriesTitle クラス
     CategorySelect:840

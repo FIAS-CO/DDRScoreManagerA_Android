@@ -1,22 +1,13 @@
 package jp.linanfine.dsma.dialog;
 
-import java.text.DecimalFormat;
-import java.util.TreeMap;
-
 import jp.linanfine.dsma.util.common.TextUtil;
 import jp.linanfine.dsma.util.file.FileReader;
 import jp.linanfine.dsma.value.GateSetting;
-import jp.linanfine.dsma.value.MusicScore;
-import jp.linanfine.dsma.value.ScoreData;
 import jp.linanfine.dsma.value.StatusData;
-import jp.linanfine.dsma.value._enum.FullComboType;
-import jp.linanfine.dsma.value._enum.MusicRank;
-import jp.linanfine.dsma.value._enum.PatternType;
 import jp.linanfine.dsma.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
@@ -119,7 +110,7 @@ public class DialogFromGateStatus {
 		FileReader.requestAd((LinearLayout)mView.findViewById(R.id.adContainer), mParent);
 
 		mGateSetting = FileReader.readGateSetting(mParent);
-		if(mGateSetting.FromA3)
+		if(mGateSetting.FromNewSite)
 		{
 			mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
 		}

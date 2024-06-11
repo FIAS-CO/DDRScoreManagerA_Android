@@ -140,7 +140,7 @@ public class DialogFromGate {
                                                                                 mPattern == PatternType.CDP ? 8 :
                                                                                         0;
 
-        if (mGateSetting.FromA3) {
+        if (mGateSetting.FromNewSite) {
             mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
         } else {
             mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra20/p/";
@@ -229,7 +229,7 @@ public class DialogFromGate {
                 return true;
             }
             Log.d("POINT", "4");
-            if (mGateSetting.FromA3) {
+            if (mGateSetting.FromNewSite) {
                 cmp = "<th>ハイスコア時のランク</th><td>";
             } else {
                 if (mRivalId == null) {

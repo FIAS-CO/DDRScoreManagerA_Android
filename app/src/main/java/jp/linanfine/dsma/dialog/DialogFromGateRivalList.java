@@ -10,7 +10,6 @@ import jp.linanfine.dsma.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
 import android.view.View;
@@ -107,7 +106,7 @@ public class DialogFromGateRivalList {
 		FileReader.requestAd((LinearLayout)mView.findViewById(R.id.adContainer), mParent);
         //String uri = "file:///android_asset/status.html";
 		mGateSetting = FileReader.readGateSetting(mParent);
-		if(mGateSetting.FromA3)
+		if(mGateSetting.FromNewSite)
 		{
 			mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/rival/index.html";
 		}

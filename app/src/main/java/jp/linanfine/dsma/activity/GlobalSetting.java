@@ -28,7 +28,6 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.inputmethod.InputMethodManager;
-import android.webkit.CookieManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
@@ -151,7 +150,7 @@ public class GlobalSetting extends Activity {
 		}*/
 
 		mGateSetting = FileReader.readGateSetting(this);
-		((CheckBox)this.findViewById(R.id.fromA3)).setChecked(mGateSetting.FromA3);
+		((CheckBox)this.findViewById(R.id.fromNewSite)).setChecked(mGateSetting.FromNewSite);
 		((CheckBox)this.findViewById(R.id.overwriteLife4)).setChecked(mGateSetting.OverWriteLife4);
 		((CheckBox)this.findViewById(R.id.overwriteLowerScores)).setChecked(mGateSetting.OverWriteLowerScores);
 		((CheckBox)this.findViewById(R.id.closeCategoryOnBackKeyPressed)).setChecked(mCloseCategoryOnBackKeyPressed);
@@ -240,7 +239,7 @@ public class GlobalSetting extends Activity {
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				mGestures.GestureEnabled = ((CheckBox)GlobalSetting.this.findViewById(R.id.gestureEnableFlick)).isChecked();
 				mAutoUpdateMusicList = ((CheckBox)GlobalSetting.this.findViewById(R.id.autoUpdateMusicList)).isChecked();
-				mGateSetting.FromA3 = ((CheckBox)GlobalSetting.this.findViewById(R.id.fromA3)).isChecked();
+				mGateSetting.FromNewSite = ((CheckBox)GlobalSetting.this.findViewById(R.id.fromNewSite)).isChecked();
 				mGateSetting.OverWriteLife4 = ((CheckBox)GlobalSetting.this.findViewById(R.id.overwriteLife4)).isChecked();
 				mGateSetting.OverWriteLowerScores = ((CheckBox)GlobalSetting.this.findViewById(R.id.overwriteLowerScores)).isChecked();
 				mAppearances.ShowMaxCombo = ((CheckBox)GlobalSetting.this.findViewById(R.id.showMaxCombo)).isChecked();
@@ -262,7 +261,7 @@ public class GlobalSetting extends Activity {
 		};
 
 		((CheckBox)GlobalSetting.this.findViewById(R.id.gestureEnableFlick)).setOnCheckedChangeListener(ccl);
-		((CheckBox)GlobalSetting.this.findViewById(R.id.fromA3)).setOnCheckedChangeListener(ccl);
+		((CheckBox)GlobalSetting.this.findViewById(R.id.fromNewSite)).setOnCheckedChangeListener(ccl);
 		((CheckBox)GlobalSetting.this.findViewById(R.id.overwriteLife4)).setOnCheckedChangeListener(ccl);
 		((CheckBox)GlobalSetting.this.findViewById(R.id.overwriteLowerScores)).setOnCheckedChangeListener(ccl);
 		((CheckBox)GlobalSetting.this.findViewById(R.id.autoUpdateMusicList)).setOnCheckedChangeListener(ccl);

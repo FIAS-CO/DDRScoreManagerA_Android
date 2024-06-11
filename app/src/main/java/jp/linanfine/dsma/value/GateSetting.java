@@ -5,5 +5,5 @@ public class GateSetting {
 	public boolean OverWriteLife4;
 	public boolean OverWriteFullCombo;
 	public boolean OverWriteLowerScores;
-	public boolean FromA3;
+	public boolean FromNewSite;
 }

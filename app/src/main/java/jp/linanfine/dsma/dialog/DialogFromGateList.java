@@ -141,7 +141,7 @@ public class DialogFromGateList {
         }
 
         mGateSetting = FileReader.readGateSetting(mParent);
-        if (mGateSetting.FromA3) {
+        if (mGateSetting.FromNewSite) {
             mUriH = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
         } else {
             mUriH = "https://p.eagate.573.jp/game/ddr/ddra20/p/";
