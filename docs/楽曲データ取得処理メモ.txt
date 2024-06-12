@@ -17,7 +17,8 @@
 
 ScoreList;534の変換はなんだ？→今は使ってない機能っぽい
 Recentが動くか確認
-統計情報
+
+★MEMO：SeriesTitleのサブアイテムの文字列がそのままフィルターに使われるので、(準備中)を外せばデータが表示される
 
 DialogFromGateList
 
