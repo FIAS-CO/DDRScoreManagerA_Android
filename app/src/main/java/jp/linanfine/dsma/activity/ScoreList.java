@@ -641,6 +641,7 @@ public class ScoreList extends Activity {
         ((TextView) v.findViewById(R.id.versionA20)).setText(String.valueOf(versions[16]));
         ((TextView) v.findViewById(R.id.versionA20PLUS)).setText(String.valueOf(versions[17]));
         ((TextView) v.findViewById(R.id.versionA3)).setText(String.valueOf(versions[18]));
+        ((TextView) v.findViewById(R.id.versionWorld)).setText(String.valueOf(versions[19]));
 
         FileReader.requestAd((LinearLayout) v.findViewById(R.id.adContainer), this);
 
