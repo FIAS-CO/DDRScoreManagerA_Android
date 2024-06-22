@@ -533,6 +533,12 @@
                     android:text="@string/filter_setting_seriestitle"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_seriestitle_gold"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" >
@@ -542,7 +548,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="World" />
+                    android:text="WORLD" />
 
                 </LinearLayout>
 
@@ -573,20 +579,27 @@
                         android:layout_weight="1"
                         android:text="A20" />
 
-                    <CheckBox
-                        android:id="@+id/serA"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="A" />
-
                 </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_seriestitle_white"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
 
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" >
 
 
+                    <CheckBox
+                        android:id="@+id/serA"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="A" />
 
                     <CheckBox
                         android:id="@+id/ser2014"
@@ -604,6 +617,11 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_setting_seriestitle_classic"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" >
@@ -2311,11 +2329,11 @@
 		                android:scaleType="fitCenter"
 		                android:contentDescription="@string/menu_icon_content_description"
 		                android:src="@android:drawable/ic_menu_edit" />
-		            
+
                 </LinearLayout>
-                
+
             </LinearLayout>
-       
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -2341,9 +2359,9 @@
                         android:text="@string/filter_setting_deleted" />
 
                 </LinearLayout>
-            
+
             </LinearLayout>
-                
+
         </LinearLayout>
     </ScrollView>
 
@@ -2354,5 +2372,5 @@
         android:orientation="vertical" >
 
     </LinearLayout>
-   
+
 </LinearLayout>

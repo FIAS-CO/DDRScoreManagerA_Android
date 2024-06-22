@@ -265,6 +265,9 @@ Please write down the high pitch, options, and points to note, and click the Sav
     <string name="filter_setting_showewhennoc">Display Expert pattern when no Challenge pattern.</string>
     <string name="filter_setting_difficulty">Difficulty</string>
     <string name="filter_setting_seriestitle">Series Title</string>
+    <string name="filter_setting_seriestitle_gold" translatable="false">GOLD</string>
+    <string name="filter_setting_seriestitle_white" translatable="false">WHITE</string>
+    <string name="filter_setting_seriestitle_classic" translatable="false">CLASSIC</string>
     <string name="filter_setting_rank">Dance Level</string>
     <string name="filter_setting_fullcombo">Full Combo Type</string>
     <string name="filter_setting_rank_rival">Rival Dance Level</string>
