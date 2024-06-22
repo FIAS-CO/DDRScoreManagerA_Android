@@ -2,20 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:background="#002266" >
+        android:background="#002266">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_gravity="center_vertical|center_horizontal"
-            android:scaleType="fitCenter"
             android:contentDescription="@string/sou_icon_content_description"
+            android:scaleType="fitCenter"
             android:src="@drawable/ic_launcher" />
 
         <TextView
@@ -33,8 +33,8 @@
             android:layout_width="100dp"
             android:layout_height="fill_parent"
             android:background="@drawable/menu_button_background_color"
-            android:scaleType="fitCenter"
             android:contentDescription="@string/filter_setting_edit_tab_name"
+            android:scaleType="fitCenter"
             android:src="@android:drawable/ic_menu_edit" />
 
         <ImageView
@@ -53,17 +53,17 @@
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" >
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="#003399" >
+                android:background="#003399">
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -79,7 +79,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -95,7 +95,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/BSP"
@@ -114,7 +114,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/DSP"
@@ -133,7 +133,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/ESP"
@@ -152,7 +152,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/CSP"
@@ -170,9 +170,9 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:baselineAligned="false"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:id="@+id/shockArrowSPGroup"
@@ -180,7 +180,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_weight="1"
-                        android:orientation="vertical" >
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -188,32 +188,33 @@
                             android:text="@string/shock_arrow"
                             android:textAppearance="?android:attr/textAppearanceSmall" />
 
-					    <RadioGroup android:id="@+id/shockArrowSP"
-					        android:layout_width="wrap_content"
-					        android:layout_height="wrap_content">
+                        <RadioGroup
+                            android:id="@+id/shockArrowSP"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
-					        <RadioButton
-					            android:id="@+id/shockArrowSPOnly"
-					            android:layout_width="wrap_content"
-					            android:layout_height="wrap_content"
-					            android:text="@string/shock_arrow_only"
-					            android:textAppearance="?android:attr/textAppearanceSmall" />
+                            <RadioButton
+                                android:id="@+id/shockArrowSPOnly"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/shock_arrow_only"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
 
-					        <RadioButton
-					            android:id="@+id/shockArrowSPInclude"
-					            android:layout_width="wrap_content"
-					            android:layout_height="wrap_content"
-					            android:text="@string/shock_arrow_include"
-					            android:textAppearance="?android:attr/textAppearanceSmall" />
+                            <RadioButton
+                                android:id="@+id/shockArrowSPInclude"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/shock_arrow_include"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
 
-					        <RadioButton
-					            android:id="@+id/shockArrowSPExclude"
-					            android:layout_width="wrap_content"
-					            android:layout_height="wrap_content"
-					            android:text="@string/shock_arrow_exclude"
-					            android:textAppearance="?android:attr/textAppearanceSmall" />
+                            <RadioButton
+                                android:id="@+id/shockArrowSPExclude"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/shock_arrow_exclude"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
 
-					    </RadioGroup>
+                        </RadioGroup>
 
                     </LinearLayout>
 
@@ -223,7 +224,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_weight="1"
-                        android:orientation="vertical" >
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -231,32 +232,33 @@
                             android:text="@string/shock_arrow"
                             android:textAppearance="?android:attr/textAppearanceSmall" />
 
-					    <RadioGroup android:id="@+id/shockArrowDP"
-					        android:layout_width="wrap_content"
-					        android:layout_height="wrap_content">
+                        <RadioGroup
+                            android:id="@+id/shockArrowDP"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
-					        <RadioButton
-					            android:id="@+id/shockArrowDPOnly"
-					            android:layout_width="wrap_content"
-					            android:layout_height="wrap_content"
-					            android:text="@string/shock_arrow_only"
-					            android:textAppearance="?android:attr/textAppearanceSmall" />
+                            <RadioButton
+                                android:id="@+id/shockArrowDPOnly"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/shock_arrow_only"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
 
-					        <RadioButton
-					            android:id="@+id/shockArrowDPInclude"
-					            android:layout_width="wrap_content"
-					            android:layout_height="wrap_content"
-					            android:text="@string/shock_arrow_include"
-					            android:textAppearance="?android:attr/textAppearanceSmall" />
+                            <RadioButton
+                                android:id="@+id/shockArrowDPInclude"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/shock_arrow_include"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
 
-					        <RadioButton
-					            android:id="@+id/shockArrowDPExclude"
-					            android:layout_width="wrap_content"
-					            android:layout_height="wrap_content"
-					            android:text="@string/shock_arrow_exclude"
-					            android:textAppearance="?android:attr/textAppearanceSmall" />
+                            <RadioButton
+                                android:id="@+id/shockArrowDPExclude"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/shock_arrow_exclude"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
 
-					    </RadioGroup>
+                        </RadioGroup>
 
                     </LinearLayout>
 
@@ -264,7 +266,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/allowOnlyChallenge"
@@ -277,7 +279,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/allowExpertWhenNoChallenge"
@@ -294,8 +296,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:orientation="vertical" >
-
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -305,9 +306,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-
-
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/dif1"
@@ -316,8 +315,6 @@
                         android:layout_weight="1"
                         android:text="1" />
 
-
-
                     <CheckBox
                         android:id="@+id/dif2"
                         android:layout_width="fill_parent"
@@ -325,16 +322,12 @@
                         android:layout_weight="1"
                         android:text="2" />
 
-
-
                     <CheckBox
                         android:id="@+id/dif3"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="3" />
-
-
 
                     <CheckBox
                         android:id="@+id/dif4"
@@ -347,9 +340,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-
-
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/dif5"
@@ -358,9 +349,6 @@
                         android:layout_weight="1"
                         android:text="5" />
 
-
-
-
                     <CheckBox
                         android:id="@+id/dif6"
                         android:layout_width="fill_parent"
@@ -368,16 +356,12 @@
                         android:layout_weight="1"
                         android:text="6" />
 
-
-
                     <CheckBox
                         android:id="@+id/dif7"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="7" />
-
-
 
                     <CheckBox
                         android:id="@+id/dif8"
@@ -390,10 +374,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-
-
-
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/dif9"
@@ -402,8 +383,6 @@
                         android:layout_weight="1"
                         android:text="9" />
 
-
-
                     <CheckBox
                         android:id="@+id/dif10"
                         android:layout_width="fill_parent"
@@ -411,16 +390,12 @@
                         android:layout_weight="1"
                         android:text="10" />
 
-
-
                     <CheckBox
                         android:id="@+id/dif11"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="11" />
-
-
 
                     <CheckBox
                         android:id="@+id/dif12"
@@ -433,9 +408,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-
-
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/dif13"
@@ -444,8 +417,6 @@
                         android:layout_weight="1"
                         android:text="13" />
 
-
-
                     <CheckBox
                         android:id="@+id/dif14"
                         android:layout_width="fill_parent"
@@ -453,16 +424,12 @@
                         android:layout_weight="1"
                         android:text="14" />
 
-
-
                     <CheckBox
                         android:id="@+id/dif15"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="15" />
-
-
 
                     <CheckBox
                         android:id="@+id/dif16"
@@ -475,9 +442,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-
-
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/dif17"
@@ -486,8 +451,6 @@
                         android:layout_weight="1"
                         android:text="17" />
 
-
-
                     <CheckBox
                         android:id="@+id/dif18"
                         android:layout_width="fill_parent"
@@ -495,17 +458,12 @@
                         android:layout_weight="1"
                         android:text="18" />
 
-
-
                     <CheckBox
                         android:id="@+id/dif19"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="19" />
-
-
-
 
                     <CheckBox
                         android:id="@+id/dif20"
@@ -519,13 +477,11 @@
 
             </LinearLayout>
 
-
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:orientation="vertical" >
-
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -541,22 +497,20 @@
 
                 <LinearLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
-                <CheckBox
-                    android:id="@+id/serWorld"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="WORLD" />
+                    <CheckBox
+                        android:id="@+id/serWorld"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="WORLD" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" >
-
-
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/serA3"
@@ -581,18 +535,15 @@
 
                 </LinearLayout>
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/filter_setting_seriestitle_white"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
-
                 <LinearLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" >
-
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/serA"
@@ -622,11 +573,10 @@
                     android:layout_height="wrap_content"
                     android:text="@string/filter_setting_seriestitle_classic"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
+
                 <LinearLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" >
-
-
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/serX3"
@@ -634,7 +584,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="X3" />
-
 
                     <CheckBox
                         android:id="@+id/serX3vs2nd"
@@ -644,14 +593,12 @@
                         android:text="X3 (2nd MIX)"
                         android:visibility="gone" />
 
-
                     <CheckBox
                         android:id="@+id/serX2"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="X2" />
-
 
                     <CheckBox
                         android:id="@+id/serX"
@@ -664,12 +611,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-
-
-
-
-
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/serSN2"
@@ -677,9 +619,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Super NOVA2" />
-
-
-
 
                     <CheckBox
                         android:id="@+id/serSN"
@@ -692,11 +631,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-
-
-
-
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/serEXTREME"
@@ -709,8 +644,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/serMAX2"
@@ -718,7 +652,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="MAX2" />
-
 
                     <CheckBox
                         android:id="@+id/serMAX"
@@ -731,10 +664,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-
-
-
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/ser5th"
@@ -742,9 +672,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="5th" />
-
-
-
 
                     <CheckBox
                         android:id="@+id/ser4th"
@@ -757,9 +684,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-
-
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/ser3rd"
@@ -768,16 +693,12 @@
                         android:layout_weight="1"
                         android:text="3rd" />
 
-
-
                     <CheckBox
                         android:id="@+id/ser2nd"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="2nd" />
-
-
 
                     <CheckBox
                         android:id="@+id/ser1st"
@@ -794,8 +715,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:orientation="vertical" >
-
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -805,7 +725,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/rankAAA"
@@ -818,7 +738,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/rankAAp"
@@ -845,7 +765,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/rankAp"
@@ -872,7 +792,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/rankBp"
@@ -899,7 +819,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/rankCp"
@@ -926,7 +846,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/rankDp"
@@ -946,7 +866,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/rankE"
@@ -970,8 +890,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:orientation="vertical" >
-
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -981,7 +900,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/fcMFC"
@@ -1008,7 +927,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/fcGFC"
@@ -1039,7 +958,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1050,44 +969,44 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp" >
+                    android:layout_marginLeft="5dp">
 
-	                <TextView
-	                    android:id="@+id/scoreMin"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#333333"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/scoreMin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#333333"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_marginLeft="5dp"
-	                    android:layout_marginRight="5dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:text="@string/filter_setting_score_divider"
-	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/filter_setting_score_divider"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-	                <TextView
-	                    android:id="@+id/scoreMax"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#333333"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/scoreMax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#333333"
+                        android:typeface="monospace" />
 
-	                <ImageView
-	                    android:id="@+id/editScore"
-	                    android:layout_width="60dp"
-	                    android:layout_height="50dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:background="@drawable/menu_button_background_color"
-	                    android:scaleType="fitCenter"
-	                    android:contentDescription="@string/menu_icon_content_description"
-	                    android:src="@android:drawable/ic_menu_edit" />
+                    <ImageView
+                        android:id="@+id/editScore"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/menu_button_background_color"
+                        android:contentDescription="@string/menu_icon_content_description"
+                        android:scaleType="fitCenter"
+                        android:src="@android:drawable/ic_menu_edit" />
 
                 </LinearLayout>
 
@@ -1097,7 +1016,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1108,44 +1027,44 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp" >
+                    android:layout_marginLeft="5dp">
 
-	                <TextView
-	                    android:id="@+id/comboMin"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/comboMin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_marginLeft="5dp"
-	                    android:layout_marginRight="5dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:text="@string/filter_setting_score_divider"
-	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/filter_setting_score_divider"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-	                <TextView
-	                    android:id="@+id/comboMax"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/comboMax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-	                <ImageView
-	                    android:id="@+id/editCombo"
-	                    android:layout_width="60dp"
-	                    android:layout_height="50dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:background="@drawable/menu_button_background_color"
-	                    android:scaleType="fitCenter"
-	                    android:contentDescription="@string/menu_icon_content_description"
-	                    android:src="@android:drawable/ic_menu_edit" />
+                    <ImageView
+                        android:id="@+id/editCombo"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/menu_button_background_color"
+                        android:contentDescription="@string/menu_icon_content_description"
+                        android:scaleType="fitCenter"
+                        android:src="@android:drawable/ic_menu_edit" />
 
                 </LinearLayout>
 
@@ -1155,7 +1074,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1166,44 +1085,44 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp" >
+                    android:layout_marginLeft="5dp">
 
-	                <TextView
-	                    android:id="@+id/playCountMin"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/playCountMin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_marginLeft="5dp"
-	                    android:layout_marginRight="5dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:text="@string/filter_setting_score_divider"
-	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/filter_setting_score_divider"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-	                <TextView
-	                    android:id="@+id/playCountMax"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/playCountMax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-	                <ImageView
-	                    android:id="@+id/editPlayCount"
-	                    android:layout_width="60dp"
-	                    android:layout_height="50dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:background="@drawable/menu_button_background_color"
-	                    android:scaleType="fitCenter"
-	                    android:contentDescription="@string/menu_icon_content_description"
-	                    android:src="@android:drawable/ic_menu_edit" />
+                    <ImageView
+                        android:id="@+id/editPlayCount"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/menu_button_background_color"
+                        android:contentDescription="@string/menu_icon_content_description"
+                        android:scaleType="fitCenter"
+                        android:src="@android:drawable/ic_menu_edit" />
 
                 </LinearLayout>
 
@@ -1213,7 +1132,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1224,44 +1143,44 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp" >
+                    android:layout_marginLeft="5dp">
 
-	                <TextView
-	                    android:id="@+id/clearCountMin"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/clearCountMin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_marginLeft="5dp"
-	                    android:layout_marginRight="5dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:text="@string/filter_setting_score_divider"
-	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/filter_setting_score_divider"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-	                <TextView
-	                    android:id="@+id/clearCountMax"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/clearCountMax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-	                <ImageView
-	                    android:id="@+id/editClearCount"
-	                    android:layout_width="60dp"
-	                    android:layout_height="50dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:background="@drawable/menu_button_background_color"
-	                    android:scaleType="fitCenter"
-	                    android:contentDescription="@string/menu_icon_content_description"
-	                    android:src="@android:drawable/ic_menu_edit" />
+                    <ImageView
+                        android:id="@+id/editClearCount"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/menu_button_background_color"
+                        android:contentDescription="@string/menu_icon_content_description"
+                        android:scaleType="fitCenter"
+                        android:src="@android:drawable/ic_menu_edit" />
 
                 </LinearLayout>
 
@@ -1271,8 +1190,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:orientation="vertical" >
-
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1282,7 +1200,7 @@
 
                 <LinearLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/rankAAArival"
@@ -1295,7 +1213,7 @@
 
                 <LinearLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/rankAAprival"
@@ -1322,7 +1240,7 @@
 
                 <LinearLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/rankAprival"
@@ -1349,7 +1267,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/rankBprival"
@@ -1376,7 +1294,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/rankCprival"
@@ -1403,7 +1321,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/rankDprival"
@@ -1423,7 +1341,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/rankErival"
@@ -1447,8 +1365,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:orientation="vertical" >
-
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1458,7 +1375,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/fcMFCrival"
@@ -1485,7 +1402,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/fcGFCrival"
@@ -1516,7 +1433,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1527,44 +1444,44 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp" >
+                    android:layout_marginLeft="5dp">
 
-	                <TextView
-	                    android:id="@+id/scoreMinRival"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#333333"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/scoreMinRival"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#333333"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_marginLeft="5dp"
-	                    android:layout_marginRight="5dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:text="@string/filter_setting_score_divider"
-	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/filter_setting_score_divider"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-	                <TextView
-	                    android:id="@+id/scoreMaxRival"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#333333"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/scoreMaxRival"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#333333"
+                        android:typeface="monospace" />
 
-	                <ImageView
-	                    android:id="@+id/editScoreRival"
-	                    android:layout_width="60dp"
-	                    android:layout_height="50dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:background="@drawable/menu_button_background_color"
-	                    android:scaleType="fitCenter"
-	                    android:contentDescription="@string/menu_icon_content_description"
-	                    android:src="@android:drawable/ic_menu_edit" />
+                    <ImageView
+                        android:id="@+id/editScoreRival"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/menu_button_background_color"
+                        android:contentDescription="@string/menu_icon_content_description"
+                        android:scaleType="fitCenter"
+                        android:src="@android:drawable/ic_menu_edit" />
 
                 </LinearLayout>
 
@@ -1574,7 +1491,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1585,55 +1502,55 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp" >
+                    android:layout_marginLeft="5dp">
 
-	                <TextView
-	                    android:id="@+id/comboMinRival"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/comboMinRival"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_marginLeft="5dp"
-	                    android:layout_marginRight="5dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:text="@string/filter_setting_score_divider"
-	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/filter_setting_score_divider"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-	                <TextView
-	                    android:id="@+id/comboMaxRival"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/comboMaxRival"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-	                <ImageView
-	                    android:id="@+id/editComboRival"
-	                    android:layout_width="60dp"
-	                    android:layout_height="50dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:background="@drawable/menu_button_background_color"
-	                    android:scaleType="fitCenter"
-	                    android:contentDescription="@string/menu_icon_content_description"
-	                    android:src="@android:drawable/ic_menu_edit" />
+                    <ImageView
+                        android:id="@+id/editComboRival"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/menu_button_background_color"
+                        android:contentDescription="@string/menu_icon_content_description"
+                        android:scaleType="fitCenter"
+                        android:src="@android:drawable/ic_menu_edit" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1644,55 +1561,55 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp" >
+                    android:layout_marginLeft="5dp">
 
-	                <TextView
-	                    android:id="@+id/playCountMinRival"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/playCountMinRival"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_marginLeft="5dp"
-	                    android:layout_marginRight="5dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:text="@string/filter_setting_score_divider"
-	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/filter_setting_score_divider"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-	                <TextView
-	                    android:id="@+id/playCountMaxRival"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/playCountMaxRival"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-	                <ImageView
-	                    android:id="@+id/editPlayCountRival"
-	                    android:layout_width="60dp"
-	                    android:layout_height="50dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:background="@drawable/menu_button_background_color"
-	                    android:scaleType="fitCenter"
-	                    android:contentDescription="@string/menu_icon_content_description"
-	                    android:src="@android:drawable/ic_menu_edit" />
+                    <ImageView
+                        android:id="@+id/editPlayCountRival"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/menu_button_background_color"
+                        android:contentDescription="@string/menu_icon_content_description"
+                        android:scaleType="fitCenter"
+                        android:src="@android:drawable/ic_menu_edit" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1703,44 +1620,44 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp" >
+                    android:layout_marginLeft="5dp">
 
-	                <TextView
-	                    android:id="@+id/clearCountMinRival"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/clearCountMinRival"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_marginLeft="5dp"
-	                    android:layout_marginRight="5dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:text="@string/filter_setting_score_divider"
-	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/filter_setting_score_divider"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-	                <TextView
-	                    android:id="@+id/clearCountMaxRival"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/clearCountMaxRival"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-	                <ImageView
-	                    android:id="@+id/editClearCountRival"
-	                    android:layout_width="60dp"
-	                    android:layout_height="50dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:background="@drawable/menu_button_background_color"
-	                    android:scaleType="fitCenter"
-	                    android:contentDescription="@string/menu_icon_content_description"
-	                    android:src="@android:drawable/ic_menu_edit" />
+                    <ImageView
+                        android:id="@+id/editClearCountRival"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/menu_button_background_color"
+                        android:contentDescription="@string/menu_icon_content_description"
+                        android:scaleType="fitCenter"
+                        android:src="@android:drawable/ic_menu_edit" />
 
                 </LinearLayout>
 
@@ -1750,8 +1667,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:orientation="vertical" >
-
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1761,7 +1677,7 @@
 
                 <LinearLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/rivalWin"
@@ -1791,8 +1707,8 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-               	android:layout_marginLeft="5dp"  >
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1804,60 +1720,60 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#ffffff"
-	                    android:text="+"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="+"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#ffffff"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:id="@+id/scoreDifferencePlusMin"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#333333"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/scoreDifferencePlusMin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#333333"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_marginLeft="5dp"
-	                    android:layout_marginRight="5dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:text="@string/filter_setting_score_divider"
-	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/filter_setting_score_divider"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#ffffff"
-	                    android:text="+"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="+"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#ffffff"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:id="@+id/scoreDifferencePlusMax"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#333333"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/scoreDifferencePlusMax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#333333"
+                        android:typeface="monospace" />
 
-		            <ImageView
-		                android:id="@+id/editScoreDifferenceP"
-		                android:layout_width="60dp"
-		                android:layout_height="50dp"
-		                android:layout_gravity="center_vertical"
-		                android:background="@drawable/menu_button_background_color"
-		                android:scaleType="fitCenter"
-		                android:contentDescription="@string/menu_icon_content_description"
-		                android:src="@android:drawable/ic_menu_edit" />
+                    <ImageView
+                        android:id="@+id/editScoreDifferenceP"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/menu_button_background_color"
+                        android:contentDescription="@string/menu_icon_content_description"
+                        android:scaleType="fitCenter"
+                        android:src="@android:drawable/ic_menu_edit" />
 
                 </LinearLayout>
 
@@ -1865,60 +1781,60 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#ffffff"
-	                    android:text="-"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="-"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#ffffff"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:id="@+id/scoreDifferenceMinusMin"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#333333"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/scoreDifferenceMinusMin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#333333"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_marginLeft="5dp"
-	                    android:layout_marginRight="5dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:text="@string/filter_setting_score_divider"
-	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/filter_setting_score_divider"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#ffffff"
-	                    android:text="-"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="-"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#ffffff"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:id="@+id/scoreDifferenceMinusMax"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#333333"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/scoreDifferenceMinusMax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#333333"
+                        android:typeface="monospace" />
 
-		            <ImageView
-		                android:id="@+id/editScoreDifferenceM"
-		                android:layout_width="60dp"
-		                android:layout_height="50dp"
-		                android:layout_gravity="center_vertical"
-		                android:background="@drawable/menu_button_background_color"
-		                android:scaleType="fitCenter"
-		                android:contentDescription="@string/menu_icon_content_description"
-		                android:src="@android:drawable/ic_menu_edit" />
+                    <ImageView
+                        android:id="@+id/editScoreDifferenceM"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/menu_button_background_color"
+                        android:contentDescription="@string/menu_icon_content_description"
+                        android:scaleType="fitCenter"
+                        android:src="@android:drawable/ic_menu_edit" />
 
                 </LinearLayout>
 
@@ -1927,8 +1843,8 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-               	android:layout_marginLeft="5dp"  >
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1940,60 +1856,60 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#ffffff"
-	                    android:text="+"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="+"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#ffffff"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:id="@+id/comboDifferencePlusMin"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/comboDifferencePlusMin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_marginLeft="5dp"
-	                    android:layout_marginRight="5dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:text="@string/filter_setting_score_divider"
-	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/filter_setting_score_divider"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#ffffff"
-	                    android:text="+"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="+"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#ffffff"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:id="@+id/comboDifferencePlusMax"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/comboDifferencePlusMax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-		            <ImageView
-		                android:id="@+id/editComboDifferenceP"
-		                android:layout_width="60dp"
-		                android:layout_height="50dp"
-		                android:layout_gravity="center_vertical"
-		                android:background="@drawable/menu_button_background_color"
-		                android:scaleType="fitCenter"
-		                android:contentDescription="@string/menu_icon_content_description"
-		                android:src="@android:drawable/ic_menu_edit" />
+                    <ImageView
+                        android:id="@+id/editComboDifferenceP"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/menu_button_background_color"
+                        android:contentDescription="@string/menu_icon_content_description"
+                        android:scaleType="fitCenter"
+                        android:src="@android:drawable/ic_menu_edit" />
 
                 </LinearLayout>
 
@@ -2001,71 +1917,71 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#ffffff"
-	                    android:text="-"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="-"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#ffffff"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:id="@+id/comboDifferenceMinusMin"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/comboDifferenceMinusMin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_marginLeft="5dp"
-	                    android:layout_marginRight="5dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:text="@string/filter_setting_score_divider"
-	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/filter_setting_score_divider"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#ffffff"
-	                    android:text="-"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="-"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#ffffff"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:id="@+id/comboDifferenceMinusMax"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/comboDifferenceMinusMax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-		            <ImageView
-		                android:id="@+id/editComboDifferenceM"
-		                android:layout_width="60dp"
-		                android:layout_height="50dp"
-		                android:layout_gravity="center_vertical"
-		                android:background="@drawable/menu_button_background_color"
-		                android:scaleType="fitCenter"
-		                android:contentDescription="@string/menu_icon_content_description"
-		                android:src="@android:drawable/ic_menu_edit" />
+                    <ImageView
+                        android:id="@+id/editComboDifferenceM"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/menu_button_background_color"
+                        android:contentDescription="@string/menu_icon_content_description"
+                        android:scaleType="fitCenter"
+                        android:src="@android:drawable/ic_menu_edit" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:orientation="vertical"
-               	android:layout_marginLeft="5dp"  >
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -2077,60 +1993,60 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#ffffff"
-	                    android:text="+"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="+"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#ffffff"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:id="@+id/playCountDifferencePlusMin"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/playCountDifferencePlusMin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_marginLeft="5dp"
-	                    android:layout_marginRight="5dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:text="@string/filter_setting_score_divider"
-	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/filter_setting_score_divider"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#ffffff"
-	                    android:text="+"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="+"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#ffffff"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:id="@+id/playCountDifferencePlusMax"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/playCountDifferencePlusMax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-		            <ImageView
-		                android:id="@+id/editPlayCountDifferenceP"
-		                android:layout_width="60dp"
-		                android:layout_height="50dp"
-		                android:layout_gravity="center_vertical"
-		                android:background="@drawable/menu_button_background_color"
-		                android:scaleType="fitCenter"
-		                android:contentDescription="@string/menu_icon_content_description"
-		                android:src="@android:drawable/ic_menu_edit" />
+                    <ImageView
+                        android:id="@+id/editPlayCountDifferenceP"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/menu_button_background_color"
+                        android:contentDescription="@string/menu_icon_content_description"
+                        android:scaleType="fitCenter"
+                        android:src="@android:drawable/ic_menu_edit" />
 
                 </LinearLayout>
 
@@ -2138,71 +2054,71 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#ffffff"
-	                    android:text="-"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="-"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#ffffff"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:id="@+id/playCountDifferenceMinusMin"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/playCountDifferenceMinusMin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_marginLeft="5dp"
-	                    android:layout_marginRight="5dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:text="@string/filter_setting_score_divider"
-	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/filter_setting_score_divider"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#ffffff"
-	                    android:text="-"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="-"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#ffffff"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:id="@+id/playCountDifferenceMinusMax"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/playCountDifferenceMinusMax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-		            <ImageView
-		                android:id="@+id/editPlayCountDifferenceM"
-		                android:layout_width="60dp"
-		                android:layout_height="50dp"
-		                android:layout_gravity="center_vertical"
-		                android:background="@drawable/menu_button_background_color"
-		                android:scaleType="fitCenter"
-		                android:contentDescription="@string/menu_icon_content_description"
-		                android:src="@android:drawable/ic_menu_edit" />
+                    <ImageView
+                        android:id="@+id/editPlayCountDifferenceM"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/menu_button_background_color"
+                        android:contentDescription="@string/menu_icon_content_description"
+                        android:scaleType="fitCenter"
+                        android:src="@android:drawable/ic_menu_edit" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:orientation="vertical"
-               	android:layout_marginLeft="5dp"  >
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -2214,60 +2130,60 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#ffffff"
-	                    android:text="+"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="+"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#ffffff"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:id="@+id/clearCountDifferencePlusMin"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/clearCountDifferencePlusMin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_marginLeft="5dp"
-	                    android:layout_marginRight="5dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:text="@string/filter_setting_score_divider"
-	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/filter_setting_score_divider"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#ffffff"
-	                    android:text="+"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="+"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#ffffff"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:id="@+id/clearCountDifferencePlusMax"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/clearCountDifferencePlusMax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-		            <ImageView
-		                android:id="@+id/editClearCountDifferenceP"
-		                android:layout_width="60dp"
-		                android:layout_height="50dp"
-		                android:layout_gravity="center_vertical"
-		                android:background="@drawable/menu_button_background_color"
-		                android:scaleType="fitCenter"
-		                android:contentDescription="@string/menu_icon_content_description"
-		                android:src="@android:drawable/ic_menu_edit" />
+                    <ImageView
+                        android:id="@+id/editClearCountDifferenceP"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/menu_button_background_color"
+                        android:contentDescription="@string/menu_icon_content_description"
+                        android:scaleType="fitCenter"
+                        android:src="@android:drawable/ic_menu_edit" />
 
                 </LinearLayout>
 
@@ -2275,60 +2191,60 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#ffffff"
-	                    android:text="-"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="-"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#ffffff"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:id="@+id/clearCountDifferenceMinusMin"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/clearCountDifferenceMinusMin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_marginLeft="5dp"
-	                    android:layout_marginRight="5dp"
-	                    android:layout_gravity="center_vertical"
-	                    android:text="@string/filter_setting_score_divider"
-	                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/filter_setting_score_divider"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-	                <TextView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#ffffff"
-	                    android:text="-"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="-"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#ffffff"
+                        android:typeface="monospace" />
 
-	                <TextView
-	                    android:id="@+id/clearCountDifferenceMinusMax"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_gravity="center_vertical"
-	                    android:textColor="#cccccc"
-	                    android:typeface="monospace"
-	                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/clearCountDifferenceMinusMax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cccccc"
+                        android:typeface="monospace" />
 
-		            <ImageView
-		                android:id="@+id/editClearCountDifferenceM"
-		                android:layout_width="60dp"
-		                android:layout_height="50dp"
-		                android:layout_gravity="center_vertical"
-		                android:background="@drawable/menu_button_background_color"
-		                android:scaleType="fitCenter"
-		                android:contentDescription="@string/menu_icon_content_description"
-		                android:src="@android:drawable/ic_menu_edit" />
+                    <ImageView
+                        android:id="@+id/editClearCountDifferenceM"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/menu_button_background_color"
+                        android:contentDescription="@string/menu_icon_content_description"
+                        android:scaleType="fitCenter"
+                        android:src="@android:drawable/ic_menu_edit" />
 
                 </LinearLayout>
 
@@ -2338,8 +2254,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:orientation="vertical" >
-
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -2349,7 +2264,7 @@
 
                 <LinearLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/othersDeleted"
@@ -2369,7 +2284,7 @@
         android:id="@+id/adContainer"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
     </LinearLayout>
 
