@@ -246,6 +246,8 @@
     <string name="filter_setting_showewhennoc">Challenge が存在しない場合は Expert を表示</string>
     <string name="filter_setting_difficulty">難易度</string>
     <string name="filter_setting_seriestitle">シリーズタイトル</string>
+    <string name="filter_setting_select_all">すべて選択</string>
+    <string name="filter_setting_deselect_all">すべて解除</string>
     <string name="filter_setting_rank">ダンスレベル</string>
     <string name="filter_setting_fullcombo">フルコン種別</string>
     <string name="filter_setting_score">スコア</string>
@@ -470,5 +472,5 @@
      -->
     
     <string name="strings_____Dialog_UpdateInfo____versionInfoTitle">アップデート情報</string>
-    
+
 </resources>

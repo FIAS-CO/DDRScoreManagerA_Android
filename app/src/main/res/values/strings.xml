@@ -494,5 +494,7 @@ Please write down the high pitch, options, and points to note, and click the Sav
      -->
 
     <string name="strings_____Dialog_UpdateInfo____versionInfoTitle">Update Info</string>
-    
+    <string name="filter_setting_select_all">Select All</string>
+    <string name="filter_setting_deselect_all">DeselectAll</string>
+
 </resources>

@@ -215,6 +215,8 @@
   <string name="filter_setting_showewhennoc">Challenge 가 없는 경우에는 Expert 를 표시</string>
   <string name="filter_setting_difficulty">난이도</string>
   <string name="filter_setting_seriestitle">시리즈 타이틀</string>
+  <string name="filter_setting_select_all">Select All</string>
+  <string name="filter_setting_deselect_all">DeselectAll</string>
   <string name="filter_setting_rank">댄스 레벨</string>
   <string name="filter_setting_fullcombo">풀콤보 종류별</string>
   <string name="filter_setting_score">스코어</string>
