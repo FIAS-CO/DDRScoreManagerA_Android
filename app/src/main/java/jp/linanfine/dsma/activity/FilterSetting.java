@@ -23,6 +23,9 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Arrays;
+import java.util.List;
+
 import jp.linanfine.dsma.R;
 import jp.linanfine.dsma.util.common.ActivitySetting;
 import jp.linanfine.dsma.util.common.TextUtil;
@@ -1597,29 +1600,84 @@ public class FilterSetting extends Activity {
         this.findViewById(R.id.rivalLose).setOnClickListener(ccl);
         this.findViewById(R.id.rivalDraw).setOnClickListener(ccl);
 
-        this.findViewById(R.id.serWorld).setOnClickListener(ccl);
-        this.findViewById(R.id.serA3).setOnClickListener(ccl);
-        this.findViewById(R.id.serA20PLUS).setOnClickListener(ccl);
-        this.findViewById(R.id.serA20).setOnClickListener(ccl);
-        this.findViewById(R.id.serA).setOnClickListener(ccl);
-        this.findViewById(R.id.ser2014).setOnClickListener(ccl);
-        this.findViewById(R.id.ser2013).setOnClickListener(ccl);
-        this.findViewById(R.id.serX3).setOnClickListener(ccl);
-        this.findViewById(R.id.serX3vs2nd).setOnClickListener(ccl);
-        this.findViewById(R.id.serX2).setOnClickListener(ccl);
-        this.findViewById(R.id.serX).setOnClickListener(ccl);
-        this.findViewById(R.id.serSN2).setOnClickListener(ccl);
-        this.findViewById(R.id.serSN).setOnClickListener(ccl);
-        this.findViewById(R.id.serEXTREME).setOnClickListener(ccl);
-        this.findViewById(R.id.serMAX2).setOnClickListener(ccl);
-        this.findViewById(R.id.serMAX).setOnClickListener(ccl);
-        this.findViewById(R.id.ser5th).setOnClickListener(ccl);
-        this.findViewById(R.id.ser4th).setOnClickListener(ccl);
-        this.findViewById(R.id.ser3rd).setOnClickListener(ccl);
-        this.findViewById(R.id.ser2nd).setOnClickListener(ccl);
-        this.findViewById(R.id.ser1st).setOnClickListener(ccl);
+        CheckBox worldCheckBox = this.findViewById(R.id.serWorld);
+        CheckBox a3CheckBox = this.findViewById(R.id.serA3);
+        CheckBox a20PlusCheckBox = this.findViewById(R.id.serA20PLUS);
+        CheckBox a20CheckBox = this.findViewById(R.id.serA20);
+        CheckBox aCheckBox = this.findViewById(R.id.serA);
+        CheckBox v2014CheckBox = this.findViewById(R.id.ser2014);
+        CheckBox v2013CheckBox = this.findViewById(R.id.ser2013);
+        CheckBox x3CheckBox = this.findViewById(R.id.serX3);
+        CheckBox x3vs2ndCheckBox = this.findViewById(R.id.serX3vs2nd);
+        CheckBox x2CheckBox = this.findViewById(R.id.serX2);
+        CheckBox xCheckBox = this.findViewById(R.id.serX);
+        CheckBox sn2CheckBox = this.findViewById(R.id.serSN2);
+        CheckBox snCheckBox = this.findViewById(R.id.serSN);
+        CheckBox extremeCheckBox = this.findViewById(R.id.serEXTREME);
+        CheckBox max2CheckBox = this.findViewById(R.id.serMAX2);
+        CheckBox maxCheckBox = this.findViewById(R.id.serMAX);
+        CheckBox v5thCheckBox = this.findViewById(R.id.ser5th);
+        CheckBox v4thCheckBox = this.findViewById(R.id.ser4th);
+        CheckBox v3rdCheckBox = this.findViewById(R.id.ser3rd);
+        CheckBox v2ndCheckBox = this.findViewById(R.id.ser2nd);
+        CheckBox v1stCheckBox = this.findViewById(R.id.ser1st);
+
+        worldCheckBox.setOnClickListener(ccl);
+        a3CheckBox.setOnClickListener(ccl);
+        a20PlusCheckBox.setOnClickListener(ccl);
+        a20CheckBox.setOnClickListener(ccl);
+        aCheckBox.setOnClickListener(ccl);
+        v2014CheckBox.setOnClickListener(ccl);
+        v2013CheckBox.setOnClickListener(ccl);
+        x3CheckBox.setOnClickListener(ccl);
+        x3vs2ndCheckBox.setOnClickListener(ccl);
+        x2CheckBox.setOnClickListener(ccl);
+        xCheckBox.setOnClickListener(ccl);
+        sn2CheckBox.setOnClickListener(ccl);
+        snCheckBox.setOnClickListener(ccl);
+        extremeCheckBox.setOnClickListener(ccl);
+        max2CheckBox.setOnClickListener(ccl);
+        maxCheckBox.setOnClickListener(ccl);
+        v5thCheckBox.setOnClickListener(ccl);
+        v4thCheckBox.setOnClickListener(ccl);
+        v3rdCheckBox.setOnClickListener(ccl);
+        v2ndCheckBox.setOnClickListener(ccl);
+        v1stCheckBox.setOnClickListener(ccl);
 
         this.findViewById(R.id.othersDeleted).setOnClickListener(ccl);
+
+        List<CheckBox> goldCheckBoxes = Arrays.asList(worldCheckBox, a3CheckBox, a20PlusCheckBox, a20CheckBox);
+        this.findViewById(R.id.selectAllButtonGold)
+                .setOnClickListener(v -> setAllCheckBoxes(goldCheckBoxes, true));
+        this.findViewById(R.id.deselectAllButtonGold)
+                .setOnClickListener(v -> setAllCheckBoxes(goldCheckBoxes, false));
+
+        List<CheckBox> whiteCheckBoxes = Arrays.asList(aCheckBox, v2014CheckBox, v2013CheckBox);
+        this.findViewById(R.id.selectAllButtonWhite)
+                .setOnClickListener(v -> setAllCheckBoxes(whiteCheckBoxes, true));
+        this.findViewById(R.id.deselectAllButtonWhite)
+                .setOnClickListener(v -> setAllCheckBoxes(whiteCheckBoxes, false));
+
+        List<CheckBox> classicCheckBoxes = Arrays.asList(
+                x3CheckBox,
+                x3vs2ndCheckBox,
+                x2CheckBox,
+                xCheckBox,
+                sn2CheckBox,
+                snCheckBox,
+                extremeCheckBox,
+                max2CheckBox,
+                maxCheckBox,
+                v5thCheckBox,
+                v4thCheckBox,
+                v3rdCheckBox,
+                v2ndCheckBox,
+                v1stCheckBox
+        );
+        this.findViewById(R.id.selectAllButtonClassic)
+                .setOnClickListener(v -> setAllCheckBoxes(classicCheckBoxes, true));
+        this.findViewById(R.id.deselectAllButtonClassic)
+                .setOnClickListener(v -> setAllCheckBoxes(classicCheckBoxes, false));
 
 
         setItemStatuses();
@@ -1703,6 +1761,13 @@ public class FilterSetting extends Activity {
             }
         });
 
+    }
+
+    private void setAllCheckBoxes(List<CheckBox> checkBoxes, boolean isChecked) {
+        for (CheckBox checkBox : checkBoxes) {
+            checkBox.setChecked(isChecked);
+        }
+        save();
     }
 
     @Override
