@@ -3,10 +3,8 @@
 
   <string name="strings____Dialog_UpdateInfo____updates">
     <string name="strings____Dialog_UpdateInfo____updates">
-[2024/05/20] 0.141.24052500\n
-* New:곡별로 메모를 저장할 수 있게 되었습니다.\n
-곡명 탭으로 표시되는 메뉴에서 "메모"를 선택하면 메모 화면이 열립니다.\n
-하이스피드, 옵션, 주의할 점 등을 기재한 후 Save 버튼을 눌러 저장하세요.\n
+[2024/06/25] 0.143.24062500\n
+* Update: DDR WORLD 시작! \nGOLD/WHITE/CLASSIC의 카테고리 구분과 관련하여 곡 필터를 개선하였습니다.\n
     </string>
    </string>
 

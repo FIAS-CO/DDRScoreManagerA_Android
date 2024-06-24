@@ -2,10 +2,8 @@
 <resources>
     
     <string name="strings____Dialog_UpdateInfo____updates">
-[2024/05/20] 0.141.24052500\n
-* New:楽曲ごとにメモを保存できるようになりました。\n
-曲名タップで表示されるメニューから「楽曲メモ」を選択するとメモ画面が開きます。\n
-ハイスピ、オプションや気をつけたい箇所などを記載いただき、Saveボタンで保存してください。
+[2024/06/25] 0.143.24062500\n
+* Update: DDR WORLDスタート！\nGOLD/WHITE/CLASSICのカテゴリ分けに関して楽曲フィルターの改善を行いました。
     </string>
     
     <string name="strings_global____app_name">DDR Score Manager A</string>
