@@ -14,6 +14,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.util.HashMap;
 
 import jp.linanfine.dsma.R;
@@ -171,6 +176,7 @@ public class DialogFromGateIds {
         return (target.length() - target.replaceAll(searchWord, "").length()) / searchWord.length();
     }
 
+    // TODO 共通化できる？
     private int getPageCount(String src) {
         String cmpStartPagerBox = "<div id=\"paging_box\">";
         String cmpEndPagerBox = "<div class=\"arrow\"";
@@ -183,6 +189,50 @@ public class DialogFromGateIds {
         String blockPagerBox = src.substring(pointStartPagerBox);
         blockPagerBox = blockPagerBox.substring(0, blockPagerBox.indexOf(cmpEndPagerBox));
         return countStringInString(blockPagerBox, cmpPangeNum);
+    }
+
+    private HashMap<String, String> getSongIds(String html) {
+        Document doc = Jsoup.parse(html);
+        Elements rows = doc.select("tr.data");
+
+        HashMap<String, String> musicMap = new HashMap<>();
+
+        for (Element row : rows) {
+            Element linkElement = row.select("td:first-child a").first();
+            if (linkElement != null) {
+                String href = linkElement.attr("href");
+                String id = extractId(href);
+                String musicName = linkElement.text();
+
+                musicMap.put(id, musicName);
+            }
+        }
+
+        return musicMap;
+    }
+
+    private static String extractId(String href) {
+        String[] parts = href.split("index=");
+        if (parts.length > 1) {
+            String[] idParts = parts[1].split("&");
+            return idParts[0];
+        }
+        return "";
+    }
+
+    private boolean urlIsCollect() {
+        WebView web = mView.findViewById(R.id.webView);
+        String uri = web.getUrl();
+
+        if (uri != null) {
+            if (mRivalId == null) {
+                return uri.contains("playdata/music_data");
+            } else {
+                return uri.contains("rival/rival_musicdata");
+            }
+        }
+
+        return false;
     }
 
     private void analyzeScoreList(String src) {
@@ -278,7 +328,10 @@ public class DialogFromGateIds {
             }
 
             try {
-                analyzeScoreList(src);
+//                analyzeScoreList(src);
+                if (urlIsCollect()) {
+                   mIdList.putAll(getSongIds(src));
+                }
             } catch (Exception e) {
                 return;
             }

@@ -94,3 +94,9 @@ public class MusicId {
 MusicId.musicId で mMusicList から MusicData
 
 338行まで
+
+
+DialogFromGateIds : IDと曲名一覧を取得する
+・getPageCount：最大ページ数を取得。共通化できそう
+
+DialogFromGateList 改修完了

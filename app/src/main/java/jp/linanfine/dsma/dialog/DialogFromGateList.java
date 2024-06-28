@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -13,6 +12,11 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.util.TreeMap;
 
@@ -271,318 +275,152 @@ public class DialogFromGateList {
     }
 
     private void analyzeScoreList(String src) {
-        WebView web = mView.findViewById(R.id.webView);
-        String uri = web.getUrl();
-
-        String idDiffEnd;
-        if (mRivalId == null) {
-            idDiffEnd = "\"";
-        } else {
-            idDiffEnd = "&";
-        }
-
-        if (uri != null) {
-            if (mRivalId == null) {
-                if (!uri.contains("playdata/music_data")) {
-                    return;
-                }
-            } else {
-                if (!uri.contains("rival/rival_musicdata")) {
-                    return;
-                }
-            }
-        }
-
-        String musicBlockStartText = "<tr class=\"data\">";
-        int musicBlockStartTextLength = musicBlockStartText.length();
-        String musicBlockEndText = "</tr>";
-        int musicBlockEndTextLength = musicBlockEndText.length();
-        String titleLinkText = "<a href=\"/game/ddr/ddra3/p/playdata/music_detail.html?index=";
-        if (mRivalId != null) {
-            titleLinkText = "<a href=\"/game/ddr/ddra3/p/rival/music_detail.html?index=";
-        }
-        int titleLinkTextLength = titleLinkText.length();
-        String patternBlockStartText = "<td class=\"rank\" id=\"";
-        int patternBlockStartTextLength = patternBlockStartText.length();
-        String patternBlockEndText = "</td>";
-        int patternBlockEndTextLength = patternBlockEndText.length();
-
-        String parsingText = src;
-
-        StringBuilder sb = new StringBuilder();
+        Document doc = Jsoup.parse(src);
+        Elements musicRows = doc.select("tr.data");
 
         boolean scoreExists = false;
-        while (parsingText.contains(musicBlockStartText)) {
-            parsingText = parsingText.substring(parsingText.indexOf(musicBlockStartText) + musicBlockStartTextLength);
-            Log.d("current", parsingText);
-            String musicBlock = parsingText.substring(0, parsingText.indexOf(musicBlockEndText));
-            //Log.e("DSM", musicBlock);
-            parsingText = parsingText.substring(musicBlock.length() + musicBlockEndTextLength);
-            musicBlock = musicBlock.substring(musicBlock.indexOf(titleLinkText) + titleLinkTextLength);
-            String idText = musicBlock.substring(0, musicBlock.indexOf(idDiffEnd));
-            //int musicId = Integer.valueOf(idText);
-            String musicName = musicBlock.substring(musicBlock.indexOf(">") + 1);
-            musicName = musicName.substring(0, musicName.indexOf("</")).trim();
-            musicName = TextUtil.escapeWebTitle(musicName);
-            MusicId mi;
-            if (mMusicIds.containsKey(musicName)) {
-                mi = mMusicIds.get(musicName);
-            } else {
-                //mi = new MusicId();
-                //mi.musicId = musicId; //////////////////////////// zero
-                continue; // skip
-            }
-            //mi.idOnWebPage = musicId;
-            //mMusicIds.put(musicName, mi);
-            int musicIdSaved = mi.musicId;
-            MusicData musicData;
-            if (mMusicList.containsKey(musicIdSaved)) {
-                musicData = mMusicList.get(musicIdSaved);
-            } else {
-                musicData = new MusicData();
-            }
-            sb.append(musicData.Name).append(": \n    ");
+        for (Element row : musicRows) {
+            Element titleLink = row.selectFirst("td a");
+            if (titleLink == null) continue;
 
-            MusicScore ms;
-            if (mScoreList.containsKey(musicIdSaved)) {
-                ms = mScoreList.get(musicIdSaved);
-                mScoreList.remove(musicIdSaved);
-            } else {
+            String musicName = titleLink.text().trim();
+            musicName = TextUtil.escapeWebTitle(musicName);
+
+            MusicId mi = mMusicIds.get(musicName);
+            if (mi == null) continue;
+
+            int musicIdSaved = mi.musicId;
+
+            MusicScore ms = mScoreList.get(musicIdSaved);
+            if (ms == null) {
                 ms = new MusicScore();
             }
 
-            while (musicBlock.contains(patternBlockStartText)) {
+            Elements difficultyColumns = row.select("td.rank");
+            for (Element column : difficultyColumns) {
+                String diffId = column.id();
+                Element scoreElement = column.selectFirst("div.data_score");
+
+                if (scoreElement == null) continue;
+
+                String scoreText = scoreElement.text();
+                int score = scoreText.equals("-") ? 0 : Integer.parseInt(scoreText);
+
                 ScoreData sd = new ScoreData();
+                sd.Score = score;
 
-                String patternLinkText = titleLinkText + idText + "&amp;diff=";
-                int patternLinkTextLength = patternLinkText.length();
-                musicBlock = musicBlock.substring(musicBlock.indexOf(patternBlockStartText) + patternBlockStartTextLength);
-                String patternBlock = musicBlock.substring(0, musicBlock.indexOf(patternBlockEndText));
-                musicBlock = musicBlock.substring(patternBlock.length() + patternBlockEndTextLength);
-                patternBlock = patternBlock.substring(patternBlock.indexOf(patternLinkText));
-                String diffText = patternBlock.substring(patternLinkTextLength);
-                diffText = diffText.substring(0, diffText.indexOf(idDiffEnd));
-                int diff = Integer.parseInt(diffText);
-                if (patternBlock.contains(">")) {
-                    patternBlock = patternBlock.substring(patternBlock.indexOf("<"));
-                }
-                if (patternBlock.contains("full_none")) {
-                    sd.FullComboType = FullComboType.None;
-                } else if (patternBlock.contains("full_good")) {
-                    sd.FullComboType = FullComboType.GoodFullCombo;
-                } else if (patternBlock.contains("full_great")) {
-                    sd.FullComboType = FullComboType.FullCombo;
-                } else if (patternBlock.contains("full_perfect")) {
-                    sd.FullComboType = FullComboType.PerfectFullCombo;
-                } else if (patternBlock.contains("full_mar")) {
-                    sd.FullComboType = FullComboType.MerverousFullCombo;
-                }
-                Log.d(musicData.Name, "a");
-                if (patternBlock.contains("rank_s_none")) {
-                    Log.d(musicData.Name, "a-1");
-                    sd.Score = 0;
-                    sd.Rank = MusicRank.Noplay;
-                    Log.d(musicData.Name, "a-2");
-                } else {
-                    Log.d(musicData.Name, "a-3");
-                    String scoreText = patternBlock.replaceAll("<.*?>", "");
-                    Log.d(musicData.Name, scoreText);
-                    sd.Score = Integer.parseInt(scoreText);
-                    Log.d(musicData.Name, "a-4");
-                    if (patternBlock.contains("rank_s_e")) {
-                        sd.Rank = MusicRank.E;
-                    } else if (sd.Score < 550000) {
-                        sd.Rank = MusicRank.D;
-                    } else if (sd.Score < 590000) {
-                        sd.Rank = MusicRank.Dp;
-                    } else if (sd.Score < 600000) {
-                        sd.Rank = MusicRank.Cm;
-                    } else if (sd.Score < 650000) {
-                        sd.Rank = MusicRank.C;
-                    } else if (sd.Score < 690000) {
-                        sd.Rank = MusicRank.Cp;
-                    } else if (sd.Score < 700000) {
-                        sd.Rank = MusicRank.Bm;
-                    } else if (sd.Score < 750000) {
-                        sd.Rank = MusicRank.B;
-                    } else if (sd.Score < 790000) {
-                        sd.Rank = MusicRank.Bp;
-                    } else if (sd.Score < 800000) {
-                        sd.Rank = MusicRank.Am;
-                    } else if (sd.Score < 850000) {
-                        sd.Rank = MusicRank.A;
-                    } else if (sd.Score < 890000) {
-                        sd.Rank = MusicRank.Ap;
-                    } else if (sd.Score < 900000) {
-                        sd.Rank = MusicRank.AAm;
-                    } else if (sd.Score < 950000) {
-                        sd.Rank = MusicRank.AA;
-                    } else if (sd.Score < 990000) {
-                        sd.Rank = MusicRank.AAp;
-                    } else {
-                        sd.Rank = MusicRank.AAA;
-                    }
-                    Log.d(musicData.Name, "a-5");
-                }
-                Log.d(musicData.Name, "b");
+                boolean isRankE = column.html().contains("rank_s_e");
+                sd.Rank = getRank(score, isRankE);
+                sd.FullComboType = getFullComboType(column);
 
-                ScoreData msd;
-                switch (diff) {
-                    case 0:
-                        msd = ms.bSP;
-                        sb.append("bSP:");
-                        break;
-                    case 1:
-                        msd = ms.BSP;
-                        sb.append("BSP:");
-                        break;
-                    case 2:
-                        msd = ms.DSP;
-                        sb.append("DSP:");
-                        break;
-                    case 3:
-                        msd = ms.ESP;
-                        sb.append("ESP:");
-                        break;
-                    case 4:
-                        msd = ms.CSP;
-                        sb.append("CSP:");
-                        break;
-                    case 5:
-                        msd = ms.BDP;
-                        sb.append("BDP:");
-                        break;
-                    case 6:
-                        msd = ms.DDP;
-                        sb.append("DDP:");
-                        break;
-                    case 7:
-                        msd = ms.EDP;
-                        sb.append("EDP:");
-                        break;
-                    case 8:
-                        msd = ms.CDP;
-                        sb.append("CDP:");
-                        break;
-                    default:
-                        msd = new ScoreData();
-                        sb.append("?:");
-                        break;
-                }
-                Log.d(musicData.Name, "c");
-                sb.append(sd.Score).append(" / ");
-                sd.MaxCombo = msd.MaxCombo;
-                sd.ClearCount = msd.ClearCount;
-                sd.PlayCount = msd.PlayCount;
+                ScoreData msd = getScoreDataForDifficulty(ms, diffId);
+                updateScoreData(sd, msd);
 
-                // 「Life4 に未フルコンを上書きする」 が無効
-                if (!mGateSetting.OverWriteLife4) {
-                    // 取得した値が未フルコン
-                    if (sd.FullComboType == FullComboType.None) {
-                        // 元の値が Life4
-                        if (msd.FullComboType == FullComboType.Life4) {
-                            // 元のフルコンタイプに戻す
-                            sd.FullComboType = msd.FullComboType;
-                        }
-                    }
-                }
-
-                if (!mGateSetting.OverWriteLowerScores) {
-                    // スコアが低かったら
-                    if (sd.Score < msd.Score) {
-                        // スコアを元に戻す
-                        sd.Score = msd.Score;
-                        sd.Rank = msd.Rank;
-                    }
-                    // コンボが低かったら
-                    if (sd.MaxCombo < msd.MaxCombo) {
-                        // コンボを元に戻す
-                        sd.MaxCombo = msd.MaxCombo;
-                    }
-                    // 元の値がMFC
-                    if (msd.FullComboType == FullComboType.MerverousFullCombo) {
-                        // MFCにする
-                        sd.FullComboType = msd.FullComboType;
-                    }
-                    // 元の値がPFC
-                    else if (msd.FullComboType == FullComboType.PerfectFullCombo) {
-                        // 取得した値がMFCでない
-                        if (sd.FullComboType != FullComboType.MerverousFullCombo) {
-                            // PFCにする
-                            sd.FullComboType = msd.FullComboType;
-                        }
-                    }
-                    // 元の値がFC
-                    else if (msd.FullComboType == FullComboType.FullCombo) {
-                        // 取得した値がMFCでもPFCでもない
-                        if (sd.FullComboType != FullComboType.MerverousFullCombo && sd.FullComboType != FullComboType.PerfectFullCombo) {
-                            // FCにする
-                            sd.FullComboType = msd.FullComboType;
-                        }
-                    }
-                    // 元の値がGFC
-                    else if (msd.FullComboType == FullComboType.GoodFullCombo) {
-                        // 取得した値がMFCでもPFCでもFCでもない
-                        if (sd.FullComboType != FullComboType.MerverousFullCombo && sd.FullComboType != FullComboType.PerfectFullCombo && sd.FullComboType != FullComboType.FullCombo) {
-                            // GFCにする
-                            sd.FullComboType = msd.FullComboType;
-                        }
-                    }
-                    // 元の値がその他
-                    else {
-                        // 取得した値がMFCでもPFCでもFCでもGFCでもない
-                        if (sd.FullComboType != FullComboType.MerverousFullCombo && sd.FullComboType != FullComboType.PerfectFullCombo && sd.FullComboType != FullComboType.FullCombo && sd.FullComboType != FullComboType.GoodFullCombo) {
-                            // 元の値にもどす
-                            sd.FullComboType = msd.FullComboType;
-                        }
-                    }
-                }
-                Log.d(musicData.Name, "d");
-                switch (diff) {
-                    case 0:
-                        ms.bSP = sd;
-                        break;
-                    case 1:
-                        ms.BSP = sd;
-                        break;
-                    case 2:
-                        ms.DSP = sd;
-                        break;
-                    case 3:
-                        ms.ESP = sd;
-                        break;
-                    case 4:
-                        ms.CSP = sd;
-                        break;
-                    case 5:
-                        ms.BDP = sd;
-                        break;
-                    case 6:
-                        ms.DDP = sd;
-                        break;
-                    case 7:
-                        ms.EDP = sd;
-                        break;
-                    case 8:
-                        ms.CDP = sd;
-                        break;
-                }
-                Log.d(musicData.Name, "e");
-                mScoreList.put(musicIdSaved, ms);
+                setScoreDataForDifficulty(ms, diffId, sd);
                 scoreExists = true;
-                Log.d(musicData.Name, String.valueOf(diff));
-
-                //Log.d("dsm", musicBlock);
             }
-            sb.append("\n");
-            Log.d(musicData.Name, "huga");
+
+            mScoreList.put(musicIdSaved, ms);
         }
 
-        Log.d("hage", "hage");
-        if (!scoreExists) {
-            return;
+        if (scoreExists) {
+            FileReader.saveScoreData(mParent, mRivalId, mScoreList);
+        }
+    }
+
+    private MusicRank getRank(int score, boolean isRankE) {
+        if (isRankE) return MusicRank.E;
+        if (score == 0) return MusicRank.Noplay;
+        if (score < 550000) return MusicRank.D;
+        if (score < 590000) return MusicRank.Dp;
+        if (score < 600000) return MusicRank.Cm;
+        if (score < 650000) return MusicRank.C;
+        if (score < 690000) return MusicRank.Cp;
+        if (score < 700000) return MusicRank.Bm;
+        if (score < 750000) return MusicRank.B;
+        if (score < 790000) return MusicRank.Bp;
+        if (score < 800000) return MusicRank.Am;
+        if (score < 850000) return MusicRank.A;
+        if (score < 890000) return MusicRank.Ap;
+        if (score < 900000) return MusicRank.AAm;
+        if (score < 950000) return MusicRank.AA;
+        if (score < 990000) return MusicRank.AAp;
+        return MusicRank.AAA;
+    }
+
+    private FullComboType getFullComboType(Element column) {
+        if (column.html().contains("full_none")) return FullComboType.None;
+        if (column.html().contains("full_good")) return FullComboType.GoodFullCombo;
+        if (column.html().contains("full_great")) return FullComboType.FullCombo;
+        if (column.html().contains("full_perfect")) return FullComboType.PerfectFullCombo;
+        if (column.html().contains("full_mar")) return FullComboType.MerverousFullCombo;
+        return FullComboType.None;
+    }
+
+    private ScoreData getScoreDataForDifficulty(MusicScore ms, String diffId) {
+        switch (diffId) {
+            case "beginner":
+                return ms.bSP;
+            case "basic":
+                return ms.BSP;
+            case "difficult":
+                return ms.DSP;
+            case "expert":
+                return ms.ESP;
+            case "challenge":
+                return ms.CSP;
+            default:
+                return new ScoreData();
+        }
+    }
+
+    private void setScoreDataForDifficulty(MusicScore ms, String diffId, ScoreData sd) {
+        switch (diffId) {
+            case "beginner":
+                ms.bSP = sd;
+                break;
+            case "basic":
+                ms.BSP = sd;
+                break;
+            case "difficult":
+                ms.DSP = sd;
+                break;
+            case "expert":
+                ms.ESP = sd;
+                break;
+            case "challenge":
+                ms.CSP = sd;
+                break;
+        }
+    }
+
+    private void updateScoreData(ScoreData sd, ScoreData msd) {
+        // 「Life4 に未フルコンを上書きする」 が無効
+        if (!mGateSetting.OverWriteLife4) {
+            if (sd.FullComboType == FullComboType.None && msd.FullComboType == FullComboType.Life4) {
+                sd.FullComboType = msd.FullComboType;
+            }
         }
 
-        FileReader.saveScoreData(mParent, mRivalId, mScoreList);
+        if (!mGateSetting.OverWriteLowerScores) {
+            // スコアが低かったら
+            if (sd.Score < msd.Score) {
+                sd.Score = msd.Score;
+                sd.Rank = msd.Rank;
+            }
+            // コンボが低かったら
+            if (sd.MaxCombo < msd.MaxCombo) {
+                sd.MaxCombo = msd.MaxCombo;
+            }
+            // フルコンボタイプの更新
+            if (msd.FullComboType.ordinal() > sd.FullComboType.ordinal()) {
+                sd.FullComboType = msd.FullComboType;
+            }
+        }
+
+        // MaxCombo, ClearCount, PlayCount の更新
+        sd.MaxCombo = Math.max(sd.MaxCombo, msd.MaxCombo);
+        sd.ClearCount = msd.ClearCount;
+        sd.PlayCount = msd.PlayCount;
     }
 }
