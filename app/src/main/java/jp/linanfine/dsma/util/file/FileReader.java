@@ -593,7 +593,7 @@ public class FileReader {
         e.putString("SingleLastPlay", status.LastPlaySingle);
         e.putInt("DoublePlayCount", status.PlayCountDouble);
         e.putString("DoubleLastPlay", status.LastPlayDouble);
-        e.commit();
+        e.apply();
     }
 
     public static GestureAction getGestureAction(int typenum) {
