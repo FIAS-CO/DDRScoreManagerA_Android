@@ -1,0 +1,1263 @@
+0	MAKE IT BETTER	MAKE IT BETTER	1st	119	119	3	7	9	11	0	7	9	11	0
+1	PARANOiA	PARANOiA	1st	180	180	4	8	9	11	0	8	13	11	0
+2	TRIP MACHINE	TRIP MACHINE	1st	160	160	3	8	9	10	0	9	10	10	0
+3	AM-3P	AM-3P	2nd	130	130	3	7	8	11	0	8	9	10	0
+4	BRILLIANT 2U	BRILLIANT 2U	2nd	150	150	3	6	6	10	10	6	7	9	10
+5	BRILLIANT 2U(Orchestra Groove)	BRILLIANT 2U(Orchestra Groove)	2nd	150	150	4	6	8	9	12	6	8	9	12
+6	e-motion	e-motion	2nd	145	145	2	5	6	8	0	6	8	11	0
+7	GENOM SCREAMS	GENOM SCREAMS	2nd	150	150	3	6	8	11	0	9	11	12	0
+8	KEEP ON MOVIN'	KEEP ON MOVIN'	2nd	132	132	4	5	7	9	0	5	9	10	0
+9	PARANOiA KCET ～clean mix～	PARANOiA KCET ～clean mix～	2nd	180	180	4	8	9	11	15	8	10	10	15
+10	PARANOiA MAX～DIRTY MIX～	PARANOiA MAX～DIRTY MIX～	2nd	190	190	5	9	10	12	0	10	12	11	0
+11	PUT YOUR FAITH IN ME	PUT YOUR FAITH IN ME	2nd	120	120	3	5	6	9	0	6	8	8	0
+12	SP-TRIP MACHINE～JUNGLE MIX～	SP-TRIP MACHINE～JUNGLE MIX～	2nd	160	160	4	8	9	10	0	8	9	10	0
+13	AFRONOVA	AFRONOVA	3rd	200	200	5	7	9	13	0	8	9	13	0
+14	AFTER THE GAME OF LOVE	AFTER THE GAME OF LOVE	3rd	105	105	1	2	6	8	0	5	6	8	0
+15	CUTIE CHASER	CUTIE CHASER	3rd	126	126	3	5	7	10	0	5	7	10	0
+16	DEAD END	DEAD END	3rd	190	190	4	7	10	12	0	8	9	13	0
+17	DROP THE BOMB	DROP THE BOMB	3rd	150	150	3	5	7	10	0	6	8	10	0
+18	DYNAMITE RAVE	DYNAMITE RAVE	3rd	149	149	3	6	10	12	12	6	7	11	12
+19	GRADIUSIC CYBER ～AMD G5 MIX～	GRADIUSIC CYBER ～AMD G5 MIX～	3rd	160	160	3	8	10	13	0	9	11	13	0
+20	La Senorita	La Senorita	3rd	182	182	4	6	8	10	0	5	9	13	0
+21	La Senorita Virtual	La Senorita Virtual	3rd	182	182	4	8	10	12	0	9	10	12	0
+22	LOVE THIS FEELIN'	LOVE THIS FEELIN'	3rd	95	190	4	9	10	11	0	10	11	12	0
+23	PARANOiA Rebirth	PARANOiA Rebirth	3rd	190	190	4	8	10	13	0	9	11	13	0
+24	Silent Hill	Silent Hill	3rd	125	125	3	4	9	10	0	5	7	11	0
+25	think ya better D	think ya better D	3rd	136	136	3	5	6	9	0	6	7	10	0
+26	TRIP MACHINE～luv mix～	TRIP MACHINE～luv mix～	3rd	160	160	3	9	10	12	0	9	10	11	0
+27	.59	.59	4th	135	135	3	5	8	11	0	5	8	10	0
+28	B4U	B4U	4th	155	155	3	5	7	10	0	5	8	10	0
+29	BABY BABY GIMME YOUR LOVE	BABY BABY GIMME YOUR LOVE	4th	96	96	1	2	4	7	0	3	5	8	0
+30	BURNIN' THE FLOOR	BURNIN' THE FLOOR	4th	155	155	3	5	8	10	0	5	7	10	0
+31	CAN'T STOP FALLIN' IN LOVE	CAN'T STOP FALLIN' IN LOVE	4th	155	155	3	5	6	11	0	5	6	12	0
+32	CELEBRATE NITE	CELEBRATE NITE	4th	144	144	3	6	8	11	0	6	8	10	0
+33	Don't Stop!～AMD 2nd MIX～	Don't Stop!～AMD 2nd MIX～	4th	130	130	3	5	6	10	0	4	5	8	0
+34	DROP OUT	DROP OUT	4th	260	260	4	8	10	13	0	6	9	13	0
+35	era (nostalmix)	era (nostalmix)	4th	90	180	4	5	8	11	0	5	7	11	0
+36	HIGHER	HIGHER	4th	132	132	3	4	7	9	0	4	7	10	0
+37	Holic	Holic	4th	155	155	4	7	9	11	0	7	8	11	0
+38	HYSTERIA	HYSTERIA	4th	190	190	5	6	8	11	0	4	8	10	0
+39	LEADING CYBER	LEADING CYBER	4th	150	150	3	8	9	13	0	7	10	13	0
+40	LOVE AGAIN TONIGHT～For Melissa MIX～	LOVE AGAIN TONIGHT～For Melissa MIX～	4th	150	150	4	5	8	11	0	5	7	10	0
+41	MY SUMMER LOVE	MY SUMMER LOVE	4th	100	100	3	4	9	12	0	5	8	11	0
+42	ORION.78(AMeuro-MIX)	ORION.78(AMeuro-MIX)	4th	105	105	3	4	7	12	0	5	8	9	0
+43	PARANOIA EVOLUTION	PARANOIA EVOLUTION	4th	200	200	5	9	10	12	0	6	10	13	0
+44	SEXY PLANET	SEXY PLANET	4th	180	180	3	7	8	11	0	5	7	10	0
+45	SUPER STAR	SUPER STAR	4th	128	128	3	7	8	12	0	5	9	11	0
+46	TRIP MACHINE CLIMAX	TRIP MACHINE CLIMAX	4th	180	180	5	7	9	12	0	7	9	12	0
+47	WILD RUSH	WILD RUSH	4th	80	180	5	6	7	10	0	5	9	11	0
+48	ABSOLUTE	ABSOLUTE	5th	144	144	3	4	8	11	0	4	7	11	0
+49	Abyss	Abyss	5th	142	142	3	4	7	10	0	5	8	11	0
+50	AFRONOVA PRIMEVAL	AFRONOVA PRIMEVAL	5th	200	200	4	7	9	12	0	7	9	13	0
+51	BROKEN MY HEART	BROKEN MY HEART	5th	160	160	3	5	7	12	0	5	9	12	0
+52	CAN'T STOP FALLIN' IN LOVE ～SPEED MIX～	CAN'T STOP FALLIN' IN LOVE ～SPEED MIX～	5th	170	170	4	6	9	12	0	5	9	12	0
+53	DXY!	DXY!	5th	148	148	5	6	9	12	0	6	9	12	0
+54	ECSTASY	ECSTASY	5th	145	145	4	5	8	10	0	6	8	11	0
+55	Electro Tuned ( the SubS Mix )	Electro Tuned ( the SubS Mix )	5th	125	125	4	6	9	12	0	5	9	11	0
+56	Healing Vision	Healing Vision	5th	49	196	4	5	7	11	0	4	8	13	0
+57	INSERTiON	INSERTiON	5th	110	225	4	6	9	13	0	5	9	12	0
+58	PARANOiA ETERNAL	PARANOiA ETERNAL	5th	200	200	4	8	10	13	0	9	11	13	0
+59	STILL IN MY HEART	STILL IN MY HEART	5th	150	150	3	6	8	10	0	6	7	9	0
+60	サナ・モレッテ・ネ・エンテ	sana・morette・ne・ente	5th	90	90	3	4	9	12	0	5	9	12	0
+61	CANDY☆	CANDY1	MAX	192	192	4	6	7	11	0	5	8	11	0
+62	exotic ethnic	exotic ethnic	MAX	190	190	4	5	8	13	0	5	9	13	0
+63	Healing Vision ～Angelic mix～	Healing Vision ～Angelic mix～	MAX	46	196	5	7	11	13	0	8	10	14	0
+64	Let the beat hit em!(CLASSIC R&B STYLE)	Let the beat hit em!(CLASSIC R&B STYLE)	MAX	102	102	3	6	7	10	0	6	7	10	0
+65	MAX 300	MAX 300	MAX	300	300	5	9	12	15	0	9	12	15	0
+66	ORION.78～civilization mix～	ORION.78～civilization mix～	MAX	200	200	4	9	12	13	0	9	11	13	0
+67	AFRONOVA(FROM NONSTOP MEGAMIX)	AFRONOVA(FROM NONSTOP MEGAMIX)	MAX2	200	200	0	0	0	0	10	0	0	0	10
+68	AM-3P(AM EAST mix)	AM-3P(AM EAST mix)	MAX2	140	140	0	0	0	0	10	0	0	0	11
+69	B4U(B4 ZA BEAT MIX)	B4U(B4 ZA BEAT MIX)	MAX2	170	170	0	0	0	0	10	0	0	0	10
+70	BRE∀K DOWN！	BRE∀K DOWN！	MAX2	190	190	3	5	8	12	0	5	8	13	0
+71	BRILLIANT 2U(K.O.G G3 MIX)	BRILLIANT 2U(K.O.G G3 MIX)	MAX2	170	170	0	0	0	0	10	0	0	0	9
+72	BURNIN' THE FLOOR（BLUE FIRE mix）	BURNIN' THE FLOOR（BLUE FIRE mix）	MAX2	155	155	0	0	0	0	10	0	0	0	10
+73	BURNING HEAT！（3 Option MIX）	BURNING HEAT！（3 Option MIX）	MAX2	166	166	3	4	8	13	0	4	7	12	0
+74	CANDY♡	CANDY2	MAX2	180	180	4	5	7	10	0	4	6	10	0
+75	CELEBRATE NITE(EURO TRANCE STYLE)	CELEBRATE NITE(EURO TRANCE STYLE)	MAX2	144	144	0	0	0	0	11	0	0	0	10
+76	D2R	D2R	MAX2	160	160	3	4	7	11	0	4	8	11	0
+77	DESTINY	DESTINY	MAX2	155	155	3	3	7	10	0	3	8	11	0
+78	DIVE TO THE NIGHT	DIVE TO THE NIGHT	MAX2	155	155	3	4	8	11	0	5	9	12	0
+79	DROP OUT(FROM NONSTOP MEGAMIX)	DROP OUT(FROM NONSTOP MEGAMIX)	MAX2	130	130	0	0	0	0	12	0	0	0	13
+80	ECSTASY (midnight blue mix)	ECSTASY (midnight blue mix)	MAX2	145	145	0	0	0	0	11	0	0	0	11
+81	HIGHER(next morning mix)	HIGHER(next morning mix)	MAX2	132	132	0	0	0	0	11	0	0	0	11
+82	HYSTERIA 2001	HYSTERIA 2001	MAX2	190	190	0	0	0	0	10	0	0	0	11
+83	i feel ...	i feel ...	MAX2	141	141	3	4	8	12	0	3	8	12	0
+84	MAXX UNLIMITED	MAXX UNLIMITED	MAX2	140	320	5	10	13	16	0	7	12	15	0
+85	MY SUMMER LOVE(TOMMY'S SMILE MIX)	MY SUMMER LOVE(TOMMY'S SMILE MIX)	MAX2	100	100	0	0	0	0	12	0	0	0	11
+86	rain of sorrow	rain of sorrow	MAX2	140	140	3	3	9	12	0	5	7	12	0
+87	Secret Rendez-vous	Secret Rendez-vous	MAX2	98	98	3	4	7	12	0	4	8	12	0
+88	SEXY PLANET(FROM NONSTOP MEGAMIX)	SEXY PLANET(FROM NONSTOP MEGAMIX)	MAX2	180	180	0	0	0	0	10	0	0	0	9
+89	Silent Hill (3rd christmas mix)	Silent Hill (3rd christmas mix)	MAX2	125	125	0	0	0	0	10	0	0	0	11
+90	STILL IN MY HEART(MOMO MIX)	STILL IN MY HEART(MOMO MIX)	MAX2	85	170	0	0	0	0	11	0	0	0	12
+91	SUPER STAR(FROM NONSTOP MEGAMIX)	SUPER STAR(FROM NONSTOP MEGAMIX)	MAX2	128	128	0	0	0	0	10	0	0	0	11
+92	Sweet Sweet ♥ Magic	Sweet Sweet Love Magic 	MAX2	180	180	4	5	9	13	0	5	8	11	0
+93	TSUGARU	TSUGARU	MAX2	165	165	3	5	9	12	0	6	9	13	0
+94	TSUGARU (APPLE MIX) 	TSUGARU (APPLE MIX) 	MAX2	165	165	0	0	0	0	11	0	0	0	11
+95	WILD RUSH(FROM NONSTOP MEGAMIX)	WILD RUSH(FROM NONSTOP MEGAMIX)	MAX2	125	125	0	0	0	0	9	0	0	0	10
+96	革命	kakumei	MAX2	83	148	3	5	9	12	11	4	8	11	11
+97	1998	1998	EXTREME	150	150	3	4	6	9	0	5	6	9	0
+98	♥Love²シュガ→♥	Love2sugar	EXTREME	155	155	3	5	6	8	0	4	7	9	0
+99	321STARS	321STARS	EXTREME	192	192	4	5	9	11	0	5	8	11	0
+100	A	A	EXTREME	93	191	4	5	8	11	12	5	7	11	13
+101	Across the nightmare	Across the nightmare	EXTREME	300	300	7	8	10	12	13	8	11	13	13
+102	air	air	EXTREME	130	130	3	5	7	10	0	5	7	11	0
+103	AM-3P -303 BASS MIX-	AM-3P -303 BASS MIX-	EXTREME	130	130	4	4	9	10	0	5	8	10	0
+104	bag	bag	EXTREME	65	65	2	7	11	13	13	7	12	13	13
+105	BE LOVIN	BE LOVIN	EXTREME	185	185	4	5	9	12	0	5	10	12	0
+106	Colors ～for extreme～	Colors ～for extreme～	EXTREME	150	150	3	5	8	9	13	5	7	10	13
+107	CUTIE CHASER(MORNING MIX)	CUTIE CHASER(MORNING MIX)	EXTREME	126	126	3	3	4	9	0	4	6	9	0
+108	Dance Dance Revolution	Dance Dance Revolution	EXTREME	150	150	5	6	8	12	12	6	8	12	11
+109	Destiny lovers	Destiny lovers	EXTREME	170	170	3	4	7	13	0	4	7	12	0
+110	DROP THE BOMB(SyS.F. Mix)	DROP THE BOMB(SyS.F. Mix)	EXTREME	150	150	3	5	7	10	0	4	5	10	0
+111	Frozen Ray ～for extreme～	Frozen Ray ～for extreme～	EXTREME	156	156	4	5	9	12	0	4	8	11	0
+112	Gamelan de Couple	Gamelan de Couple	EXTREME	150	150	3	4	7	12	0	5	7	13	0
+113	GRADUATION ～それぞれの明日～	GRADUATION ～sorezorenoashita～	EXTREME	125	125	2	3	7	9	0	3	7	9	0
+114	Happy Wedding	Happy Wedding	EXTREME	126	126	3	4	6	10	0	5	6	9	0
+115	Heaven is a '57 metallic gray ～gimmix～	Heaven is a '57 metallic gray ～gimmix～	EXTREME	190	190	4	5	7	12	0	5	7	13	0
+116	HYPER EUROBEAT	HYPER EUROBEAT	EXTREME	152	152	3	4	6	10	0	6	9	11	0
+117	I'm gonna get you!	I'm gonna get you!	EXTREME	160	160	3	4	7	9	0	4	7	11	0
+118	jane jana	jane jana	EXTREME	125	125	3	4	7	10	0	6	7	11	0
+119	JET WORLD	JET WORLD	EXTREME	138	138	3	4	7	11	0	5	8	11	0
+121	KISS KISS KISS	KISS KISS KISS	EXTREME	150	150	4	5	6	12	0	5	8	12	0
+122	Kiss me all night long	Kiss me all night long	EXTREME	155	155	3	3	6	10	0	3	6	11	0
+123	LA BAMBA	LA BAMBA	EXTREME	179	179	3	4	8	11	0	4	8	10	0
+124	L'amour et la liberté(DDR Ver.)	L'amour et la liberté(DDR Ver.)	EXTREME	145	145	3	6	9	12	0	6	9	12	0
+125	LOVE♥SHINE	LOVE SHINE	EXTREME	177	177	3	5	6	9	0	5	7	11	0
+126	Miracle Moon ～L.E.D.LIGHT STYLE MIX～	Miracle Moon ～L.E.D.LIGHT STYLE MIX～	EXTREME	138	138	3	4	6	9	0	3	6	10	0
+127	PARANOIA survivor	PARANOIA survivor	EXTREME	135	270	4	9	11	15	0	9	11	15	0
+128	PARANOIA survivor MAX	PARANOIA survivor MAX	EXTREME	145	290	5	9	11	15	16	9	11	15	16
+129	Pink Rose	Pink Rose	EXTREME	146	146	3	4	6	10	0	4	7	10	0
+130	SO IN LOVE	SO IN LOVE	EXTREME	112	112	3	4	7	9	0	4	7	9	0
+131	STAY (Organic house Version)	STAY (Organic house Version)	EXTREME	125	125	3	4	7	9	0	5	7	9	0
+132	stoic (extreme version)	stoic (extreme version)	EXTREME	155	155	3	5	9	13	0	4	10	12	0
+133	sync (extreme version)	sync (extreme version)	EXTREME	167	167	3	5	8	9	12	6	9	10	11
+134	TEARS	TEARS	EXTREME	143	143	3	6	8	12	0	6	8	12	0
+135	The Least 100sec	The Least 100sec	EXTREME	200	263	5	7	11	12	0	7	10	14	0
+136	The legend of MAX	The legend of MAX	EXTREME	83	333	7	8	13	15	0	8	12	16	0
+137	TRIP MACHINE survivor	TRIP MACHINE survivor	EXTREME	170	170	4	5	11	13	0	6	11	12	0
+138	Twin Bee -Generation X-	Twin Bee -Generation X-	EXTREME	169	169	3	5	8	11	0	4	7	11	0
+139	V ～for extreme～	V ～for extreme～	EXTREME	150	150	3	5	8	12	13	5	7	11	13
+140	VANITY ANGEL	VANITY ANGEL	EXTREME	140	140	3	4	9	12	0	5	9	12	0
+141	xenon	xenon	EXTREME	158	158	3	5	10	13	0	5	9	13	0
+142	桜	sakura	EXTREME	20	320	5	7	11	13	11	7	11	13	11
+143	三毛猫ロック	mikeneko rock	EXTREME	246	246	4	5	8	12	0	5	9	13	0
+144	蒼い衝動 ～for extreme～	aoisyoudou ～for extreme～	EXTREME	145	145	2	4	6	9	0	4	6	11	0
+145	大見解	daikenkai	EXTREME	143	172	4	4	8	12	13	5	8	13	14
+146	A Stupid Barber	A Stupid Barber	Super Nova	132	132	3	4	8	9	0	4	8	9	0
+147	AA	AA	Super Nova	154	154	3	5	9	13	0	5	10	13	0
+148	Bad Routine	Bad Routine	Super Nova	130	130	3	5	7	9	0	4	8	9	0
+149	Baile Le Samba	Baile Le Samba	Super Nova	92	92	1	3	10	11	0	3	6	10	0
+150	BALLAD FOR YOU～想いの雨～	BALLAD FOR YOU～omoinoame～	Super Nova	65	65	2	5	7	8	0	4	7	9	0
+151	Brazilian Anthem	Brazilian Anthem	Super Nova	130	130	3	5	8	12	0	5	8	10	0
+152	cachaca	cachaca	Super Nova	128	128	1	3	7	12	0	4	9	11	0
+153	Can Be Real	Can Be Real	Super Nova	132	132	3	4	6	10	0	3	6	10	0
+154	CAN'T STOP FALLIN' IN LOVE -super euro version-	CAN'T STOP FALLIN' IN LOVE -super euro version-	Super Nova	155	155	3	4	7	8	0	2	5	8	0
+155	CENTAUR	CENTAUR	Super Nova	140	140	4	6	9	12	0	6	9	12	0
+156	CHAOS	CHAOS	Super Nova	170	170	6	8	12	14	16	9	12	14	15
+157	CURUS	CURUS	Super Nova	184	188	2	3	7	10	0	4	5	12	0
+158	DoLL	DoLL	Super Nova	170	170	4	5	8	12	13	5	8	12	14
+159	Dragon Blade	Dragon Blade	Super Nova	240	240	5	9	10	11	0	9	11	11	0
+160	Fascination ～eternal love mix～	Fascination ～eternal love mix～	Super Nova	100	400	9	11	13	16	18	10	13	17	17
+161	Fascination MAXX	Fascination MAXX	Super Nova	100	400	6	11	13	17	18	10	13	17	18
+162	Flow	Flow	Super Nova	140	140	4	5	9	12	0	6	9	11	0
+163	Flow (True Style)	Flow (True Style)	Super Nova	140	280	4	6	9	12	13	6	9	12	14
+164	Fly away	Fly away	Super Nova	125	125	3	4	7	11	0	3	8	11	0
+165	Forever Sunshine	Forever Sunshine	Super Nova	128	128	3	4	7	8	0	3	6	8	0
+166	Freedom	Freedom	Super Nova	148	148	3	5	7	11	0	4	7	11	0
+167	Funk Boogie	Funk Boogie	Super Nova	127	127	4	5	4	8	0	4	6	8	0
+169	GORGEOUS 2012	GORGEOUS 2012	Super Nova	135	135	4	3	8	10	0	5	7	11	0
+170	HAPPY☆ANGEL	HAPPY ANGEL	Super Nova	180	180	4	4	8	12	16	3	8	11	16
+171	Healing-D-Vision	Healing-D-Vision	Super Nova	180	360	6	9	12	14	18	9	13	15	18
+172	I Need You	I Need You	Super Nova	114	114	3	4	6	8	0	5	6	8	0
+173	iFUTURELIST(DDR VERSION)	iFUTURELIST(DDR VERSION)	Super Nova	150	150	3	5	7	12	13	5	7	11	13
+174	INNOCENCE OF SILENCE	INNOCENCE OF SILENCE	Super Nova	142	142	3	5	10	12	0	5	9	12	0
+175	INSIDE YOUR HEART	INSIDE YOUR HEART	Super Nova	107	107	3	4	6	9	0	3	6	9	0
+176	Jam & Marmalade	Jam & Marmalade	Super Nova	145	145	3	4	8	11	0	5	8	10	0
+177	KEEP ON MOVIN' ～DMX MIX～	KEEP ON MOVIN' ～DMX MIX～	Super Nova	132	132	3	5	7	11	0	4	8	12	0
+178	La Bamba	La Bamba	Super Nova	156	156	3	5	8	11	0	6	8	12	0
+179	LOGICAL DASH	LOGICAL DASH	Super Nova	144	144	3	4	7	11	0	5	6	10	0
+180	LOVE IS ORANGE	LOVE IS ORANGE	Super Nova	180	180	3	5	7	9	11	5	8	8	12
+181	Make A Difference	Make A Difference	Super Nova	130	130	3	5	7	12	0	5	8	12	0
+182	MARIA(I believe...)	MARIA(I believe...)	Super Nova	158	158	3	5	8	11	0	5	9	12	0
+183	MAX 300 (Super-Max-Me Mix)	MAX 300 (Super-Max-Me Mix)	Super Nova	140	320	6	10	13	15	16	10	12	15	17
+184	MAXIMIZER	MAXIMIZER	Super Nova	190	190	5	6	9	12	0	6	9	11	0
+185	MIDNIGHT SPECIAL	MIDNIGHT SPECIAL	Super Nova	182	182	3	7	9	10	0	7	10	12	0
+186	Mind Parasite	Mind Parasite	Super Nova	145	145	3	5	9	13	0	5	8	10	0
+187	Monkey Punk	Monkey Punk	Super Nova	180	180	4	5	8	10	0	5	8	10	0
+188	MOON	MOON	Super Nova	156	156	3	3	7	10	0	3	8	10	0
+189	murmur twins	murmur twins	Super Nova	174	174	3	4	8	11	0	3	8	11	0
+190	My Only Shining Star	My Only Shining Star	Super Nova	155	155	3	4	7	9	0	3	7	11	0
+191	No.13	No.13	Super Nova	172	172	4	5	9	13	0	5	9	12	0
+192	PARANOiA-Respect-	PARANOiA-Respect-	Super Nova	300	300	5	11	12	16	0	8	12	15	0
+193	PASSION OF LOVE	PASSION OF LOVE	Super Nova	78	155	4	5	7	10	0	6	8	10	0
+194	Polovtsian Dances And Chorus	Polovtsian Dances And Chorus	Super Nova	146	146	3	4	9	11	0	5	9	11	0
+195	PUT YOUR FAITH IN ME ～SATURDAY NIGHT MIX～	PUT YOUR FAITH IN ME ～SATURDAY NIGHT MIX～	Super Nova	120	120	3	5	8	9	0	5	7	12	0
+196	Quick Master	Quick Master	Super Nova	147	147	4	5	8	11	0	5	7	10	0
+197	Quickening	Quickening	Super Nova	150	150	3	6	7	11	0	5	6	8	0
+198	rainbow flyer	rainbow flyer	Super Nova	148	148	3	4	6	11	0	3	7	11	0
+199	rainbow rainbow	rainbow rainbow	Super Nova	177	177	4	4	7	10	0	4	7	11	0
+200	RED ZONE	RED ZONE	Super Nova	165	165	4	6	8	12	0	6	8	11	0
+201	Saturday Night Love	Saturday Night Love	Super Nova	128	128	3	4	6	8	0	4	6	8	0
+202	Scorching Moon	Scorching Moon	Super Nova	125	125	3	4	7	11	0	5	7	10	0
+203	SEDUCTION	SEDUCTION	Super Nova	95	190	4	6	9	12	0	6	9	13	0
+204	SEDUCTION(Vocal Remix)	SEDUCTION(Vocal Remix)	Super Nova	190	190	3	6	9	12	0	6	8	12	0
+205	Ska Ska No.3	Ska Ska No.3	Super Nova	138	138	3	3	7	12	0	4	8	10	0
+206	Star Gate Heaven	Star Gate Heaven	Super Nova	145	145	3	3	7	10	0	3	7	11	0
+207	STARS☆☆☆(2nd NAOKI's style)	STARS (2nd NAOKI's style)	Super Nova	140	140	3	6	8	9	0	6	8	11	0
+208	THE SHINING POLARIS	THE SHINING POLARIS	Super Nova	147	147	4	4	6	9	0	5	6	9	0
+209	TIERRA BUENA	TIERRA BUENA	Super Nova	115	115	3	4	8	10	0	4	7	11	0
+210	TOMORROW	TOMORROW	Super Nova	140	140	3	4	8	10	0	5	7	11	0
+211	Tomorrow Perfume	Tomorrow Perfume	Super Nova	144	144	3	4	8	10	0	4	7	9	0
+212	TRUE♥LOVE	TRUE♥LOVE	Super Nova	188	188	4	4	8	10	0	4	7	10	0
+213	Try 2 Luv. U	Try 2 Luv. U	Super Nova	115	115	3	4	6	8	0	4	6	8	0
+214	un deux trois	un deux trois	Super Nova	70	140	3	4	8	10	0	4	6	9	0
+215	Under the Sky	Under the Sky	Super Nova	170	170	2	2	5	11	0	3	6	8	0
+216	Xepher	Xepher	Super Nova	170	170	4	7	10	13	15	7	10	13	15
+217	You gotta move it (feat. Julie Rugaard)	You gotta move it (feat. Julie Rugaard)	Super Nova	134	134	4	5	8	10	0	5	7	10	0
+218	カゲロウ	kagerou	Super Nova	164	164	3	4	7	9	0	4	6	9	0
+219	この子の七つのお祝いに	konokononanatsunooiwaini	Super Nova	161	161	3	7	10	14	0	7	10	14	0
+220	チカラ	chikara	Super Nova	185	185	4	5	8	10	0	4	9	13	0
+221	ヒマワリ	himawari	Super Nova	185	185	3	4	7	11	0	4	7	13	0
+222	華爛漫 -Flowers-	hanaranman -Flowers-	Super Nova	160	160	3	5	7	11	0	4	7	11	0
+223	月光蝶	gekkouchou	Super Nova	218	218	4	4	7	10	0	3	7	11	0
+224	男々道	dandandou	Super Nova	156	160	3	4	7	12	0	4	8	10	0
+225	怒れる大きな白い馬	ikareruookinashiroiuma	Super Nova	110	148	4	5	8	11	0	3	7	11	0
+226	虹色	nijiiro	Super Nova	160	160	3	4	8	11	13	4	7	13	13
+227	夢幻ノ光	mugennohikari	Super Nova	171	171	4	4	8	11	0	4	8	11	0
+228	A thing called LOVE	A thing called LOVE	Super Nova2	160	160	3	4	7	10	0	5	6	11	0
+229	AM-3P ("CHAOS" Special)	AM-3P ("CHAOS" Special)	Super Nova2	130	130	0	0	0	0	14	0	0	0	13
+230	Arrabbiata	Arrabbiata	Super Nova2	225	225	5	11	13	15	0	12	14	16	0
+231	B4U ("VOLTAGE" Special)	B4U ("VOLTAGE" Special)	Super Nova2	155	155	0	0	0	0	14	0	0	0	15
+232	Blind Justice ～Torn souls, Hurt Faiths ～	Blind Justice ～Torn souls, Hurt Faiths ～	Super Nova2	137	165	3	5	8	12	0	5	8	12	0
+233	Bloody Tears(IIDX EDITION)	Bloody Tears(IIDX EDITION)	Super Nova2	170	170	4	5	6	11	0	5	7	11	0
+234	BRILLIANT 2U ("STREAM" Special)	BRILLIANT 2U ("STREAM" Special)	Super Nova2	150	150	0	0	0	0	13	0	0	0	13
+235	CaptivAte～誓い～	CaptivAte～chikai～	Super Nova2	160	160	4	5	8	13	0	5	8	13	0
+236	D2R ("FREEZE" Special)	D2R ("FREEZE" Special)	Super Nova2	160	160	0	0	0	0	12	0	0	0	12
+237	DEAD END ("GROOVE RADAR" Special)	DEAD END ("GROOVE RADAR" Special)	Super Nova2	190	190	0	0	0	0	18	0	0	0	18
+238	dream of love	dream of love	Super Nova2	114	114	3	3	6	8	0	5	7	8	0
+239	DYNAMITE RAVE ("AIR" Special)	DYNAMITE RAVE ("AIR" Special)	Super Nova2	149	149	0	0	0	0	8	0	0	0	9
+240	Electrified	Electrified	Super Nova2	140	140	3	4	6	10	0	5	6	11	0
+241	Every Day, Every Night（NM STYLE）	Every Day, Every Night（NM STYLE）	Super Nova2	90	90	3	4	6	9	0	4	7	10	0
+242	Feelings Won't Fade(Extend Trance Mix)	Feelings Won't Fade(Extend Trance Mix)	Super Nova2	144	144	4	5	8	12	0	5	9	12	0
+243	FIRE	FIRE	Super Nova2	184	184	4	5	8	11	0	4	8	12	0
+244	Flow (Jammin' Ragga Mix)	Flow (Jammin' Ragga Mix)	Super Nova2	70	140	4	5	8	13	0	4	7	13	0
+245	Fly away -mix del matador-	Fly away -mix del matador-	Super Nova2	130	130	3	5	9	13	0	5	9	13	0
+246	Freeway Shuffle	Freeway Shuffle	Super Nova2	145	145	3	4	8	10	12	5	7	9	12
+247	GIRIGILI門前雀羅	GIRIGILImonzenjakura	Super Nova2	148	148	4	5	7	12	0	5	8	12	0
+248	L'amour et la liberté(Darwin & DJ Silver remix)	L'amour et la liberté(Darwin & DJ Silver remix)	Super Nova2	70	140	3	4	7	11	0	4	7	12	0
+249	MARS WAR 3	MARS WAR 3	Super Nova2	200	200	3	4	8	11	0	4	10	13	0
+250	MOONSTER	MOONSTER	Super Nova2	140	140	4	5	7	12	0	4	7	10	0
+251	Music In The Rhythm	Music In The Rhythm	Super Nova2	155	155	4	7	8	11	0	5	9	12	0
+252	NGO	NGO	Super Nova2	68	274	6	10	12	15	18	10	11	16	17
+253	PARANOiA ～HADES～	PARANOiA ～HADES～	Super Nova2	75	300	7	11	15	16	18	12	15	17	18
+254	Pluto	Pluto	Super Nova2	50	220	6	9	12	14	16	9	13	14	17
+255	Pluto Relinquish	Pluto Relinquish	Super Nova2	100	800	5	12	14	17	18	12	14	18	18
+256	Poseidon	Poseidon	Super Nova2	75	300	3	5	9	11	0	6	9	11	0
+257	Raspberry♡Heart(English version)	Raspberry♡Heart(English version)	Super Nova2	160	160	3	5	6	9	11	5	6	9	12
+258	Saturn	Saturn	Super Nova2	78	155	3	7	9	13	0	5	9	13	0
+259	Shades of Grey	Shades of Grey	Super Nova2	170	170	3	5	8	10	0	5	7	10	0
+260	Silver Platform - I wanna get your heart -	Silver Platform - I wanna get your heart -	Super Nova2	140	140	4	5	7	11	0	4	8	11	0
+261	SOUL CRASH	SOUL CRASH	Super Nova2	142	142	3	6	9	13	0	6	9	12	0
+262	Star Gate Heaven (FUTURE LOVE Mix)	Star Gate Heaven (FUTURE LOVE Mix)	Super Nova2	147	147	4	5	9	12	0	6	8	13	0
+263	STARS☆☆☆（Re-tuned by HΛL） - DDR EDITION -	STARS☆☆☆（Re-tuned by HΛL） - DDR EDITION -	Super Nova2	145	145	3	5	10	9	0	6	9	10	0
+264	stealth	stealth	Super Nova2	160	160	3	5	8	11	0	5	8	11	0
+265	SUNKiSS♥DROP	SUNKiSS♥DROP	Super Nova2	185	185	3	5	8	12	12	4	7	11	12
+266	switch	switch	Super Nova2	152	152	3	4	7	10	0	5	7	10	0
+267	Trim	Trim	Super Nova2	85	340	5	6	10	16	0	6	10	15	0
+268	TRIP MACHINE PhoeniX	TRIP MACHINE PhoeniX	Super Nova2	160	160	3	8	12	15	15	8	12	16	16
+269	Trust -DanceDanceRevolution mix-	Trust -DanceDanceRevolution mix-	Super Nova2	164	164	3	5	8	10	0	4	8	11	0
+270	Unreal	Unreal	Super Nova2	90	180	4	8	12	15	0	8	12	14	0
+271	Uranus	Uranus	Super Nova2	81	162	3	6	9	11	13	6	9	11	13
+272	Vem brincar	Vem brincar	Super Nova2	135	135	2	5	7	11	0	5	7	11	0
+273	Venus	Venus	Super Nova2	195	195	3	4	7	11	13	4	6	10	13
+274	volcano	volcano	Super Nova2	240	240	4	5	8	13	0	5	8	13	0
+275	Votum stellarum -forest #25 DDR RMX-	Votum stellarum -forest #25 DDR RMX-	Super Nova2	140	140	1	4	9	12	0	4	7	12	0
+276	Why not	Why not	Super Nova2	175	175	4	6	9	11	0	6	7	11	0
+277	30 Lives (Up-Up-Down-Dance Mix)	30 Lives (Up-Up-Down-Dance Mix)	X	144	144	2	4	7	8	0	3	6	8	0
+278	A Geisha's Dream	A Geisha's Dream	X	140	140	2	6	9	11	0	7	9	11	0
+279	AFRONOVA(X-Special)	AFRONOVA(X-Special)	X	200	200	0	0	0	0	13	0	0	0	14
+280	Beautiful Inside (Cube::Hard Mix)	Beautiful Inside (Cube::Hard Mix)	X	110	110	3	5	7	10	0	4	7	11	0
+281	Blue Rain	Blue Rain	X	144	144	2	5	6	11	14	5	7	11	14
+283	CANDY☆(X-Special)	CANDY (X-Special)	X	192	192	0	0	0	0	12	0	0	0	13
+284	Chance and Dice	Chance and Dice	X	150	150	3	5	7	9	0	4	7	10	0
+285	Dance Celebration	Dance Celebration	X	130	130	2	5	8	11	12	6	7	11	12
+286	Dance Celebration (System 7 Remix)	Dance Celebration (System 7 Remix)	X	132	132	3	6	9	13	0	7	8	13	0
+287	Dance Dance Revolution(X-Special)	Dance Dance Revolution(X-Special)	X	150	150	0	0	0	0	13	0	0	0	13
+288	Dance Floor	Dance Floor	X	120	120	2	5	6	9	0	5	7	10	0
+289	dazzle	dazzle	X	98	98	2	4	8	10	0	4	8	10	0
+290	Dream Machine	Dream Machine	X	140	140	3	6	8	11	0	5	8	11	0
+292	Flight of the Phoenix	Flight of the Phoenix	X	145	145	2	5	7	9	7	4	6	9	7
+293	Flourish	Flourish	X	152	152	3	5	8	10	0	6	8	10	0
+294	Healing Vision(X-Special)	Healing Vision(X-Special)	X	49	196	0	0	0	0	14	0	0	0	15
+295	Horatio	Horatio	X	165	165	3	4	9	15	15	5	8	14	14
+296	Inspiration	Inspiration	X	147	147	3	5	7	8	0	4	6	9	0
+297	INTO YOUR HEART (Ruffage remix)	INTO YOUR HEART (Ruffage remix)	X	135	135	3	4	8	11	0	5	8	11	0
+298	Lift You Up	Lift You Up	X	123	123	3	4	6	10	0	5	6	8	0
+299	LOVING YOU (Epidemik remix)	LOVING YOU (Epidemik remix)	X	165	165	3	6	8	11	0	4	7	11	0
+300	Malacca	Malacca	X	140	140	3	4	7	10	13	5	7	9	13
+301	MAX 300(X-Special)	MAX 300(X-Special)	X	300	300	0	0	0	0	17	0	0	0	18
+302	MAXX UNLIMITED(X-Special)	MAXX UNLIMITED(X-Special)	X	140	320	0	0	0	0	18	0	0	0	18
+303	on the bounce	on the bounce	X	150	150	3	7	11	14	16	6	9	14	15
+304	On The Break	On The Break	X	85	170	3	8	10	13	0	7	11	14	0
+305	PARANOiA ETERNAL(X-Special)	PARANOiA ETERNAL(X-Special)	X	200	200	0	0	0	0	13	0	0	0	13
+306	PARANOIA EVOLUTION(X-Special)	PARANOIA EVOLUTION(X-Special)	X	200	200	0	0	0	0	14	0	0	0	15
+307	PARANOiA MAX～DIRTY MIX～(X-Special)	PARANOiA MAX～DIRTY MIX～(X-Special)	X	190	190	0	0	0	0	13	0	0	0	14
+308	PARANOiA Rebirth(X-Special)	PARANOiA Rebirth(X-Special)	X	190	190	0	0	0	0	14	0	0	0	14
+309	PARANOiA(X-Special)	PARANOiA(X-Special)	X	180	180	0	0	0	0	13	0	0	0	14
+310	Party Lights	Party Lights	X	130	130	2	4	6	11	0	5	6	10	0
+311	Playa (Original Mix)	Playa (Original Mix)	X	125	125	3	4	7	11	0	4	7	11	0
+312	puzzle	puzzle	X	135	135	3	4	6	8	0	4	6	9	0
+313	S・A・G・A	SAGA	X	200	244	4	7	10	13	0	6	11	13	0
+314	SABER WING	SABER WING	X	74	222	5	8	10	13	13	8	12	13	13
+315	SABER WING (Akira Ishihara Headshot mix)	SABER WING (Akira Ishihara Headshot mix)	X	79	316	6	10	12	15	17	10	12	15	17
+316	Slip Out	Slip Out	X	95	95	1	3	7	9	0	5	6	9	0
+317	Slip Out (bounce in beat mix)	Slip Out (bounce in beat mix)	X	106	106	2	4	6	10	0	6	7	9	0
+318	SP-TRIP MACHINE～JUNGLE MIX～(X-Special)	SP-TRIP MACHINE～JUNGLE MIX～(X-Special)	X	160	160	0	0	0	0	11	0	0	0	12
+319	SUPER SAMURAI	SUPER SAMURAI	X	170	170	4	8	12	15	0	8	12	16	0
+320	Taj He Spitz	Taj He Spitz	X	107	107	2	4	7	10	0	5	7	11	0
+321	Taj He Spitz (Tommie Sunshine's Brooklyn Fire Re-Touch)	Taj He Spitz (Tommie Sunshine's Brooklyn Fire Re-Touch)	X	120	120	3	5	8	12	0	6	7	12	0
+322	Take A Chance	Take A Chance	X	88	88	2	3	6	9	0	3	6	9	0
+323	The flower in your smile	The flower in your smile	X	186	186	3	6	7	10	0	5	7	10	0
+324	The legend of MAX(X-Special)	The legend of MAX(X-Special)	X	83	333	0	0	0	0	17	0	0	0	17
+325	Ticket to Bombay	Ticket to Bombay	X	145	145	3	5	7	10	0	5	7	9	0
+326	Till the lonely's gone	Till the lonely's gone	X	130	130	3	4	8	9	0	5	8	9	0
+327	TimeHollow	TimeHollow	X	94	94	2	4	7	9	0	5	6	8	0
+328	Tracers (4Beat Remix)	Tracers (4Beat Remix)	X	140	140	3	5	7	10	0	6	9	11	0
+329	Trickster	Trickster	X	174	174	2	5	7	9	0	5	8	11	0
+330	Trigger	Trigger	X	100	400	5	9	12	16	18	7	12	16	18
+331	TRIP MACHINE CLIMAX(X-Special)	TRIP MACHINE CLIMAX(X-Special)	X	180	180	0	0	0	0	14	0	0	0	14
+332	TRIP MACHINE(X-Special)	TRIP MACHINE(X-Special)	X	160	160	0	0	0	0	11	0	0	0	12
+333	Übertreffen	Ubertreffen	X	174	174	3	6	8	13	0	5	8	14	0
+334	Waiting 4 u	Waiting 4 u	X	175	175	4	6	8	11	11	6	8	12	12
+335	will	will	X	145	145	1	4	7	11	0	5	7	11	0
+336	ポリリズム	polyrhythm	X	128	128	1	4	8	10	0	4	9	11	0
+337	革命(X-Special)	kakumei(X-Special)	X	83	148	0	0	0	0	14	0	0	0	14
+338	零 - ZERO -	zero - ZERO -	X	90	180	3	5	8	11	0	6	8	13	0
+339	凛として咲く花の如く	rintoshitesakuhananogotoku	X	163	163	3	6	8	10	0	5	7	11	0
+340	888	888	X2	111	888	3	6	13	14	18	7	12	15	18
+341	☆shining☆	shining	X2	185	185	2	5	8	11	0	5	8	11	0
+342	A Brighter Day	A Brighter Day	X2	155	155	2	5	7	9	12	5	7	10	12
+343	aftershock!!	aftershock!!	X2	157	157	3	5	9	13	0	5	9	13	0
+344	All My Love	All My Love	X2	158	158	2	5	8	10	0	5	9	11	0
+345	Anti-Matter	Anti-Matter	X2	100	400	6	11	14	17	18	11	15	17	18
+346	BALLAD THE FEATHERS	BALLAD THE FEATHERS	X2	132	132	1	4	7	10	8	4	7	11	8
+349	CG Project	CG Project	X2	200	200	3	5	9	12	0	5	9	13	0
+350	Crazy Control	Crazy Control	X2	105	105	1	4	6	9	12	4	7	10	12
+352	Dazzlin' Darlin	Dazzlin' Darlin	X2	149	149	2	6	9	11	0	6	10	12	0
+353	Dazzlin' Darlin-秋葉工房mix-	Dazzlin' Darlin-akibakouboumix-	X2	160	160	3	5	8	11	0	5	7	12	0
+354	Decade	Decade	X2	148	148	2	5	8	11	0	5	8	12	0
+355	dirty digital	dirty digital	X2	140	140	1	4	7	11	13	4	7	11	13
+356	DROP	DROP	X2	152	152	1	4	7	11	0	4	7	13	0
+357	Dummy	Dummy	X2	175	175	2	4	7	10	0	4	7	11	0
+361	FIRE FIRE	FIRE FIRE	X2	150	150	3	5	8	14	0	5	8	13	0
+362	Freeze	Freeze	X2	140	140	2	5	8	12	13	5	7	12	13
+363	going up	going up	X2	212	212	3	7	10	12	11	7	11	13	12
+364	GOLD RUSH	GOLD RUSH	X2	162	162	2	5	8	12	0	6	7	13	0
+365	Gotta Dance	Gotta Dance	X2	145	145	2	3	6	10	0	5	7	11	0
+366	Heatstroke	Heatstroke	X2	140	140	2	6	8	10	8	6	8	10	8
+369	IF YOU WERE HERE	IF YOU WERE HERE	X2	145	145	2	6	7	10	6	9	10	10	9
+370	IF YOU WERE HERE (L.E.D.-G STYLE REMIX)	IF YOU WERE HERE (L.E.D.-G STYLE REMIX)	X2	170	170	3	8	10	13	0	8	11	13	0
+371	I'm so Happy	I'm so Happy	X2	181	181	3	6	8	12	16	6	8	12	16
+372	in love wit you	in love wit you	X2	148	148	1	3	6	9	0	4	6	9	0
+373	KIMONO♥PRINCESS	KIMONO PRINCESS	X2	95	190	5	8	12	15	0	8	13	16	0
+374	KISS KISS KISS 秋葉工房 MIX	KISS KISS KISS akibakoubou MIX	X2	160	160	2	5	8	12	0	4	8	12	0
+375	La libertad	La libertad	X2	170	170	3	5	9	12	14	6	9	12	14
+376	La receta	La receta	X2	130	130	3	4	7	11	13	5	7	11	13
+377	Leaving...	Leaving...	X2	145	145	2	5	8	11	13	5	8	11	13
+378	Love Again	Love Again	X2	57	70	2	4	6	8	0	3	6	8	0
+379	MAX LOVE	MAX LOVE	X2	180	180	3	6	8	11	13	7	8	11	13
+380	Melody Life	Melody Life	X2	172	172	2	5	7	10	11	5	7	11	12
+381	New Decade	New Decade	X2	100	400	4	11	14	17	18	11	14	17	18
+382	oarfish	oarfish	X2	140	140	1	2	8	11	0	2	9	11	0
+383	only my railgun	only my railgun	X2	143	143	1	4	6	9	7	5	8	12	8
+384	Pierce The Sky	Pierce The Sky	X2	85	170	3	8	11	14	16	8	11	14	16
+385	Pluto The First	Pluto The First	X2	50	440	8	10	14	17	18	10	15	18	18
+386	Poseidon(kors k mix)	Poseidon(kors k mix)	X2	152	152	2	5	9	14	0	4	9	13	0
+387	POSSESSION	POSSESSION	X2	185	370	7	10	14	17	18	11	14	17	19
+388	real-high-SPEED	real-high-SPEED	X2	131	131	2	4	6	8	0	4	6	9	0
+389	resonance	resonance	X2	165	165	2	4	8	11	0	4	8	11	0
+390	roppongi EVOLVED ver.A	roppongi EVOLVED ver.A	X2	170	170	6	8	11	15	0	8	12	16	0
+391	roppongi EVOLVED ver.B	roppongi EVOLVED ver.B	X2	170	170	6	8	11	15	0	8	12	16	0
+392	roppongi EVOLVED ver.C	roppongi EVOLVED ver.C	X2	170	170	6	8	11	15	0	8	12	16	0
+393	roppongi EVOLVED ver.D	roppongi EVOLVED ver.D	X2	170	170	6	8	11	15	0	8	12	16	0
+394	Sacred Oath	Sacred Oath	X2	170	170	2	4	7	11	12	5	8	11	13
+395	sakura storm	sakura storm	X2	184	184	2	4	7	10	13	4	7	11	14
+396	Sakura Sunrise	Sakura Sunrise	X2	181	181	3	7	10	14	16	8	10	15	16
+397	Second Heaven	Second Heaven	X2	149	149	2	5	9	11	14	5	9	11	14
+398	She is my wife	She is my wife	X2	85	170	3	5	7	12	0	5	7	12	0
+399	Shine	Shine	X2	125	125	2	4	6	9	12	4	7	9	12
+400	Shiny World	Shiny World	X2	100	100	2	8	11	14	16	8	11	14	16
+401	Sky Is The Limit	Sky Is The Limit	X2	150	150	2	5	9	12	0	5	9	11	0
+402	smooooch･∀･	smooooch	X2	177	177	2	4	7	12	10	5	7	12	11
+403	someday...	someday...	X2	154	154	2	5	7	9	0	6	8	10	0
+406	Taking It To The Sky	Taking It To The Sky	X2	130	130	1	3	5	8	0	4	6	8	0
+407	Theory of Eternity	Theory of Eternity	X2	160	160	3	6	9	12	10	6	9	12	11
+408	THIS NIGHT	THIS NIGHT	X2	160	160	2	5	8	11	0	6	8	11	0
+410	Valkyrie dimension	Valkyrie dimension	X2	47	744	9	13	15	18	19	13	14	18	19
+411	VANESSA	VANESSA	X2	185	185	4	7	11	16	0	7	12	16	0
+412	WH1TE RO5E	WH1TE RO5E	X2	85	170	3	5	9	13	0	5	9	13	0
+413	What Will Come of Me	What Will Come of Me	X2	140	140	2	4	6	13	0	5	7	13	0
+414	You are a Star	You are a Star	X2	155	155	2	4	8	12	13	6	8	12	13
+415	Your Angel	Your Angel	X2	175	175	2	4	7	10	0	4	7	11	0
+416	ZETA～素数の世界と超越者～	ZETA～sosuunosekaitochouetsusya～	X2	90	180	3	6	11	15	17	6	9	14	17
+417	ΔMAX	deltaMAX	X2	100	573	3	5	13	17	17	8	14	17	18
+418	不沈艦CANDY	fuchinkanCANDY	X2	94	188	2	6	9	14	0	5	8	14	0
+419	冥	mei	X2	66	200	3	7	11	16	18	7	12	15	18
+420	ビューティフル レシート	beautiful receipt	X3	196	196	4	8	10	13	0	7	10	13	0
+421	Fever	Fever	X3	134	134	1	4	7	9	0	4	6	9	0
+422	Programmed Universe	Programmed Universe	X3	34	147	2	5	9	12	16	5	9	13	16
+423	Diamond Dust	Diamond Dust	X3	148	148	1	5	7	10	13	5	8	11	13
+424	女々しくて	memeshikute	X3	143	143	1	4	7	11	10	5	7	12	10
+426	future gazer	future gazer	X3	138	138	2	5	7	9	9	4	8	13	11
+427	LOVE & JOY	LOVE & JOY	X3	173	173	2	5	9	11	0	6	9	11	0
+428	STRAIGHT JET	STRAIGHT JET	X3	154	154	2	4	7	11	0	4	7	10	0
+430	Get Back Up!	Get Back Up!	X3	155	155	2	7	9	12	0	7	10	12	0
+431	Haunted Rhapsody	Haunted Rhapsody	X3	155	155	2	5	7	13	0	4	7	13	0
+432	HEARTBREAK (Sound Selektaz remix)	HEARTBREAK (Sound Selektaz remix)	X3	148	148	1	4	6	10	0	4	6	11	0
+433	The Heavens Above	The Heavens Above	X3	140	140	3	7	9	11	0	6	10	12	0
+434	Take A Step Forward	Take A Step Forward	X3	145	145	2	7	9	11	15	6	10	12	15
+435	dreaming can make a wish come true	dreaming can make a wish come true	X3	143	143	2	4	7	11	0	4	8	11	0
+436	ever snow	ever snow	X3	145	145	2	4	8	12	0	4	8	11	0
+437	IN THE ZONE	IN THE ZONE	X3	124	124	1	4	7	9	0	5	8	10	0
+438	Desert Journey	Desert Journey	2013	140	140	3	5	8	12	15	5	8	12	15
+439	Let's Get Away	Let's Get Away	X3	150	150	2	4	7	9	0	6	10	13	0
+440	MAGIC PARADE	MAGIC PARADE	X3	127	127	1	4	7	10	0	4	7	10	0
+441	Private Eye	Private Eye	X3	160	160	2	4	8	12	0	6	8	12	0
+442	Rhythms Inside	Rhythms Inside	X3	131	131	1	3	7	9	0	4	7	9	0
+443	Seasons	Seasons	X3	168	168	2	5	8	12	0	5	8	12	0
+444	Wicked Plastik	Wicked Plastik	X3	145	145	3	4	8	13	0	5	11	13	0
+445	CRAZY♥LOVE	CRAZY LOVE	X3	89	177	3	6	12	15	18	7	12	15	18
+446	隅田川夏恋歌	sumidagawakarenka	X3	180	180	2	5	10	12	16	6	9	12	16
+447	Amalgamation	Amalgamation	X3	166	166	3	7	10	13	15	7	10	13	15
+448	UNBELIEVABLE (Sparky remix)	UNBELIEVABLE (Sparky remix)	X3	88	175	4	7	11	15	18	8	12	16	18
+449	Mermaid girl	Mermaid girl	X3	140	140	1	4	7	11	12	5	7	11	12
+450	Find You Again	Find You Again	X3	150	150	3	5	9	12	0	5	8	13	0
+451	Tribe	Tribe	X3	139	139	2	5	7	10	13	4	7	10	14
+452	Something Special	Something Special	X3	95	95	2	4	7	11	0	5	7	11	0
+453	COME BACK TO MY HEART	COME BACK TO MY HEART	X3	142	142	2	5	8	12	6	5	8	12	6
+454	Rescue Me	Rescue Me	X3	145	145	2	4	8	12	0	5	9	13	0
+455	REBORN MAGIC	REBORN MAGIC	X3	140	140	2	4	7	9	0	5	7	11	0
+456	Seule	Seule	X3	125	125	2	6	10	12	0	6	10	12	0
+457	Chronos	Chronos	X3	128	128	1	4	8	12	15	4	8	12	15
+458	Share The Love	Share The Love	X3	158	158	2	4	8	12	0	4	7	12	0
+459	I/O	I/O	X3	151	151	2	4	7	11	0	4	7	12	0
+460	In The Air	In The Air	X3	140	140	4	6	9	11	0	6	10	11	0
+461	TIME	TIME	X3	115	115	1	5	7	9	0	5	7	10	0
+462	New Beginning	New Beginning	X3	148	148	3	5	9	11	12	6	8	11	12
+463	Wings of an Angel (Fly With Me)	Wings of an Angel (Fly With Me)	X3	175	175	2	4	8	12	0	5	8	11	0
+464	Resurrection	Resurrection	X3	140	140	2	5	7	10	0	5	8	10	0
+465	Until the End	Until the End	X3	172	172	3	4	9	12	0	8	10	13	0
+466	HEART BEAT FORMULA	HEART BEAT FORMULA	X3	230	230	4	7	10	13	0	7	10	13	0
+467	NEPHILIM DELTA	NEPHILIM DELTA	X3	220	220	4	8	12	14	0	8	12	14	0
+468	SigSig	SigSig	X3	179	179	3	6	9	12	10	6	9	12	10
+469	message	message	X3	152	152	1	5	7	11	0	3	7	11	0
+470	天上の星～黎明記～	tenjounohoshi～soumeiki～	X3	85	170	2	5	8	12	0	5	8	12	0
+471	繚乱ヒットチャート	ryouran hit chart	X3	192	192	2	5	8	13	0	5	8	13	0
+472	雫	shizuku	X3	210	210	2	5	9	12	0	5	9	12	0
+473	TWINKLE♡HEART	TWINKLE HEART	X3	185	185	1	4	8	11	10	4	8	11	11
+474	アルストロメリア (walk with you remix)	alstroemeria (walk with you remix)	X3	148	148	3	6	8	11	13	6	8	12	13
+475	FLOWER	FLOWER	X3	173	173	3	7	10	13	15	6	9	13	15
+476	SILVER☆DREAM	SILVER DREAM	X3	96	192	4	8	11	15	0	9	12	15	0
+477	osaka EVOLVED -毎度、おおきに！- (TYPE1)	osaka EVOLVED -maidoookini!- (TYPE1)	X3	50	300	9	11	13	15	0	10	12	15	0
+478	osaka EVOLVED -毎度、おおきに！- (TYPE2)	osaka EVOLVED -maidoookini!- (TYPE2)	X3	50	300	9	11	13	15	0	10	12	15	0
+479	osaka EVOLVED -毎度、おおきに！- (TYPE3)	osaka EVOLVED -maidoookini!- (TYPE3)	X3	50	300	9	11	13	15	0	10	12	15	0
+480	tokyoEVOLVED (TYPE1)	tokyoEVOLVED (TYPE1)	X3	70	280	6	9	13	16	0	9	13	16	0
+481	tokyoEVOLVED (TYPE2)	tokyoEVOLVED (TYPE2)	X3	70	280	6	9	13	16	0	9	13	16	0
+482	tokyoEVOLVED (TYPE3)	tokyoEVOLVED (TYPE3)	X3	70	280	6	9	13	16	0	9	13	16	0
+483	New York EVOLVED (Type A)	New York EVOLVED (Type A)	X3	48	380	4	9	13	16	0	8	13	16	0
+484	New York EVOLVED (Type B)	New York EVOLVED (Type B)	X3	48	380	4	9	13	16	0	8	13	16	0
+485	New York EVOLVED (Type C)	New York EVOLVED (Type C)	X3	48	380	4	9	13	16	0	8	13	16	0
+486	London EVOLVED ver.A	London EVOLVED ver.A	X3	170	340	5	8	11	14	17	8	11	14	17
+487	London EVOLVED ver.B	London EVOLVED ver.B	X3	170	340	5	8	11	14	17	8	11	14	17
+488	London EVOLVED ver.C	London EVOLVED ver.C	X3	170	340	5	8	11	14	17	8	11	14	17
+489	Tohoku EVOLVED	Tohoku EVOLVED	X3	42	1080	6	10	14	17	18	10	14	17	18
+490	KUNG FU FIGHTING	KUNG FU FIGHTING	1st	116	116	2	4	5	6	10	5	6	7	10
+491	BAD GIRLS	BAD GIRLS	2nd	122	122	2	4	6	8	11	5	7	8	11
+492	Boom Boom Dollar (Red Monster Mix)	Boom Boom Dollar (Red Monster Mix)	2nd	135	135	2	4	7	9	11	5	7	10	11
+493	stomp to my beat	stomp to my beat	2nd	134	134	3	7	8	10	11	7	8	9	13
+494	MAKE IT BETTER (So-REAL Mix)	MAKE IT BETTER (So-REAL Mix)	2nd	119	119	2	7	8	10	12	7	9	11	12
+495	PUT YOUR FAITH IN ME (Jazzy Groove)	PUT YOUR FAITH IN ME (Jazzy Groove)	2nd	120	120	2	6	7	9	11	7	8	11	11
+496	LOVE IS THE POWER -Re:born-	LOVE IS THE POWER -Re:born-	X3	125	125	1	6	7	10	0	6	7	11	0
+497	PARANOiA Revolution	PARANOiA Revolution	X3	180	360	6	10	14	18	19	10	14	18	19
+498	TRIP MACHINE EVOLUTION	TRIP MACHINE EVOLUTION	X3	95	380	4	9	12	16	18	9	12	17	18
+499	REVOLUTIONARY ADDICT	REVOLUTIONARY ADDICT	X3	174	696	3	7	10	13	16	6	9	13	16
+500	KEEP ON MOVIN' (Y&Co. DJ BOSS remix)	KEEP ON MOVIN' (Y&Co. DJ BOSS remix)	X3	128	128	2	6	9	14	0	6	9	14	0
+501	PUT YOUR FAITH IN ME (DA's Twinkly Disco Remix)	PUT YOUR FAITH IN ME (DA's Twinkly Disco Remix)	X3	115	115	1	5	8	13	0	5	9	13	0
+502	TRIP MACHINE (xac nanoglide mix)	TRIP MACHINE (xac nanoglide mix)	X3	170	170	4	8	12	16	0	8	12	16	0
+503	Go For The Top	Go For The Top	X3	74	180	6	8	12	15	18	8	11	15	18
+504	BRILLIANT 2U (AKBK MIX)	BRILLIANT 2U (AKBK MIX)	X3	162	162	3	7	11	15	0	7	11	15	0
+505	PARANOiA (kskst mix)	PARANOiA (kskst mix)	X3	190	190	4	9	13	17	0	9	13	17	0
+506	snow prism	snow prism	X3	196	196	3	6	9	12	16	6	9	12	16
+507	紅焔	kouen	X3	175	175	3	6	9	12	15	6	9	12	15
+508	Cosmic Hurricane	Cosmic Hurricane	X3	188	188	3	6	9	13	15	6	9	13	15
+509	恋閃繚乱	rensenryouran	X3	142	142	2	6	8	11	15	6	8	11	15
+511	Qipchãq	Qipchãq	2013	150	150	3	5	8	12	0	5	8	11	0
+512	heron	heron	2013	182	182	3	6	9	12	13	6	9	12	13
+513	nightbird lost wing	nightbird lost wing	2013	190	190	3	7	10	14	0	7	10	14	0
+514	めうめうぺったんたん！！	meumeupettantan!!	2013	185	185	3	6	9	12	16	6	9	12	15
+515	south	south	2013	140	140	2	5	8	10	10	5	8	10	11
+516	New Gravity	New Gravity	2013	154	154	3	6	9	12	14	6	9	12	14
+517	Condor	Condor	2013	142	142	2	6	9	13	15	6	9	13	15
+518	WILD SIDE	WILD SIDE	2013	165	165	3	6	9	11	13	6	9	11	13
+519	Beautiful Dream	Beautiful Dream	2013	182	182	3	7	9	12	15	7	9	12	15
+520	Straight Oath	Straight Oath	2013	182	182	3	8	11	13	15	8	11	14	16
+522	ずっとみつめていて (Ryu☆Remix)	zuttomitsumeteite (Ryu Remix)	2013	160	160	1	7	9	12	15	7	10	12	15
+526	Burst The Gravity	Burst The Gravity	2013	148	148	2	5	8	11	0	5	8	11	0
+528	Starry HEAVEN	Starry HEAVEN	2013	190	190	2	5	8	10	13	5	8	11	12
+529	折れないハート	orenai heart	2013	190	190	2	4	8	11	0	4	8	11	0
+530	Find The Way	Find The Way	2013	165	165	3	7	10	12	0	6	10	12	0
+531	Back In Your Arms	Back In Your Arms	2013	132	132	2	5	8	10	0	5	8	10	0
+532	Ah La La La	Ah La La La	2013	130	130	1	5	7	12	0	5	7	11	0
+533	Sucka Luva	Sucka Luva	2013	118	118	1	4	7	11	0	5	8	11	0
+534	Bombay Bomb	Bombay Bomb	2013	145	145	2	6	10	12	0	6	10	12	0
+535	Hoping To Be Good	Hoping To Be Good	2013	120	120	2	5	7	12	0	5	7	11	0
+536	You	You	2013	72	72	1	3	6	10	0	3	6	10	0
+537	Everything I Need	Everything I Need	2013	50	100	1	4	6	9	0	4	6	9	0
+538	Children of the Beat	Children of the Beat	2013	160	160	3	7	9	11	12	7	9	10	13
+539	Tell me what to do	Tell me what to do	2013	145	145	2	5	9	12	14	5	9	11	14
+540	Diamond Night	Diamond Night	2013	135	135	3	5	8	12	14	5	8	11	14
+541	Summer Fairytale	Summer Fairytale	2013	141	141	2	5	7	9	14	5	7	9	14
+542	The Island Song	The Island Song	2013	85	85	1	3	7	9	13	4	7	9	13
+543	Top The Charts	Top The Charts	2013	160	160	3	5	8	12	14	5	8	12	14
+544	Confession	Confession	2013	150	150	2	4	7	12	14	4	7	12	14
+545	THE REASON	THE REASON	2013	85	98	1	4	7	12	15	4	7	12	15
+546	Somehow You Found Me	Somehow You Found Me	2013	180	180	3	6	10	13	16	6	10	13	16
+547	escape	escape	2013	140	140	3	5	8	10	13	5	8	10	14
+548	Monkey Business	Monkey Business	2013	80	160	3	6	9	13	16	7	10	13	16
+549	Another Phase	Another Phase	2013	160	160	4	7	11	15	16	7	11	15	15
+550	ラキラキ	rakiraki	2013	165	165	2	7	10	13	0	7	11	13	0
+551	晴天Bon Voyage	seitenBon Voyage	2013	230	230	4	7	9	12	0	7	9	11	0
+552	STULTI	STULTI	2013	90	182	4	9	12	15	0	9	12	16	0
+553	虹色の花	nijiironohana	2013	170	170	3	5	8	11	0	5	8	11	0
+554	お米の美味しい炊き方、そしてお米を食べることによるその効果。	okomenooishiitakikatasoshiteokomewotaberukotoniyorusonokouka	2013	190	190	4	8	12	16	0	8	12	16	0
+555	創世ノート	sousei note	2013	200	200	2	8	10	13	0	8	10	14	0
+556	Synergy For Angels	Synergy For Angels	2013	160	160	3	7	10	14	0	7	10	14	0
+557	Empathetic	Empathetic	2013	180	180	4	7	11	14	0	7	11	14	0
+558	GAIA	GAIA	2013	90	180	3	10	13	16	0	10	13	16	0
+559	Elemental Creation	Elemental Creation	2013	106	424	8	11	14	17	18	11	14	17	18
+560	ACROSS WORLD	ACROSS WORLD	2013	185	185	2	4	8	12	14	4	8	12	14
+561	Air Heroes	Air Heroes	2013	175	175	3	9	11	15	18	9	11	15	17
+562	JOKER	JOKER	2013	160	160	2	4	8	11	14	6	8	11	14
+563	LOVE & JOY -Risk Junk MIX-	LOVE & JOY -Risk Junk MIX-	2013	180	180	3	4	9	13	0	6	9	13	0
+564	ジョジョ～その血の運命～	jojo-sonochinounmei-	2013	146	146	2	4	8	12	0	4	8	12	0
+565	ふりそでーしょん	furisode-syon	2013	200	200	2	4	8	12	0	4	9	13	0
+566	Choo Choo TRAIN	Choo Choo TRAIN	2013	115	115	1	3	6	8	0	3	6	8	0
+567	Mickey Mouse March(Eurobeat Version)	Mickey Mouse March(Eurobeat Version)	2013	152	152	2	5	7	11	0	5	8	11	0
+568	Spanish Snowy Dance	Spanish Snowy Dance	2013	180	180	3	7	11	15	17	7	11	16	18
+569	sola	sola	2013	135	135	2	5	9	12	0	5	9	12	0
+570	Sweet Rain	Sweet Rain	2013	155	155	3	6	9	12	0	6	9	12	0
+571	Magnetic	Magnetic	2013	40	160	3	7	11	15	17	7	11	15	17
+572	キケンな果実	kikennnakajitsu	2013	174	174	2	6	9	13	0	6	9	13	0
+573	フー・フローツ	fufurotsu	2013	180	180	3	6	9	12	0	6	9	13	0
+574	からふるぱすてる	colourfull pastel	2013	186	186	2	6	9	12	0	6	9	13	0
+575	The Wind of Gold	The Wind of Gold	2013	170	170	3	6	10	14	0	6	10	14	0
+576	RЁVOLUTIФN	REVOLUTION	2013	202	202	3	7	11	14	17	7	11	14	17
+577	Right on time (Ryu☆Remix)	Right on time (Ryu Remix)	2013	149	149	2	6	9	14	13	6	9	14	13
+578	PRANA	PRANA	2013	188	188	4	8	11	14	16	8	11	14	16
+579	Chinese Snowy Dance	Chinese Snowy Dance	2013	175	175	4	7	12	16	0	7	12	16	0
+580	†渚の小悪魔ラヴリィ～レイディオ†	nagisanokoakumalovelyradio	2013	190	190	2	6	11	16	9	6	12	16	9
+581	Triple Journey -TAG EDITION-	Triple Journey -TAG EDITION-	2013	96	192	4	8	12	16	18	8	12	17	18
+582	New Generation	New Generation	2013	190	190	4	7	10	14	17	7	10	14	17
+583	Blew My Mind	Blew My Mind	2013	95	380	4	9	12	16	18	9	12	16	18
+584	ちくわパフェだよ☆CKP	chikuwapafedayo ckp	2013	205	205	4	7	9	12	14	7	9	12	14
+585	凛として咲く花の如く～ひなビタ♪edition～	rintoshitesakuhananogotoku -hinabita edition-	2013	163	163	3	5	8	11	0	6	8	11	0
+586	Wow Wow VENUS	Wow Wow VENUS	2013	157	157	2	4	8	11	16	5	8	12	16
+587	Windy Fairy	Windy Fairy	2013	180	180	2	7	11	15	0	7	11	15	0
+588	printemps	printemps	2013	168	168	3	6	10	13	0	5	10	14	0
+589	回レ！雪月花	maware setsugekka	2014	160	160	2	5	8	11	13	3	7	12	13
+590	Stella Sinistra	Stella Sinistra	2014	110	180	4	8	12	15	0	7	12	14	0
+591	マインド・ゲーム	mind game	2014	180	180	3	7	10	14	0	7	10	15	0
+592	PUNISHER	PUNISHER	2014	180	180	3	6	11	14	0	6	11	14	0
+593	HYENA	HYENA	2014	89	178	3	6	10	14	0	6	10	14	0
+594	True Blue	True Blue	2014	164	164	3	7	11	16	0	6	11	16	0
+595	恋はどう？モロ◎波動OK☆方程式！！	koihadoumorohadouokhouteishiki	2014	128	256	4	7	11	14	0	6	11	14	0
+596	ヤマトなでなで♡かぐや姫	yamatonadenadekaguyahime	2014	160	160	2	6	8	11	14	5	8	11	14
+597	星屑のキロク	hoshikuzunokiroku	2014	182	182	3	6	9	11	0	6	10	12	0
+598	Dispersion Star	Dispersion Star	2014	180	180	3	5	9	13	0	5	9	14	0
+599	デッドボヲルdeホームラン	deadball dehomerun	2014	145	145	3	6	9	13	0	5	8	13	0
+600	Squeeze	Squeeze	2014	87	173	4	6	9	15	0	6	10	15	0
+601	野球の遊び方　そしてその歴史　～決定版～	yakyuunoasobikatasoshitesonorekishiketteiban	2014	141	141	3	6	9	14	0	6	10	14	0
+602	轟け！恋のビーンボール！！	todorokekoinobeanball	2014	180	180	3	7	11	16	0	6	11	16	0
+603	Engraved Mark	Engraved Mark	2014	188	188	3	8	12	15	0	8	13	15	0
+604	VEGA	vega	2014	191	191	3	7	11	14	0	7	11	14	0
+605	Daily Lunch Special	Daily Lunch Special	2014	205	205	3	7	10	14	0	7	10	14	0
+606	IX	9	2014	99	396	5	11	14	17	18	10	14	17	18
+607	Romancing Layer	Romancing Layer	2014	150	150	2	6	11	14	0	6	11	14	0
+608	Do The Evolution	Do The Evolution	2014	148	148	1	4	7	10	0	5	9	13	0
+609	esrev:eR	esrev:eR	2014	155	155	2	5	9	13	0	5	9	12	0
+610	ÆTHER	ATHER	2014	192	384	6	9	14	17	0	10	14	17	0
+611	SABER WING (satellite silhouette remix)	SABER WING (satellite silhouette remix)	2014	138	138	2	4	9	12	15	6	8	12	14
+612	Elysium	Elysium	2014	145	145	1	5	8	11	13	5	8	11	13
+613	MITOれて！いばらきっしゅだ～りん	mitorete ibarakissyuda-rin	2014	173	173	2	6	9	13	0	6	10	13	0
+629	IMANOGUILTS	IMANOGUILTS	2014	184	184	4	8	11	14	15	8	11	14	15
+630	ちゅ～いん☆バニー	chewing bunny	2014	180	180	3	6	8	10	13	5	8	11	13
+631	Din Don Dan	Din Don Dan	2014	140	140	2	5	7	10	12	5	7	10	12
+637	LoveLove DokiDoki	LoveLove DokiDoki	2014	160	160	2	6	10	12	0	6	10	12	0
+638	セツナトリップ	sethuna trip	2014	145	145	1	4	10	14	0	4	10	14	0
+639	ラクガキスト	rakugakisuto	2014	199	199	4	7	10	13	16	7	10	13	16
+640	バンブーソード・ガール	bamboo sword girl	2014	208	208	2	7	11	15	18	7	12	15	17
+641	幻想系世界修復少女	gensoukeisekaisyufukusyojo	2014	193	193	3	6	9	12	0	7	9	13	0
+642	Idola	Idola	2014	201	201	3	8	12	16	17	8	12	16	17
+643	ドキドキ☆流星トラップガール!!	dokidokiryusei trap girl!!	2014	140	140	3	6	9	14	0	6	10	14	0
+644	Strobe♡Girl	Strobe Girl	2014	190	190	3	7	10	14	0	8	11	15	0
+645	second spring storm	second spring storm	2014	131	131	2	6	9	14	0	6	10	14	0
+646	Party Lights (Tommie Sunshine's Brooklyn Fire Remix)	Party Lights (Tommie Sunshine's Brooklyn Fire Remix)	2014	130	130	2	5	8	11	0	5	8	11	0
+647	SUPER HERO	SUPER HERO	2014	180	180	4	6	9	12	0	7	10	13	0
+648	Habibe(Antuh muhleke)	Habibe(Antuh muhleke)	2014	144	144	3	5	10	13	0	6	11	13	0
+649	Cleopatrysm	Cleopatrysm	2014	190	190	4	7	11	15	0	7	11	15	0
+650	御千手メディテーション	osenju meditation	2014	150	190	4	8	12	15	0	8	12	15	0
+651	KHAMEN BREAK	KHAMEN BREAK	2014	90	180	3	7	11	16	0	7	11	15	0
+652	Follow Tomorrow	Follow Tomorrow	2014	140	140	2	5	8	11	14	5	8	12	14
+653	FUJIMORI -祭-FESTIVAL	FUJIMORI FESTIVAL	2014	158	158	3	5	9	12	0	5	8	12	0
+654	Adularia	Adularia	2014	180	180	3	6	10	14	0	6	9	13	0
+655	Nostalgia Is Lost	Nostalgia Is Lost	2014	172	172	3	7	11	15	0	7	11	15	0
+656	JOMANDA	JOMANDA	2014	90	600	4	8	12	15	17	8	12	15	17
+657	嘆きの樹	nagekinoki	2014	160	160	4	8	12	16	18	8	12	16	18
+663	灼熱Beach Side Bunny	syakunetsu Baech Side Bunny	2014	153	153	3	7	11	15	18	7	12	15	18
+664	阿波おどり -Awaodori- やっぱり踊りはやめられない	awaodori yappari odoriha yamerarenai	2014	120	260	5	9	12	14	0	9	13	15	0
+665	SPECIAL SUMMER CAMPAIGN!	SPECIAL SUMMER CAMPAIGN!	2014	168	168	2	7	11	15	0	7	12	15	0
+666	starmine	starmine	2014	182	182	3	7	11	15	17	7	11	14	17
+667	Dreamin’	Dreamin’	2014	128	128	2	4	6	9	12	5	6	9	12
+668	The Lonely Streets	The Lonely Streets	2014	115	115	2	4	7	11	12	5	7	11	12
+669	One Sided Love	One Sided Love	2014	140	140	2	5	8	10	12	5	9	11	13
+670	Dance Partay	Dance Partay	2014	135	135	2	5	7	11	13	5	8	11	12
+671	Thank You Merry Christmas	Thank You Merry Christmas	2014	220	220	3	5	9	12	16	5	9	13	16
+672	Starlight Fantasia	Starlight Fantasia	2014	148	148	3	7	11	14	0	7	11	14	0
+673	Electronic or Treat!	Electronic or Treat!	2014	143	190	3	7	12	15	0	7	12	15	0
+674	エンドルフィン	endorfin	2014	160	160	4	8	12	15	0	8	12	15	0
+675	Go↓Go↑Girls&Boys!	Go Go Girls&Boys!	2014	158	158	3	5	8	11	0	5	8	11	0
+676	Plan 8	Plan 8	2014	212	212	4	8	11	14	18	8	11	14	18
+677	クリムゾンゲイト	crimson gate	2014	198	198	3	7	10	13	0	6	9	12	0
+678	海神	wadatsumi	2014	159	159	3	8	12	16	18	7	12	16	18
+679	FUNKY SUMMER BEACH	FUNKY SUMMER BEACH	2014	88	175	3	6	10	14	17	6	10	14	17
+680	Remain	Remain	2014	75	300	5	9	12	15	0	9	12	16	0
+681	Truare!	Truare!	2014	183	183	3	8	11	16	0	8	11	16	0
+682	POSSESSION(EDP Live Mix)	POSSESSION(EDP Live Mix)	2014	185	185	3	9	12	16	0	9	12	16	0
+683	chaos eater	chaos eater	2014	110	220	6	8	12	16	0	8	12	16	0
+684	Samurai Shogun vs. Master Ninja	Samurai Shogun vs. Master Ninja	2014	260	260	3	7	12	14	0	7	12	15	0
+685	Sand Blow	Sand Blow	2014	81	162	3	7	12	15	0	7	12	16	0
+686	Destination	Destination	2014	85	170	4	9	12	15	0	9	12	15	0
+687	HAPPY☆LUCKY☆YEAPPY	HAPPY LUCKY YEAPPY	2014	188	376	6	10	13	16	17	9	13	16	17
+688	EGOISM 440	EGOISM 440	2014	55	880	9	10	13	18	19	10	14	17	19
+689	MAX.(period)	MAX.(period)	2014	150	600	5	12	14	16	18	11	13	16	18
+690	乙女繚乱 舞い咲き誇れ	Otomeryouran Maisakihokore	2014	210	210	4	7	10	13	0	7	10	13	0
+691	滅亡天使 † にこきゅっぴん	Metsuboutenshi Nikokyuppin	2014	200	200	4	6	9	12	0	6	9	12	0
+692	ミライプリズム	mirai prizm	2014	140	140	2	4	7	10	0	4	7	11	0
+693	HEART BEAT FORMULA (Vinyl Mix)	HEART BEAT FORMULA (Vinyl Mix)	2014	115	115	4	8	11	13	0	8	11	14	0
+694	PRANA＋REVOLUTIONARY ADDICT (U1 DJ Mix)	PRANA＋REVOLUTIONARY ADDICT (U1 DJ Mix)	2014	190	190	5	9	13	17	0	9	12	16	0
+695	Starlight Fantasia (Endorphins Mix)	Starlight Fantasia (Endorphins Mix)	2014	78	155	3	8	12	15	0	8	12	15	0
+696	Over The “Period”	Over The Period	2014	23	840	8	12	15	18	19	12	15	18	19
+697	朝色の紙飛行機	asaironokamihikouki	2014	132	132	2	5	9	13	0	5	10	13	0
+698	M.A.Y.U.	M.A.Y.U.	2014	128	128	2	6	8	13	0	6	8	13	0
+699	女言葉の消失	onnakotobanosyoushitsu	2014	136	136	3	6	9	13	0	6	9	12	0
+700	AWAKE	AWAKE	2014	180	180	3	5	10	13	16	6	10	13	16
+701	Scarlet Moon	Scarlet Moon	2014	180	180	2	5	9	12	0	5	9	12	0
+702	Struggle	Struggle	2014	180	180	4	6	10	13	0	5	10	12	0
+703	ホメ猫☆センセーション	homeneko sensation	2014	200	200	4	6	10	13	0	6	10	13	0
+704	妖隠し -あやかしかくし-	ayakakushi ayakakushi	2014	85	85	4	7	11	14	0	7	12	15	0
+705	チョコレートスマイル	chocolate smile	2014	196	196	3	6	9	12	0	6	9	12	0
+706	ビビットストリーム	bibitto stream	2014	184	184	4	6	10	13	0	6	10	13	0
+707	突撃！ガラスのニーソ姫！	totsugeki glass noni-sohime	2014	185	185	4	7	11	14	0	7	11	14	0
+708	爆なな☆てすとロイヤー	bakunana testroyer	2014	200	200	4	7	11	13	0	7	10	12	0
+709	ドーパミン	dopamin	2014	100	200	7	10	13	17	0	10	13	17	0
+710	In The Breeze	In The Breeze	2014	142	142	3	5	9	11	0	5	9	12	0
+711	Summer fantasy (Darwin remix)	Summer fantasy (Darwin remix)	2014	178	178	2	7	10	13	11	7	10	13	13
+712	Sakura Mirage	Sakura Mirage	2014	187	187	4	7	11	14	0	7	11	14	0
+713	天空の華	tenkuunohana	2014	90	180	4	7	12	15	0	7	12	15	0
+714	8000000	80000000	2014	100	200	4	7	10	14	0	7	11	14	0
+715	パ→ピ→プ→Yeah!	papipu yeah	2014	160	160	3	5	10	13	0	6	8	13	0
+716	夏色DIARY -DDR mix-	natsuiro diary ddr mix	2014	160	160	3	7	10	14	0	6	11	15	0
+717	TSUBASA	TSUBASA	2014	151	151	2	6	10	13	0	6	9	13	0
+718	neko＊neko	neko neko	2014	123	123	2	5	9	11	14	3	9	12	13
+719	激アツ☆マジヤバ☆チアガール	gekiatsu majiyaba cheer girl	2014	170	170	3	6	9	13	0	5	10	12	0
+720	はなまるぴっぴはよいこだけ	hanamarupippihayoikodake	2014	172	172	4	7	10	12	0	6	10	12	0
+721	漆黒のスペシャルプリンセスサンデー	shikkokuno special princess sunday	2014	200	200	4	8	11	13	0	7	11	13	0
+722	地方創生☆チクワクティクス	chihousousei chikuwactics	2014	170	170	2	6	10	13	0	7	10	13	0
+723	チルノのパーフェクトさんすう教室 (EDM REMIX)	chirunono perfect sansukyoushitsu edm remix	A	130	175	1	4	10	13	0	5	11	13	0
+724	イーディーエム・ジャンパーズ	edm jumpers	A	72	145	3	5	8	12	0	4	8	11	0
+725	The Night Away (MK Remix)	The Night Away (MK Remix)	A	160	160	3	5	9	12	0	5	10	12	0
+726	Bad Apple!! feat. nomico	Bad Apple!! feat. nomico	A	138	138	3	5	8	12	0	5	9	11	0
+727	Poochie	Poochie	A	110	220	5	8	12	16	0	8	12	15	0
+728	bass 2 bass	bass 2 bass	A	140	140	2	5	9	12	0	5	10	12	0
+729	この青空の下で	konoaozoranoshitade	A	165	165	3	6	9	11	0	6	9	11	0
+730	ナイト・オブ・ナイツ	Knight of Nights	A	180	180	1	7	11	15	16	7	11	15	17
+731	魔理沙は大変なものを盗んでいきました	marisahataihennamonowonusundeikimashita	A	170	170	3	6	9	12	0	6	10	12	0
+732	Grip & Break down !!	Grip & Break down !!	A	160	160	3	6	9	12	16	5	10	13	16
+733	Help me, ERINNNNNN!!	Help me, ERINNNNNN!!	A	180	184	4	5	9	12	0	6	9	12	0
+734	きゅん×きゅんばっきゅん☆LOVE	kyunkyunbakkyun love	A	165	165	3	5	8	11	0	5	10	11	0
+735	さよならトリップ ～夏陽 EDM edition～	sayonara trip natsuhi EDM edition	A	135	135	3	4	9	12	0	4	9	11	0
+736	十二星座の聖域	juuniseizanoseiiki	A	164	164	3	6	10	13	0	6	10	13	0
+737	魔法のたまご ～心菜 ELECTRO POP edition～	mahounotamago kokona ELECTRO POP edition	A	142	142	3	4	8	11	0	6	8	11	0
+738	DANCE ALL NIGHT (DDR EDITION)	DANCE ALL NIGHT (DDR EDITION)	A	144	144	1	5	8	10	0	5	8	10	0
+739	HANDS UP IN THE AIR	HANDS UP IN THE AIR	A	128	128	1	5	9	13	0	5	9	13	0
+740	siberite	siberite	A	128	128	2	5	10	13	0	5	10	14	0
+741	Yeah! Yeah!	Yeah! Yeah!	A	150	150	2	6	9	12	0	6	9	12	0
+742	朧	oboro	A	149	149	3	6	8	11	13	6	10	12	14
+743	打打打打打打打打打打	dadadadadadadadadada	A	156	156	2	5	11	13	16	5	11	13	16
+744	ALL MY HEART -この恋に、わたしの全てを賭ける-	ALL MY HEART konokoini watashinosubetewokakeru	A	160	160	3	5	9	13	0	5	9	13	0
+745	Ha･lle･lu･jah	Ha･lle･lu･jah	A	150	150	1	5	9	12	0	4	9	12	0
+746	SHION	SHION	A	179	179	4	7	10	13	0	6	10	13	0
+747	Star Trail	Star Trail	A	74	148	2	5	9	13	0	6	9	13	0
+748	New Century	New Century	A	97	195	4	9	14	17	18	8	14	17	18
+749	色は匂へど散りぬるを	irohanihohedochirinuruwo	A	138	138	3	5	8	11	0	6	8	11	0
+750	放課後ストライド	houkagosutoraido	A	225	225	3	5	10	15	0	5	11	15	0
+751	ハッピーシンセサイザ	happy synthesizer	A	127	127	2	5	9	13	0	5	9	13	0
+752	黒髪乱れし修羅となりて～凛 edition～	kurokamimidareshisyuratonarite -rin edition-	A	150	150	3	6	10	14	0	6	10	14	0
+753	宇宙(ソラ)への片道切符	sorahenokatamichikippu	A	88	175	3	7	10	13	0	7	9	12	0
+754	Electric Dance System Music	Electric Dance System Music	A	140	140	2	5	10	14	0	6	10	14	0
+755	TECH-NOID	TECH-NOID	A	146	146	2	5	9	12	0	6	9	13	0
+756	RISING FIRE HAWK	RISING FIRE HAWK	A	157	157	3	6	11	15	17	6	11	15	17
+757	Believe	Believe	A	128	128	2	4	9	11	0	5	9	11	0
+758	Break Free	Break Free	A	130	130	3	6	9	11	0	6	9	11	0
+759	Happy	Happy	A	160	160	3	5	9	12	0	6	8	13	0
+760	Hillbilly Shoes	Hillbilly Shoes	A	116	116	3	5	8	13	0	5	8	13	0
+761	I Want You To Know	I Want You To Know	A	130	130	1	3	8	11	0	3	8	11	0
+762	Shut Up and Dance	Shut Up and Dance	A	128	128	2	5	8	11	0	5	9	11	0
+763	Time Of Our Lives	Time Of Our Lives	A	124	124	2	5	9	11	0	5	9	11	0
+764	Wake Me Up	Wake Me Up	A	124	124	3	5	9	12	0	5	9	13	0
+765	Lesson by DJ	Lesson by DJ	A	120	120	1	0	0	0	0	0	0	0	0
+766	倉野川音頭	kuranogawaondo	A	113	113	2	5	7	11	0	5	8	11	0
+767	MAKE A JAM!	MAKE A JAM!	A	124	124	2	5	7	9	0	6	8	11	0
+768	ハピ恋☆らぶりぃタイム!!	hapikoirapurixitime	A	139	139	2	5	8	11	0	5	8	11	0
+769	Special One	Special One	A	128	128	2	5	8	11	0	5	8	11	0
+770	Towards the TOWER	Towards the TOWER	A	132	132	2	5	9	12	0	5	9	12	0
+771	ベィスドロップ・フリークス	base drop freaks	A	179	179	3	7	10	13	0	7	10	13	0
+772	Dancer in the flare	Dancer in the flare	A	132	132	3	6	10	13	0	6	11	13	0
+773	天ノ弱	amanojaku	A	200	205	3	6	10	13	0	7	10	13	0
+774	六兆年と一夜物語	rokutyounentoichiyamonogatari	A	186	186	4	5	9	12	16	6	9	12	16
+775	ロストワンの号哭	lost one nogoukatsu	A	162	162	3	6	10	12	15	6	10	13	15
+776	Astrogazer	Astrogazer	A	154	154	3	7	12	15	18	7	12	15	18
+777	Cytokinesis	Cytokinesis	A	111	280	4	8	10	14	0	8	10	14	0
+778	S!ck	S!ck	A	888	177	5	8	12	16	0	8	12	16	0
+779	STERLING SILVER	STERLING SILVER	A	175	175	4	6	10	13	0	6	10	13	0
+780	STERLING SILVER (U1 overground mix)	STERLING SILVER (U1 overground mix)	A	185	185	4	7	11	14	0	7	11	14	0
+781	Come to Life	Come to Life	A	90	180	4	8	12	16	18	8	13	16	18
+782	Far east nightbird	Far east nightbird	A	180	180	4	6	10	12	0	6	10	13	0
+783	Far east nightbird kors k Remix -DDR edit ver-	Far east nightbird kors k Remix -DDR edit ver-	A	175	175	3	7	11	13	0	7	11	13	0
+784	Angelic Jelly	Angelic Jelly	A	100	200	4	6	11	13	0	6	10	13	0
+785	Grand Chariot	Grand Chariot	A	191	191	3	7	11	13	0	7	11	13	0
+786	Sephirot	Sephirot	A	154	154	3	6	10	12	0	5	9	13	0
+787	StrayedCatz	StrayedCatz	A	114	152	4	7	11	13	0	7	12	13	0
+788	ZEPHYRANTHES	ZEPHYRANTHES	A	180	180	3	7	11	15	0	7	11	15	0
+789	Triple Counter	Triple Counter	A	216	216	7	11	14	17	0	9	14	17	0
+790	Illegal Function Call	Illegal Function Call	A	130	260	4	10	13	16	0	10	14	16	0
+791	Emera	Emera	A	161	161	3	6	11	15	17	7	11	15	18
+792	Start a New Day	Start a New Day	A	168	168	3	6	11	15	16	7	11	15	16
+793	Determination	Determination	A	230	230	2	5	8	14	0	6	9	14	0
+794	Hopeful	Hopeful	A	146	146	2	5	10	13	15	5	10	13	15
+795	恋する☆宇宙戦争っ!!	koisuru utyusenso	A	200	200	4	7	12	14	17	8	13	15	17
+796	恋愛観測	renaikansoku	A	188	188	3	7	10	12	15	7	10	12	16
+797	Ishtar	Ishtar	A	156	156	3	5	11	14	16	5	11	14	16
+798	Fly far bounce	Fly far bounce	A	91	163	3	6	10	13	0	6	10	13	0
+799	out of focus	out of focus	A	83	167	3	6	12	15	16	6	12	15	16
+800	Neutrino	Neutrino	A	75	300	6	9	12	16	18	9	13	16	18
+801	エキサイティング！！も・ちゃ・ちゃ☆	Exciting Mochamocha	A	187	187	4	8	11	13	0	8	11	13	0
+802	ロンロンへ ライライライ!	ronronherairairai	A	156	156	3	6	10	12	0	6	10	12	0
+803	Cosy Catastrophe	Cosy Catastrophe	A	90	360	6	9	13	16	18	10	13	16	18
+804	ENDYMION	ENDYMION	A	110	880	9	13	15	18	19	13	15	18	19
+805	ACE FOR ACES	ACE FOR ACES	A	100	800	4	7	13	15	18	7	13	15	18
+806	初音ミクの消失	hatsunemikunosyoushitsu	A	240	240	3	8	10	13	15	10	13	14	15
+807	幸せになれる隠しコマンドがあるらしい	shiawaseninarerukakushikomanndogaarurashii	A	142	142	2	6	10	13	0	7	11	13	0
+808	脳漿炸裂ガール	nousyousakuretu girl	A	155	155	3	6	10	12	14	6	10	12	14
+809	チルノのパーフェクトさんすう教室	chirunono perfect sansukyoushitsu	A	173	173	3	6	10	13	15	6	10	13	15
+810	向日葵サンセット	himawari sunset	A	135	135	3	5	10	13	0	5	11	13	0
+811	君氏危うくも近うよれ	kimishiayoukumochikouyore	A	162	162	3	6	10	12	0	6	10	13	0
+812	DREAMING-ING!!	DREAMING-ING!!	A	180	180	3	6	10	12	0	6	10	12	0
+813	恋のパズルマジック	koinopuzzlemagic	A	140	140	3	6	9	11	0	6	9	11	0
+814	Strawberry Chu♡Chu♡	Strawberry ChuChu	A	137	137	2	7	11	13	0	7	11	13	0
+815	Be a Hero!	Be a Hero!	A	190	190	7	9	13	17	0	10	14	17	0
+816	ようこそジャパリパークへ	youkosojapariparkhe	A	170	170	3	6	10	14	12	6	10	14	13
+817	輪廻転生	rinnetensei	A	196	196	3	7	11	13	16	7	11	13	16
+818	ルミナスデイズ	ruminasudeizu	A	145	145	2	5	8	12	0	5	8	11	0
+819	More One Night	More One Night	A	123	123	3	5	8	10	12	5	8	11	12
+820	Reach The Sky, Without you	Reach The Sky, Without you	A	95	190	7	10	14	17	0	10	14	17	0
+821	しゃかりきリレーション	shakariki relation	A	167	167	3	6	9	11	0	6	9	12	0
+822	闘え！ダダンダーンＶ	tatakae dadanda-n v	A	176	176	3	6	9	13	0	6	10	13	0
+823	ハルイチバン	haruichiban	A	180	180	4	6	7	11	0	5	7	11	0
+824	invisible rain	invisible rain	A	58	97	2	4	7	11	0	4	7	11	0
+825	Jewelry days	Jewelry days	A	179	179	3	6	9	12	0	6	9	12	0
+826	Twin memories W	Twin memories W	A	160	160	2	6	9	11	0	6	9	11	0
+827	CHOCOLATE PHILOSOPHY	CHOCOLATE PHILOSOPHY	A	110	110	2	4	8	9	12	4	8	10	12
+828	High School Love	High School Love	A	180	180	3	6	10	13	0	6	10	13	0
+829	エイリアンエイリアン	Alien Alien	A	152	152	2	5	9	12	0	5	9	12	0
+830	ロールプレイングゲーム	Rollplaying Game	A	162	162	2	5	10	14	0	5	10	14	0
+831	恋時雨	koishigure	A	185	185	3	7	9	12	0	7	9	13	0
+832	いーあるふぁんくらぶ	i-arufunclub	A	145	145	1	4	8	12	0	5	9	12	0
+833	炉心融解	roshinyukai	A	165	165	2	6	10	12	0	6	10	12	0
+834	春風ブローインウィンド	harukazeblowwind	A	80	160	2	6	10	15	0	7	10	14	0
+835	Sakura Reflection	Sakura Reflection	A	181	181	4	8	10	15	0	7	10	14	0
+836	Boss Rush	Boss Rush	A	95	190	4	10	14	16	0	10	14	16	0
+837	IN BETWEEN	IN BETWEEN	A	160	160	4	7	12	15	0	7	12	15	0
+838	千年ノ理	sen nen no kotowari	A	153	153	3	6	9	12	0	6	9	12	0
+839	プレインエイジア -PHQ remix-	playnagea -PHQ remix-	A	182	182	5	7	10	13	0	7	10	13	0
+840	Love You More	Love You More	A	175	175	3	9	12	16	0	9	12	16	0
+841	Chronos (walk with you remix)	Chronos (walk with you remix)	A	74	148	3	7	10	14	0	6	10	14	0
+842	朧 (dj TAKA Remix)	oboro (dj TAKA Remix)	A	149	149	3	5	8	12	16	7	9	13	16
+843	無頼ック自己ライザー	burakkujikoraiza-	A	150	150	1	4	8	13	15	5	9	13	15
+844	おねがいダーリン	onegai daring	A	180	180	1	3	8	11	0	3	8	11	0
+845	Pursuer	Pursuer	A	75	300	3	7	14	17	0	7	14	17	0
+846	ALGORITHM	ALGORITHM	A	130	130	5	7	11	13	15	7	10	13	15
+847	Smiling Passion	Smiling Passion	A	187	187	2	7	10	12	0	7	10	12	0
+848	SUN² SUMMER STEP!	SUNSUN SUMMER STEP!	A	170	170	1	3	8	11	0	3	8	11	0
+849	Vanquish The Ghost	Vanquish The Ghost	A	77	310	3	8	12	16	0	8	12	15	0
+850	Eternal Summer	Eternal Summer	A	145	145	2	6	9	13	0	6	9	13	0
+851	星座が恋した瞬間を。	seizagakoisitashunkanwo	A	186	186	2	7	9	12	0	7	9	12	0
+852	風鈴花火	furinhanabi	A	150	150	2	5	8	10	0	5	8	10	0
+853	Life is beautiful	Life is beautiful	A	155	155	5	8	12	16	0	8	12	16	0
+854	Puberty Dysthymia	Puberty Dysthymia	A	70	210	4	8	13	17	0	8	13	17	0
+855	Rejoin	Rejoin	A	135	135	2	6	10	13	0	7	11	13	0
+856	SUPER SUMMER SALE	SUPER SUMMER SALE	A	155	155	2	8	12	15	0	8	12	15	0
+857	Prey	Prey	A	210	210	5	11	15	18	18	11	15	18	18
+858	DDR MEGAMIX	DDR MEGAMIX	A	65	333	6	8	13	15	16	8	13	16	17
+859	Love♡Shine わんだふるmix	Love Shine wonderful mix	A	177	177	3	5	8	11	14	5	8	11	14
+860	Show me your moves	Show me your moves	A	155	155	3	5	8	11	14	5	8	12	14
+861	POSSESSION (20th Anniversary Mix)	POSSESSION (20th Anniversary Mix)	A	190	380	8	11	14	16	18	11	15	17	18
+862	CHAOS Terror-Tech Mix	CHAOS Terror-Tech Mix	A	165	165	5	8	12	15	17	8	12	15	18
+863	MAX 360	MAX 360	A	180	720	9	12	15	18	19	12	15	18	19
+864	#OurMemories	#OurMemories	A	140	140	3	6	9	12	11	6	9	12	11
+865	シュレーディンガーの猫	Schrödinger's cat	A	187	187	6	9	12	15	18	9	12	15	18
+866	ANNIVERSARY ∴∵∴ ←↓↑→	ANNIVERSARY 	A	180	180	4	7	12	16	0	7	12	16	0
+867	Catch Our Fire!	Catch Our Fire!	A	190	190	5	10	13	17	0	9	14	18	0
+868	First Time	First Time	A	70	140	4	7	11	15	18	7	11	15	18
+869	愛言葉	aikotoba	A	137	137	3	5	7	11	0	5	8	11	0
+870	ありふれたせかいせいふく	arifuretasekaiseifuku	A	150	150	3	7	10	14	0	7	10	14	0
+871	すろぉもぉしょん	suroxomoxosyon	A	160	160	3	5	9	12	0	5	9	12	0
+872	*ハロー、プラネット。	hello planet	A	150	150	3	7	9	13	0	7	9	13	0
+873	39	39	A	175	175	4	6	8	12	0	6	9	13	0
+874	妄想税	mousouzei	A	134	134	2	5	9	11	0	5	9	12	0
+875	Dead Heat	Dead Heat	A20	177	177	4	6	10	14	0	6	10	14	0
+876	District of the Shadows	District of the Shadows	A20	150	150	3	6	12	16	0	7	12	16	0
+877	Drop The Bounce	Drop The Bounce	A20	75	150	3	7	10	15	0	8	11	15	0
+878	Neverland	Neverland	A20	160	160	4	8	12	15	0	8	12	14	0
+879	Procyon	Procyon	A20	160	160	2	6	11	15	0	6	10	15	0
+880	Seta Para Cima⇑⇑	Seta Para Cima	A20	140	140	3	5	11	13	0	5	11	13	0
+881	Starry Sky	Starry Sky	A20	150	150	2	6	9	12	0	6	9	12	0
+882	This Beat Is.....	This Beat Is.....	A20	128	128	1	4	7	11	0	4	7	10	0
+883	Waiting	Waiting	A20	180	180	3	6	10	13	0	7	10	13	0
+884	The Light	The Light	A20	160	160	2	5	9	13	0	5	9	13	0
+885	ORCA	ORCA	A20	38	310	7	9	14	17	0	9	14	17	0
+886	50th Memorial Songs -Beginning Story-	50th Memorial Songs -Beginning Story-	A20	135	135	2	5	10	14	0	5	10	14	0
+887	HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)	HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)	A20	130	130	2	4	7	11	17	4	7	10	17
+888	Get On Da Floor	Get On Da Floor	A20	140	140	2	5	8	11	0	4	8	11	0
+889	Helios	Helios	A20	182	182	4	8	12	16	0	8	12	16	0
+890	Skywalking	Skywalking	A20	90	180	4	7	11	15	0	7	12	15	0
+891	SODA GALAXY	SODA GALAXY	A20	178	178	3	6	9	12	0	6	8	12	0
+892	Toy Box Factory	Toy Box Factory	A20	148	148	3	7	11	15	0	7	11	15	0
+893	革命パッショネイト	kakumei passionate	A20	194	194	3	6	10	13	0	5	9	13	0
+894	スイーツはとまらない♪	sweets ha tomaranai	A20	204	204	2	4	9	13	0	4	9	13	0
+895	熱情のサパデアード	netsujouno sapadea-do	A20	136	136	2	5	9	13	0	5	10	13	0
+896	ヒカリユリイカ	hikariyuriika	A20	140	140	2	5	8	11	0	5	8	11	0
+897	ベビーステップ	baby step	A20	200	200	4	7	9	12	0	7	9	12	0
+898	50th Memorial Songs -二人の時 ～under the cherry blossoms～-	50th Memorial Songs -futarinotoki ～under the cherry blossoms～-	A20	160	160	3	7	9	12	0	7	9	11	0
+899	50th Memorial Songs -Flagship medley-	50th Memorial Songs -Flagship medley-	A20	135	175	3	7	9	12	0	8	10	13	0
+900	50th Memorial Songs -The BEMANI History-	50th Memorial Songs -The BEMANI History-	A20	136	136	2	5	9	13	0	5	9	13	0
+901	CARTOON HEROES (20th Anniversary Mix)	CARTOON HEROES (20th Anniversary Mix)	A20	170	170	4	9	14	16	18	10	13	16	18
+902	腐れ外道とチョコレゐト	kusaregedoutochocolate	A20	260	260	3	8	13	15	17	8	13	16	17
+903	タイガーランペイジ	tiger ranpage	A20	150	150	2	5	9	13	17	5	10	13	17
+904	ライアーダンス	rire dance	A20	200	200	4	6	9	13	0	7	9	13	0
+905	Avenger	Avenger	A20	100	400	4	10	14	17	18	10	14	17	18
+906	F4SH10N	F4SH10N	A20	140	140	2	6	10	14	0	6	11	14	0
+907	Our Soul	Our Soul	A20	150	150	3	6	8	11	15	6	9	11	15
+908	Right Time Right Way	Right Time Right Way	A20	174	174	4	7	11	14	0	8	12	15	0
+909	LONG TRAIN RUNNIN' (20th Anniversary Mix)	LONG TRAIN RUNNIN' (20th Anniversary Mix)	A20	130	130	3	6	9	12	15	6	9	13	15
+910	New Era	New Era	A20	33	240	8	11	15	17	18	11	15	17	18
+911	BLSTR	BLSTR	A20	160	160	3	9	12	16	0	9	12	16	0
+912	CROSS	CROSS	A20	150	150	1	5	10	13	0	5	10	14	0
+913	未来（ダ）FUTURE	mirai da future	A20	172	172	2	7	10	15	0	7	10	15	0
+914	LEVEL UP	LEVEL UP	A20	180	180	4	7	10	13	0	7	10	13	0
+915	SKY HIGH (20th Anniversary Mix)	SKY HIGH (20th Anniversary Mix)	A20	145	145	2	5	9	12	17	6	9	12	17
+916	Give Me	Give Me	A20	174	174	3	7	12	15	16	7	12	16	16
+917	BUTTERFLY (20th Anniversary Mix)	BUTTERFLY (20th Anniversary Mix)	A20	140	140	3	6	9	12	16	6	10	12	16
+918	Alone	Alone	A20	142	142	2	5	9	12	0	5	9	12	0
+919	Clarity	Clarity	A20	128	128	2	4	7	9	0	4	7	9	0
+920	I'm an Albatraoz	I'm an Albatraoz	A20	128	128	1	4	7	11	0	4	7	11	0
+921	New Rules	New Rules	A20	116	116	2	5	7	10	0	5	7	10	0
+922	No Tears Left to Cry	No Tears Left to Cry	A20	97	127	2	5	7	10	0	5	7	10	0
+923	Party Rock Anthem	Party Rock Anthem	A20	130	130	2	5	8	11	0	5	8	11	0
+924	Play Hard	Play Hard	A20	130	130	2	5	9	12	0	5	9	11	0
+925	Something Just Like This (Alesso Remix)	Something Just Like This (Alesso Remix)	A20	120	120	2	4	8	10	0	4	8	10	0
+926	Splash Gold	Splash Gold	A20	75	300	6	10	13	16	0	10	13	16	0
+927	すきなことだけでいいです	sukinakotopdakedeiidesu	A20	140	140	3	5	9	13	0	5	10	13	0
+928	毒占欲	dokusenyoku	A20	117	117	2	5	8	11	0	5	8	11	0
+929	妄想感傷代償連盟	mousoukansyoudaisyourenmei	A20	110	110	2	4	8	12	0	4	9	12	0
+930	Small Steps	Small Steps	A20	106	106	1	4	7	10	0	4	7	10	0
+931	DOWNER & UPPER	DOWNER & UPPER	A20	140	140	3	6	9	13	10	6	10	13	10
+932	Crazy Shuffle	Crazy Shuffle	A20	128	128	2	5	10	13	0	5	10	13	0
+933	The World Ends Now	The World Ends Now	A20	200	200	4	9	12	16	18	9	13	16	18
+934	最小三倍完全数	Saishousanbaikanzensu	A20	55	440	5	11	14	17	0	11	15	17	0
+935	Afterimage d'automne	Afterimage d'automne	A20	232	232	4	8	11	14	0	8	11	15	0
+936	BLACK JACKAL	BLACK JACKAL	A20	150	150	3	7	11	15	0	7	11	15	0
+937	おーまい！らぶりー！すうぃーてぃ！だーりん！	Oh my lovely sweety darling	A20	170	170	3	7	12	15	0	8	12	15	0
+938	ミッドナイト☆WAR	midnight war	A20	156	156	3	7	11	14	0	7	11	14	0
+939	Six String Proof	Six String Proof	A20	130	130	2	7	12	14	0	7	11	13	0
+940	toy boxer	toy boxer	A20	190	190	4	9	12	16	0	8	12	16	0
+941	Trill auf G	Trill auf G	A20	188	188	4	8	12	16	0	8	11	16	0
+942	voltississimo	voltississimo	A20	113	225	5	9	13	17	0	9	13	17	0
+943	Rampage Hero	Rampage Hero	A20	175	175	4	9	12	16	17	9	12	16	17
+944	ホーンテッド★メイドランチ	honeted made lunch	A20	188	188	4	7	11	15	17	7	11	15	17
+945	未完成ノ蒸氣驅動乙女 (DDR Edition)	mikanseinojoukikudousyoujo	A20	85	170	5	9	13	17	0	9	13	17	0
+946	SWEET HOME PARTY	SWEET HOME PARTY	A20	134	180	5	8	12	16	0	8	12	16	0
+947	Une mage blanche	Une mage blanche	A20	193	193	4	7	10	13	0	7	10	13	0
+948	ALPACORE	ALPACORE	A20	175	175	4	9	12	16	17	9	12	16	17
+949	IRON HEART	IRON HEART	A20	155	155	2	7	10	14	0	7	10	14	0
+950	Stay 4 Ever	Stay 4 Ever	A20	140	140	2	5	9	11	0	5	9	11	0
+951	ランカーキラーガール	ranker killer girl	A20	200	200	4	8	13	17	0	8	13	17	0
+952	The History of the Future	The History of the Future	A20	100	200	5	9	14	17	0	9	14	17	0
+953	令和	reiwa	A20	142	142	3	4	7	10	18	4	7	11	18
+954	Bounce Trippy	Bounce Trippy	A20	185	185	4	8	11	14	0	8	11	14	0
+955	ENDLESS	ENDLESS	A20	150	150	2	6	9	13	0	6	9	13	0
+956	Ace out	Ace out	A20	135	145	3	5	9	14	14	5	9	13	14
+957	Starlight in the Snow	Starlight in the Snow	A20	150	150	4	7	11	14	16	6	11	14	16
+958	Glitch Angel	Glitch Angel	A20	165	165	5	8	13	17	18	8	13	17	18
+959	I Love You	I Love You	A20	170	170	4	8	13	16	0	8	12	16	0
+960	どきドキ バレンタイン	dokidoki valentine	A20	169	169	3	6	9	12	0	6	9	12	0
+961	Hunny Bunny	Hunny Bunny	A20	160	160	2	6	10	15	0	6	10	15	0
+962	Re:GENERATION	Re:GENERATION	A20	176	176	3	6	11	15	0	6	11	15	0
+963	DIGITAL LUV	DIGITAL LUV	A20	154	154	2	5	9	12	0	5	9	12	0
+964	Mythomane	Mythomane	A20	140	180	3	6	10	13	0	6	10	13	0
+965	ΩVERSOUL	ΩVERSOUL	A20	155	155	3	6	12	15	17	6	12	15	17
+966	Firestorm	Firestorm	A20	177	177	5	8	13	16	16	8	13	16	16
+967	Lachryma《Re:Queen’M》	Lachryma《Re:Queen’M》	A20	236	236	5	9	14	18	19	9	14	18	19
+968	CyberConnect	CyberConnect	A20	150	150	2	7	11	15	17	7	11	15	17
+969	最終鬼畜妹フランドール・Ｓ	saisyukichikumaifurando-ruS	A20	200	200	4	9	13	16	0	9	13	16	0
+970	ナイト・オブ・ナイツ (Ryu☆Remix)	knight of knights ryu mix	A20	182	182	4	8	13	16	0	8	13	16	0
+971	び	bi	A20	169	169	5	9	12	17	18	9	12	17	18
+972	星屑の夜果て	hoshikuzunoyohate	A20	174	174	4	8	12	15	0	8	12	15	0
+973	ラブキラ☆スプラッシュ	rabukira splash	A20	152	152	2	6	10	14	0	6	10	14	0
+974	Silly Love	Silly Love	A20	124	153	4	7	11	14	0	7	11	14	0
+975	ROOM	ROOM	A20 PLUS	145	145	2	5	8	11	0	5	8	11	0
+976	御伽噺に幕切れを	okazannimakugirewo	A20 PLUS	131	203	4	7	10	13	0	7	10	13	0
+977	逆さま♥シンデレラパレード	sakasama sinderera ha-to	A20 PLUS	135	135	2	7	10	13	0	6	10	13	0
+978	至上のラトゥーリア	sijounoratwu-ria	A20 PLUS	135	135	3	6	9	12	0	6	10	12	0
+979	Together Going My Way	Together Going My Way	A20 PLUS	155	155	2	5	9	13	0	5	9	13	0
+980	No Life Queen [DJ Command Remix]	No Life Queen [DJ Command Remix]	A20 PLUS	165	165	3	7	11	14	0	7	11	14	0
+981	GUILTY DIAMONDS	GUILTY DIAMONDS	A20 PLUS	84	168	3	6	10	14	0	6	10	14	0
+982	Feidie	Feidie	A20 PLUS	150	150	2	6	8	10	0	6	8	10	0
+983	Crazy Hot	Crazy Hot	A20 PLUS	162	162	3	6	10	13	0	6	10	13	0
+984	Last Card	Last Card	A20 PLUS	85	170	4	8	12	15	0	8	12	15	0
+985	In the past	In the past	A20 PLUS	81	162	4	7	12	16	0	7	12	16	0
+986	HyperTwist	HyperTwist	A20 PLUS	190	190	5	8	12	15	18	8	12	15	18
+987	Hyper Bomb	Hyper Bomb	A20 PLUS	160	160	3	7	11	15	0	6	11	15	0
+988	DeStRuCtIvE FoRcE	DeStRuCtIvE FoRcE	A20 PLUS	89	177	2	6	9	13	0	6	9	13	0
+989	DANCERUSH STARDOM ANTHEM	DANCERUSH STARDOM ANTHEM	A20 PLUS	130	130	2	5	8	11	0	5	8	11	0
+990	Midnight Amaretto	Midnight Amaretto	A20 PLUS	135	135	3	6	10	14	0	6	10	14	0
+991	take me higher	take me higher	A20 PLUS	140	140	3	5	10	13	0	5	10	13	0
+992	Riot of Color	Riot of Color	A20 PLUS	75	150	4	8	12	16	0	8	12	16	0
+993	City Never Sleeps	City Never Sleeps	A20 PLUS	178	178	4	7	12	15	0	7	12	15	0
+994	東京神話	tokyoshinwa	A20 PLUS	98	196	5	9	13	17	0	9	13	17	0
+995	HYPERDRIVE	HYPERDRIVE	A20 PLUS	150	150	3	6	9	12	0	6	9	12	0
+996	I Want To Do This Keep	I Want To Do This Keep	A20 PLUS	150	150	3	7	12	15	0	7	12	15	0
+997	STEP MACHINE	STEP MACHINE	A20 PLUS	160	160	3	7	11	14	0	7	12	14	0
+998	Golden Arrow	Golden Arrow	A20	170	170	4	8	12	16	17	8	12	16	17
+999	Sparkle Smilin'	Sparkle Smilin'	A20 PLUS	180	180	3	7	11	14	0	7	11	14	0
+1000	Our Love	Our Love	A20 PLUS	190	190	4	8	12	15	0	8	12	15	0
+1001	ノルエピネフリン	noruepinefurin	A20 PLUS	124	124	2	6	11	14	0	6	11	14	0
+1002	DIGITALIZER	DIGITALIZER	A20 PLUS	180	180	4	8	12	17	18	8	12	16	18
+1003	Last Twilight	Last Twilight	A20 PLUS	198	198	4	8	12	16	0	8	13	16	0
+1004	PANIC HOLIC	PANIC HOLIC	A20 PLUS	110	220	4	9	12	16	0	9	12	16	0
+1005	アリスサイド・キャスリング	alice side casting	A20 PLUS	115	115	2	5	8	10	0	5	8	10	0
+1006	追憶のアリア	tsuiokuno aria	A20 PLUS	130	130	2	4	7	11	0	4	7	11	0
+1007	花は折りたし梢は高し	hanahaoritashikozuehatakashi	A20 PLUS	215	215	2	5	9	12	0	5	9	12	0
+1008	叛逆のディスパレート	hangyakunodhisupare-to	A20 PLUS	194	194	3	6	10	13	0	7	11	13	0
+1009	Draw the Savage	Draw the Savage	A20 PLUS	134	134	2	6	10	14	16	6	10	14	16
+1010	蒼が消えるとき	aogakierutoki	A20 PLUS	162	162	3	6	9	12	0	6	9	12	0
+1011	Bang Pad(Werk Mix)	Bang Pad(Werk Mix)	A20 PLUS	160	160	3	6	9	13	0	6	9	13	0
+1012	HARD BRAIN	HARD BRAIN	A20 PLUS	155	155	3	6	10	15	0	7	10	15	0
+1013	狂水一華	kyousuiikka	A20 PLUS	160	160	3	7	11	15	0	7	11	16	0
+1014	DEADLOCK -Out Of Reach-	DEADLOCK -Out Of Reach-	A20 PLUS	205	205	5	9	13	17	0	9	13	17	0
+1015	GHOST KINGDOM	GHOST KINGDOM	A20 PLUS	118	118	2	6	10	14	0	5	10	14	0
+1016	Jetcoaster Windy	Jetcoaster Windy	A20 PLUS	268	268	3	7	12	15	0	7	12	15	0
+1017	Inner Spirit -GIGA HiTECH MIX-	Inner Spirit -GIGA HiTECH MIX-	A20 PLUS	150	150	3	7	11	15	0	7	11	15	0
+1018	Rave Accelerator	Rave Accelerator	A20 PLUS	170	170	4	8	12	16	0	8	12	16	0
+1019	X-ray binary	X-ray binary	A20 PLUS	150	150	2	5	10	13	0	5	10	13	0
+1020	ウソツキ横丁は雨模様	usotsukiyokovhohaamemoyou	A20 PLUS	110	110	2	5	8	11	0	5	9	11	0
+1021	イノセントバイブル	innocent vible	A20 PLUS	105	105	1	4	7	10	0	4	7	10	0
+1022	ハラショー！おにぎりサーカス団☆	halasho! onigiri sercus dan	A20 PLUS	185	185	3	7	11	14	0	7	11	15	0
+1023	Red Cape Theorem	Red Cape Theorem	A20 PLUS	95	95	3	6	11	14	0	6	10	13	0
+1024	SHINY DAYS	SHINY DAYS	A20 PLUS	110	110	1	4	8	10	14	4	8	10	14
+1025	なだめスかし Negotiation	Nadamesukasi Negotiation	A20 PLUS	150	150	2	5	9	11	16	5	9	11	16
+1026	春を告げる	haruwotsugeru	A20 PLUS	120	120	2	4	8	10	0	4	8	10	0
+1027	CONNECT-	CONNECT-	A20 PLUS	150	150	2	5	10	13	0	5	10	14	0
+1028	Twinkle Wonderland	Twinkle Wonderland	A20 PLUS	188	188	3	7	10	13	0	7	10	13	0
+1029	世界の果てに約束の凱歌を -DDR Extended Megamix-	sekainohateniyakusokunogaikawo -DDR Extended Megamix-	A20 PLUS	100	200	5	10	14	17	0	10	14	17	0
+1030	ここからよろしく大作戦143	kokokarayoroshikudaisakusen143	A20 PLUS	184	184	3	6	9	11	0	6	9	11	0
+1031	BRIDAL FESTIVAL !!!	BRIDAL FESTIVAL !!!	A20 PLUS	138	138	2	5	10	13	0	5	11	13	0
+1032	Never See You Again	Never See You Again	A20 PLUS	80	160	4	9	12	16	0	9	12	16	0
+1033	Vertigo	Vertigo	A20 PLUS	150	174	3	7	12	15	0	7	12	15	0
+1034	MUTEKI BUFFALO	MUTEKI BUFFALO	A20 PLUS	88	176	4	8	11	15	17	8	11	15	17
+1035	Going Hypersonic	Going Hypersonic	A20 PLUS	156	156	4	7	12	15	17	7	12	15	17
+1036	Lightspeed	Lightspeed	A20 PLUS	200	200	4	8	12	16	18	8	13	16	18
+1037	Run The Show	Run The Show	A20 PLUS	150	150	4	7	11	15	16	7	11	15	16
+1038	BITTER CHOCOLATE STRIKER	BITTER CHOCOLATE STRIKER	A20 PLUS	165	165	3	6	10	14	17	6	10	14	17
+1039	We're so Happy	We're so Happy	A20 PLUS	185	185	5	9	13	16	0	9	13	16	0
+1040	梅雪夜	umeyukiyo	A20 PLUS	167	167	3	7	11	14	0	7	11	14	0
+1041	Evans	Evans	A20 PLUS	185	370	5	10	14	17	0	10	14	17	0
+1042	Hella Deep	Hella Deep	A20 PLUS	132	150	3	7	10	14	0	7	10	14	0
+1043	PARTY ALL NIGHT(DJ KEN-BOW MIX)	PARTY ALL NIGHT(DJ KEN-BOW MIX)	A20 PLUS	135	135	3	6	9	13	0	6	9	13	0
+1044	思想犯	shisouhan	A20 PLUS	200	200	3	5	10	13	0	5	10	13	0
+1045	I believe what you said	I believe what you said	A20 PLUS	138	138	2	4	8	12	0	4	8	11	0
+1046	Realize	Realize	A20 PLUS	206	206	3	6	11	14	0	6	11	14	0
+1047	彼方のリフレシア	kanatanorifureshia	A20 PLUS	180	180	3	6	10	15	0	6	10	14	0
+1048	雑草魂なめんなよ！	zassounamennnayo	A20 PLUS	145	145	2	5	8	11	0	5	8	11	0
+1049	Seize The Day	Seize The Day	A20 PLUS	122	122	1	4	7	10	0	4	7	10	0
+1050	スカイクラッドの観測者	skyclad no kansokusya	A20 PLUS	167	167	3	6	9	12	0	6	9	12	0
+1051	Next Phase	Next Phase	A20 PLUS	174	174	4	7	11	15	0	7	11	15	0
+1052	If	If	A20 PLUS	170	170	4	8	12	15	0	8	12	15	0
+1053	ONYX	ONYX	A20 PLUS	200	200	4	8	11	14	0	8	11	14	0
+1054	Poppin' Soda	Poppin' Soda	A20 PLUS	200	200	4	9	12	15	0	9	12	16	0
+1055	Sword of Vengeance	Sword of Vengeance	A20 PLUS	208	208	5	9	13	16	0	10	13	15	0
+1056	恋	koi	A20 PLUS	158	158	1	3	8	11	0	3	8	11	0
+1057	Taking It To The Sky (PLUS step)	Taking It To The Sky (PLUS step)	A20 PLUS	135	135	2	6	9	13	0	6	9	13	0
+1058	ロキ(w/緒方恵美)	roki	A20 PLUS	150	150	2	5	9	12	0	5	9	12	0
+1059	Uh-Oh	Uh-Oh	A20 PLUS	175	175	3	7	11	14	0	7	11	14	0
+1060	鋳鉄の檻	Chutetsunoori	A20 PLUS	200	200	4	7	10	13	0	7	10	14	0
+1061	MOVE! (We Keep It Movin')	MOVE! (We Keep It Movin')	A20 PLUS	142	142	3	7	10	13	0	7	10	12	0
+1062	Jucunda Memoria	Jucunda Memoria	A20 PLUS	145	290	5	10	14	17	0	11	14	17	0
+1063	paparazzi	paparazzi	A20 PLUS	280	280	5	8	12	15	0	8	12	15	0
+1064	High & Low	High & Low	A20 PLUS	210	210	4	8	12	16	0	8	12	16	0
+1065	勇猛無比	yumomuhi	A20 PLUS	201	201	4	8	11	14	0	8	11	14	0
+1066	シル・ヴ・プレジデント	silvpresident	A20 PLUS	176	176	1	4	8	12	14	4	8	12	14
+1067	スーパー戦湯ババンバーン	super sento babanban	A20 PLUS	94	187	4	7	11	14	0	7	11	14	0
+1068	LIKE A VAMPIRE	LIKE A VAMPIRE	A20 PLUS	276	276	3	7	10	13	0	7	10	13	0
+1069	Globe Glitter	Globe Glitter	A20 PLUS	190	190	4	8	11	15	0	8	11	15	0
+1070	ユメブキ	yumebuki	A20 PLUS	200	200	4	8	12	15	0	8	12	15	0
+1071	Sweet Clock	Sweet Clock	A20 PLUS	178	178	3	6	8	12	0	6	8	12	0
+1072	灼熱 Pt.2 Long Train Running	Shakunetsu Pt.2 Long Train Running	A20 PLUS	165	178	3	8	13	16	0	8	13	16	0
+1073	Yuni's Nocturnal Days	Yuni's Nocturnal Days	A20 PLUS	153	153	3	6	10	14	18	6	11	14	18
+1074	Good Looking	Good Looking	A20 PLUS	170	153	3	9	12	15	17	9	12	15	18
+1075	AI	AI	A20 PLUS	190	190	5	9	12	16	0	10	12	15	0
+1076	ANTI ANTHEM	ANTI ANTHEM	A20 PLUS	128	700	5	9	13	15	0	9	12	16	0
+1077	ほしのつくりかた	hoshinotsukurikata	A20 PLUS	180	180	3	6	10	14	0	5	10	13	0
+1078	Triple Cross	Triple Cross	A20 PLUS	196	196	7	9	13	17	0	8	13	17	0
+1079	モノクロモーメント	monochrome moment	A20 PLUS	155	155	3	7	11	14	0	6	11	14	0
+1080	テレキャスタービーボーイ	telecaster bee boy	A20 PLUS	182	182	2	5	9	12	0	6	9	12	0
+1081	サイカ	saika	A20 PLUS	110	110	2	5	8	11	0	5	8	11	0
+1082	Aftermath	Aftermath	A20 PLUS	200	200	5	9	12	16	0	9	12	16	0
+1083	BLAKE	BLAKE	A20 PLUS	200	200	3	7	11	14	0	7	11	14	0
+1084	Shout It Out	Shout It Out	A20 PLUS	205	205	4	9	12	15	0	9	12	14	0
+1085	ノープラン・デイズ	no plan days	A20 PLUS	210	210	3	9	12	16	0	9	12	16	0
+1086	TYPHØN	TYPHØN	A20 PLUS	112	225	5	10	14	17	0	10	14	17	0
+1087	パピポペピプペパ	papipopepipupepa	A20 PLUS	187	187	4	6	11	15	0	6	11	15	0
+1088	Step This Way	Step This Way	A20 PLUS	176	176	4	9	12	16	0	9	12	16	0
+1089	Come Back To Me	Come Back To Me	A20 PLUS	172	172	3	7	11	14	0	7	11	14	0
+1090	actualization of self (weaponized)	actualization of self (weaponized)	A20 PLUS	175	175	4	9	13	16	0	8	13	16	0
+1091	Better Than Me	Better Than Me	A20 PLUS	162	162	4	8	12	15	0	7	12	15	0
+1092	B4U (The Acolyte mix)	B4U (The Acolyte mix)	A20 PLUS	155	155	2	4	9	13	0	4	9	13	0
+1093	1998 (Sparky 2006)	1998 (Sparky 2006)	A20 PLUS	150	150	2	6	11	14	0	8	11	14	0
+1094	I'm Flying Away	I'm Flying Away	A20 PLUS	180	180	2	5	8	12	0	5	8	12	0
+1095	We Can Win The Fight	We Can Win The Fight	A20 PLUS	119	119	2	5	8	11	0	6	9	11	0
+1096	SCHWARZSCHILD FIELD	SCHWARZSCHILD FIELD	A20 PLUS	150	150	5	10	13	16	0	10	13	16	0
+1097	jet coaster☆girl	jet coaster☆girl	A20 PLUS	177	177	3	6	11	13	0	6	10	13	0
+1098	THIS IS MY LAST RESORT	THIS IS MY LAST RESORT	A20 PLUS	110	220	5	9	12	15	0	9	12	15	0
+1099	共犯ヘヴンズコード	kyouhan heavens code	A20 PLUS	219	219	2	4	10	13	0	5	11	14	0
+1100	私をディスコに連れてって TOKYO	watashiwo disco nitsuretette TOKYO	A20 PLUS	142	142	3	9	11	14	0	9	11	14	0
+1101	↑↑↓↓←→←→BA	ueueshitashitahidarimigihidarimigiBA	A3	124	124	4	6	11	12	0	6	11	12	0
+1102	Anthurium	Anthurium	A3	142	142	4	6	10	13	0	6	10	13	0
+1103	Dance Phenomena	Dance Phenomena	A3	71	142	3	5	10	12	0	5	10	12	0
+1104	Deep tenDon Reflex	Deep tenDon Reflex	A3	180	180	3	7	11	15	17	7	11	15	17
+1105	♡Drive My Heart♡	Drive My Heart	A3	145	145	2	5	8	13	0	5	8	13	0
+1106	Fleur	Fleur	A3	180	180	4	9	12	16	0	9	12	16	0
+1107	GRADIUS REMIX（↑↑↓↓←→←→BA Ver.)	GRADIUS REMIX（ueueshitashitahidarimigihidarimigiBA Ver.)	A3	128	128	2	6	8	12	0	6	8	12	0
+1108	Let's DANCE aROUND!!	Let's DANCE aROUND!!	A3	63	126	3	7	11	14	17	7	11	14	16
+1109	Like A Star	Like A Star	A3	175	175	4	7	12	14	0	7	12	14	0
+1110	Pump Pump Pump	Pump Pump Pump	A3	156	156	2	6	11	15	0	6	11	15	0
+1111	SAYONARA☆ディスコライト	SAYONARA disco light	A3	159	159	3	6	9	13	0	5	9	14	0
+1112	Surface	Surface	A3	150	150	1	4	9	12	0	4	9	12	0
+1113	Wolf's Rain	Wolf's Rain	A3	154	154	4	7	11	14	0	7	11	14	0
+1114	DDR TAGMIX -LAST DanceR-	DDR TAGMIX -LAST DanceR-	A20 PLUS	50	80	6	11	14	17	0	11	14	17	0
+1115	アユミ☆マジカルショータイム	ayumi magical show time	A3	187	187	2	5	9	13	0	5	9	13	0
+1116	ウサテイ	usatei	A3	190	190	3	7	11	14	17	7	11	14	17
+1117	患部で止まってすぐ溶ける～狂気の優曇華院	kanbudetomattesugutokeru kyoukinoudongein	A3	100	200	3	8	11	14	17	8	11	14	18
+1118	Beluga	Beluga	A3	132	132	1	4	7	11	0	4	7	11	0
+1119	MEGALOVANIA	MEGALOVANIA	A3	120	240	4	9	12	16	18	9	12	16	18
+1120	WARNING×WARNING×WARNING	WARNING×WARNING×WARNING	A3	172	172	3	6	10	13	17	6	10	13	17
+1121	STAY GOLD	STAY GOLD	A3	41	330	5	9	12	16	0	9	12	16	0
+1122	Worst Plan	Worst Plan	A3	150	150	4	7	12	15	0	7	12	15	0
+1123	Qwerty	Qwerty	A3	160	160	2	6	10	14	0	6	10	14	0
+1124	stellar rain	stellar rain	A3	148	148	1	5	8	13	0	5	8	13	0
+1125	GERBERA	GERBERA	A3	102	205	4	9	14	16	0	9	14	16	0
+1126	Black Emperor	Black Emperor	A3	30	195	5	9	14	17	18	9	14	17	18
+1127	ALBIDA	ALBIDA	A3	185	185	3	9	13	16	0	9	13	16	0
+1128	Closer to my Heart (jun remix)	Closer to my Heart (jun remix)	A3	145	145	2	7	11	14	0	7	11	14	0
+1129	DOUBLE TORNARD	DOUBLE TORNARD	A3	153	153	4	7	12	15	0	7	12	15	0
+1130	glacia	glacia	A3	186	186	4	9	14	16	0	9	14	16	0
+1131	Glitter Flatter Scatter	Glitter Flatter Scatter	A3	98	197	6	9	14	17	0	9	14	17	0
+1132	I WANT YOUR LOVE (Darwin remix)	I WANT YOUR LOVE (Darwin remix)	A3	170	170	2	4	9	13	0	4	9	13	0
+1133	Megalara Garuda	Megalara Garuda	A3	90	180	5	9	16	17	18	9	16	17	18
+1134	Mess With My Emotions	Mess With My Emotions	A3	130	130	1	3	9	12	0	2	9	12	0
+1135	TRUE♥LOVE (Clubstar's True Club Mix)	TRUE LOVE (Clubstar's True Club Mix) jun feat. Schanita	A3	135	135	1	5	9	13	0	4	9	13	0
+1136	Too Late Snow	Too Late Snow	A3	138	138	2	5	10	13	0	5	10	13	0
+1137	Wowie Zowie!	Wowie Zowie!	A3	128	128	2	6	10	14	0	6	10	14	0
+1138	ナナホシ	nanahoshi	A3	166	166	2	6	11	15	0	6	11	15	0
+1139	量子の海のリントヴルム	ryoushinoumino rintovurumu	A3	280	280	4	10	14	17	18	9	13	17	18
+1140	鏡花水月楼 (DDR EDITION)	kyoukasuigeturou (DDR EDITION)	A3	175	175	1	6	11	14	0	7	12	15	0
+1141	Good Sound United	Good Sound United	A3	100	200	5	9	13	16	0	9	13	16	0
+1142	Unreality	Unreality	A3	174	174	2	6	11	14	0	6	11	14	0
+1143	PERSIAN LAND	PERSIAN LAND	A3	90	180	4	7	12	15	0	7	12	15	0
+1144	Environ [De-SYNC] (feat. lythe)	Environ [De-SYNC] (feat. lythe)	A3	90	180	4	9	12	15	0	9	12	15	0
+1145	リリーゼと炎龍レーヴァテイン	riri-zetoenryure-vatein	A3	200	200	4	8	13	16	0	8	13	16	0
+1146	MANA	MANA	A3	97	195	3	7	11	15	0	7	11	15	0
+1147	ON-DO	ON-DO	A3	210	210	3	8	12	14	0	8	12	14	0
+1148	KING	KING	A3	166	166	1	7	13	16	0	7	13	16	0
+1149	酔いどれ知らず	yoidoreshirazu	A3	115	115	1	3	9	13	0	3	9	13	0
+1150	DUAL STRIKER	DUAL STRIKER	A3	185	185	7	9	13	17	0	9	13	17	0
+1151	斑咲花	murasakibana	A3	134	201	3	7	12	16	0	7	12	15	0
+1152	チュッチュ♪マチュピチュ	chuchumachupichu	A3	130	130	3	7	11	14	0	6	11	14	0
+1153	MA・TSU・RI	MA・TSU・RI	A3	160	160	3	7	10	13	0	7	10	13	0
+1154	恋愛観測 -2021真夏のエンディング ver.-	renaikansoku 2021manatsunoending ver	A3	188	188	3	8	12	14	0	8	12	14	0
+1155	ミックスナッツ	mixnuts	A3	150	150	1	5	8	15	0	5	8	14	0
+1156	Come Back to Me (Feel It)	Come Back to Me (Feel It)	A3	165	165	3	7	10	14	0	7	10	14	0
+1157	Go Down	Go Down	A3	126	126	1	4	10	14	0	4	10	13	0
+1158	Acid,Tribal & Dance (DDR EDITION)	Acid,Tribal & Dance (DDR EDITION)	A3	72	286	3	5	11	14	17	5	11	14	17
+1159	You You You	You You You	A3	146	146	3	6	10	13	0	6	10	13	0
+1160	THE ANCIENT KING IS BACK	THE ANCIENT KING IS BACK	A3	160	160	3	7	11	14	0	7	11	15	0
+1161	Easy Peasy	Easy Peasy	A3	138	138	1	4	10	14	0	5	10	14	0
+1162	CANDY (UFO mix)	CANDY (UFO mix)	A3	180	180	2	6	10	14	0	6	11	14	0
+1163	Curry Up	Curry Up	A3	165	165	2	6	10	13	0	6	9	12	0
+1164	Heavens and the Earth	Heavens and the Earth	A3	70	70	1	5	7	11	0	5	8	11	0
+1165	PARADISE	PARADISE	A3	125	125	1	6	9	12	0	5	9	12	0
+1166	STAY (Joey Riot remix)	STAY (Joey Riot remix)	A3	150	150	2	6	9	12	0	6	9	12	0
+1167	Take Me	Take Me	A3	100	100	1	5	7	11	0	5	7	11	0
+1168	We Will Live Together	We Will Live Together	A3	175	175	2	5	10	14	0	5	10	14	0
+1169	BONE BORN	BONE BORN	A3	135	135	1	5	10	13	0	5	11	14	0
+1170	惑星☆ロリポップ	wakusei lolipop	A3	180	180	2	5	11	15	0	5	11	15	0
+1171	一途	ichizu	A3	160	160	2	6	12	15	0	6	12	15	0
+1172	Debug Dance	Debug Dance	A3	151	151	3	8	11	15	0	8	11	15	0
+1173	Awakening Wings	Awakening Wings	A3	190	190	2	5	10	11	0	5	10	11	0
+1174	Teleportation	Teleportation	A3	170	170	4	8	12	15	0	8	12	15	0
+1175	Let Me Know	Let Me Know	A3	75	150	4	7	11	15	0	7	11	15	0
+1176	Let Me Show You	Let Me Show You	A3	170	170	3	7	11	15	0	7	11	15	0
+1177	最速最高シャッターガール	saisokusaikou shutter girl	A3	160	160	4	7	12	16	18	7	12	16	18
+1178	スカーレット警察のゲットーパトロール24時	scarret keisatsuno getto-patroll24ji	A3	160	160	3	7	11	15	18	7	11	15	18
+1179	リスペク風神	risupekufuujin	A3	135	135	2	5	10	15	0	5	10	15	0
+1180	恋の氷結おてんば湯けむりチルノ温泉	koinohyouketsuotenbayukemurichirunoonsen	A3	57	188	2	7	12	15	0	7	12	15	0
+1181	Look at the Sky	Look at the Sky	A3	115	115	1	3	6	10	0	3	5	10	0
+1182	Something Comforting	Something Comforting	A3	144	144	2	5	8	13	0	5	8	13	0
+1183	VOLAQUAS	VOLAQUAS	A3	106	212	5	11	15	18	19	11	15	18	19
+1184	Kilonova	Kilonova	A3	150	150	4	9	13	17	0	9	13	17	0
+1185	BREDLI	BREDLI	A3	128	128	2	6	12	16	0	6	12	16	0
+1186	新蛇姫	shindahime	A3	115	230	5	10	14	17	0	10	14	17	0
+1187	キヤロラ衛星の軌跡	kyaroraeiseinokiseki	A3	150	150	4	7	12	16	0	7	12	16	0
+1188	Get it	Get it	A3	174	174	3	7	12	16	0	7	12	17	0
+1189	Prettiful!	Prettiful!	A3	129	129	2	5	10	15	0	4	10	15	0
+1190	Go To The Oasis	Go To The Oasis	A3	182	182	3	6	12	15	0	6	12	15	0
+1191	Settin' the Scene	Settin' the Scene	A3	110	110	1	4	9	12	0	3	8	11	0
+1192	Wuv U	Wuv U	A3	86	346	3	7	10	14	0	7	10	14	0
+1193	Last Summer	Last Summer	A3	132	132	2	5	10	12	0	5	10	12	0
+1194	perditus†paradisus	perditus†paradisus	A3	172	172	4	8	14	17	0	8	14	17	0
+1195	VALLIS-NERIA	VALLIS-NERIA	A3	185	185	5	9	13	16	0	9	13	16	0
+1196	サヨナラ・ヘヴン	sayonara heaven	A3	111	111	1	3	9	13	0	3	9	13	0
+1197	Unity	Unity	A3	120	120	2	5	8	12	0	4	8	11	0
+1198	ヤサイマシ☆ニンニクアブラオオメ	yasaimashimashi ninnniku abura oome	A3	180	180	2	6	12	15	0	5	12	14	0
+1199	Are U Ready	Are U Ready	A3	155	155	3	7	11	13	0	7	10	13	0
+1200	concon	concon	A3	190	190	3	7	12	14	0	7	12	14	0
+1201	Get Your Wish	Get Your Wish	A3	20	320	3	6	9	14	0	5	9	14	0
+1202	Concertino in Blue	Concertino in Blue	A3	103	155	3	5	12	16	0	5	12	16	0
+1203	Snow Garland Fairy	Snow Garland Fairy	A3	200	200	3	8	13	17	0	8	13	17	0
+1204	TAKE ME HIGHER	TAKE ME HIGHER	A3	140	175	4	8	13	16	0	8	13	16	0
+1205	Crystarium	Crystarium	A3	130	130	2	6	11	15	0	6	11	15	0
+1206	insist	insist	A3	136	136	2	7	12	15	0	7	12	15	0
+1207	みゅ、みゅ、Müllる	myu myu Müllru	A3	150	150	3	7	11	13	0	7	11	13	0
+1208	Be With You (Still Miss you)	Be With You (Still Miss you)	A3	116	116	1	5	8	12	0	5	9	12	0
+1209	little steps	little steps	A3	155	155	3	6	11	15	0	6	11	15	0
+1210	On the Night of a Still Wind	On the Night of a Still Wind	A3	155	155	3	6	11	14	0	6	11	14	0
+1211	Such A Feeling	Such A Feeling	A3	120	120	3	6	11	14	0	6	11	14	0
+1212	Musician	Musician	A3	120	120	1	3	8	12	0	3	8	12	0
+1213	Eon Break	Eon Break	A3	178	356	4	8	13	16	18	9	13	16	18
+1214	Phlox	Phlox	A3	185	185	4	7	11	15	0	7	11	15	0
+1215	Lose Your Sense	Lose Your Sense	A3	44	175	6	9	13	17	0	9	13	17	0
+1216	Sector	Sector	A3	80	160	5	8	12	16	0	8	12	16	0
+1217	JUST BELIEVE	JUST BELIEVE	A3	160	160	2	7	10	14	0	7	10	14	0
+1218	the beat	the beat	A3	140	140	4	8	11	14	0	8	11	14	0
+1219	LOVE SHINE (Body Grooverz 2006 mix)	LOVE SHINE (Body Grooverz 2006 mix)	A3	177	177	3	7	12	16	0	5	11	15	0
+1220	Hold Tight	Hold Tight	A3	130	130	1	3	8	12	0	3	8	12	0
+1221	chaplet	chaplet	A3	100	200	3	8	12	17	0	8	13	17	0
+1222	spring pony	spring pony	A3	150	150	2	6	12	15	0	7	12	15	0
+1223	SOUVENIR	SOUVENIR	A3	158	158	2	4	7	12	0	3	7	12	0
+1224	アドレナリン	adrenaline	A3	70	140	2	5	10	15	0	5	10	15	0
+1225	伐折羅-vajra-	vajra	A3	87	173	3	7	12	16	18	7	12	16	18
+1226	Broken	Broken	A3	148	148	2	5	9	13	0	5	9	13	0
+1227	Flip Flap	Flip Flap	A3	175	175	3	6	8	14	0	6	8	14	0
+1228	GLITTER	GLITTER	A3	182	182	4	8	12	16	0	8	12	16	0
+1229	Playing With Fire	Playing With Fire	A3	160	160	2	7	10	14	0	7	10	14	0
+1230	Towards The Horizon	Towards The Horizon	A3	154	154	3	7	11	15	0	7	11	16	0
+1231	Valanga	Valanga	A3	186	186	4	7	11	15	17	7	11	15	17
+1232	カラフルミニッツ	colourfull minutes	A3	152	152	1	4	7	11	0	4	7	11	0
+1233	Ability	Ability	A3	154	154	2	5	11	16	0	5	11	16	0
+1234	羊皮紙の上の銀河	yohishinouenoginga	A3	196	196	3	6	10	14	0	6	10	14	0
+1235	SURVIVAL AT THE END OF THE UNIVERSE	SURVIVAL AT THE END OF THE UNIVERSE	A3	150	200	5	9	14	16	0	9	14	17	0
+1236	Open Your Eyes	Open Your Eyes	A3	82	82	2	5	7	9	0	5	7	9	0
+1237	BREAKING THE FUTURE	BREAKING THE FUTURE	A3	45	360	5	10	14	17	19	10	14	17	19
+1238	Racing with Time (NAOKI's 999 remix)	Racing with Time (NAOKI's 999 remix)	A3	157	157	2	7	11	15	0	7	11	15	0
+1239	Surrender (PureFocus remix)	Surrender (PureFocus remix)	A3	130	130	2	7	10	15	0	6	10	14	0
+1240	SAY A PRAYER	SAY A PRAYER	A3	97	97	2	4	6	8	0	4	6	8	0
+1241	Jungle Dance	Jungle Dance	A3	155	155	3	7	12	16	0	7	12	16	0
+1242	メンタンピンドラドラ	menntannpinndoradora	A3	93	185	2	7	11	16	0	7	11	16	0
+1243	Aria	Aria	A3	90	180	4	9	13	17	0	9	13	17	0
+1244	Rise As One	Rise As One	A3	90	180	2	7	12	17	0	7	12	17	0
+1245	Drive Away	Drive Away	A3	100	200	2	7	12	17	0	7	12	17	0
+1246	Chromatic Burst	Chromatic Burst	A3	170	170	1	7	12	17	0	7	12	17	0
+1247	GLOW THE CROWN	GLOW THE CROWN	A3	174	174	3	8	14	17	0	8	14	17	0
+1248	SMASH	SMASH	A3	80	160	2	7	12	17	0	7	12	17	0
+1249	Complete Game Victory	Complete Game Victory	A3	200	200	2	8	12	17	0	8	12	17	0
+1250	Abrupt Madness	Abrupt Madness	A3	185	185	3	8	13	17	0	8	13	17	0
+1251	Pure Rude	Pure Rude	A3	175	175	3	7	13	15	0	7	13	15	0
+1252	ポジティブ☆ダンスタイム	positive dancetime	A3	210	210	2	4	8	12	0	4	8	12	0
+1253	ポッピンキャンディ☆フィーバー！	Poppin' candy fever	A3	190	190	2	4	10	14	0	4	10	14	0
+1254	とこにゃつ☆トロピカル	tokonyatsu tropical	A3	132	132	3	7	12	15	0	6	12	15	0
+1255	Rave in the Shell	Rave in the Shell	A3	75	300	3	7	12	16	0	7	12	16	0
+1256	I-W-U (I Want U)	I-W-U (I Want U)	A3	150	150	3	7	12	17	0	7	12	17	0
+1257	Sparkle Dreams	Sparkle Dreams	A3	180	180	3	8	13	17	0	7	13	17	0
+1258	パーフェクトイーター	PerfectEater	A3	175	175	3	6	12	17	0	6	12	17	0
+1259	Battle Against a True Hero	Battle Against a True Hero	A3	75	150	2	7	12	15	18	7	12	15	18
+1260	Death by Glamour	Death by Glamour	A3	148	148	3	7	11	14	17	7	11	14	17
+1261	Finale	Finale	A3	48	190	2	5	8	13	15	5	8	12	15
+1262	C-C-C-N-N-N	C-C-C-N-N-N	A3	162	180	2	5	10	15	0	5	10	15	0
+1263	DIABLOSIS::Nāga	DIABLOSIS::Nāga	A3	200	200	3	11	15	17	0	11	14	17	0
+1264	suspicions	suspicions	A3	77	153	5	9	14	18	0	9	14	18	0
+1265	Not Alone	Not Alone	A3	155	155	3	7	13	16	0	8	13	16	0
+1266	mathematical good-bye	mathematical good-bye	A3	182	182	3	10	14	17	0	10	14	17	0
+1267	ROCK THE PARTY	ROCK THE PARTY	A3	128	128	3	5	13	16	0	5	13	16	0
+1268	EMOTiON TRiPPER	EMOTiON TRiPPER	A3	170	170	1	5	10	14	0	5	10	14	0
+1269	BLUE FOG, SILVER BULLET.	BLUE FOG, SILVER BULLET.	A3	93	185	5	8	12	15	0	8	12	15	0
+1270	Electronic Sports Complex	Electronic Sports Complex	A3	110	220	6	10	14	17	0	10	14	17	0
+1271	ｍｅｍｏｒｙ／／ＤＡＴＡＭＯＳＨＥＲ	memory//DATAMOSHER	A3	115	460	6	9	13	16	0	9	13	16	0
+1272	Come To m1dy	Come To m1dy	A3	113	450	6	11	15	16	17	11	15	16	17
+1273	SISYPHUS	SISYPHUS	A3	90	190	5	10	14	17	18	10	14	17	18
+1274	New Millennium	New Millennium	A3	60	300	6	12	15	17	18	12	15	17	18
+1275	GROOVE 04	GROOVE 04	A3	155	155	4	8	11	16	0	8	11	16	0
+1276	しゅわスパ大作戦☆	ShuwaspaDaisakusen	A3	140	140	1	5	10	14	0	5	10	14	0
+1277	HANIPAGANDA	HANIPAGANDA	A3	91	181	3	7	12	16	0	7	12	16	0
+1278	INFINITE WORLD	INFINITE WORLD	A3	167	167	3	5	11	14	0	5	11	14	0
+1279	Kill The Night	Kill The Night	A3	165	165	2	6	11	14	16	7	11	14	16
+1280	LOVE EAST	LOVE EAST	A3	168	168	3	6	11	15	0	6	11	15	0
+1281	トランスダンスアナーキー	TranceDanceAnarchy	A3	195	195	3	9	12	16	18	9	12	16	18
+1282	Urban Life	Urban Life	A3	133	133	2	5	11	15	0	5	11	15	0
+1283	Throw Out	Throw Out	A3	96	192	2	6	10	15	0	6	10	15	0
+1284	鳳	Hou	A3	57	920	7	11	16	18	19	11	16	18	19
+1285	Euphoric Fragmentation	Euphoric Fragmentation	A3	90	180	4	8	12	16	0	8	12	16	0
+1286	ポラリスノウタ	Polarisnouta	A3	170	170	1	5	9	13	16	4	9	13	16
+1287	コンフェイト＊コンチェルト	ConfeitoConcerto	A3	142	142	2	6	10	14	0	5	10	14	0
+1288	都会征服Girls☆	TokaiseihukuGirls	A3	140	140	2	4	10	13	0	4	10	13	0
+1289	めうめうぺったんたん！！ (ZAQUVA Remix)	Meumeupettantan!!(ZAQUVA Remix)	A3	200	200	4	7	10	13	17	7	10	13	17
+1290	Finally Dive	Finally Dive	A3	146	146	3	6	12	16	0	6	12	16	0
+1291	千客万来☆無問題！	SenkyakubanraiMomantai	A3	168	168	3	6	12	16	0	6	12	16	0
+1292	ちくわパフェだよ☆ＣＫＰ (Yvya Remix)	ChikuwaParfaitDayoCKP(Yvya Remix)	A3	205	205	4	7	10	12	16	7	10	12	16
+1293	ナナイロライト	NanairoLight	A3	135	135	3	5	11	14	0	5	11	14	0
+1294	走れメロンパン	HashireMeronpan	A3	170	170	2	5	10	14	0	5	10	14	0
+1295	Next FUTURE	Next FUTURE	A3	192	192	2	6	10	15	0	6	10	15	0
+1296	Continue to the real world?	Continue to the real world?	A3	93	186	3	7	12	16	0	7	12	16	0
+1297	コメット⇒スケイター	Comet skater	A3	150	150	3	4	10	15	0	5	10	15	0
+1298	3y3s	3y3s	A3	191	191	4	9	14	17	0	9	14	17	0
+1299	Ambivalent Vermilia	Ambivalent Vermilia	A3	185	185	5	10	15	18	0	10	15	18	0
+1300	9th Outburst	9th Outburst	A3	82	163	3	7	11	15	0	7	11	15	0
+1301	DDR System Songs+Replicant Mix	DDR System Songs+Replicant Mix	A3	159	159	1	5	10	13	0	5	10	13	0
+1302	Dance With The Dead	Dance With The Dead	A3	150	150	3	8	12	15	0	8	12	15	0
+1303	Indigo Nocturne	Indigo Nocturne	A3	150	150	2	6	12	15	0	6	12	15	0
+1304	Metamorphic	Metamorphic	A3	200	200	6	11	14	16	0	11	14	16	0
+1305	White Stream	White Stream	A3	222	222	4	8	13	16	0	8	13	16	0
+1306	輪廻の鴉	Rinnenokarasu	A3	198	198	3	8	12	14	0	8	12	15	0
+1307	[ ]DENTITY	[ ]DENTITY	A3	100	200	4	8	14	17	0	8	14	17	0
+1308	My Drama	My Drama	A3	220	220	7	10	13	15	0	10	13	14	0
+1309	melody H4CKER	melody H4CKER	A3	155	155	2	6	12	15	0	6	11	15	0
+1310	Test	Test	WORLD	155	155	2	6	12	15	0	6	11	15	0
