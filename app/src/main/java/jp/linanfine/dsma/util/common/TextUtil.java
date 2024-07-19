@@ -928,8 +928,26 @@ public class TextUtil {
         sb.append(score.CDP.PlayCount);
         sb.append("\t");
         sb.append(score.CDP.ClearCount);
-        // sb.append("\t");
-        // sb.append("\n");
+
+        // フレアランクの追加
+        sb.append("\t");
+        sb.append(score.bSP.flareRank);
+        sb.append("\t");
+        sb.append(score.BSP.flareRank);
+        sb.append("\t");
+        sb.append(score.DSP.flareRank);
+        sb.append("\t");
+        sb.append(score.ESP.flareRank);
+        sb.append("\t");
+        sb.append(score.CSP.flareRank);
+        sb.append("\t");
+        sb.append(score.BDP.flareRank);
+        sb.append("\t");
+        sb.append(score.DDP.flareRank);
+        sb.append("\t");
+        sb.append(score.EDP.flareRank);
+        sb.append("\t");
+        sb.append(score.CDP.flareRank);
 
         return sb.toString();
     }

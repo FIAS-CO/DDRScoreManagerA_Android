@@ -45,6 +45,7 @@ import jp.linanfine.dsma.value.MusicScore;
 import jp.linanfine.dsma.value.MusicSort;
 import jp.linanfine.dsma.value.RecentData;
 import jp.linanfine.dsma.value.RivalData;
+import jp.linanfine.dsma.value.ScoreData;
 import jp.linanfine.dsma.value.StatusData;
 import jp.linanfine.dsma.value.UniquePattern;
 import jp.linanfine.dsma.value.WebMusicId;
@@ -2025,360 +2026,168 @@ public class FileReader {
     }
 
     public static TreeMap<Integer, MusicScore> readScoreList(Context context, String rivalId) {
-        TreeMap<Integer, MusicScore> ret = new TreeMap<Integer, MusicScore>();
-        FileInputStream in = null;
-        try {
-            String fileName = "ScoreData";
-            if (rivalId != null) {
-                fileName += rivalId;
-            }
-            fileName += ".txt";
-            {
-                in = context.openFileInput(fileName);
-            }
-            BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
-            String str;
-            Log.d("1", "111111111111111111111111111");
-            while ((str = reader.readLine()) != null) {
-                Log.d("LINE----------", str);
-                String[] sp = str.split("\t");
-                int id = Integer.parseInt(sp[0]);
-                MusicScore ms = new MusicScore();
-                int spi = 0;
-                ++spi;
-                ms.bSP.Rank =
-                        sp[spi].equals("AAA") ? MusicRank.AAA :
-                                sp[spi].equals("AA+") ? MusicRank.AAp :
-                                        sp[spi].equals("AA") ? MusicRank.AA :
-                                                sp[spi].equals("AA-") ? MusicRank.AAm :
-                                                        sp[spi].equals("A+") ? MusicRank.Ap :
-                                                                sp[spi].equals("A") ? MusicRank.A :
-                                                                        sp[spi].equals("A-") ? MusicRank.Am :
-                                                                                sp[spi].equals("B+") ? MusicRank.Bp :
-                                                                                        sp[spi].equals("B") ? MusicRank.B :
-                                                                                                sp[spi].equals("B-") ? MusicRank.Bm :
-                                                                                                        sp[spi].equals("C+") ? MusicRank.Cp :
-                                                                                                                sp[spi].equals("C") ? MusicRank.C :
-                                                                                                                        sp[spi].equals("C-") ? MusicRank.Cm :
-                                                                                                                                sp[spi].equals("D+") ? MusicRank.Dp :
-                                                                                                                                        sp[spi].equals("D") ? MusicRank.D :
-                                                                                                                                                sp[spi].equals("E") ? MusicRank.E :
-                                                                                                                                                        MusicRank.Noplay;
-                ++spi;
-                ms.bSP.Score = Integer.valueOf(sp[spi]);
-                ++spi;
-                ms.bSP.FullComboType =
-                        sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
-                                sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
-                                        sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
-                                                sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
-                                                        sp[spi].equals("Life4") ? FullComboType.Life4 :
-                                                                FullComboType.None;
-                ++spi;
-                ms.bSP.MaxCombo = Integer.valueOf(sp[spi]);
-                ++spi;
-                ms.BSP.Rank =
-                        sp[spi].equals("AAA") ? MusicRank.AAA :
-                                sp[spi].equals("AA+") ? MusicRank.AAp :
-                                        sp[spi].equals("AA") ? MusicRank.AA :
-                                                sp[spi].equals("AA-") ? MusicRank.AAm :
-                                                        sp[spi].equals("A+") ? MusicRank.Ap :
-                                                                sp[spi].equals("A") ? MusicRank.A :
-                                                                        sp[spi].equals("A-") ? MusicRank.Am :
-                                                                                sp[spi].equals("B+") ? MusicRank.Bp :
-                                                                                        sp[spi].equals("B") ? MusicRank.B :
-                                                                                                sp[spi].equals("B-") ? MusicRank.Bm :
-                                                                                                        sp[spi].equals("C+") ? MusicRank.Cp :
-                                                                                                                sp[spi].equals("C") ? MusicRank.C :
-                                                                                                                        sp[spi].equals("C-") ? MusicRank.Cm :
-                                                                                                                                sp[spi].equals("D+") ? MusicRank.Dp :
-                                                                                                                                        sp[spi].equals("D") ? MusicRank.D :
-                                                                                                                                                sp[spi].equals("E") ? MusicRank.E :
-                                                                                                                                                        MusicRank.Noplay;
-                ++spi;
-                ms.BSP.Score = Integer.valueOf(sp[spi]);
-                ++spi;
-                ms.BSP.FullComboType =
-                        sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
-                                sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
-                                        sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
-                                                sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
-                                                        sp[spi].equals("Life4") ? FullComboType.Life4 :
-                                                                FullComboType.None;
-                ++spi;
-                ms.BSP.MaxCombo = Integer.valueOf(sp[spi]);
-                ++spi;
-                ms.DSP.Rank =
-                        sp[spi].equals("AAA") ? MusicRank.AAA :
-                                sp[spi].equals("AA+") ? MusicRank.AAp :
-                                        sp[spi].equals("AA") ? MusicRank.AA :
-                                                sp[spi].equals("AA-") ? MusicRank.AAm :
-                                                        sp[spi].equals("A+") ? MusicRank.Ap :
-                                                                sp[spi].equals("A") ? MusicRank.A :
-                                                                        sp[spi].equals("A-") ? MusicRank.Am :
-                                                                                sp[spi].equals("B+") ? MusicRank.Bp :
-                                                                                        sp[spi].equals("B") ? MusicRank.B :
-                                                                                                sp[spi].equals("B-") ? MusicRank.Bm :
-                                                                                                        sp[spi].equals("C+") ? MusicRank.Cp :
-                                                                                                                sp[spi].equals("C") ? MusicRank.C :
-                                                                                                                        sp[spi].equals("C-") ? MusicRank.Cm :
-                                                                                                                                sp[spi].equals("D+") ? MusicRank.Dp :
-                                                                                                                                        sp[spi].equals("D") ? MusicRank.D :
-                                                                                                                                                sp[spi].equals("E") ? MusicRank.E :
-                                                                                                                                                        MusicRank.Noplay;
-                ++spi;
-                ms.DSP.Score = Integer.valueOf(sp[spi]);
-                ++spi;
-                ms.DSP.FullComboType =
-                        sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
-                                sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
-                                        sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
-                                                sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
-                                                        sp[spi].equals("Life4") ? FullComboType.Life4 :
-                                                                FullComboType.None;
-                ++spi;
-                ms.DSP.MaxCombo = Integer.valueOf(sp[spi]);
-                ++spi;
-                ms.ESP.Rank =
-                        sp[spi].equals("AAA") ? MusicRank.AAA :
-                                sp[spi].equals("AA+") ? MusicRank.AAp :
-                                        sp[spi].equals("AA") ? MusicRank.AA :
-                                                sp[spi].equals("AA-") ? MusicRank.AAm :
-                                                        sp[spi].equals("A+") ? MusicRank.Ap :
-                                                                sp[spi].equals("A") ? MusicRank.A :
-                                                                        sp[spi].equals("A-") ? MusicRank.Am :
-                                                                                sp[spi].equals("B+") ? MusicRank.Bp :
-                                                                                        sp[spi].equals("B") ? MusicRank.B :
-                                                                                                sp[spi].equals("B-") ? MusicRank.Bm :
-                                                                                                        sp[spi].equals("C+") ? MusicRank.Cp :
-                                                                                                                sp[spi].equals("C") ? MusicRank.C :
-                                                                                                                        sp[spi].equals("C-") ? MusicRank.Cm :
-                                                                                                                                sp[spi].equals("D+") ? MusicRank.Dp :
-                                                                                                                                        sp[spi].equals("D") ? MusicRank.D :
-                                                                                                                                                sp[spi].equals("E") ? MusicRank.E :
-                                                                                                                                                        MusicRank.Noplay;
-                ++spi;
-                ms.ESP.Score = Integer.valueOf(sp[spi]);
-                ++spi;
-                ms.ESP.FullComboType =
-                        sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
-                                sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
-                                        sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
-                                                sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
-                                                        sp[spi].equals("Life4") ? FullComboType.Life4 :
-                                                                FullComboType.None;
-                ++spi;
-                ms.ESP.MaxCombo = Integer.valueOf(sp[spi]);
-                ++spi;
-                ms.CSP.Rank =
-                        sp[spi].equals("AAA") ? MusicRank.AAA :
-                                sp[spi].equals("AA+") ? MusicRank.AAp :
-                                        sp[spi].equals("AA") ? MusicRank.AA :
-                                                sp[spi].equals("AA-") ? MusicRank.AAm :
-                                                        sp[spi].equals("A+") ? MusicRank.Ap :
-                                                                sp[spi].equals("A") ? MusicRank.A :
-                                                                        sp[spi].equals("A-") ? MusicRank.Am :
-                                                                                sp[spi].equals("B+") ? MusicRank.Bp :
-                                                                                        sp[spi].equals("B") ? MusicRank.B :
-                                                                                                sp[spi].equals("B-") ? MusicRank.Bm :
-                                                                                                        sp[spi].equals("C+") ? MusicRank.Cp :
-                                                                                                                sp[spi].equals("C") ? MusicRank.C :
-                                                                                                                        sp[spi].equals("C-") ? MusicRank.Cm :
-                                                                                                                                sp[spi].equals("D+") ? MusicRank.Dp :
-                                                                                                                                        sp[spi].equals("D") ? MusicRank.D :
-                                                                                                                                                sp[spi].equals("E") ? MusicRank.E :
-                                                                                                                                                        MusicRank.Noplay;
-                ++spi;
-                ms.CSP.Score = Integer.valueOf(sp[spi]);
-                ++spi;
-                ms.CSP.FullComboType =
-                        sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
-                                sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
-                                        sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
-                                                sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
-                                                        sp[spi].equals("Life4") ? FullComboType.Life4 :
-                                                                FullComboType.None;
-                ++spi;
-                ms.CSP.MaxCombo = Integer.valueOf(sp[spi]);
-                ++spi;
-                ms.BDP.Rank =
-                        sp[spi].equals("AAA") ? MusicRank.AAA :
-                                sp[spi].equals("AA+") ? MusicRank.AAp :
-                                        sp[spi].equals("AA") ? MusicRank.AA :
-                                                sp[spi].equals("AA-") ? MusicRank.AAm :
-                                                        sp[spi].equals("A+") ? MusicRank.Ap :
-                                                                sp[spi].equals("A") ? MusicRank.A :
-                                                                        sp[spi].equals("A-") ? MusicRank.Am :
-                                                                                sp[spi].equals("B+") ? MusicRank.Bp :
-                                                                                        sp[spi].equals("B") ? MusicRank.B :
-                                                                                                sp[spi].equals("B-") ? MusicRank.Bm :
-                                                                                                        sp[spi].equals("C+") ? MusicRank.Cp :
-                                                                                                                sp[spi].equals("C") ? MusicRank.C :
-                                                                                                                        sp[spi].equals("C-") ? MusicRank.Cm :
-                                                                                                                                sp[spi].equals("D+") ? MusicRank.Dp :
-                                                                                                                                        sp[spi].equals("D") ? MusicRank.D :
-                                                                                                                                                sp[spi].equals("E") ? MusicRank.E :
-                                                                                                                                                        MusicRank.Noplay;
-                ++spi;
-                ms.BDP.Score = Integer.valueOf(sp[spi]);
-                ++spi;
-                ms.BDP.FullComboType =
-                        sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
-                                sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
-                                        sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
-                                                sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
-                                                        sp[spi].equals("Life4") ? FullComboType.Life4 :
-                                                                FullComboType.None;
-                ++spi;
-                ms.BDP.MaxCombo = Integer.valueOf(sp[spi]);
-                ++spi;
-                ms.DDP.Rank =
-                        sp[spi].equals("AAA") ? MusicRank.AAA :
-                                sp[spi].equals("AA+") ? MusicRank.AAp :
-                                        sp[spi].equals("AA") ? MusicRank.AA :
-                                                sp[spi].equals("AA-") ? MusicRank.AAm :
-                                                        sp[spi].equals("A+") ? MusicRank.Ap :
-                                                                sp[spi].equals("A") ? MusicRank.A :
-                                                                        sp[spi].equals("A-") ? MusicRank.Am :
-                                                                                sp[spi].equals("B+") ? MusicRank.Bp :
-                                                                                        sp[spi].equals("B") ? MusicRank.B :
-                                                                                                sp[spi].equals("B-") ? MusicRank.Bm :
-                                                                                                        sp[spi].equals("C+") ? MusicRank.Cp :
-                                                                                                                sp[spi].equals("C") ? MusicRank.C :
-                                                                                                                        sp[spi].equals("C-") ? MusicRank.Cm :
-                                                                                                                                sp[spi].equals("D+") ? MusicRank.Dp :
-                                                                                                                                        sp[spi].equals("D") ? MusicRank.D :
-                                                                                                                                                sp[spi].equals("E") ? MusicRank.E :
-                                                                                                                                                        MusicRank.Noplay;
-                ++spi;
-                ms.DDP.Score = Integer.valueOf(sp[spi]);
-                ++spi;
-                ms.DDP.FullComboType =
-                        sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
-                                sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
-                                        sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
-                                                sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
-                                                        sp[spi].equals("Life4") ? FullComboType.Life4 :
-                                                                FullComboType.None;
-                ++spi;
-                ms.DDP.MaxCombo = Integer.valueOf(sp[spi]);
-                ++spi;
-                ms.EDP.Rank =
-                        sp[spi].equals("AAA") ? MusicRank.AAA :
-                                sp[spi].equals("AA+") ? MusicRank.AAp :
-                                        sp[spi].equals("AA") ? MusicRank.AA :
-                                                sp[spi].equals("AA-") ? MusicRank.AAm :
-                                                        sp[spi].equals("A+") ? MusicRank.Ap :
-                                                                sp[spi].equals("A") ? MusicRank.A :
-                                                                        sp[spi].equals("A-") ? MusicRank.Am :
-                                                                                sp[spi].equals("B+") ? MusicRank.Bp :
-                                                                                        sp[spi].equals("B") ? MusicRank.B :
-                                                                                                sp[spi].equals("B-") ? MusicRank.Bm :
-                                                                                                        sp[spi].equals("C+") ? MusicRank.Cp :
-                                                                                                                sp[spi].equals("C") ? MusicRank.C :
-                                                                                                                        sp[spi].equals("C-") ? MusicRank.Cm :
-                                                                                                                                sp[spi].equals("D+") ? MusicRank.Dp :
-                                                                                                                                        sp[spi].equals("D") ? MusicRank.D :
-                                                                                                                                                sp[spi].equals("E") ? MusicRank.E :
-                                                                                                                                                        MusicRank.Noplay;
-                ++spi;
-                ms.EDP.Score = Integer.valueOf(sp[spi]);
-                ++spi;
-                ms.EDP.FullComboType =
-                        sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
-                                sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
-                                        sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
-                                                sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
-                                                        sp[spi].equals("Life4") ? FullComboType.Life4 :
-                                                                FullComboType.None;
-                ++spi;
-                ms.EDP.MaxCombo = Integer.valueOf(sp[spi]);
-                ++spi;
-                ms.CDP.Rank =
-                        sp[spi].equals("AAA") ? MusicRank.AAA :
-                                sp[spi].equals("AA+") ? MusicRank.AAp :
-                                        sp[spi].equals("AA") ? MusicRank.AA :
-                                                sp[spi].equals("AA-") ? MusicRank.AAm :
-                                                        sp[spi].equals("A+") ? MusicRank.Ap :
-                                                                sp[spi].equals("A") ? MusicRank.A :
-                                                                        sp[spi].equals("A-") ? MusicRank.Am :
-                                                                                sp[spi].equals("B+") ? MusicRank.Bp :
-                                                                                        sp[spi].equals("B") ? MusicRank.B :
-                                                                                                sp[spi].equals("B-") ? MusicRank.Bm :
-                                                                                                        sp[spi].equals("C+") ? MusicRank.Cp :
-                                                                                                                sp[spi].equals("C") ? MusicRank.C :
-                                                                                                                        sp[spi].equals("C-") ? MusicRank.Cm :
-                                                                                                                                sp[spi].equals("D+") ? MusicRank.Dp :
-                                                                                                                                        sp[spi].equals("D") ? MusicRank.D :
-                                                                                                                                                sp[spi].equals("E") ? MusicRank.E :
-                                                                                                                                                        MusicRank.Noplay;
-                ++spi;
-                ms.CDP.Score = Integer.valueOf(sp[spi]);
-                ++spi;
-                ms.CDP.FullComboType =
-                        sp[spi].equals("MerverousFullCombo") ? FullComboType.MerverousFullCombo :
-                                sp[spi].equals("PerfectFullCombo") ? FullComboType.PerfectFullCombo :
-                                        sp[spi].equals("FullCombo") ? FullComboType.FullCombo :
-                                                sp[spi].equals("GoodFullCombo") ? FullComboType.GoodFullCombo :
-                                                        sp[spi].equals("Life4") ? FullComboType.Life4 :
-                                                                FullComboType.None;
-                ++spi;
-                ms.CDP.MaxCombo = Integer.valueOf(sp[spi]);
-                if (sp.length > spi + 1) {
-                    ms.bSP.PlayCount = Integer.valueOf(sp[++spi]);
-                    ms.bSP.ClearCount = Integer.valueOf(sp[++spi]);
-                    ms.BSP.PlayCount = Integer.valueOf(sp[++spi]);
-                    ms.BSP.ClearCount = Integer.valueOf(sp[++spi]);
-                    ms.DSP.PlayCount = Integer.valueOf(sp[++spi]);
-                    ms.DSP.ClearCount = Integer.valueOf(sp[++spi]);
-                    ms.ESP.PlayCount = Integer.valueOf(sp[++spi]);
-                    ms.ESP.ClearCount = Integer.valueOf(sp[++spi]);
-                    ms.CSP.PlayCount = Integer.valueOf(sp[++spi]);
-                    ms.CSP.ClearCount = Integer.valueOf(sp[++spi]);
-                    ms.BDP.PlayCount = Integer.valueOf(sp[++spi]);
-                    ms.BDP.ClearCount = Integer.valueOf(sp[++spi]);
-                    ms.DDP.PlayCount = Integer.valueOf(sp[++spi]);
-                    ms.DDP.ClearCount = Integer.valueOf(sp[++spi]);
-                    ms.EDP.PlayCount = Integer.valueOf(sp[++spi]);
-                    ms.EDP.ClearCount = Integer.valueOf(sp[++spi]);
-                    ms.CDP.PlayCount = Integer.valueOf(sp[++spi]);
-                    ms.CDP.ClearCount = Integer.valueOf(sp[++spi]);
-                }
-                ret.put(id, ms);
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            close(in);
+        String fileName = "ScoreData" + (rivalId != null ? rivalId : "") + ".txt";
+
+        if (!fileExists(context, fileName)) {
+            return new TreeMap<>();
         }
-        return ret;
+
+        String content = readFileContent(context, fileName);
+        TreeMap<Integer, MusicScore> scores = loadMusicScoresToTreeMap(content);
+        migrateScoreDataIfNeeded(context, rivalId, scores);
+        return scores;
     }
 
+
+    private static boolean fileExists(Context context, String fileName) {
+        File file = new File(context.getFilesDir(), fileName);
+        return file.exists();
+    }
+
+    private static String readFileContent(Context context, String fileName) {
+        StringBuilder content = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(context.openFileInput(fileName), "UTF-8"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return content.toString();
+    }
+
+    public static TreeMap<Integer, MusicScore> loadMusicScoresToTreeMap(String content) {
+        TreeMap<Integer, MusicScore> scores = new TreeMap<>();
+        String[] lines = content.split("\n");
+        for (String line : lines) {
+            String[] sp = line.split("\t");
+            if (sp.length > 0) {
+                int id = Integer.parseInt(sp[0]);
+                MusicScore ms = parseMusicScore(sp);
+                scores.put(id, ms);
+            }
+        }
+        return scores;
+    }
+
+    private static MusicScore parseMusicScore(String[] sp) {
+        MusicScore ms = new MusicScore();
+        int spi = 0;
+
+        ScoreData[] scoreDataArray = {ms.bSP, ms.BSP, ms.DSP, ms.ESP, ms.CSP, ms.BDP, ms.DDP, ms.EDP, ms.CDP};
+        for (ScoreData sd : scoreDataArray) {
+            sd.Rank = parseRank(sp[++spi]);
+            sd.Score = Integer.valueOf(sp[++spi]);
+            sd.FullComboType = parseFullComboType(sp[++spi]);
+            sd.MaxCombo = Integer.valueOf(sp[++spi]);
+        }
+
+        if (sp.length > spi + 1) {
+            for (ScoreData sd : scoreDataArray) {
+                sd.PlayCount = Integer.valueOf(sp[++spi]);
+                sd.ClearCount = Integer.valueOf(sp[++spi]);
+            }
+        }
+
+        if (sp.length > spi + 9) {
+            for (ScoreData sd : scoreDataArray) {
+                sd.flareRank = Integer.valueOf(sp[++spi]);
+            }
+        } else {
+            for (ScoreData sd : scoreDataArray) {
+                sd.flareRank = -1;
+            }
+        }
+
+        return ms;
+    }
+
+    private static void migrateScoreDataIfNeeded(Context context, String rivalId, TreeMap<Integer, MusicScore> musicScores) {
+        String key = "FlareSkillMigrationCompleted_" + (rivalId != null ? rivalId : "self");
+        SharedPreferences prefs = context.getSharedPreferences("MigrationPrefs", Context.MODE_PRIVATE);
+
+        if (!prefs.getBoolean(key, false)) {
+            if (saveScoreData(context, rivalId, musicScores)) {
+                prefs.edit().putBoolean(key, true).apply();
+                Log.d("FileReader", "Score data migration completed successfully for " + (rivalId != null ? rivalId : "self"));
+            } else {
+                Log.e("FileReader", "Failed to migrate score data for " + (rivalId != null ? rivalId : "self"));
+            }
+        }
+    }
+
+    private static MusicRank parseRank(String rankString) {
+        switch (rankString) {
+            case "AAA":
+                return MusicRank.AAA;
+            case "AA+":
+                return MusicRank.AAp;
+            case "AA":
+                return MusicRank.AA;
+            case "AA-":
+                return MusicRank.AAm;
+            case "A+":
+                return MusicRank.Ap;
+            case "A":
+                return MusicRank.A;
+            case "A-":
+                return MusicRank.Am;
+            case "B+":
+                return MusicRank.Bp;
+            case "B":
+                return MusicRank.B;
+            case "B-":
+                return MusicRank.Bm;
+            case "C+":
+                return MusicRank.Cp;
+            case "C":
+                return MusicRank.C;
+            case "C-":
+                return MusicRank.Cm;
+            case "D+":
+                return MusicRank.Dp;
+            case "D":
+                return MusicRank.D;
+            case "E":
+                return MusicRank.E;
+            default:
+                return MusicRank.Noplay;
+        }
+    }
+
+    private static FullComboType parseFullComboType(String fcString) {
+        switch (fcString) {
+            case "MerverousFullCombo":
+                return FullComboType.MerverousFullCombo;
+            case "PerfectFullCombo":
+                return FullComboType.PerfectFullCombo;
+            case "FullCombo":
+                return FullComboType.FullCombo;
+            case "GoodFullCombo":
+                return FullComboType.GoodFullCombo;
+            case "Life4":
+                return FullComboType.Life4;
+            default:
+                return FullComboType.None;
+        }
+    }
+
+
     public static boolean saveScoreData(Context context, String rivalId, TreeMap<Integer, MusicScore> scores) {
-        FileOutputStream out = null;
-        try {
-            //FileOutputStream out = context.openFileOutput( "ScoreData.txt", Context.MODE_WORLD_READABLE | Context.MODE_WORLD_WRITEABLE );
-            String fileName = "ScoreData";
-            if (rivalId != null) {
-                fileName += rivalId;
-            }
-            fileName += ".txt";
-            {
-                out = context.openFileOutput(fileName, Context.MODE_PRIVATE);
-            }
+        String fileName = "ScoreData" + (rivalId != null ? rivalId : "") + ".txt";
+
+        try (FileOutputStream out = context.openFileOutput(fileName, Context.MODE_PRIVATE)) {
             for (Integer id : scores.keySet()) {
                 String line = TextUtil.getScoreBackupText(id, scores) + "\n";
                 out.write(line.getBytes());
                 out.flush();
             }
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
             return false;
-        } finally {
-            close(out);
         }
-        return true;
     }
 
     public static boolean resetScores(Context context) {
