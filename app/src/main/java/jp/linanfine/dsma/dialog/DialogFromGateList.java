@@ -13,16 +13,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
+import java.util.List;
 import java.util.TreeMap;
 
 import jp.linanfine.dsma.R;
 import jp.linanfine.dsma.util.common.TextUtil;
 import jp.linanfine.dsma.util.file.FileReader;
+import jp.linanfine.dsma.util.html.DifficultyScore;
+import jp.linanfine.dsma.util.html.HtmlParseUtil;
+import jp.linanfine.dsma.util.html.MusicEntry;
 import jp.linanfine.dsma.value.GateSetting;
 import jp.linanfine.dsma.value.MusicData;
 import jp.linanfine.dsma.value.MusicId;
@@ -30,7 +29,6 @@ import jp.linanfine.dsma.value.MusicScore;
 import jp.linanfine.dsma.value.ScoreData;
 import jp.linanfine.dsma.value.WebTitleToMusicIdList;
 import jp.linanfine.dsma.value._enum.FullComboType;
-import jp.linanfine.dsma.value._enum.MusicRank;
 
 public class DialogFromGateList {
 
@@ -275,18 +273,11 @@ public class DialogFromGateList {
     }
 
     private void analyzeScoreList(String src) {
-        Document doc = Jsoup.parse(src);
-        Elements musicRows = doc.select("tr.data");
+        List<MusicEntry> musicEntries = HtmlParseUtil.parseMusicList(src);
 
         boolean scoreExists = false;
-        for (Element row : musicRows) {
-            Element titleLink = row.selectFirst("td a");
-            if (titleLink == null) continue;
-
-            String musicName = titleLink.text().trim();
-            musicName = TextUtil.escapeWebTitle(musicName);
-
-            MusicId mi = mMusicIds.get(musicName);
+        for (MusicEntry entry : musicEntries) {
+            MusicId mi = mMusicIds.get(entry.getMusicName());
             if (mi == null) continue;
 
             int musicIdSaved = mi.musicId;
@@ -296,27 +287,16 @@ public class DialogFromGateList {
                 ms = new MusicScore();
             }
 
-            Elements difficultyColumns = row.select("td.rank");
-            for (Element column : difficultyColumns) {
-                String diffId = column.id();
-                Element scoreElement = column.selectFirst("div.data_score");
-
-                if (scoreElement == null) continue;
-
-                String scoreText = scoreElement.text();
-                int score = scoreText.equals("-") ? 0 : Integer.parseInt(scoreText);
-
+            for (DifficultyScore diffScore : entry.getScores()) {
                 ScoreData sd = new ScoreData();
-                sd.Score = score;
+                sd.Score = diffScore.getScore();
+                sd.Rank = diffScore.getRank();
+                sd.FullComboType = diffScore.getFullComboType();
 
-                boolean isRankE = column.html().contains("rank_s_e");
-                sd.Rank = getRank(score, isRankE);
-                sd.FullComboType = getFullComboType(column);
-
-                ScoreData msd = getScoreDataForDifficulty(ms, diffId);
+                ScoreData msd = getScoreDataForDifficulty(ms, diffScore.getDifficultyId());
                 updateScoreData(sd, msd);
 
-                setScoreDataForDifficulty(ms, diffId, sd);
+                setScoreDataForDifficulty(ms, diffScore.getDifficultyId(), sd);
                 scoreExists = true;
             }
 
@@ -328,47 +308,18 @@ public class DialogFromGateList {
         }
     }
 
-    private MusicRank getRank(int score, boolean isRankE) {
-        if (isRankE) return MusicRank.E;
-        if (score == 0) return MusicRank.Noplay;
-        if (score < 550000) return MusicRank.D;
-        if (score < 590000) return MusicRank.Dp;
-        if (score < 600000) return MusicRank.Cm;
-        if (score < 650000) return MusicRank.C;
-        if (score < 690000) return MusicRank.Cp;
-        if (score < 700000) return MusicRank.Bm;
-        if (score < 750000) return MusicRank.B;
-        if (score < 790000) return MusicRank.Bp;
-        if (score < 800000) return MusicRank.Am;
-        if (score < 850000) return MusicRank.A;
-        if (score < 890000) return MusicRank.Ap;
-        if (score < 900000) return MusicRank.AAm;
-        if (score < 950000) return MusicRank.AA;
-        if (score < 990000) return MusicRank.AAp;
-        return MusicRank.AAA;
-    }
-
-    private FullComboType getFullComboType(Element column) {
-        if (column.html().contains("full_none")) return FullComboType.None;
-        if (column.html().contains("full_good")) return FullComboType.GoodFullCombo;
-        if (column.html().contains("full_great")) return FullComboType.FullCombo;
-        if (column.html().contains("full_perfect")) return FullComboType.PerfectFullCombo;
-        if (column.html().contains("full_mar")) return FullComboType.MerverousFullCombo;
-        return FullComboType.None;
-    }
-
     private ScoreData getScoreDataForDifficulty(MusicScore ms, String diffId) {
         switch (diffId) {
             case "beginner":
                 return ms.bSP;
             case "basic":
-                return ms.BSP;
+                return mDouble ? ms.BDP : ms.BSP;
             case "difficult":
-                return ms.DSP;
+                return mDouble ? ms.DDP : ms.DSP;
             case "expert":
-                return ms.ESP;
+                return mDouble ? ms.EDP : ms.ESP;
             case "challenge":
-                return ms.CSP;
+                return mDouble ? ms.CDP : ms.CSP;
             default:
                 return new ScoreData();
         }
@@ -380,16 +331,20 @@ public class DialogFromGateList {
                 ms.bSP = sd;
                 break;
             case "basic":
-                ms.BSP = sd;
+                if (mDouble) ms.BDP = sd;
+                else ms.BSP = sd;
                 break;
             case "difficult":
-                ms.DSP = sd;
+                if (mDouble) ms.DDP = sd;
+                else ms.DSP = sd;
                 break;
             case "expert":
-                ms.ESP = sd;
+                if (mDouble) ms.EDP = sd;
+                else ms.ESP = sd;
                 break;
             case "challenge":
-                ms.CSP = sd;
+                if (mDouble) ms.CDP = sd;
+                else ms.CSP = sd;
                 break;
         }
     }

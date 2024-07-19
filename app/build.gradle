@@ -24,6 +24,10 @@ android {
     }
     productFlavors {
     }
+
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
 }
 
 var roomVersion = "2.6.1"
@@ -39,4 +43,13 @@ dependencies {
     implementation "androidx.room:room-ktx:$roomVersion"
 
     implementation 'org.jsoup:jsoup:1.14.3'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testImplementation 'org.mockito:mockito-core:3.11.2'
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
 }
