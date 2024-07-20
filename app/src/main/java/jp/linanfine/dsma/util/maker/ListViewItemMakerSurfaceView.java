@@ -244,6 +244,22 @@ public class ListViewItemMakerSurfaceView extends ListViewItemMaker {
                         nextRightRival = nextRight;
                     }
 
+                    // フレアランクの表示（ShowFlareRankフラグに基づいて）
+                    if (mAppearance.ShowFlareRank) {
+                        mPaint.setStyle(Style.FILL);
+                        mPaint.setTextAlign(Align.LEFT);
+                        mPaint.setTypeface(Typeface.DEFAULT_BOLD);
+                        mPaint.setTextSize(mAppearance.ItemMusicScoreFontSize);
+                        mPaint.setColor(0xff999999);
+
+                        String flareRankText = getFlareRankText(mScoreData.flareRank);
+                        float flareRankWidth = mPaint.measureText(flareRankText);
+                        nextRight -= flareRankWidth + mAppearance.ItemMusicScoreFontSize / 4.0f; // スコアとフレアランクの間隔
+                        canvas.drawText(flareRankText, nextRight, myRankBottom, mPaint);
+
+                        nextRight -= mAppearance.ItemMusicScoreFontSize / 2.0f;
+                    }
+
                     if (mAppearance.ShowScore) {
                         {
                             float rankBottom = myRankBottom;
@@ -663,7 +679,19 @@ public class ListViewItemMakerSurfaceView extends ListViewItemMaker {
                         canvas.drawText(mResult.ScoreDifference, 0, mResult.ScoreDifference.length(), nextRightRival, mRivalRankBottom, mPaint);
                     }
                 }
+            }
+        }
 
+        private String getFlareRankText(int flareRank) {
+            if (flareRank == 10) {
+                return "EX";
+            } else if (flareRank >= 1 && flareRank <= 9) {
+                String[] romanNumerals = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+                return romanNumerals[flareRank - 1];
+            } else if (flareRank == 0) {
+                return "0";
+            } else {
+                return "ー";
             }
         }
     }

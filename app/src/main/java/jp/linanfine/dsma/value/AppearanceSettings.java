@@ -6,6 +6,7 @@ public class AppearanceSettings {
 	public boolean ShowTitleBar = true;
 	public boolean ShowMaxCombo = false;
 	public boolean ShowScore = true;
+	public boolean ShowFlareRank = true;
 	public boolean ShowDanceLevel = true;
 	public boolean ShowPlayCount = false;
 	public boolean ShowClearCount = false;

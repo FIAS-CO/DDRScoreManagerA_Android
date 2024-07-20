@@ -10,6 +10,7 @@ public class AppearanceSettingsSp extends AppearanceSettings {
 		AppearanceSettingsPx ret = new AppearanceSettingsPx();
 		ret.ShowMaxCombo = this.ShowMaxCombo;
 		ret.ShowScore = this.ShowScore;
+		ret.ShowFlareRank = this.ShowFlareRank;
 		ret.ShowDanceLevel = this.ShowDanceLevel;
 		ret.ShowPlayCount = this.ShowPlayCount;
 		ret.ShowClearCount = this.ShowClearCount;
