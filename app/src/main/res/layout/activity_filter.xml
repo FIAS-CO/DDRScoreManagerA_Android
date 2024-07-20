@@ -492,39 +492,39 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/filter_setting_seriestitle_gold"
-                        android:textStyle="bold"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/selectAllButtonGold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/filter_setting_select_all"
-                        android:textColor="#2196F3"
-                        android:textSize="12sp"
-                        android:padding="8dp"
                         android:layout_marginStart="16dp"
                         android:clickable="true"
-                        android:focusable="true" />
+                        android:focusable="true"
+                        android:padding="8dp"
+                        android:text="@string/filter_setting_select_all"
+                        android:textColor="#2196F3"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/deselectAllButtonGold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/filter_setting_deselect_all"
-                        android:textColor="#2196F3"
-                        android:textSize="12sp"
-                        android:padding="8dp"
                         android:layout_marginStart="8dp"
                         android:clickable="true"
-                        android:focusable="true" />
+                        android:focusable="true"
+                        android:padding="8dp"
+                        android:text="@string/filter_setting_deselect_all"
+                        android:textColor="#2196F3"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -570,39 +570,39 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/filter_setting_seriestitle_white"
-                        android:textStyle="bold"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/selectAllButtonWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/filter_setting_select_all"
-                        android:textColor="#2196F3"
-                        android:textSize="12sp"
-                        android:padding="8dp"
                         android:layout_marginStart="16dp"
                         android:clickable="true"
-                        android:focusable="true" />
+                        android:focusable="true"
+                        android:padding="8dp"
+                        android:text="@string/filter_setting_select_all"
+                        android:textColor="#2196F3"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/deselectAllButtonWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/filter_setting_deselect_all"
-                        android:textColor="#2196F3"
-                        android:textSize="12sp"
-                        android:padding="8dp"
                         android:layout_marginStart="8dp"
                         android:clickable="true"
-                        android:focusable="true" />
+                        android:focusable="true"
+                        android:padding="8dp"
+                        android:text="@string/filter_setting_deselect_all"
+                        android:textColor="#2196F3"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -635,39 +635,39 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/filter_setting_seriestitle_classic"
-                        android:textStyle="bold"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/selectAllButtonClassic"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/filter_setting_select_all"
-                        android:textColor="#2196F3"
-                        android:textSize="12sp"
-                        android:padding="8dp"
                         android:layout_marginStart="16dp"
                         android:clickable="true"
-                        android:focusable="true" />
+                        android:focusable="true"
+                        android:padding="8dp"
+                        android:text="@string/filter_setting_select_all"
+                        android:textColor="#2196F3"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/deselectAllButtonClassic"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/filter_setting_deselect_all"
-                        android:textColor="#2196F3"
-                        android:textSize="12sp"
-                        android:padding="8dp"
                         android:layout_marginStart="8dp"
                         android:clickable="true"
-                        android:focusable="true" />
+                        android:focusable="true"
+                        android:padding="8dp"
+                        android:text="@string/filter_setting_deselect_all"
+                        android:textColor="#2196F3"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
