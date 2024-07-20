@@ -377,5 +377,10 @@ public class DialogFromGateList {
         sd.MaxCombo = Math.max(sd.MaxCombo, msd.MaxCombo);
         sd.ClearCount = msd.ClearCount;
         sd.PlayCount = msd.PlayCount;
+
+        // Revisit 公式ページのデータ更新ができるようになったらオプションを追加する
+        if (sd.flareRank < msd.flareRank) {
+            sd.flareRank = msd.flareRank;
+        }
     }
 }
