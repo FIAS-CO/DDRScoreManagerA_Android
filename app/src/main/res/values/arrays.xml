@@ -10,8 +10,23 @@
  		 <item>Clear</item>  
 		 <item>Rank E</item>
 		 <item>NoPlay</item>  
-	</string-array>  
-  
+	</string-array>
+
+	<string-array name="SpinnerItemsFlareRank">
+		<item>Rank EX</item>
+		<item>Rank IX</item>
+		<item>Rank VIII</item>
+		<item>Rank VII</item>
+		<item>Rank VI</item>
+		<item>Rank V</item>
+		<item>Rank IV</item>
+		<item>Rank III</item>
+		<item>Rank II</item>
+		<item>Rank I</item>
+		<item>Rank 0</item>
+		<item>No Rank</item>
+	</string-array>
+
     <string-array name="SpinnerItemsGestures">  
 		 <item>Show Menu</item>  
 		 <item>Show All Patterns</item>  

@@ -141,7 +141,7 @@
                 android:layout_margin="5dp" >
 
                 <TextView
-                    android:layout_width="80dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="5dp"
@@ -161,7 +161,7 @@
                 android:layout_margin="5dp" >
 
                 <TextView
-                    android:layout_width="80dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="5dp"
@@ -194,7 +194,27 @@
                 android:layout_margin="5dp" >
 
                 <TextView
-                    android:layout_width="80dp"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="5dp"
+                    android:text="FlareRank"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <Spinner
+                    android:id="@+id/flareRank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/SpinnerItemsFlareRank" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" >
+
+                <TextView
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="5dp"
@@ -225,7 +245,7 @@
                 android:layout_margin="5dp" >
 
                 <TextView
-                    android:layout_width="80dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="5dp"
@@ -256,7 +276,7 @@
                 android:layout_margin="5dp" >
 
                 <TextView
-                    android:layout_width="80dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="5dp"

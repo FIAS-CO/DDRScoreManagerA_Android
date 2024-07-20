@@ -10,9 +10,24 @@
  		 <item>Clear</item>  
 		 <item>Rank E</item>
 		 <item>NoPlay</item>  
-	</string-array>  
-  
-    <string-array name="SpinnerItemsGestures">  
+	</string-array>
+
+	<string-array name="SpinnerItemsFlareRank">
+		<item>Rank EX</item>
+		<item>Rank IX</item>
+		<item>Rank VIII</item>
+		<item>Rank VII</item>
+		<item>Rank VI</item>
+		<item>Rank V</item>
+		<item>Rank IV</item>
+		<item>Rank III</item>
+		<item>Rank II</item>
+		<item>Rank I</item>
+		<item>Rank 0</item>
+		<item>No Rank</item>
+	</string-array>
+
+	<string-array name="SpinnerItemsGestures">
 		 <item>メニューを表示</item>  
 		 <item>選択中の曲の全譜面を表示</item>  
 		 <item>スコアを GATE から取得</item>  
