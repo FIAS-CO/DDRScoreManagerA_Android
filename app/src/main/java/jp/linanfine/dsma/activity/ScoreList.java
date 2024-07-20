@@ -48,6 +48,7 @@ import jp.linanfine.dsma.dialog.DialogFromGateSou;
 import jp.linanfine.dsma.util.common.ActivitySetting;
 import jp.linanfine.dsma.util.common.TextUtil;
 import jp.linanfine.dsma.util.file.FileReader;
+import jp.linanfine.dsma.util.flare.FlareSkillUpdater;
 import jp.linanfine.dsma.util.maker.ListViewItemMakerSurfaceView;
 import jp.linanfine.dsma.value.AppearanceSettingsSp;
 import jp.linanfine.dsma.value.GestureSettings;
@@ -1711,6 +1712,10 @@ public class ScoreList extends Activity {
         }
         mScoreList = FileReader.readScoreList(this, null);
         mMusicList = FileReader.readMusicList(this);
+
+        // フレアスキルの更新
+        FlareSkillUpdater.updateAllFlareSkills(mMusicList, mScoreList);
+
         mWebMusicIds = FileReader.readWebMusicIds(this);
         int activeRival = FileReader.readActiveRival(this);
         Log.d("hoge", String.valueOf(activeRival));

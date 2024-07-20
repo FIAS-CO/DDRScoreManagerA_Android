@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import jp.linanfine.dsma.R;
+import jp.linanfine.dsma.util.flare.FlareSkillUpdater;
 import jp.linanfine.dsma.value.AppearanceSettingsPx;
 import jp.linanfine.dsma.value.AppearanceSettingsSp;
 import jp.linanfine.dsma.value.ListViewItemArguments;
@@ -244,18 +245,44 @@ public class ListViewItemMakerSurfaceView extends ListViewItemMaker {
                         nextRightRival = nextRight;
                     }
 
-                    // フレアランクの表示（ShowFlareRankフラグに基づいて）
-                    if (mAppearance.ShowFlareRank) {
+                    // フレアスキルの表示
+                    if (mAppearance.ShowFlareSkill) {
                         mPaint.setStyle(Style.FILL);
                         mPaint.setTextAlign(Align.LEFT);
                         mPaint.setTypeface(Typeface.DEFAULT_BOLD);
                         mPaint.setTextSize(mAppearance.ItemMusicScoreFontSize);
+
+                        String flareSkillText = String.format("%04d", mScoreData.flareSkill);
+                        float flareSkillWidth = mPaint.measureText("0000");
+                        nextRight -= flareSkillWidth + mAppearance.ItemMusicScoreFontSize / 4.0f; // スコアとフレアスキルの間隔
+
+                        int leadingZeros = flareSkillText.length() - flareSkillText.replaceAll("^0+", "").length();
+
+                        if (leadingZeros > 0) {
+                            mPaint.setColor(0x33ffffff); // 薄い色
+                            canvas.drawText(flareSkillText.substring(0, leadingZeros), nextRight, myRankBottom, mPaint);
+                        }
+
+                        if (leadingZeros < 4) {
+                            mPaint.setColor(0xff999999); // 通常の色
+                            canvas.drawText(flareSkillText.substring(leadingZeros), nextRight + mPaint.measureText("0") * leadingZeros, myRankBottom, mPaint);
+                        }
+
+                        nextRight -= mAppearance.ItemMusicScoreFontSize / 2.0f;
+                    }
+
+                    // フレアランクの表示
+                    if (mAppearance.ShowFlareRank) {
+                        mPaint.setStyle(Style.FILL);
+                        mPaint.setTextAlign(Align.RIGHT);  // 右揃えに変更
+                        mPaint.setTypeface(Typeface.DEFAULT_BOLD);
+                        mPaint.setTextSize(mAppearance.ItemMusicScoreFontSize);
                         mPaint.setColor(0xff999999);
 
-                        String flareRankText = getFlareRankText(mScoreData.flareRank);
-                        float flareRankWidth = mPaint.measureText(flareRankText);
-                        nextRight -= flareRankWidth + mAppearance.ItemMusicScoreFontSize / 4.0f; // スコアとフレアランクの間隔
-                        canvas.drawText(flareRankText, nextRight, myRankBottom, mPaint);
+                        String flareRankText = FlareSkillUpdater.getFlareRankText(mScoreData.flareRank);
+                        float maxFlareRankWidth = mPaint.measureText("VIII");  // 最大幅を "VIII" の幅に設定
+                        nextRight -= maxFlareRankWidth + mAppearance.ItemMusicScoreFontSize / 4.0f; // スコアとフレアランクの間隔
+                        canvas.drawText(flareRankText, nextRight + maxFlareRankWidth, myRankBottom, mPaint);
 
                         nextRight -= mAppearance.ItemMusicScoreFontSize / 2.0f;
                     }
@@ -679,19 +706,6 @@ public class ListViewItemMakerSurfaceView extends ListViewItemMaker {
                         canvas.drawText(mResult.ScoreDifference, 0, mResult.ScoreDifference.length(), nextRightRival, mRivalRankBottom, mPaint);
                     }
                 }
-            }
-        }
-
-        private String getFlareRankText(int flareRank) {
-            if (flareRank == 10) {
-                return "EX";
-            } else if (flareRank >= 1 && flareRank <= 9) {
-                String[] romanNumerals = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
-                return romanNumerals[flareRank - 1];
-            } else if (flareRank == 0) {
-                return "0";
-            } else {
-                return "ー";
             }
         }
     }
