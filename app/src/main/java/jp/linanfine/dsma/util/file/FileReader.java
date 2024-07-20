@@ -1284,6 +1284,20 @@ public class FileReader {
         e.putBoolean("FcGFC", filter.FcGFC);
         e.putBoolean("FcLife4", filter.FcLife4);
         e.putBoolean("FcNoFC", filter.FcNoFC);
+
+        e.putBoolean("FlareRankEX", filter.FlareRankEX);
+        e.putBoolean("FlareRankIX", filter.FlareRankIX);
+        e.putBoolean("FlareRankVIII", filter.FlareRankVIII);
+        e.putBoolean("FlareRankVII", filter.FlareRankVII);
+        e.putBoolean("FlareRankVI", filter.FlareRankVI);
+        e.putBoolean("FlareRankV", filter.FlareRankV);
+        e.putBoolean("FlareRankIV", filter.FlareRankIV);
+        e.putBoolean("FlareRankIII", filter.FlareRankIII);
+        e.putBoolean("FlareRankII", filter.FlareRankII);
+        e.putBoolean("FlareRankI", filter.FlareRankI);
+        e.putBoolean("FlareRank0", filter.FlareRank0);
+        e.putBoolean("FlareRankNoRank", filter.FlareRankNoRank);
+
         e.putBoolean("RankAAArival", filter.RankAAArival);
         e.putBoolean("RankAA+rival", filter.RankAAprival);
         e.putBoolean("RankAArival", filter.RankAArival);
@@ -1312,6 +1326,10 @@ public class FileReader {
         e.putBoolean("RivalDraw", filter.RivalDraw);
         e.putInt("ScoreMin", filter.ScoreMin);
         e.putInt("ScoreMax", filter.ScoreMax);
+
+        e.putInt("FlareSkillMin", filter.FlareSkillMin);
+        e.putInt("FlareSkillMax", filter.FlareSkillMax);
+
         e.putInt("ScoreMinRival", filter.ScoreMinRival);
         e.putInt("ScoreMaxRival", filter.ScoreMaxRival);
         e.putInt("MaxComboMin", filter.MaxComboMin);
@@ -1430,6 +1448,20 @@ public class FileReader {
         ret.FcGFC = pref.getBoolean("FcGFC", true);
         ret.FcLife4 = pref.getBoolean("FcLife4", true);
         ret.FcNoFC = pref.getBoolean("FcNoFC", true);
+
+        ret.FlareRankEX = pref.getBoolean("FlareRankEX", true);
+        ret.FlareRankIX = pref.getBoolean("FlareRankIX", true);
+        ret.FlareRankVIII = pref.getBoolean("FlareRankVIII", true);
+        ret.FlareRankVII = pref.getBoolean("FlareRankVII", true);
+        ret.FlareRankVI = pref.getBoolean("FlareRankVI", true);
+        ret.FlareRankV = pref.getBoolean("FlareRankV", true);
+        ret.FlareRankIV = pref.getBoolean("FlareRankIV", true);
+        ret.FlareRankIII = pref.getBoolean("FlareRankIII", true);
+        ret.FlareRankII = pref.getBoolean("FlareRankII", true);
+        ret.FlareRankI = pref.getBoolean("FlareRankI", true);
+        ret.FlareRank0 = pref.getBoolean("FlareRank0", true);
+        ret.FlareRankNoRank = pref.getBoolean("FlareRankNoRank", true);
+
         ret.RankAAArival = pref.getBoolean("RankAAArival", true);
         ret.RankAAprival = pref.getBoolean("RankAA+rival", true);
         ret.RankAArival = pref.getBoolean("RankAArival", true);
@@ -1458,6 +1490,8 @@ public class FileReader {
         ret.FcNoFCrival = pref.getBoolean("FcNoFCrival", true);
         ret.ScoreMin = pref.getInt("ScoreMin", 0);
         ret.ScoreMax = pref.getInt("ScoreMax", 1000000);
+        ret.FlareSkillMin = pref.getInt("FlareSkillMin", 0);
+        ret.FlareSkillMax = pref.getInt("FlareSkillMax", 1064);
         ret.ScoreMinRival = pref.getInt("ScoreMinRival", 0);
         ret.ScoreMaxRival = pref.getInt("ScoreMaxRival", 1000000);
         ret.MaxComboMin = pref.getInt("MaxComboMin", -1);

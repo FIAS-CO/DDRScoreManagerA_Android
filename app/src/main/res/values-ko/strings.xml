@@ -256,6 +256,8 @@
   <string name="score_list_rival_difference">스코어 차: </string>
   <string name="score_list_rival_difference_edit_error1">값이 올바르지 않습니다</string>
   <string name="score_list_rival_difference_edit_error2">위로 1000000에 가까운 값, 아래로 0에 가까운 값을 입력해 주십시오.</string>
+  <string name="flare_skill_edit_error1">플레어 스킬 값이 올바르지 않습니다</string>
+  <string name="flare_skill_edit_error2">최소 플레어 스킬은 최대 플레어 스킬 이하여야 합니다</string>
   <string name="score_list_rival_difference_edit_error3">\'・\'를 기준으로 안쪽에 0에 가까운 값, 바깥쪽에 1000000에 가까운 값을 입력해 주십시오.</string>
   <string name="edit_rival_modified">댄서 네임을 변경하였습니다.</string>
   <string name="title_activity_text_size_setting">표시 설정</string>
@@ -395,5 +397,7 @@
     Activity CategorySelect
      -->
   <string name="strings_____Dialog_UpdateInfo____versionInfoTitle">업데이트 정보</string>
-  
+  <string name="filter_setting_flare_rank">Flare Rank</string>
+  <string name="filter_setting_flare_skill">Flare Skill</string>
+
 </resources>

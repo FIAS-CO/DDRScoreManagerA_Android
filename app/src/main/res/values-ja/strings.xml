@@ -292,6 +292,8 @@
     <string name="score_list_rival_difference">スコア差: </string>
     <string name="score_list_rival_difference_edit_error1">値が不正です</string>
     <string name="score_list_rival_difference_edit_error2">上に1000000に近い値、下に0に近い値を入力してください</string>
+    <string name="flare_skill_edit_error1">フレアスキルの値が不正です</string>
+    <string name="flare_skill_edit_error2">最小フレアスキルは最大フレアスキル以下である必要があります</string>
     <string name="score_list_rival_difference_edit_error3">「・」を挟んで内側に0に近い値、外側に1000000に近い値を入力してください</string>
     
     <string name="edit_rival_modified">ダンサーネームの変更を行いました。</string>
@@ -470,5 +472,7 @@
      -->
     
     <string name="strings_____Dialog_UpdateInfo____versionInfoTitle">アップデート情報</string>
+    <string name="filter_setting_flare_rank">フレアランク</string>
+    <string name="filter_setting_flare_skill">フレアスキル</string>
 
 </resources>

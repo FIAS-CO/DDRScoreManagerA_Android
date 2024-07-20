@@ -20,6 +20,9 @@ public class MusicFilter {
     public int ScoreMinRival = 0;
     public int ScoreMaxRival = 1000000;
 
+    public int FlareSkillMin = 0;
+    public int FlareSkillMax = 1064;  // 最大値を1064に設定（現在の最高FlareSkill値）
+
     public int MaxComboMin = -1;
     public int MaxComboMax = Integer.MAX_VALUE;
     public int MaxComboMinRival = -1;
@@ -139,6 +142,19 @@ public class MusicFilter {
     public boolean FcGFC = true;
     public boolean FcLife4 = true;
     public boolean FcNoFC = true;
+
+    public boolean FlareRankEX = true;
+    public boolean FlareRankIX = true;
+    public boolean FlareRankVIII = true;
+    public boolean FlareRankVII = true;
+    public boolean FlareRankVI = true;
+    public boolean FlareRankV = true;
+    public boolean FlareRankIV = true;
+    public boolean FlareRankIII = true;
+    public boolean FlareRankII = true;
+    public boolean FlareRankI = true;
+    public boolean FlareRank0 = true;
+    public boolean FlareRankNoRank = true;
 
     public boolean RankAAArival = true;
     public boolean RankAAprival = true;
@@ -345,6 +361,17 @@ public class MusicFilter {
             if (!FcLife4 && scoreData.FullComboType == FullComboType.Life4) return false;
             if (!FcNoFC && scoreData.FullComboType == FullComboType.None) return false;
 
+            // フレアランクのチェック
+            if (!checkFlareRank(scoreData.flareRank)) {
+                return false;
+            }
+
+            if (scoreData.Score < ScoreMin || ScoreMax < scoreData.Score) return false;
+            // フレアスキルの範囲チェック
+            if (scoreData.flareSkill < FlareSkillMin || scoreData.flareSkill > FlareSkillMax) {
+                return false;
+            }
+
             if (scoreData.Score < ScoreMin || ScoreMax < scoreData.Score) return false;
             if (scoreData.MaxCombo < MaxComboMin || MaxComboMax < scoreData.MaxCombo) return false;
             if (scoreData.PlayCount < PlayCountMin || PlayCountMax < scoreData.PlayCount)
@@ -494,5 +521,36 @@ public class MusicFilter {
         }
 
         return true;
+    }
+
+    private boolean checkFlareRank(int flareRank) {
+        switch (flareRank) {
+            case 10:
+                return FlareRankEX;
+            case 9:
+                return FlareRankIX;
+            case 8:
+                return FlareRankVIII;
+            case 7:
+                return FlareRankVII;
+            case 6:
+                return FlareRankVI;
+            case 5:
+                return FlareRankV;
+            case 4:
+                return FlareRankIV;
+            case 3:
+                return FlareRankIII;
+            case 2:
+                return FlareRankII;
+            case 1:
+                return FlareRankI;
+            case 0:
+                return FlareRank0;
+            case -1:
+                return FlareRankNoRank;
+            default:
+                return false;
+        }
     }
 }

@@ -313,6 +313,8 @@
     <string name="score_list_rival_difference_edit_error1">Invalid value</string>
     <string name="score_list_rival_difference_edit_error2">Under: to 0, Over: to 1000000</string>
     <string name="score_list_rival_difference_edit_error3">Inner: to 0, Outer: to 1000000</string>
+    <string name="flare_skill_edit_error1">Invalid value entered for Flare Skill</string>
+    <string name="flare_skill_edit_error2">Minimum Flare Skill must be less than or equal to Maximum Flare Skill</string>
     
     <string name="edit_rival_modified">Edited dancer name.</string>
     
@@ -494,5 +496,7 @@
     <string name="strings_____Dialog_UpdateInfo____versionInfoTitle">Update Info</string>
     <string name="filter_setting_select_all">Select All</string>
     <string name="filter_setting_deselect_all">DeselectAll</string>
+    <string name="filter_setting_flare_rank">Flare Rank</string>
+    <string name="filter_setting_flare_skill">Flare Skill</string>
 
 </resources>

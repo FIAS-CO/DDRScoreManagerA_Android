@@ -4,6 +4,7 @@ import android.R.drawable;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -95,6 +96,20 @@ public class FilterSetting extends Activity {
         mMusicFilter.FcGFC = ((CheckBox) FilterSetting.this.findViewById(R.id.fcGFC)).isChecked();
         mMusicFilter.FcLife4 = ((CheckBox) FilterSetting.this.findViewById(R.id.fcLife4)).isChecked();
         mMusicFilter.FcNoFC = ((CheckBox) FilterSetting.this.findViewById(R.id.fcNoFC)).isChecked();
+
+        mMusicFilter.FlareRankEX = ((CheckBox) FilterSetting.this.findViewById(R.id.flareRankEX)).isChecked();
+        mMusicFilter.FlareRankIX = ((CheckBox) FilterSetting.this.findViewById(R.id.flareRankIX)).isChecked();
+        mMusicFilter.FlareRankVIII = ((CheckBox) FilterSetting.this.findViewById(R.id.flareRankVIII)).isChecked();
+        mMusicFilter.FlareRankVII = ((CheckBox) FilterSetting.this.findViewById(R.id.flareRankVII)).isChecked();
+        mMusicFilter.FlareRankVI = ((CheckBox) FilterSetting.this.findViewById(R.id.flareRankVI)).isChecked();
+        mMusicFilter.FlareRankV = ((CheckBox) FilterSetting.this.findViewById(R.id.flareRankV)).isChecked();
+        mMusicFilter.FlareRankIV = ((CheckBox) FilterSetting.this.findViewById(R.id.flareRankIV)).isChecked();
+        mMusicFilter.FlareRankIII = ((CheckBox) FilterSetting.this.findViewById(R.id.flareRankIII)).isChecked();
+        mMusicFilter.FlareRankII = ((CheckBox) FilterSetting.this.findViewById(R.id.flareRankII)).isChecked();
+        mMusicFilter.FlareRankI = ((CheckBox) FilterSetting.this.findViewById(R.id.flareRankI)).isChecked();
+        mMusicFilter.FlareRank0 = ((CheckBox) FilterSetting.this.findViewById(R.id.flareRank0)).isChecked();
+        mMusicFilter.FlareRankNoRank = ((CheckBox) FilterSetting.this.findViewById(R.id.flareRankNoRank)).isChecked();
+
         mMusicFilter.RankAAArival = ((CheckBox) FilterSetting.this.findViewById(R.id.rankAAArival)).isChecked();
         mMusicFilter.RankAAprival = ((CheckBox) FilterSetting.this.findViewById(R.id.rankAAprival)).isChecked();
         mMusicFilter.RankAArival = ((CheckBox) FilterSetting.this.findViewById(R.id.rankAArival)).isChecked();
@@ -342,6 +357,56 @@ public class FilterSetting extends Activity {
                     })
                     .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> FilterSetting.this.closeKeyboard())
                     .show();
+        });
+
+        this.findViewById(R.id.editFlareSkill).setOnClickListener(new OnClickListener() {
+            public void onClick(View view) {
+                // テキスト入力を受け付けるビューを作成します。
+                final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_max_min_edit, null);
+                final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
+                minText.setText(String.valueOf(mMusicFilter.FlareSkillMin));
+                minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+                final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
+                maxText.setText(String.valueOf(mMusicFilter.FlareSkillMax));
+                maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+
+                new AlertDialog.Builder(FilterSetting.this)
+                        // setViewにてビューを設定します。
+                        .setView(mainView)
+                        .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                FilterSetting.this.closeKeyboard();
+
+                                Editable minT = minText.getText();
+                                Editable maxT = maxText.getText();
+
+                                int min = mMusicFilter.FlareSkillMin;
+                                int max = mMusicFilter.FlareSkillMax;
+                                try {
+                                    min = Integer.valueOf(minT.toString());
+                                    max = Integer.valueOf(maxT.toString());
+                                } catch (Exception e) {
+                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.flare_skill_edit_error1), Toast.LENGTH_LONG).show();
+                                    return;
+                                }
+                                if (min > max) {
+                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.flare_skill_edit_error2), Toast.LENGTH_LONG).show();
+                                    return;
+                                }
+
+                                mMusicFilter.FlareSkillMin = min;
+                                mMusicFilter.FlareSkillMax = max;
+
+                                FilterSetting.this.save();
+                            }
+                        })
+                        .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                FilterSetting.this.closeKeyboard();
+                            }
+                        })
+                        .show();
+            }
         });
 
         this.findViewById(R.id.editScoreRival).setOnClickListener(view -> {
@@ -1176,6 +1241,10 @@ public class FilterSetting extends Activity {
 
         ((TextView) this.findViewById(R.id.scoreMin)).setText(TextUtil.getScoreText(mMusicFilter.ScoreMin));
         ((TextView) this.findViewById(R.id.scoreMax)).setText(TextUtil.getScoreText(mMusicFilter.ScoreMax));
+
+        ((TextView) this.findViewById(R.id.flareSkillMin)).setText(String.valueOf(mMusicFilter.FlareSkillMin));
+        ((TextView) this.findViewById(R.id.flareSkillMax)).setText(String.valueOf(mMusicFilter.FlareSkillMax));
+
         ((TextView) this.findViewById(R.id.scoreMinRival)).setText(TextUtil.getScoreText(mMusicFilter.ScoreMinRival));
         ((TextView) this.findViewById(R.id.scoreMaxRival)).setText(TextUtil.getScoreText(mMusicFilter.ScoreMaxRival));
 
@@ -1235,6 +1304,19 @@ public class FilterSetting extends Activity {
         ((CheckBox) this.findViewById(R.id.ser3rd)).setChecked(mMusicFilter.Ser3rd);
         ((CheckBox) this.findViewById(R.id.ser2nd)).setChecked(mMusicFilter.Ser2nd);
         ((CheckBox) this.findViewById(R.id.ser1st)).setChecked(mMusicFilter.Ser1st);
+
+        ((CheckBox) this.findViewById(R.id.flareRankEX)).setChecked(mMusicFilter.FlareRankEX);
+        ((CheckBox) this.findViewById(R.id.flareRankIX)).setChecked(mMusicFilter.FlareRankIX);
+        ((CheckBox) this.findViewById(R.id.flareRankVIII)).setChecked(mMusicFilter.FlareRankVIII);
+        ((CheckBox) this.findViewById(R.id.flareRankVII)).setChecked(mMusicFilter.FlareRankVII);
+        ((CheckBox) this.findViewById(R.id.flareRankVI)).setChecked(mMusicFilter.FlareRankVI);
+        ((CheckBox) this.findViewById(R.id.flareRankV)).setChecked(mMusicFilter.FlareRankV);
+        ((CheckBox) this.findViewById(R.id.flareRankIV)).setChecked(mMusicFilter.FlareRankIV);
+        ((CheckBox) this.findViewById(R.id.flareRankIII)).setChecked(mMusicFilter.FlareRankIII);
+        ((CheckBox) this.findViewById(R.id.flareRankII)).setChecked(mMusicFilter.FlareRankII);
+        ((CheckBox) this.findViewById(R.id.flareRankI)).setChecked(mMusicFilter.FlareRankI);
+        ((CheckBox) this.findViewById(R.id.flareRank0)).setChecked(mMusicFilter.FlareRank0);
+        ((CheckBox) this.findViewById(R.id.flareRankNoRank)).setChecked(mMusicFilter.FlareRankNoRank);
     }
 
     private void initialize() {
@@ -1305,6 +1387,19 @@ public class FilterSetting extends Activity {
         this.findViewById(R.id.rankD).setOnClickListener(ccl);
         this.findViewById(R.id.rankE).setOnClickListener(ccl);
         this.findViewById(R.id.rankNoPlay).setOnClickListener(ccl);
+
+        this.findViewById(R.id.flareRankEX).setOnClickListener(ccl);
+        this.findViewById(R.id.flareRankIX).setOnClickListener(ccl);
+        this.findViewById(R.id.flareRankVIII).setOnClickListener(ccl);
+        this.findViewById(R.id.flareRankVII).setOnClickListener(ccl);
+        this.findViewById(R.id.flareRankVI).setOnClickListener(ccl);
+        this.findViewById(R.id.flareRankV).setOnClickListener(ccl);
+        this.findViewById(R.id.flareRankIV).setOnClickListener(ccl);
+        this.findViewById(R.id.flareRankIII).setOnClickListener(ccl);
+        this.findViewById(R.id.flareRankII).setOnClickListener(ccl);
+        this.findViewById(R.id.flareRankI).setOnClickListener(ccl);
+        this.findViewById(R.id.flareRank0).setOnClickListener(ccl);
+        this.findViewById(R.id.flareRankNoRank).setOnClickListener(ccl);
 
         this.findViewById(R.id.fcMFC).setOnClickListener(ccl);
         this.findViewById(R.id.fcPFC).setOnClickListener(ccl);
