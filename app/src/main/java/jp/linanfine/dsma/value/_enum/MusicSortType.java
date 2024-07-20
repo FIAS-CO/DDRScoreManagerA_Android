@@ -26,4 +26,6 @@ public enum MusicSortType {
     BpmMin,
     BpmAve,
     SeriesTitle,
+    FlareRank,
+    FlareSkill
 }

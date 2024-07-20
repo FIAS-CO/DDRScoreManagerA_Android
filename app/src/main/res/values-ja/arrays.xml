@@ -61,6 +61,8 @@
         <item>BPM 最小値</item>
         <item>BPM 平均値</item>
         <item>シリーズタイトル</item>
+        <item>フレアランク</item>
+        <item>フレアスキル</item>
     </string-array>
 
     <string-array name="SpinnerItemsStatisticalTableAxis">

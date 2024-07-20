@@ -59,6 +59,8 @@
         <item>BPM 최소값</item>
         <item>BPM 평균값</item>
         <item>시리즈 타이틀</item>
+        <item>Flare Rank</item>
+        <item>Flare Skill</item>
     </string-array>
     <string-array name="SpinnerItemsStatisticalTableAxis">
         <item>난이도</item>

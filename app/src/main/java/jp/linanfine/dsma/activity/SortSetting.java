@@ -57,7 +57,9 @@ public class SortSetting extends Activity {
                                                                                                                                                                 sorttype == MusicSortType.BpmMin ? 18 :
                                                                                                                                                                         sorttype == MusicSortType.BpmAve ? 19 :
                                                                                                                                                                                 sorttype == MusicSortType.SeriesTitle ? 20 :
-                                                                                                                                                                                        0;
+                                                                                                                                                                                        sorttype == MusicSortType.FlareRank ? 21 :
+                                                                                                                                                                                                sorttype == MusicSortType.FlareSkill ? 22 :
+                                                                                                                                                                                                        0;
     }
 
     public static MusicSortType getMusicSortType(int typenum) {
@@ -83,7 +85,9 @@ public class SortSetting extends Activity {
                                                                                                                                                                 typenum == 18 ? MusicSortType.BpmMin :
                                                                                                                                                                         typenum == 19 ? MusicSortType.BpmAve :
                                                                                                                                                                                 typenum == 20 ? MusicSortType.SeriesTitle :
-                                                                                                                                                                                        MusicSortType.MusicName;
+                                                                                                                                                                                        typenum == 21 ? MusicSortType.FlareRank :
+                                                                                                                                                                                                typenum == 22 ? MusicSortType.FlareSkill :
+                                                                                                                                                                                                        MusicSortType.MusicName;
     }
 
     private void save() {

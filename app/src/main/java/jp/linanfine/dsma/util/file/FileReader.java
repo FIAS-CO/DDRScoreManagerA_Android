@@ -1118,7 +1118,7 @@ public class FileReader {
         return pref.getString("MusicSortName" + String.valueOf(id), "Sort" + String.valueOf(id));
     }
 
-    public static int getMusicSortTypeNum(MusicSortType sorttype) {
+    private static int getMusicSortTypeNum(MusicSortType sorttype) {
         return
                 sorttype == MusicSortType.MusicName ? 0 :
                         sorttype == MusicSortType.Score ? 1 :
@@ -1143,7 +1143,9 @@ public class FileReader {
                                                                                                                                                                                 sorttype == MusicSortType.RivalComboCount ? 20 :
                                                                                                                                                                                         sorttype == MusicSortType.RivalPlayCount ? 21 :
                                                                                                                                                                                                 sorttype == MusicSortType.RivalClearCount ? 22 :
-                                                                                                                                                                                                        0;
+                                                                                                                                                                                                        sorttype == MusicSortType.FlareRank ? 23 :
+                                                                                                                                                                                                                sorttype == MusicSortType.FlareSkill ? 24 :
+                                                                                                                                                                                                                        0;
     }
 
     public static void saveMusicSort(Context context, int id, MusicSort sort) {
@@ -1547,7 +1549,7 @@ public class FileReader {
         return ret;
     }
 
-    public static MusicSortType getMusicSortType(int typenum) {
+    private static MusicSortType getMusicSortType(int typenum) {
         return
                 typenum == 0 ? MusicSortType.MusicName :
                         typenum == 1 ? MusicSortType.Score :
@@ -1572,7 +1574,9 @@ public class FileReader {
                                                                                                                                                                                 typenum == 20 ? MusicSortType.RivalComboCount :
                                                                                                                                                                                         typenum == 21 ? MusicSortType.RivalPlayCount :
                                                                                                                                                                                                 typenum == 22 ? MusicSortType.RivalClearCount :
-                                                                                                                                                                                                        MusicSortType.MusicName;
+                                                                                                                                                                                                        typenum == 23 ? MusicSortType.FlareRank :
+                                                                                                                                                                                                                typenum == 24 ? MusicSortType.FlareSkill :
+                                                                                                                                                                                                                        MusicSortType.MusicName;
     }
 
     public static MusicSort readMusicSort(Context context, int id) {

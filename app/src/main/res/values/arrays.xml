@@ -61,6 +61,8 @@
         <item>Min BPM</item>
         <item>Ave BPM</item>
         <item>Series Title</item>
+        <item>Flare Rank</item>
+        <item>Flare Skill</item>
     </string-array>
 
     <string-array name="SpinnerItemsStatisticalTableAxis">
