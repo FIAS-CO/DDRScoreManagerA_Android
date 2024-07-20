@@ -4,7 +4,6 @@ import android.R.drawable;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,8 +14,6 @@ import android.view.View.OnFocusChangeListener;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -151,9 +148,7 @@ public class FilterSetting extends Activity {
 
         FileReader.saveMusicFilter(this, mPagerId, mMusicFilter);
 
-
         setItemStatuses();
-
     }
 
     private void openKeyboard() {
@@ -300,1129 +295,883 @@ public class FilterSetting extends Activity {
 
         ((CheckBox) this.findViewById(R.id.othersDeleted)).setChecked(mMusicFilter.Deleted);
 
-        final OnFocusChangeListener showKeyBoardOnFocusChange = new OnFocusChangeListener() {
-            public void onFocusChange(View view, boolean focused) {
-                if (focused) {
-                    mHandledView = view;
-                    mHandler.post(new Runnable() {
-                        public void run() {
-                            FilterSetting.this.openKeyboard();
-                        }
-                    });
-                }
+        final OnFocusChangeListener showKeyBoardOnFocusChange = (view, focused) -> {
+            if (focused) {
+                mHandledView = view;
+                mHandler.post(FilterSetting.this::openKeyboard);
             }
         };
 
-        this.findViewById(R.id.editScore).setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
+        this.findViewById(R.id.editScore).setOnClickListener(view -> {
 
-                //テキスト入力を受け付けるビューを作成します。
-                final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_max_min_edit, null);
-                final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
-                minText.setText(String.valueOf(mMusicFilter.ScoreMin));
-                minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
-                maxText.setText(String.valueOf(mMusicFilter.ScoreMax));
-                maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                new AlertDialog.Builder(FilterSetting.this)
-                        //setViewにてビューを設定します。
-                        .setView(mainView)
-                        .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
+            //テキスト入力を受け付けるビューを作成します。
+            final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_max_min_edit, null);
+            final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
+            minText.setText(String.valueOf(mMusicFilter.ScoreMin));
+            minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
+            maxText.setText(String.valueOf(mMusicFilter.ScoreMax));
+            maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            new AlertDialog.Builder(FilterSetting.this)
+                    //setViewにてビューを設定します。
+                    .setView(mainView)
+                    .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                        FilterSetting.this.closeKeyboard();
 
-                                Editable minT = minText.getText();
-                                Editable maxT = maxText.getText();
+                        Editable minT = minText.getText();
+                        Editable maxT = maxText.getText();
 
-                                int min = mMusicFilter.ScoreMin;
-                                int max = mMusicFilter.ScoreMax;
-                                try {
-                                    min = Integer.valueOf(minT.toString());
-                                    max = Integer.valueOf(maxT.toString());
-                                } catch (Exception e) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-                                if (min > max) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
+                        int min = mMusicFilter.ScoreMin;
+                        int max = mMusicFilter.ScoreMax;
+                        try {
+                            min = Integer.parseInt(minT.toString());
+                            max = Integer.parseInt(maxT.toString());
+                        } catch (Exception e) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (min > max) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
+                            return;
+                        }
 
-                                mMusicFilter.ScoreMin = min;
-                                mMusicFilter.ScoreMax = max;
+                        mMusicFilter.ScoreMin = min;
+                        mMusicFilter.ScoreMax = max;
 
-                                FilterSetting.this.save();
-                            }
-                        })
-                        .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-                            }
-                        })
-                        .show();
-
-            }
+                        FilterSetting.this.save();
+                    })
+                    .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> FilterSetting.this.closeKeyboard())
+                    .show();
         });
 
-        this.findViewById(R.id.editScoreRival).setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
+        this.findViewById(R.id.editScoreRival).setOnClickListener(view -> {
 
-                //テキスト入力を受け付けるビューを作成します。
-                final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_max_min_edit, null);
-                final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
-                minText.setText(String.valueOf(mMusicFilter.ScoreMinRival));
-                minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
-                maxText.setText(String.valueOf(mMusicFilter.ScoreMaxRival));
-                maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                new AlertDialog.Builder(FilterSetting.this)
-                        //setViewにてビューを設定します。
-                        .setView(mainView)
-                        .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
+            //テキスト入力を受け付けるビューを作成します。
+            final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_max_min_edit, null);
+            final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
+            minText.setText(String.valueOf(mMusicFilter.ScoreMinRival));
+            minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
+            maxText.setText(String.valueOf(mMusicFilter.ScoreMaxRival));
+            maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            new AlertDialog.Builder(FilterSetting.this)
+                    //setViewにてビューを設定します。
+                    .setView(mainView)
+                    .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                        FilterSetting.this.closeKeyboard();
 
-                                Editable minT = minText.getText();
-                                Editable maxT = maxText.getText();
+                        Editable minT = minText.getText();
+                        Editable maxT = maxText.getText();
 
-                                int min = mMusicFilter.ScoreMinRival;
-                                int max = mMusicFilter.ScoreMaxRival;
-                                try {
-                                    min = Integer.valueOf(minT.toString());
-                                    max = Integer.valueOf(maxT.toString());
-                                } catch (Exception e) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-                                if (min > max) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
+                        int min = mMusicFilter.ScoreMinRival;
+                        int max = mMusicFilter.ScoreMaxRival;
+                        try {
+                            min = Integer.parseInt(minT.toString());
+                            max = Integer.parseInt(maxT.toString());
+                        } catch (Exception e) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (min > max) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
+                            return;
+                        }
 
-                                mMusicFilter.ScoreMinRival = min;
-                                mMusicFilter.ScoreMaxRival = max;
+                        mMusicFilter.ScoreMinRival = min;
+                        mMusicFilter.ScoreMaxRival = max;
 
-                                FilterSetting.this.save();
-                            }
-                        })
-                        .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-                            }
-                        })
-                        .show();
-
-            }
+                        FilterSetting.this.save();
+                    })
+                    .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> FilterSetting.this.closeKeyboard())
+                    .show();
         });
 
-        this.findViewById(R.id.editCombo).setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
+        this.findViewById(R.id.editCombo).setOnClickListener(view -> {
 
-                //テキスト入力を受け付けるビューを作成します。
-                final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_max_min_edit_with_checkbox, null);
-                final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
-                final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
-                minEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        minText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.MaxComboMin < 0) {
-                    minEnabled.setChecked(false);
-                    minText.setText("");
-                } else {
-                    minEnabled.setChecked(true);
-                    minText.setText(String.valueOf(mMusicFilter.MaxComboMin));
-                }
-                minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
-                final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
-                maxEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        maxText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.MaxComboMax == Integer.MAX_VALUE) {
-                    maxEnabled.setChecked(false);
-                    maxText.setText("");
-                } else {
-                    maxEnabled.setChecked(true);
-                    maxText.setText(String.valueOf(mMusicFilter.MaxComboMax));
-                }
-                maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                new AlertDialog.Builder(FilterSetting.this)
-                        //setViewにてビューを設定します。
-                        .setView(mainView)
-                        .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-
-                                Editable minT = minText.getText();
-                                Editable maxT = maxText.getText();
-
-                                int min = mMusicFilter.MaxComboMin;
-                                int max = mMusicFilter.MaxComboMax;
-                                try {
-                                    min = minEnabled.isChecked() ? Integer.valueOf(minT.toString()) : -1;
-                                    max = maxEnabled.isChecked() ? Integer.valueOf(maxT.toString()) : Integer.MAX_VALUE;
-                                } catch (Exception e) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-                                if (min > max) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-
-                                mMusicFilter.MaxComboMin = min;
-                                mMusicFilter.MaxComboMax = max;
-
-                                FilterSetting.this.save();
-                            }
-                        })
-                        .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-                            }
-                        })
-                        .show();
-
+            //テキスト入力を受け付けるビューを作成します。
+            final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_max_min_edit_with_checkbox, null);
+            final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
+            final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
+            minEnabled.setOnCheckedChangeListener((arg0, arg1) -> minText.setEnabled(arg1));
+            if (mMusicFilter.MaxComboMin < 0) {
+                minEnabled.setChecked(false);
+                minText.setText("");
+            } else {
+                minEnabled.setChecked(true);
+                minText.setText(String.valueOf(mMusicFilter.MaxComboMin));
             }
+            minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
+            final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
+            maxEnabled.setOnCheckedChangeListener((arg0, arg1) -> maxText.setEnabled(arg1));
+            if (mMusicFilter.MaxComboMax == Integer.MAX_VALUE) {
+                maxEnabled.setChecked(false);
+                maxText.setText("");
+            } else {
+                maxEnabled.setChecked(true);
+                maxText.setText(String.valueOf(mMusicFilter.MaxComboMax));
+            }
+            maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            new AlertDialog.Builder(FilterSetting.this)
+                    //setViewにてビューを設定します。
+                    .setView(mainView)
+                    .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                        FilterSetting.this.closeKeyboard();
+
+                        Editable minT = minText.getText();
+                        Editable maxT = maxText.getText();
+
+                        int min = mMusicFilter.MaxComboMin;
+                        int max = mMusicFilter.MaxComboMax;
+                        try {
+                            min = minEnabled.isChecked() ? Integer.parseInt(minT.toString()) : -1;
+                            max = maxEnabled.isChecked() ? Integer.parseInt(maxT.toString()) : Integer.MAX_VALUE;
+                        } catch (Exception e) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (min > max) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        mMusicFilter.MaxComboMin = min;
+                        mMusicFilter.MaxComboMax = max;
+
+                        FilterSetting.this.save();
+                    })
+                    .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> FilterSetting.this.closeKeyboard())
+                    .show();
         });
 
-        this.findViewById(R.id.editComboRival).setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
+        this.findViewById(R.id.editComboRival).setOnClickListener(view -> {
 
-                //テキスト入力を受け付けるビューを作成します。
-                final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_max_min_edit_with_checkbox, null);
-                final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
-                final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
-                minEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        minText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.MaxComboMinRival < 0) {
-                    minEnabled.setChecked(false);
-                    minText.setText("");
-                } else {
-                    minEnabled.setChecked(true);
-                    minText.setText(String.valueOf(mMusicFilter.MaxComboMinRival));
-                }
-                minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
-                final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
-                maxEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        maxText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.MaxComboMaxRival == Integer.MAX_VALUE) {
-                    maxEnabled.setChecked(false);
-                    maxText.setText("");
-                } else {
-                    maxEnabled.setChecked(true);
-                    maxText.setText(String.valueOf(mMusicFilter.MaxComboMaxRival));
-                }
-                maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                new AlertDialog.Builder(FilterSetting.this)
-                        //setViewにてビューを設定します。
-                        .setView(mainView)
-                        .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-
-                                Editable minT = minText.getText();
-                                Editable maxT = maxText.getText();
-
-                                int min = mMusicFilter.MaxComboMinRival;
-                                int max = mMusicFilter.MaxComboMaxRival;
-                                try {
-                                    min = minEnabled.isChecked() ? Integer.valueOf(minT.toString()) : -1;
-                                    max = maxEnabled.isChecked() ? Integer.valueOf(maxT.toString()) : Integer.MAX_VALUE;
-                                } catch (Exception e) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-                                if (min > max) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-
-                                mMusicFilter.MaxComboMinRival = min;
-                                mMusicFilter.MaxComboMaxRival = max;
-
-                                FilterSetting.this.save();
-                            }
-                        })
-                        .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-                            }
-                        })
-                        .show();
-
+            //テキスト入力を受け付けるビューを作成します。
+            final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_max_min_edit_with_checkbox, null);
+            final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
+            final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
+            minEnabled.setOnCheckedChangeListener((arg0, arg1) -> minText.setEnabled(arg1));
+            if (mMusicFilter.MaxComboMinRival < 0) {
+                minEnabled.setChecked(false);
+                minText.setText("");
+            } else {
+                minEnabled.setChecked(true);
+                minText.setText(String.valueOf(mMusicFilter.MaxComboMinRival));
             }
+            minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
+            final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
+            maxEnabled.setOnCheckedChangeListener((arg0, arg1) -> maxText.setEnabled(arg1));
+            if (mMusicFilter.MaxComboMaxRival == Integer.MAX_VALUE) {
+                maxEnabled.setChecked(false);
+                maxText.setText("");
+            } else {
+                maxEnabled.setChecked(true);
+                maxText.setText(String.valueOf(mMusicFilter.MaxComboMaxRival));
+            }
+            maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            new AlertDialog.Builder(FilterSetting.this)
+                    //setViewにてビューを設定します。
+                    .setView(mainView)
+                    .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                        FilterSetting.this.closeKeyboard();
+
+                        Editable minT = minText.getText();
+                        Editable maxT = maxText.getText();
+
+                        int min = mMusicFilter.MaxComboMinRival;
+                        int max = mMusicFilter.MaxComboMaxRival;
+                        try {
+                            min = minEnabled.isChecked() ? Integer.parseInt(minT.toString()) : -1;
+                            max = maxEnabled.isChecked() ? Integer.parseInt(maxT.toString()) : Integer.MAX_VALUE;
+                        } catch (Exception e) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (min > max) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        mMusicFilter.MaxComboMinRival = min;
+                        mMusicFilter.MaxComboMaxRival = max;
+
+                        FilterSetting.this.save();
+                    })
+                    .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> FilterSetting.this.closeKeyboard())
+                    .show();
         });
 
-        this.findViewById(R.id.editPlayCount).setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
+        this.findViewById(R.id.editPlayCount).setOnClickListener(view -> {
 
-                //テキスト入力を受け付けるビューを作成します。
-                final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_max_min_edit_with_checkbox, null);
-                final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
-                final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
-                minEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        minText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.PlayCountMin < 0) {
-                    minEnabled.setChecked(false);
-                    minText.setText("");
-                } else {
-                    minEnabled.setChecked(true);
-                    minText.setText(String.valueOf(mMusicFilter.PlayCountMin));
-                }
-                minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
-                final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
-                maxEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        maxText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.PlayCountMax == Integer.MAX_VALUE) {
-                    maxEnabled.setChecked(false);
-                    maxText.setText("");
-                } else {
-                    maxEnabled.setChecked(true);
-                    maxText.setText(String.valueOf(mMusicFilter.PlayCountMax));
-                }
-                maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                new AlertDialog.Builder(FilterSetting.this)
-                        //setViewにてビューを設定します。
-                        .setView(mainView)
-                        .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-
-                                Editable minT = minText.getText();
-                                Editable maxT = maxText.getText();
-
-                                int min = mMusicFilter.PlayCountMin;
-                                int max = mMusicFilter.PlayCountMax;
-                                try {
-                                    min = minEnabled.isChecked() ? Integer.valueOf(minT.toString()) : -1;
-                                    max = maxEnabled.isChecked() ? Integer.valueOf(maxT.toString()) : Integer.MAX_VALUE;
-                                } catch (Exception e) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-                                if (min > max) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-
-                                mMusicFilter.PlayCountMin = min;
-                                mMusicFilter.PlayCountMax = max;
-
-                                FilterSetting.this.save();
-                            }
-                        })
-                        .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-                            }
-                        })
-                        .show();
-
+            //テキスト入力を受け付けるビューを作成します。
+            final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_max_min_edit_with_checkbox, null);
+            final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
+            final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
+            minEnabled.setOnCheckedChangeListener((arg0, arg1) -> minText.setEnabled(arg1));
+            if (mMusicFilter.PlayCountMin < 0) {
+                minEnabled.setChecked(false);
+                minText.setText("");
+            } else {
+                minEnabled.setChecked(true);
+                minText.setText(String.valueOf(mMusicFilter.PlayCountMin));
             }
+            minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
+            final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
+            maxEnabled.setOnCheckedChangeListener((arg0, arg1) -> maxText.setEnabled(arg1));
+            if (mMusicFilter.PlayCountMax == Integer.MAX_VALUE) {
+                maxEnabled.setChecked(false);
+                maxText.setText("");
+            } else {
+                maxEnabled.setChecked(true);
+                maxText.setText(String.valueOf(mMusicFilter.PlayCountMax));
+            }
+            maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            new AlertDialog.Builder(FilterSetting.this)
+                    //setViewにてビューを設定します。
+                    .setView(mainView)
+                    .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                        FilterSetting.this.closeKeyboard();
+
+                        Editable minT = minText.getText();
+                        Editable maxT = maxText.getText();
+
+                        int min = mMusicFilter.PlayCountMin;
+                        int max = mMusicFilter.PlayCountMax;
+                        try {
+                            min = minEnabled.isChecked() ? Integer.parseInt(minT.toString()) : -1;
+                            max = maxEnabled.isChecked() ? Integer.parseInt(maxT.toString()) : Integer.MAX_VALUE;
+                        } catch (Exception e) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (min > max) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        mMusicFilter.PlayCountMin = min;
+                        mMusicFilter.PlayCountMax = max;
+
+                        FilterSetting.this.save();
+                    })
+                    .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> FilterSetting.this.closeKeyboard())
+                    .show();
         });
 
-        this.findViewById(R.id.editPlayCountRival).setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
+        this.findViewById(R.id.editPlayCountRival).setOnClickListener(view -> {
 
-                //テキスト入力を受け付けるビューを作成します。
-                final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_max_min_edit_with_checkbox, null);
-                final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
-                final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
-                minEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        minText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.PlayCountMinRival < 0) {
-                    minEnabled.setChecked(false);
-                    minText.setText("");
-                } else {
-                    minEnabled.setChecked(true);
-                    minText.setText(String.valueOf(mMusicFilter.PlayCountMinRival));
-                }
-                minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
-                final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
-                maxEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        maxText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.PlayCountMaxRival == Integer.MAX_VALUE) {
-                    maxEnabled.setChecked(false);
-                    maxText.setText("");
-                } else {
-                    maxEnabled.setChecked(true);
-                    maxText.setText(String.valueOf(mMusicFilter.PlayCountMaxRival));
-                }
-                maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                new AlertDialog.Builder(FilterSetting.this)
-                        //setViewにてビューを設定します。
-                        .setView(mainView)
-                        .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-
-                                Editable minT = minText.getText();
-                                Editable maxT = maxText.getText();
-
-                                int min = mMusicFilter.PlayCountMinRival;
-                                int max = mMusicFilter.PlayCountMaxRival;
-                                try {
-                                    min = minEnabled.isChecked() ? Integer.valueOf(minT.toString()) : -1;
-                                    max = maxEnabled.isChecked() ? Integer.valueOf(maxT.toString()) : Integer.MAX_VALUE;
-                                } catch (Exception e) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-                                if (min > max) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-
-                                mMusicFilter.PlayCountMinRival = min;
-                                mMusicFilter.PlayCountMaxRival = max;
-
-                                FilterSetting.this.save();
-                            }
-                        })
-                        .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-                            }
-                        })
-                        .show();
-
+            //テキスト入力を受け付けるビューを作成します。
+            final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_max_min_edit_with_checkbox, null);
+            final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
+            final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
+            minEnabled.setOnCheckedChangeListener((arg0, arg1) -> minText.setEnabled(arg1));
+            if (mMusicFilter.PlayCountMinRival < 0) {
+                minEnabled.setChecked(false);
+                minText.setText("");
+            } else {
+                minEnabled.setChecked(true);
+                minText.setText(String.valueOf(mMusicFilter.PlayCountMinRival));
             }
+            minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
+            final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
+            maxEnabled.setOnCheckedChangeListener((arg0, arg1) -> maxText.setEnabled(arg1));
+            if (mMusicFilter.PlayCountMaxRival == Integer.MAX_VALUE) {
+                maxEnabled.setChecked(false);
+                maxText.setText("");
+            } else {
+                maxEnabled.setChecked(true);
+                maxText.setText(String.valueOf(mMusicFilter.PlayCountMaxRival));
+            }
+            maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            new AlertDialog.Builder(FilterSetting.this)
+                    //setViewにてビューを設定します。
+                    .setView(mainView)
+                    .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                        FilterSetting.this.closeKeyboard();
+
+                        Editable minT = minText.getText();
+                        Editable maxT = maxText.getText();
+
+                        int min = mMusicFilter.PlayCountMinRival;
+                        int max = mMusicFilter.PlayCountMaxRival;
+                        try {
+                            min = minEnabled.isChecked() ? Integer.parseInt(minT.toString()) : -1;
+                            max = maxEnabled.isChecked() ? Integer.parseInt(maxT.toString()) : Integer.MAX_VALUE;
+                        } catch (Exception e) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (min > max) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        mMusicFilter.PlayCountMinRival = min;
+                        mMusicFilter.PlayCountMaxRival = max;
+
+                        FilterSetting.this.save();
+                    })
+                    .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> FilterSetting.this.closeKeyboard())
+                    .show();
         });
 
-        this.findViewById(R.id.editClearCount).setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
+        this.findViewById(R.id.editClearCount).setOnClickListener(view -> {
 
-                //テキスト入力を受け付けるビューを作成します。
-                final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_max_min_edit_with_checkbox, null);
-                final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
-                final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
-                minEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        minText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.ClearCountMin < 0) {
-                    minEnabled.setChecked(false);
-                    minText.setText("");
-                } else {
-                    minEnabled.setChecked(true);
-                    minText.setText(String.valueOf(mMusicFilter.ClearCountMin));
-                }
-                minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
-                final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
-                maxEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        maxText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.ClearCountMax == Integer.MAX_VALUE) {
-                    maxEnabled.setChecked(false);
-                    maxText.setText("");
-                } else {
-                    maxEnabled.setChecked(true);
-                    maxText.setText(String.valueOf(mMusicFilter.ClearCountMax));
-                }
-                maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                new AlertDialog.Builder(FilterSetting.this)
-                        //setViewにてビューを設定します。
-                        .setView(mainView)
-                        .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-
-                                Editable minT = minText.getText();
-                                Editable maxT = maxText.getText();
-
-                                int min = mMusicFilter.ClearCountMin;
-                                int max = mMusicFilter.ClearCountMax;
-                                try {
-                                    min = minEnabled.isChecked() ? Integer.valueOf(minT.toString()) : -1;
-                                    max = maxEnabled.isChecked() ? Integer.valueOf(maxT.toString()) : Integer.MAX_VALUE;
-                                } catch (Exception e) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-                                if (min > max) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-
-                                mMusicFilter.ClearCountMin = min;
-                                mMusicFilter.ClearCountMax = max;
-
-                                FilterSetting.this.save();
-                            }
-                        })
-                        .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-                            }
-                        })
-                        .show();
-
+            //テキスト入力を受け付けるビューを作成します。
+            final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_max_min_edit_with_checkbox, null);
+            final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
+            final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
+            minEnabled.setOnCheckedChangeListener((arg0, arg1) -> minText.setEnabled(arg1));
+            if (mMusicFilter.ClearCountMin < 0) {
+                minEnabled.setChecked(false);
+                minText.setText("");
+            } else {
+                minEnabled.setChecked(true);
+                minText.setText(String.valueOf(mMusicFilter.ClearCountMin));
             }
+            minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
+            final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
+            maxEnabled.setOnCheckedChangeListener((arg0, arg1) -> maxText.setEnabled(arg1));
+            if (mMusicFilter.ClearCountMax == Integer.MAX_VALUE) {
+                maxEnabled.setChecked(false);
+                maxText.setText("");
+            } else {
+                maxEnabled.setChecked(true);
+                maxText.setText(String.valueOf(mMusicFilter.ClearCountMax));
+            }
+            maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            new AlertDialog.Builder(FilterSetting.this)
+                    //setViewにてビューを設定します。
+                    .setView(mainView)
+                    .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                        FilterSetting.this.closeKeyboard();
+
+                        Editable minT = minText.getText();
+                        Editable maxT = maxText.getText();
+
+                        int min = mMusicFilter.ClearCountMin;
+                        int max = mMusicFilter.ClearCountMax;
+                        try {
+                            min = minEnabled.isChecked() ? Integer.parseInt(minT.toString()) : -1;
+                            max = maxEnabled.isChecked() ? Integer.parseInt(maxT.toString()) : Integer.MAX_VALUE;
+                        } catch (Exception e) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (min > max) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        mMusicFilter.ClearCountMin = min;
+                        mMusicFilter.ClearCountMax = max;
+
+                        FilterSetting.this.save();
+                    })
+                    .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> FilterSetting.this.closeKeyboard())
+                    .show();
         });
 
-        this.findViewById(R.id.editClearCountRival).setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
+        this.findViewById(R.id.editClearCountRival).setOnClickListener(view -> {
 
-                //テキスト入力を受け付けるビューを作成します。
-                final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_max_min_edit_with_checkbox, null);
-                final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
-                final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
-                minEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        minText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.ClearCountMinRival < 0) {
-                    minEnabled.setChecked(false);
-                    minText.setText("");
-                } else {
-                    minEnabled.setChecked(true);
-                    minText.setText(String.valueOf(mMusicFilter.ClearCountMinRival));
-                }
-                minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
-                final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
-                maxEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        maxText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.ClearCountMaxRival == Integer.MAX_VALUE) {
-                    maxEnabled.setChecked(false);
-                    maxText.setText("");
-                } else {
-                    maxEnabled.setChecked(true);
-                    maxText.setText(String.valueOf(mMusicFilter.ClearCountMaxRival));
-                }
-                maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                new AlertDialog.Builder(FilterSetting.this)
-                        //setViewにてビューを設定します。
-                        .setView(mainView)
-                        .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-
-                                Editable minT = minText.getText();
-                                Editable maxT = maxText.getText();
-
-                                int min = mMusicFilter.ClearCountMinRival;
-                                int max = mMusicFilter.ClearCountMaxRival;
-                                try {
-                                    min = minEnabled.isChecked() ? Integer.valueOf(minT.toString()) : -1;
-                                    max = maxEnabled.isChecked() ? Integer.valueOf(maxT.toString()) : Integer.MAX_VALUE;
-                                } catch (Exception e) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-                                if (min > max) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-
-                                mMusicFilter.ClearCountMinRival = min;
-                                mMusicFilter.ClearCountMaxRival = max;
-
-                                FilterSetting.this.save();
-                            }
-                        })
-                        .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-                            }
-                        })
-                        .show();
-
+            //テキスト入力を受け付けるビューを作成します。
+            final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_max_min_edit_with_checkbox, null);
+            final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
+            final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
+            minEnabled.setOnCheckedChangeListener((arg0, arg1) -> minText.setEnabled(arg1));
+            if (mMusicFilter.ClearCountMinRival < 0) {
+                minEnabled.setChecked(false);
+                minText.setText("");
+            } else {
+                minEnabled.setChecked(true);
+                minText.setText(String.valueOf(mMusicFilter.ClearCountMinRival));
             }
+            minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
+            final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
+            maxEnabled.setOnCheckedChangeListener((arg0, arg1) -> maxText.setEnabled(arg1));
+            if (mMusicFilter.ClearCountMaxRival == Integer.MAX_VALUE) {
+                maxEnabled.setChecked(false);
+                maxText.setText("");
+            } else {
+                maxEnabled.setChecked(true);
+                maxText.setText(String.valueOf(mMusicFilter.ClearCountMaxRival));
+            }
+            maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            new AlertDialog.Builder(FilterSetting.this)
+                    //setViewにてビューを設定します。
+                    .setView(mainView)
+                    .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                        FilterSetting.this.closeKeyboard();
+
+                        Editable minT = minText.getText();
+                        Editable maxT = maxText.getText();
+
+                        int min = mMusicFilter.ClearCountMinRival;
+                        int max = mMusicFilter.ClearCountMaxRival;
+                        try {
+                            min = minEnabled.isChecked() ? Integer.parseInt(minT.toString()) : -1;
+                            max = maxEnabled.isChecked() ? Integer.parseInt(maxT.toString()) : Integer.MAX_VALUE;
+                        } catch (Exception e) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (min > max) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        mMusicFilter.ClearCountMinRival = min;
+                        mMusicFilter.ClearCountMaxRival = max;
+
+                        FilterSetting.this.save();
+                    })
+                    .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> FilterSetting.this.closeKeyboard())
+                    .show();
         });
 
-        this.findViewById(R.id.editScoreDifferenceM).setOnClickListener(new OnClickListener() {
-            public void onClick(View arg0) {
+        this.findViewById(R.id.editScoreDifferenceM).setOnClickListener(arg0 -> {
 
-                //テキスト入力を受け付けるビューを作成します。
-                final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_difference_edit, null);
-                final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
-                minText.setText(String.valueOf(-mMusicFilter.ScoreDifferenceMinusMin));
-                minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
-                maxText.setText(String.valueOf(-mMusicFilter.ScoreDifferenceMinusMax));
-                maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                new AlertDialog.Builder(FilterSetting.this)
-                        //setViewにてビューを設定します。
-                        .setView(mainView)
-                        .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
+            //テキスト入力を受け付けるビューを作成します。
+            final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_difference_edit, null);
+            final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
+            minText.setText(String.valueOf(-mMusicFilter.ScoreDifferenceMinusMin));
+            minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
+            maxText.setText(String.valueOf(-mMusicFilter.ScoreDifferenceMinusMax));
+            maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            new AlertDialog.Builder(FilterSetting.this)
+                    //setViewにてビューを設定します。
+                    .setView(mainView)
+                    .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                        FilterSetting.this.closeKeyboard();
 
-                                Editable minT = minText.getText();
-                                Editable maxT = maxText.getText();
+                        Editable minT = minText.getText();
+                        Editable maxT = maxText.getText();
 
-                                int min = -mMusicFilter.ScoreDifferenceMinusMin;
-                                int max = -mMusicFilter.ScoreDifferenceMinusMax;
-                                try {
-                                    min = Integer.valueOf(minT.toString());
-                                    max = Integer.valueOf(maxT.toString());
-                                } catch (Exception e) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-                                if (min > max) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
+                        int min = -mMusicFilter.ScoreDifferenceMinusMin;
+                        int max = -mMusicFilter.ScoreDifferenceMinusMax;
+                        try {
+                            min = Integer.parseInt(minT.toString());
+                            max = Integer.parseInt(maxT.toString());
+                        } catch (Exception e) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (min > max) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
+                            return;
+                        }
 
-                                mMusicFilter.ScoreDifferenceMinusMin = -min;
-                                mMusicFilter.ScoreDifferenceMinusMax = -max;
+                        mMusicFilter.ScoreDifferenceMinusMin = -min;
+                        mMusicFilter.ScoreDifferenceMinusMax = -max;
 
-                                FilterSetting.this.save();
-                            }
-                        })
-                        .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-                            }
-                        })
-                        .show();
-
-            }
+                        FilterSetting.this.save();
+                    })
+                    .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> FilterSetting.this.closeKeyboard())
+                    .show();
         });
 
-        this.findViewById(R.id.editScoreDifferenceP).setOnClickListener(new OnClickListener() {
-            public void onClick(View arg0) {
+        this.findViewById(R.id.editScoreDifferenceP).setOnClickListener(arg0 -> {
 
-                //テキスト入力を受け付けるビューを作成します。
-                final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_difference_edit, null);
-                ((TextView) mainView.findViewById(R.id.pm1)).setText("+");
-                ((TextView) mainView.findViewById(R.id.pm2)).setText("+");
-                final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
-                minText.setText(String.valueOf(mMusicFilter.ScoreDifferencePlusMin));
-                minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
-                maxText.setText(String.valueOf(mMusicFilter.ScoreDifferencePlusMax));
-                maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                new AlertDialog.Builder(FilterSetting.this)
-                        //setViewにてビューを設定します。
-                        .setView(mainView)
-                        .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
+            //テキスト入力を受け付けるビューを作成します。
+            final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_difference_edit, null);
+            ((TextView) mainView.findViewById(R.id.pm1)).setText("+");
+            ((TextView) mainView.findViewById(R.id.pm2)).setText("+");
+            final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
+            minText.setText(String.valueOf(mMusicFilter.ScoreDifferencePlusMin));
+            minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
+            maxText.setText(String.valueOf(mMusicFilter.ScoreDifferencePlusMax));
+            maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            new AlertDialog.Builder(FilterSetting.this)
+                    //setViewにてビューを設定します。
+                    .setView(mainView)
+                    .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                        FilterSetting.this.closeKeyboard();
 
-                                Editable minT = minText.getText();
-                                Editable maxT = maxText.getText();
+                        Editable minT = minText.getText();
+                        Editable maxT = maxText.getText();
 
-                                int min = mMusicFilter.ScoreDifferencePlusMin;
-                                int max = mMusicFilter.ScoreDifferencePlusMax;
-                                try {
-                                    min = Integer.valueOf(minT.toString());
-                                    max = Integer.valueOf(maxT.toString());
-                                } catch (Exception e) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-                                if (min > max) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
+                        int min = mMusicFilter.ScoreDifferencePlusMin;
+                        int max = mMusicFilter.ScoreDifferencePlusMax;
+                        try {
+                            min = Integer.parseInt(minT.toString());
+                            max = Integer.parseInt(maxT.toString());
+                        } catch (Exception e) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (min > max) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
+                            return;
+                        }
 
-                                mMusicFilter.ScoreDifferencePlusMin = min;
-                                mMusicFilter.ScoreDifferencePlusMax = max;
+                        mMusicFilter.ScoreDifferencePlusMin = min;
+                        mMusicFilter.ScoreDifferencePlusMax = max;
 
-                                FilterSetting.this.save();
-                            }
-                        })
-                        .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-                            }
-                        })
-                        .show();
-
-            }
+                        FilterSetting.this.save();
+                    })
+                    .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> FilterSetting.this.closeKeyboard())
+                    .show();
         });
 
-        this.findViewById(R.id.editComboDifferenceM).setOnClickListener(new OnClickListener() {
-            public void onClick(View arg0) {
+        this.findViewById(R.id.editComboDifferenceM).setOnClickListener(arg0 -> {
 
-                //テキスト入力を受け付けるビューを作成します。
-                final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_difference_edit_with_checkbox, null);
-                final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
-                final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
-                minEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        minText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.MaxComboDifferenceMinusMin > 0) {
-                    minEnabled.setChecked(false);
-                    minText.setText("");
-                } else {
-                    minEnabled.setChecked(true);
-                    minText.setText(String.valueOf(-mMusicFilter.MaxComboDifferenceMinusMin));
-                }
-                minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
-                final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
-                maxEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        maxText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.MaxComboDifferenceMinusMax == Integer.MIN_VALUE) {
-                    maxEnabled.setChecked(false);
-                    maxText.setText("");
-                } else {
-                    maxEnabled.setChecked(true);
-                    maxText.setText(String.valueOf(-mMusicFilter.MaxComboDifferenceMinusMax));
-                }
-                maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                new AlertDialog.Builder(FilterSetting.this)
-                        //setViewにてビューを設定します。
-                        .setView(mainView)
-                        .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-
-                                Editable minT = minText.getText();
-                                Editable maxT = maxText.getText();
-
-                                int min = -mMusicFilter.MaxComboDifferenceMinusMin;
-                                int max = mMusicFilter.MaxComboDifferenceMinusMax == Integer.MIN_VALUE ? Integer.MAX_VALUE : -mMusicFilter.MaxComboDifferenceMinusMax;
-                                try {
-                                    min = minEnabled.isChecked() ? Integer.valueOf(minT.toString()) : -1;
-                                    max = maxEnabled.isChecked() ? Integer.valueOf(maxT.toString()) : Integer.MAX_VALUE;
-                                } catch (Exception e) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-                                if (min > max) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-
-                                mMusicFilter.MaxComboDifferenceMinusMin = -min;
-                                mMusicFilter.MaxComboDifferenceMinusMax = max == Integer.MAX_VALUE ? Integer.MIN_VALUE : -max;
-
-                                FilterSetting.this.save();
-                            }
-                        })
-                        .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-                            }
-                        })
-                        .show();
-
+            //テキスト入力を受け付けるビューを作成します。
+            final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_difference_edit_with_checkbox, null);
+            final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
+            final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
+            minEnabled.setOnCheckedChangeListener((arg0112, arg1) -> minText.setEnabled(arg1));
+            if (mMusicFilter.MaxComboDifferenceMinusMin > 0) {
+                minEnabled.setChecked(false);
+                minText.setText("");
+            } else {
+                minEnabled.setChecked(true);
+                minText.setText(String.valueOf(-mMusicFilter.MaxComboDifferenceMinusMin));
             }
+            minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
+            final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
+            maxEnabled.setOnCheckedChangeListener((arg0111, arg1) -> maxText.setEnabled(arg1));
+            if (mMusicFilter.MaxComboDifferenceMinusMax == Integer.MIN_VALUE) {
+                maxEnabled.setChecked(false);
+                maxText.setText("");
+            } else {
+                maxEnabled.setChecked(true);
+                maxText.setText(String.valueOf(-mMusicFilter.MaxComboDifferenceMinusMax));
+            }
+            maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            new AlertDialog.Builder(FilterSetting.this)
+                    //setViewにてビューを設定します。
+                    .setView(mainView)
+                    .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                        FilterSetting.this.closeKeyboard();
+
+                        Editable minT = minText.getText();
+                        Editable maxT = maxText.getText();
+
+                        int min = -mMusicFilter.MaxComboDifferenceMinusMin;
+                        int max = mMusicFilter.MaxComboDifferenceMinusMax == Integer.MIN_VALUE ? Integer.MAX_VALUE : -mMusicFilter.MaxComboDifferenceMinusMax;
+                        try {
+                            min = minEnabled.isChecked() ? Integer.parseInt(minT.toString()) : -1;
+                            max = maxEnabled.isChecked() ? Integer.parseInt(maxT.toString()) : Integer.MAX_VALUE;
+                        } catch (Exception e) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (min > max) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        mMusicFilter.MaxComboDifferenceMinusMin = -min;
+                        mMusicFilter.MaxComboDifferenceMinusMax = max == Integer.MAX_VALUE ? Integer.MIN_VALUE : -max;
+
+                        FilterSetting.this.save();
+                    })
+                    .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> FilterSetting.this.closeKeyboard())
+                    .show();
         });
 
-        this.findViewById(R.id.editComboDifferenceP).setOnClickListener(new OnClickListener() {
-            public void onClick(View arg0) {
+        this.findViewById(R.id.editComboDifferenceP).setOnClickListener(arg0 -> {
 
-                //テキスト入力を受け付けるビューを作成します。
-                final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_difference_edit_with_checkbox, null);
-                ((TextView) mainView.findViewById(R.id.pm1)).setText("+");
-                ((TextView) mainView.findViewById(R.id.pm2)).setText("+");
-                final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
-                final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
-                minEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        minText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.MaxComboDifferencePlusMin < 0) {
-                    minEnabled.setChecked(false);
-                    minText.setText("");
-                } else {
-                    minEnabled.setChecked(true);
-                    minText.setText(String.valueOf(mMusicFilter.MaxComboDifferencePlusMin));
-                }
-                minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
-                final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
-                maxEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        maxText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.MaxComboDifferencePlusMax == Integer.MAX_VALUE) {
-                    maxEnabled.setChecked(false);
-                    maxText.setText("");
-                } else {
-                    maxEnabled.setChecked(true);
-                    maxText.setText(String.valueOf(mMusicFilter.MaxComboDifferencePlusMax));
-                }
-                maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                new AlertDialog.Builder(FilterSetting.this)
-                        //setViewにてビューを設定します。
-                        .setView(mainView)
-                        .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-
-                                Editable minT = minText.getText();
-                                Editable maxT = maxText.getText();
-
-                                int min = mMusicFilter.MaxComboDifferencePlusMin;
-                                int max = mMusicFilter.MaxComboDifferencePlusMax;
-                                try {
-                                    min = minEnabled.isChecked() ? Integer.valueOf(minT.toString()) : -1;
-                                    max = maxEnabled.isChecked() ? Integer.valueOf(maxT.toString()) : Integer.MAX_VALUE;
-                                } catch (Exception e) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-                                if (min > max) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-
-                                mMusicFilter.MaxComboDifferencePlusMin = min;
-                                mMusicFilter.MaxComboDifferencePlusMax = max;
-
-                                FilterSetting.this.save();
-                            }
-                        })
-                        .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-                            }
-                        })
-                        .show();
-
+            //テキスト入力を受け付けるビューを作成します。
+            final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_difference_edit_with_checkbox, null);
+            ((TextView) mainView.findViewById(R.id.pm1)).setText("+");
+            ((TextView) mainView.findViewById(R.id.pm2)).setText("+");
+            final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
+            final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
+            minEnabled.setOnCheckedChangeListener((arg0110, arg1) -> minText.setEnabled(arg1));
+            if (mMusicFilter.MaxComboDifferencePlusMin < 0) {
+                minEnabled.setChecked(false);
+                minText.setText("");
+            } else {
+                minEnabled.setChecked(true);
+                minText.setText(String.valueOf(mMusicFilter.MaxComboDifferencePlusMin));
             }
+            minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
+            final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
+            maxEnabled.setOnCheckedChangeListener((arg019, arg1) -> maxText.setEnabled(arg1));
+            if (mMusicFilter.MaxComboDifferencePlusMax == Integer.MAX_VALUE) {
+                maxEnabled.setChecked(false);
+                maxText.setText("");
+            } else {
+                maxEnabled.setChecked(true);
+                maxText.setText(String.valueOf(mMusicFilter.MaxComboDifferencePlusMax));
+            }
+            maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            new AlertDialog.Builder(FilterSetting.this)
+                    //setViewにてビューを設定します。
+                    .setView(mainView)
+                    .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                        FilterSetting.this.closeKeyboard();
+
+                        Editable minT = minText.getText();
+                        Editable maxT = maxText.getText();
+
+                        int min = mMusicFilter.MaxComboDifferencePlusMin;
+                        int max = mMusicFilter.MaxComboDifferencePlusMax;
+                        try {
+                            min = minEnabled.isChecked() ? Integer.parseInt(minT.toString()) : -1;
+                            max = maxEnabled.isChecked() ? Integer.parseInt(maxT.toString()) : Integer.MAX_VALUE;
+                        } catch (Exception e) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (min > max) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        mMusicFilter.MaxComboDifferencePlusMin = min;
+                        mMusicFilter.MaxComboDifferencePlusMax = max;
+
+                        FilterSetting.this.save();
+                    })
+                    .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> FilterSetting.this.closeKeyboard())
+                    .show();
         });
 
-        this.findViewById(R.id.editPlayCountDifferenceM).setOnClickListener(new OnClickListener() {
-            public void onClick(View arg0) {
+        this.findViewById(R.id.editPlayCountDifferenceM).setOnClickListener(arg0 -> {
 
-                //テキスト入力を受け付けるビューを作成します。
-                final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_difference_edit_with_checkbox, null);
-                final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
-                final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
-                minEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        minText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.PlayCountDifferenceMinusMin > 0) {
-                    minEnabled.setChecked(false);
-                    minText.setText("");
-                } else {
-                    minEnabled.setChecked(true);
-                    minText.setText(String.valueOf(-mMusicFilter.PlayCountDifferenceMinusMin));
-                }
-                minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
-                final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
-                maxEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        maxText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.PlayCountDifferenceMinusMax == Integer.MIN_VALUE) {
-                    maxEnabled.setChecked(false);
-                    maxText.setText("");
-                } else {
-                    maxEnabled.setChecked(true);
-                    maxText.setText(String.valueOf(-mMusicFilter.PlayCountDifferenceMinusMax));
-                }
-                maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                new AlertDialog.Builder(FilterSetting.this)
-                        //setViewにてビューを設定します。
-                        .setView(mainView)
-                        .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-
-                                Editable minT = minText.getText();
-                                Editable maxT = maxText.getText();
-
-                                int min = -mMusicFilter.PlayCountDifferenceMinusMin;
-                                int max = mMusicFilter.PlayCountDifferenceMinusMax == Integer.MIN_VALUE ? Integer.MAX_VALUE : -mMusicFilter.PlayCountDifferenceMinusMax;
-                                try {
-                                    min = minEnabled.isChecked() ? Integer.valueOf(minT.toString()) : -1;
-                                    max = maxEnabled.isChecked() ? Integer.valueOf(maxT.toString()) : Integer.MAX_VALUE;
-                                } catch (Exception e) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-                                if (min > max) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-
-                                mMusicFilter.PlayCountDifferenceMinusMin = -min;
-                                mMusicFilter.PlayCountDifferenceMinusMax = max == Integer.MAX_VALUE ? Integer.MIN_VALUE : -max;
-
-                                FilterSetting.this.save();
-                            }
-                        })
-                        .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-                            }
-                        })
-                        .show();
-
+            //テキスト入力を受け付けるビューを作成します。
+            final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_difference_edit_with_checkbox, null);
+            final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
+            final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
+            minEnabled.setOnCheckedChangeListener((arg018, arg1) -> minText.setEnabled(arg1));
+            if (mMusicFilter.PlayCountDifferenceMinusMin > 0) {
+                minEnabled.setChecked(false);
+                minText.setText("");
+            } else {
+                minEnabled.setChecked(true);
+                minText.setText(String.valueOf(-mMusicFilter.PlayCountDifferenceMinusMin));
             }
+            minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
+            final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
+            maxEnabled.setOnCheckedChangeListener((arg017, arg1) -> maxText.setEnabled(arg1));
+            if (mMusicFilter.PlayCountDifferenceMinusMax == Integer.MIN_VALUE) {
+                maxEnabled.setChecked(false);
+                maxText.setText("");
+            } else {
+                maxEnabled.setChecked(true);
+                maxText.setText(String.valueOf(-mMusicFilter.PlayCountDifferenceMinusMax));
+            }
+            maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            new AlertDialog.Builder(FilterSetting.this)
+                    //setViewにてビューを設定します。
+                    .setView(mainView)
+                    .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                        FilterSetting.this.closeKeyboard();
+
+                        Editable minT = minText.getText();
+                        Editable maxT = maxText.getText();
+
+                        int min = -mMusicFilter.PlayCountDifferenceMinusMin;
+                        int max = mMusicFilter.PlayCountDifferenceMinusMax == Integer.MIN_VALUE ? Integer.MAX_VALUE : -mMusicFilter.PlayCountDifferenceMinusMax;
+                        try {
+                            min = minEnabled.isChecked() ? Integer.parseInt(minT.toString()) : -1;
+                            max = maxEnabled.isChecked() ? Integer.parseInt(maxT.toString()) : Integer.MAX_VALUE;
+                        } catch (Exception e) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (min > max) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        mMusicFilter.PlayCountDifferenceMinusMin = -min;
+                        mMusicFilter.PlayCountDifferenceMinusMax = max == Integer.MAX_VALUE ? Integer.MIN_VALUE : -max;
+
+                        FilterSetting.this.save();
+                    })
+                    .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> FilterSetting.this.closeKeyboard())
+                    .show();
         });
 
-        this.findViewById(R.id.editPlayCountDifferenceP).setOnClickListener(new OnClickListener() {
-            public void onClick(View arg0) {
+        this.findViewById(R.id.editPlayCountDifferenceP).setOnClickListener(arg0 -> {
 
-                //テキスト入力を受け付けるビューを作成します。
-                final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_difference_edit_with_checkbox, null);
-                ((TextView) mainView.findViewById(R.id.pm1)).setText("+");
-                ((TextView) mainView.findViewById(R.id.pm2)).setText("+");
-                final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
-                final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
-                minEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        minText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.PlayCountDifferencePlusMin < 0) {
-                    minEnabled.setChecked(false);
-                    minText.setText("");
-                } else {
-                    minEnabled.setChecked(true);
-                    minText.setText(String.valueOf(mMusicFilter.PlayCountDifferencePlusMin));
-                }
-                minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
-                final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
-                maxEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        maxText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.PlayCountDifferencePlusMax == Integer.MAX_VALUE) {
-                    maxEnabled.setChecked(false);
-                    maxText.setText("");
-                } else {
-                    maxEnabled.setChecked(true);
-                    maxText.setText(String.valueOf(mMusicFilter.PlayCountDifferencePlusMax));
-                }
-                maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                new AlertDialog.Builder(FilterSetting.this)
-                        //setViewにてビューを設定します。
-                        .setView(mainView)
-                        .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-
-                                Editable minT = minText.getText();
-                                Editable maxT = maxText.getText();
-
-                                int min = mMusicFilter.PlayCountDifferencePlusMin;
-                                int max = mMusicFilter.PlayCountDifferencePlusMax;
-                                try {
-                                    min = minEnabled.isChecked() ? Integer.valueOf(minT.toString()) : -1;
-                                    max = maxEnabled.isChecked() ? Integer.valueOf(maxT.toString()) : Integer.MAX_VALUE;
-                                } catch (Exception e) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-                                if (min > max) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-
-                                mMusicFilter.PlayCountDifferencePlusMin = min;
-                                mMusicFilter.PlayCountDifferencePlusMax = max;
-
-                                FilterSetting.this.save();
-                            }
-                        })
-                        .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-                            }
-                        })
-                        .show();
-
+            //テキスト入力を受け付けるビューを作成します。
+            final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_difference_edit_with_checkbox, null);
+            ((TextView) mainView.findViewById(R.id.pm1)).setText("+");
+            ((TextView) mainView.findViewById(R.id.pm2)).setText("+");
+            final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
+            final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
+            minEnabled.setOnCheckedChangeListener((arg016, arg1) -> minText.setEnabled(arg1));
+            if (mMusicFilter.PlayCountDifferencePlusMin < 0) {
+                minEnabled.setChecked(false);
+                minText.setText("");
+            } else {
+                minEnabled.setChecked(true);
+                minText.setText(String.valueOf(mMusicFilter.PlayCountDifferencePlusMin));
             }
+            minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
+            final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
+            maxEnabled.setOnCheckedChangeListener((arg015, arg1) -> maxText.setEnabled(arg1));
+            if (mMusicFilter.PlayCountDifferencePlusMax == Integer.MAX_VALUE) {
+                maxEnabled.setChecked(false);
+                maxText.setText("");
+            } else {
+                maxEnabled.setChecked(true);
+                maxText.setText(String.valueOf(mMusicFilter.PlayCountDifferencePlusMax));
+            }
+            maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            new AlertDialog.Builder(FilterSetting.this)
+                    //setViewにてビューを設定します。
+                    .setView(mainView)
+                    .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                        FilterSetting.this.closeKeyboard();
+
+                        Editable minT = minText.getText();
+                        Editable maxT = maxText.getText();
+
+                        int min = mMusicFilter.PlayCountDifferencePlusMin;
+                        int max = mMusicFilter.PlayCountDifferencePlusMax;
+                        try {
+                            min = minEnabled.isChecked() ? Integer.parseInt(minT.toString()) : -1;
+                            max = maxEnabled.isChecked() ? Integer.parseInt(maxT.toString()) : Integer.MAX_VALUE;
+                        } catch (Exception e) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (min > max) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        mMusicFilter.PlayCountDifferencePlusMin = min;
+                        mMusicFilter.PlayCountDifferencePlusMax = max;
+
+                        FilterSetting.this.save();
+                    })
+                    .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> FilterSetting.this.closeKeyboard())
+                    .show();
         });
 
-        this.findViewById(R.id.editClearCountDifferenceM).setOnClickListener(new OnClickListener() {
-            public void onClick(View arg0) {
+        this.findViewById(R.id.editClearCountDifferenceM).setOnClickListener(arg0 -> {
 
-                //テキスト入力を受け付けるビューを作成します。
-                final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_difference_edit_with_checkbox, null);
-                final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
-                final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
-                minEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        minText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.ClearCountDifferenceMinusMin > 0) {
-                    minEnabled.setChecked(false);
-                    minText.setText("");
-                } else {
-                    minEnabled.setChecked(true);
-                    minText.setText(String.valueOf(-mMusicFilter.ClearCountDifferenceMinusMin));
-                }
-                minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
-                final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
-                maxEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        maxText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.ClearCountDifferenceMinusMax == Integer.MIN_VALUE) {
-                    maxEnabled.setChecked(false);
-                    maxText.setText("");
-                } else {
-                    maxEnabled.setChecked(true);
-                    maxText.setText(String.valueOf(-mMusicFilter.ClearCountDifferenceMinusMax));
-                }
-                maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                new AlertDialog.Builder(FilterSetting.this)
-                        //setViewにてビューを設定します。
-                        .setView(mainView)
-                        .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-
-                                Editable minT = minText.getText();
-                                Editable maxT = maxText.getText();
-
-                                int min = -mMusicFilter.ClearCountDifferenceMinusMin;
-                                int max = mMusicFilter.ClearCountDifferenceMinusMax == Integer.MIN_VALUE ? Integer.MAX_VALUE : -mMusicFilter.ClearCountDifferenceMinusMax;
-                                try {
-                                    min = minEnabled.isChecked() ? Integer.valueOf(minT.toString()) : -1;
-                                    max = maxEnabled.isChecked() ? Integer.valueOf(maxT.toString()) : Integer.MAX_VALUE;
-                                } catch (Exception e) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-                                if (min > max) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-
-                                mMusicFilter.ClearCountDifferenceMinusMin = -min;
-                                mMusicFilter.ClearCountDifferenceMinusMax = max == Integer.MAX_VALUE ? Integer.MIN_VALUE : -max;
-
-                                FilterSetting.this.save();
-                            }
-                        })
-                        .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-                            }
-                        })
-                        .show();
-
+            //テキスト入力を受け付けるビューを作成します。
+            final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_difference_edit_with_checkbox, null);
+            final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
+            final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
+            minEnabled.setOnCheckedChangeListener((arg014, arg1) -> minText.setEnabled(arg1));
+            if (mMusicFilter.ClearCountDifferenceMinusMin > 0) {
+                minEnabled.setChecked(false);
+                minText.setText("");
+            } else {
+                minEnabled.setChecked(true);
+                minText.setText(String.valueOf(-mMusicFilter.ClearCountDifferenceMinusMin));
             }
+            minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
+            final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
+            maxEnabled.setOnCheckedChangeListener((arg013, arg1) -> maxText.setEnabled(arg1));
+            if (mMusicFilter.ClearCountDifferenceMinusMax == Integer.MIN_VALUE) {
+                maxEnabled.setChecked(false);
+                maxText.setText("");
+            } else {
+                maxEnabled.setChecked(true);
+                maxText.setText(String.valueOf(-mMusicFilter.ClearCountDifferenceMinusMax));
+            }
+            maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            new AlertDialog.Builder(FilterSetting.this)
+                    //setViewにてビューを設定します。
+                    .setView(mainView)
+                    .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                        FilterSetting.this.closeKeyboard();
+
+                        Editable minT = minText.getText();
+                        Editable maxT = maxText.getText();
+
+                        int min = -mMusicFilter.ClearCountDifferenceMinusMin;
+                        int max = mMusicFilter.ClearCountDifferenceMinusMax == Integer.MIN_VALUE ? Integer.MAX_VALUE : -mMusicFilter.ClearCountDifferenceMinusMax;
+                        try {
+                            min = minEnabled.isChecked() ? Integer.parseInt(minT.toString()) : -1;
+                            max = maxEnabled.isChecked() ? Integer.parseInt(maxT.toString()) : Integer.MAX_VALUE;
+                        } catch (Exception e) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (min > max) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        mMusicFilter.ClearCountDifferenceMinusMin = -min;
+                        mMusicFilter.ClearCountDifferenceMinusMax = max == Integer.MAX_VALUE ? Integer.MIN_VALUE : -max;
+
+                        FilterSetting.this.save();
+                    })
+                    .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> FilterSetting.this.closeKeyboard())
+                    .show();
         });
 
-        this.findViewById(R.id.editClearCountDifferenceP).setOnClickListener(new OnClickListener() {
-            public void onClick(View arg0) {
+        this.findViewById(R.id.editClearCountDifferenceP).setOnClickListener(arg0 -> {
 
-                //テキスト入力を受け付けるビューを作成します。
-                final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_difference_edit_with_checkbox, null);
-                ((TextView) mainView.findViewById(R.id.pm1)).setText("+");
-                ((TextView) mainView.findViewById(R.id.pm2)).setText("+");
-                final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
-                final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
-                minEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        minText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.ClearCountDifferencePlusMin < 0) {
-                    minEnabled.setChecked(false);
-                    minText.setText("");
-                } else {
-                    minEnabled.setChecked(true);
-                    minText.setText(String.valueOf(mMusicFilter.ClearCountDifferencePlusMin));
-                }
-                minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
-                final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
-                maxEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                        maxText.setEnabled(arg1);
-                    }
-                });
-                if (mMusicFilter.ClearCountDifferencePlusMax == Integer.MAX_VALUE) {
-                    maxEnabled.setChecked(false);
-                    maxText.setText("");
-                } else {
-                    maxEnabled.setChecked(true);
-                    maxText.setText(String.valueOf(mMusicFilter.ClearCountDifferencePlusMax));
-                }
-                maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
-                new AlertDialog.Builder(FilterSetting.this)
-                        //setViewにてビューを設定します。
-                        .setView(mainView)
-                        .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-
-                                Editable minT = minText.getText();
-                                Editable maxT = maxText.getText();
-
-                                int min = mMusicFilter.ClearCountDifferencePlusMin;
-                                int max = mMusicFilter.ClearCountDifferencePlusMax;
-                                try {
-                                    min = minEnabled.isChecked() ? Integer.valueOf(minT.toString()) : -1;
-                                    max = maxEnabled.isChecked() ? Integer.valueOf(maxT.toString()) : Integer.MAX_VALUE;
-                                } catch (Exception e) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-                                if (min > max) {
-                                    Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-
-                                mMusicFilter.ClearCountDifferencePlusMin = min;
-                                mMusicFilter.ClearCountDifferencePlusMax = max;
-
-                                FilterSetting.this.save();
-                            }
-                        })
-                        .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                FilterSetting.this.closeKeyboard();
-                            }
-                        })
-                        .show();
-
+            //テキスト入力を受け付けるビューを作成します。
+            final View mainView = FilterSetting.this.getLayoutInflater().inflate(R.layout.view_difference_edit_with_checkbox, null);
+            ((TextView) mainView.findViewById(R.id.pm1)).setText("+");
+            ((TextView) mainView.findViewById(R.id.pm2)).setText("+");
+            final EditText minText = (EditText) mainView.findViewById(R.id.minScore);
+            final CheckBox minEnabled = (CheckBox) mainView.findViewById(R.id.minEnabled);
+            minEnabled.setOnCheckedChangeListener((arg012, arg1) -> minText.setEnabled(arg1));
+            if (mMusicFilter.ClearCountDifferencePlusMin < 0) {
+                minEnabled.setChecked(false);
+                minText.setText("");
+            } else {
+                minEnabled.setChecked(true);
+                minText.setText(String.valueOf(mMusicFilter.ClearCountDifferencePlusMin));
             }
+            minText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            final EditText maxText = (EditText) mainView.findViewById(R.id.maxScore);
+            final CheckBox maxEnabled = (CheckBox) mainView.findViewById(R.id.maxEnabled);
+            maxEnabled.setOnCheckedChangeListener((arg01, arg1) -> maxText.setEnabled(arg1));
+            if (mMusicFilter.ClearCountDifferencePlusMax == Integer.MAX_VALUE) {
+                maxEnabled.setChecked(false);
+                maxText.setText("");
+            } else {
+                maxEnabled.setChecked(true);
+                maxText.setText(String.valueOf(mMusicFilter.ClearCountDifferencePlusMax));
+            }
+            maxText.setOnFocusChangeListener(showKeyBoardOnFocusChange);
+            new AlertDialog.Builder(FilterSetting.this)
+                    //setViewにてビューを設定します。
+                    .setView(mainView)
+                    .setPositiveButton(FilterSetting.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                        FilterSetting.this.closeKeyboard();
+
+                        Editable minT = minText.getText();
+                        Editable maxT = maxText.getText();
+
+                        int min = mMusicFilter.ClearCountDifferencePlusMin;
+                        int max = mMusicFilter.ClearCountDifferencePlusMax;
+                        try {
+                            min = minEnabled.isChecked() ? Integer.parseInt(minT.toString()) : -1;
+                            max = maxEnabled.isChecked() ? Integer.parseInt(maxT.toString()) : Integer.MAX_VALUE;
+                        } catch (Exception e) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error1), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (min > max) {
+                            Toast.makeText(FilterSetting.this, FilterSetting.this.getResources().getString(R.string.score_list_rival_difference_edit_error2), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        mMusicFilter.ClearCountDifferencePlusMin = min;
+                        mMusicFilter.ClearCountDifferencePlusMax = max;
+
+                        FilterSetting.this.save();
+                    })
+                    .setNegativeButton(FilterSetting.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> FilterSetting.this.closeKeyboard())
+                    .show();
         });
 
         ((TextView) this.findViewById(R.id.scoreMin)).setText(TextUtil.getScoreText(mMusicFilter.ScoreMin));
@@ -1486,7 +1235,6 @@ public class FilterSetting extends Activity {
         ((CheckBox) this.findViewById(R.id.ser3rd)).setChecked(mMusicFilter.Ser3rd);
         ((CheckBox) this.findViewById(R.id.ser2nd)).setChecked(mMusicFilter.Ser2nd);
         ((CheckBox) this.findViewById(R.id.ser1st)).setChecked(mMusicFilter.Ser1st);
-
     }
 
     private void initialize() {
@@ -1500,13 +1248,7 @@ public class FilterSetting extends Activity {
         intent.putExtra("jp.linanfine.dsma.pagerid", mPagerId);
         this.setResult(RESULT_OK, intent);
 
-        OnClickListener ccl = new OnClickListener() {
-
-            public void onClick(View v) {
-                FilterSetting.this.save();
-            }
-
-        };
+        OnClickListener ccl = v -> FilterSetting.this.save();
 
         this.findViewById(R.id.bSP).setOnClickListener(ccl);
         this.findViewById(R.id.BSP).setOnClickListener(ccl);
@@ -1679,88 +1421,68 @@ public class FilterSetting extends Activity {
         this.findViewById(R.id.deselectAllButtonClassic)
                 .setOnClickListener(v -> setAllCheckBoxes(classicCheckBoxes, false));
 
-
         setItemStatuses();
-
 
         ((TextView) FilterSetting.this.findViewById(R.id.tabName)).setText(FileReader.readMusicFilterName(this, mPagerId));
         View editTabName = this.findViewById(R.id.editTabName);
-        editTabName.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
-                //テキスト入力を受け付けるビューを作成します。
-                final EditText editView = (EditText) FilterSetting.this.getLayoutInflater().inflate(R.layout.view_singleline_edit_text, null).findViewById(R.id.editText);
-                editView.setText(((TextView) FilterSetting.this.findViewById(R.id.tabName)).getText());
-                editView.setOnFocusChangeListener(new OnFocusChangeListener() {
-                    public void onFocusChange(View view, boolean focused) {
-                        if (focused) {
-                            mHandledView = view;
-                            mHandler.post(new Runnable() {
-                                public void run() {
-                                    InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                    inputMethodManager.showSoftInput(mHandledView, InputMethodManager.SHOW_FORCED);
-                                }
-                            });
-                        }
-                    }
-                });
-                new AlertDialog.Builder(FilterSetting.this)
-                        .setIcon(android.R.drawable.ic_dialog_info)
-                        .setTitle(FilterSetting.this.getResources().getString(R.string.edit_filter_name))
-                        //setViewにてビューを設定します。
-                        .setView(editView)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
-                                ((TextView) FilterSetting.this.findViewById(R.id.tabName)).setText(editView.getText());
-                                FilterSetting.this.save();
-                            }
-                        })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
-                            }
-                        })
-                        .show();
-            }
+        editTabName.setOnClickListener(view -> {
+            //テキスト入力を受け付けるビューを作成します。
+            final EditText editView = (EditText) FilterSetting.this.getLayoutInflater().inflate(R.layout.view_singleline_edit_text, null).findViewById(R.id.editText);
+            editView.setText(((TextView) FilterSetting.this.findViewById(R.id.tabName)).getText());
+            editView.setOnFocusChangeListener((view1, focused) -> {
+                if (focused) {
+                    mHandledView = view1;
+                    mHandler.post(() -> {
+                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        inputMethodManager.showSoftInput(mHandledView, InputMethodManager.SHOW_FORCED);
+                    });
+                }
+            });
+            new AlertDialog.Builder(FilterSetting.this)
+                    .setIcon(drawable.ic_dialog_info)
+                    .setTitle(FilterSetting.this.getResources().getString(R.string.edit_filter_name))
+                    //setViewにてビューを設定します。
+                    .setView(editView)
+                    .setPositiveButton("OK", (dialog, whichButton) -> {
+                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                        ((TextView) FilterSetting.this.findViewById(R.id.tabName)).setText(editView.getText());
+                        FilterSetting.this.save();
+                    })
+                    .setNegativeButton("Cancel", (dialog, whichButton) -> {
+                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                    })
+                    .show();
         });
 
         View deleteFilter = this.findViewById(R.id.delete);
         if (mPagerId == 0) deleteFilter.setVisibility(View.GONE);
-        deleteFilter.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
+        deleteFilter.setOnClickListener(view -> {
 
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(FilterSetting.this);
-                // アラートダイアログのタイトルを設定します
-                alertDialogBuilder.setIcon(drawable.ic_dialog_alert);
-                alertDialogBuilder.setTitle(getResources().getString(R.string.filter_setting_delete));
-                // アラートダイアログのメッセージを設定します
-                alertDialogBuilder.setMessage(getResources().getString(R.string.filter_setting_deleteconferm));
-                // アラートダイアログの肯定ボタンがクリックされた時に呼び出されるコールバックリスナーを登録します
-                alertDialogBuilder.setPositiveButton(getResources().getString(R.string.strings_global____ok),
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                FileReader.deleteMusicFilter(FilterSetting.this, mPagerId);
-                                FileReader.saveActiveMusicFilter(FilterSetting.this, mPagerId - 1);
-                                FilterSetting.this.finish();
-                            }
-                        });
-                // アラートダイアログの否定ボタンがクリックされた時に呼び出されるコールバックリスナーを登録します
-                alertDialogBuilder.setNegativeButton(getResources().getString(R.string.strings_global____cancel),
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
-                        });
-                // アラートダイアログのキャンセルが可能かどうかを設定します
-                alertDialogBuilder.setCancelable(true);
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                // アラートダイアログを表示します
-                alertDialog.show();
-
-            }
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(FilterSetting.this);
+            // アラートダイアログのタイトルを設定します
+            alertDialogBuilder.setIcon(drawable.ic_dialog_alert);
+            alertDialogBuilder.setTitle(getResources().getString(R.string.filter_setting_delete));
+            // アラートダイアログのメッセージを設定します
+            alertDialogBuilder.setMessage(getResources().getString(R.string.filter_setting_deleteconferm));
+            // アラートダイアログの肯定ボタンがクリックされた時に呼び出されるコールバックリスナーを登録します
+            alertDialogBuilder.setPositiveButton(getResources().getString(R.string.strings_global____ok),
+                    (dialog, which) -> {
+                        FileReader.deleteMusicFilter(FilterSetting.this, mPagerId);
+                        FileReader.saveActiveMusicFilter(FilterSetting.this, mPagerId - 1);
+                        FilterSetting.this.finish();
+                    });
+            // アラートダイアログの否定ボタンがクリックされた時に呼び出されるコールバックリスナーを登録します
+            alertDialogBuilder.setNegativeButton(getResources().getString(R.string.strings_global____cancel),
+                    (dialog, which) -> {
+                    });
+            // アラートダイアログのキャンセルが可能かどうかを設定します
+            alertDialogBuilder.setCancelable(true);
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            // アラートダイアログを表示します
+            alertDialog.show();
         });
-
     }
 
     private void setAllCheckBoxes(List<CheckBox> checkBoxes, boolean isChecked) {
