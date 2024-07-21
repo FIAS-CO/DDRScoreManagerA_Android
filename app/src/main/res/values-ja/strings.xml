@@ -2,9 +2,11 @@
 <resources>
     
     <string name="strings____Dialog_UpdateInfo____updates">
-[2024/06/25] 0.143.24062500\n
-* Update: DDR WORLDスタート！\nGOLD/WHITE/CLASSICのカテゴリ分けに関して楽曲フィルターの改善を行いました。
-    </string>
+[2024/07/21] 0.144.24072100\n
+* Update:\n
+- 「直接編集」画面でフレアランクを記録できるようになりました\n
+- 一覧画面でフレアランク、フレアスキルを閲覧できるようになりました。「共通設定」から表示設定が可能です\n
+- 記録したフレアランク、フレアスキルでソート、フィルターが可能になりました    </string>
     
     <string name="strings_global____app_name">DDR Score Manager A</string>
     

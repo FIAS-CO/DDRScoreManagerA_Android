@@ -2,11 +2,12 @@
 <resources>
 
   <string name="strings____Dialog_UpdateInfo____updates">
-    <string name="strings____Dialog_UpdateInfo____updates">
-[2024/06/25] 0.143.24062500\n
-* Update: DDR WORLD 시작! \nGOLD/WHITE/CLASSIC의 카테고리 구분과 관련하여 곡 필터를 개선하였습니다.\n
-    </string>
-   </string>
+[2024/07/21] 0.144.24072100\n
+* Update:\n
+- "직접 편집" 화면에서 플레어 랭크를 기록할 수 있게 되었습니다.\n
+- 목록 화면에서 플레어 랭크, 플레어 스킬을 열람할 수 있게 되었습니다. "공통 설정"에서 표시 설정이 가능합니다.\n
+- 기록된 플레어 랭크, 플레어 스킬에 따라 곡을 정렬, 필터링할 수 있게 되었습니다.
+  </string>
 
   <string name="strings_global____app_name">DDR Score Manager A</string>
   <string name="strings_global____leader">...</string>

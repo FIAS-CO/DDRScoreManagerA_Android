@@ -3,9 +3,11 @@
 
     <string name="strings____Dialog_UpdateInfo____updates">
     <string name="strings____Dialog_UpdateInfo____updates">
-[2024/06/25] 0.143.24062500\n
-* Update: DDR WORLD has started!\nWe have improved the song filter for the \nGOLD/WHITE/CLASSIC categorization.\n
-    </string>
+[2024/07/21] 0.144.24072100\n
+* Update:\n
+- Flare ranks can now be recorded on the Direct Edit screen.\n
+- Flare rank and flare skill can now be viewed on the list screen. (The display settings can be configured in the Preferences menu.)\n
+- It is now possible to sort and filter songs by recorded flare rank and flare skill.</string>
     </string>
     
     <string name="strings_global____app_name">DDR Score Manager A</string>
