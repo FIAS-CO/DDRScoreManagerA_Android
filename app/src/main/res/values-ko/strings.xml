@@ -399,5 +399,7 @@
   <string name="strings_____Dialog_UpdateInfo____versionInfoTitle">업데이트 정보</string>
   <string name="filter_setting_flare_rank">Flare Rank</string>
   <string name="filter_setting_flare_skill">Flare Skill</string>
+    <string name="show_flare_rank">Flare Rank</string>
+  <string name="show_flare_skill">Flare Skill</string>
 
 </resources>

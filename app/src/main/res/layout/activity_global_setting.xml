@@ -349,6 +349,18 @@
                 android:text="@string/show_score" />
 
             <CheckBox
+                android:id="@+id/showFlareRank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_flare_rank" />
+
+            <CheckBox
+                android:id="@+id/showFlareSkill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_flare_skill" />
+
+            <CheckBox
                 android:id="@+id/showDanceLevel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

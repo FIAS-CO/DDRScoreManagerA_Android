@@ -740,6 +740,8 @@ public class FileReader {
         e.putBoolean("ShowComments", appearances.ShowComments);
         e.putBoolean("ShowFullScreen", appearances.ShowFullScreen);
         e.putBoolean("ShowTitleBar", appearances.ShowTitleBar);
+        e.putBoolean("ShowFlareRank", appearances.ShowFlareRank);
+        e.putBoolean("ShowFlareSkill", appearances.ShowFlareSkill);
         e.putInt("CategoryTopFontSize", (int) appearances.CategoryTopFontSize);
         e.putInt("CategorySubItemFontSize", (int) appearances.CategorySubItemFontSize);
         e.putInt("ItemMusicLevelFontSize", (int) appearances.ItemMusicLevelFontSize);
@@ -750,7 +752,7 @@ public class FileReader {
         e.putFloat("ItemMusicNameFontSizeX", appearances.ItemMusicNameFontSizeX);
         e.putFloat("ItemMusicRankFontSizeX", appearances.ItemMusicRankFontSizeX);
         e.putFloat("ItemMusicScoreFontSizeX", appearances.ItemMusicScoreFontSizeX);
-        e.commit();
+        e.apply();
     }
 
     public static AppearanceSettingsSp readAppearanceSettings(Context context) {
@@ -764,6 +766,8 @@ public class FileReader {
         ret.ShowComments = pref.getBoolean("ShowComments", true);
         ret.ShowFullScreen = pref.getBoolean("ShowFullScreen", false);
         ret.ShowTitleBar = pref.getBoolean("ShowTitleBar", true);
+        ret.ShowFlareRank = pref.getBoolean("ShowFlareRank", true);
+        ret.ShowFlareSkill = pref.getBoolean("ShowFlareSkill", true);
         ret.CategoryTopFontSize = pref.getInt("CategoryTopFontSize", 35);
         ret.CategorySubItemFontSize = pref.getInt("CategorySubItemFontSize", 25);
         ret.ItemMusicLevelFontSize = pref.getInt("ItemMusicLevelFontSize", 23);

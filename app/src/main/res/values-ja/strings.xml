@@ -474,5 +474,7 @@
     <string name="strings_____Dialog_UpdateInfo____versionInfoTitle">アップデート情報</string>
     <string name="filter_setting_flare_rank">フレアランク</string>
     <string name="filter_setting_flare_skill">フレアスキル</string>
+    <string name="show_flare_rank">フレアランク</string>
+    <string name="show_flare_skill">フレアスキル</string>
 
 </resources>

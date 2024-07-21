@@ -121,12 +121,16 @@ public class GlobalSetting extends Activity {
         ((CheckBox) this.findViewById(R.id.autoUpdateMusicList)).setChecked(mAutoUpdateMusicList);
         ((CheckBox) this.findViewById(R.id.useAsyncDraw)).setChecked(mUseAsyncDraw);
         ((CheckBox) this.findViewById(R.id.useOldStyleDraw)).setChecked(mUseOldStyleDraw);
+
         ((CheckBox) this.findViewById(R.id.showMaxCombo)).setChecked(mAppearances.ShowMaxCombo);
         ((CheckBox) this.findViewById(R.id.showScore)).setChecked(mAppearances.ShowScore);
+        ((CheckBox) this.findViewById(R.id.showFlareRank)).setChecked(mAppearances.ShowFlareRank);
+        ((CheckBox) this.findViewById(R.id.showFlareSkill)).setChecked(mAppearances.ShowFlareSkill);
         ((CheckBox) this.findViewById(R.id.showDanceLevel)).setChecked(mAppearances.ShowDanceLevel);
         ((CheckBox) this.findViewById(R.id.showPlayCount)).setChecked(mAppearances.ShowPlayCount);
         ((CheckBox) this.findViewById(R.id.showClearCount)).setChecked(mAppearances.ShowClearCount);
         ((CheckBox) this.findViewById(R.id.showComment)).setChecked(mAppearances.ShowComments);
+
         ((CheckBox) this.findViewById(R.id.fullScreen)).setChecked(mAppearances.ShowFullScreen);
         ((CheckBox) this.findViewById(R.id.titleBarVisible)).setVisibility(View.GONE);
         ((CheckBox) this.findViewById(R.id.titleBarVisible)).setChecked(mAppearances.ShowTitleBar);
@@ -187,14 +191,18 @@ public class GlobalSetting extends Activity {
             mGateSetting.FromNewSite = ((CheckBox) GlobalSetting.this.findViewById(R.id.fromNewSite)).isChecked();
             mGateSetting.OverWriteLife4 = ((CheckBox) GlobalSetting.this.findViewById(R.id.overwriteLife4)).isChecked();
             mGateSetting.OverWriteLowerScores = ((CheckBox) GlobalSetting.this.findViewById(R.id.overwriteLowerScores)).isChecked();
+
             mAppearances.ShowMaxCombo = ((CheckBox) GlobalSetting.this.findViewById(R.id.showMaxCombo)).isChecked();
             mAppearances.ShowScore = ((CheckBox) GlobalSetting.this.findViewById(R.id.showScore)).isChecked();
+            mAppearances.ShowFlareRank = ((CheckBox) GlobalSetting.this.findViewById(R.id.showFlareRank)).isChecked();
+            mAppearances.ShowFlareSkill = ((CheckBox) GlobalSetting.this.findViewById(R.id.showFlareSkill)).isChecked();
             mAppearances.ShowDanceLevel = ((CheckBox) GlobalSetting.this.findViewById(R.id.showDanceLevel)).isChecked();
             mAppearances.ShowPlayCount = ((CheckBox) GlobalSetting.this.findViewById(R.id.showPlayCount)).isChecked();
             mAppearances.ShowClearCount = ((CheckBox) GlobalSetting.this.findViewById(R.id.showClearCount)).isChecked();
             mAppearances.ShowComments = ((CheckBox) GlobalSetting.this.findViewById(R.id.showComment)).isChecked();
             mAppearances.ShowFullScreen = ((CheckBox) GlobalSetting.this.findViewById(R.id.fullScreen)).isChecked();
             mAppearances.ShowTitleBar = ((CheckBox) GlobalSetting.this.findViewById(R.id.titleBarVisible)).isChecked();
+
             FileReader.saveGateSetting(GlobalSetting.this, mGateSetting);
             FileReader.saveAutoUpdateMusicList(GlobalSetting.this, mAutoUpdateMusicList);
             FileReader.saveCloseCategoryOnBackKeyPressed(GlobalSetting.this, ((CheckBox) GlobalSetting.this.findViewById(R.id.closeCategoryOnBackKeyPressed)).isChecked());
@@ -211,6 +219,8 @@ public class GlobalSetting extends Activity {
         ((CheckBox) GlobalSetting.this.findViewById(R.id.closeCategoryOnBackKeyPressed)).setOnCheckedChangeListener(ccl);
         ((CheckBox) GlobalSetting.this.findViewById(R.id.showMaxCombo)).setOnCheckedChangeListener(ccl);
         ((CheckBox) GlobalSetting.this.findViewById(R.id.showScore)).setOnCheckedChangeListener(ccl);
+        ((CheckBox) GlobalSetting.this.findViewById(R.id.showFlareRank)).setOnCheckedChangeListener(ccl);
+        ((CheckBox) GlobalSetting.this.findViewById(R.id.showFlareSkill)).setOnCheckedChangeListener(ccl);
         ((CheckBox) GlobalSetting.this.findViewById(R.id.showDanceLevel)).setOnCheckedChangeListener(ccl);
         ((CheckBox) GlobalSetting.this.findViewById(R.id.showPlayCount)).setOnCheckedChangeListener(ccl);
         ((CheckBox) GlobalSetting.this.findViewById(R.id.showClearCount)).setOnCheckedChangeListener(ccl);

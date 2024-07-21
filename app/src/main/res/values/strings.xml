@@ -498,5 +498,7 @@
     <string name="filter_setting_deselect_all">DeselectAll</string>
     <string name="filter_setting_flare_rank">Flare Rank</string>
     <string name="filter_setting_flare_skill">Flare Skill</string>
+    <string name="show_flare_rank">Flare Rank</string>
+    <string name="show_flare_skill">Flare Skill</string>
 
 </resources>
