@@ -9,8 +9,6 @@ import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.ClipboardManager;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnCancelListener;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -223,37 +221,35 @@ public class ScoreList extends Activity {
         }
 
         new AlertDialog.Builder(ScoreList.this)
-                .setItems((String[]) str_items.toArray(new String[0]), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                switch (which) {
-                                    case 0:
-                                        userActionOpenPreference();
-                                        break;
-                                    case 1:
-                                        userActionShowStatistics();
-                                        break;
-                                    case 2:
-                                        userActionShowStatus();
-                                        break;
-                                    case 3:
-                                        userActionManageRivals();
-                                        break;
-                                    case 4:
-                                        userActionCopyToClipboardList();
-                                        break;
-                                    case 5:
-                                        userActionFromGateList();
-                                        break;
-                                    case 6:
-                                        userActionSou();
-                                        break;
-                                    case 7:
-                                        userActionOmikuji();
-                                        break;
-                                    case 8:
-                                        userActionOpenFromGateRecent();
-                                        break;
-                                }
+                .setItems((String[]) str_items.toArray(new String[0]), (dialog, which) -> {
+                            switch (which) {
+                                case 0:
+                                    userActionOpenPreference();
+                                    break;
+                                case 1:
+                                    userActionShowStatistics();
+                                    break;
+                                case 2:
+                                    userActionShowStatus();
+                                    break;
+                                case 3:
+                                    userActionManageRivals();
+                                    break;
+                                case 4:
+                                    userActionCopyToClipboardList();
+                                    break;
+                                case 5:
+                                    userActionFromGateList();
+                                    break;
+                                case 6:
+                                    userActionSou();
+                                    break;
+                                case 7:
+                                    userActionOmikuji();
+                                    break;
+                                case 8:
+                                    userActionOpenFromGateRecent();
+                                    break;
                             }
                         }
                 ).show();
@@ -261,12 +257,10 @@ public class ScoreList extends Activity {
     }
 
     private void userActionOpenPreference() {
-
         Intent intent = new Intent();
         intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.GlobalSetting");
 
         startActivityForResult(intent, 1);
-
     }
 
     private ScoreData getScoreDataOfPattern(MusicScore ms, PatternType pat) {
@@ -649,12 +643,10 @@ public class ScoreList extends Activity {
         new AlertDialog.Builder(ScoreList.this)
                 .setTitle(c + " (" + FileReader.readMusicFilterName(this, mFilterSpinner.getSelectedItemPosition()) + ")")
                 .setView(v)
-                .setNegativeButton(this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (dialog != null) {
-                            dialog.cancel();
-                            dialog = null;
-                        }
+                .setNegativeButton(this.getResources().getString(R.string.strings_global____ok), (dialog, which) -> {
+                    if (dialog != null) {
+                        dialog.cancel();
+                        dialog = null;
                     }
                 })
                 .show();
@@ -684,38 +676,41 @@ public class ScoreList extends Activity {
         new AlertDialog.Builder(ScoreList.this)
                 .setTitle(getResources().getString(R.string.strings____Dialog_GetScores____getScore))
                 .setMessage(getResources().getString(R.string.strings____Dialog_GetScores____getScoreMessage))
-                .setPositiveButton(getResources().getString(R.string.strings____Dialog_GetScores____getScoreTypeSp), new OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        mFromGateListGetDouble = false;
-                        showDialogFromGateList();
-                    }
+                .setPositiveButton(getResources().getString(R.string.strings____Dialog_GetScores____getScoreTypeSp), (dialog, which) -> {
+                    mFromGateListGetDouble = false;
+                    showDialogFromGateList();
                 })
-                .setNeutralButton(getResources().getString(R.string.strings____Dialog_GetScores____getScoreTypeDp), new OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        mFromGateListGetDouble = true;
-                        showDialogFromGateList();
-                    }
+                .setNeutralButton(getResources().getString(R.string.strings____Dialog_GetScores____getScoreTypeDp), (dialog, which) -> {
+                    mFromGateListGetDouble = true;
+                    showDialogFromGateList();
                 })
-                .setNegativeButton(getResources().getString(R.string.strings_global____cancel), new OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
+                .setNegativeButton(getResources().getString(R.string.strings_global____cancel), (dialog, which) -> {
                 })
                 .show();
-
-
     }
 
     private void userActionSou() {
-
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ScoreList.this);
         alertDialogBuilder.setIcon(drawable.ic_dialog_alert);
         alertDialogBuilder.setTitle(getResources().getString(R.string.sou_dialog_title_lang));
         alertDialogBuilder.setMessage(getResources().getString(R.string.sou_dialog_message_lang));
         alertDialogBuilder.setPositiveButton(getResources().getString(R.string.dialog_sou_myscore),
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
+                (dialog, which) -> {
+                    mSouNext = 0;
+                    mSouTargetRival = false;
+                    mSouList.clear();
+                    MusicDataAdapter mda = ((MusicDataAdapter) mScoreListView.getAdapter());
+                    int count = mda.getCount();
+                    for (int i = 0; i < count; i++) {
+                        mSouList.add(mda.getItem(i));
+                    }
+                    showDialogFromGateSou();
+                });
+        if (mActiveRivalId != null && mActiveRivalId != "00000000") {
+            alertDialogBuilder.setNeutralButton(getResources().getString(R.string.dialog_sou_rivalscore),
+                    (dialog, which) -> {
                         mSouNext = 0;
-                        mSouTargetRival = false;
+                        mSouTargetRival = true;
                         mSouList.clear();
                         MusicDataAdapter mda = ((MusicDataAdapter) mScoreListView.getAdapter());
                         int count = mda.getCount();
@@ -723,129 +718,33 @@ public class ScoreList extends Activity {
                             mSouList.add(mda.getItem(i));
                         }
                         showDialogFromGateSou();
-                        //souGetNext();
-                    }
-                });
-        if (mActiveRivalId != null && mActiveRivalId != "00000000") {
-            alertDialogBuilder.setNeutralButton(getResources().getString(R.string.dialog_sou_rivalscore),
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            mSouNext = 0;
-                            mSouTargetRival = true;
-                            mSouList.clear();
-                            MusicDataAdapter mda = ((MusicDataAdapter) mScoreListView.getAdapter());
-                            int count = mda.getCount();
-                            for (int i = 0; i < count; i++) {
-                                mSouList.add(mda.getItem(i));
-                            }
-                            showDialogFromGateSou();
-                            //souGetNext();
-                        }
                     });
         }
         alertDialogBuilder.setNegativeButton(getResources().getString(R.string.strings_global____cancel),
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
+                (dialog, which) -> {
                 });
         alertDialogBuilder.setCancelable(true);
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
-
-        /*AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ScoreList.this);
-        alertDialogBuilder.setIcon(drawable.ic_dialog_alert);
-        alertDialogBuilder.setTitle(getResources().getString(R.string.sou_dialog_title));
-        alertDialogBuilder.setMessage(getResources().getString(R.string.sou_dialog_message));
-        alertDialogBuilder.setPositiveButton(getResources().getString(R.string.ok),
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                    	mSouNext = 0;
-                    	mSouList.clear();
-                    	MusicDataAdapter mda = ((MusicDataAdapter)mScoreListView.getAdapter());
-                    	int count = mda.getCount();
-                    	for(int i = 0; i < count; i++)
-                    	{
-                    		mSouList.add(mda.getItem(i));
-                    	}
-                    	souGetNext();
-                    }
-                });
-        alertDialogBuilder.setNeutralButton(getResources().getString(R.string.cancel),
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-        alertDialogBuilder.setNegativeButton(getResources().getString(R.string.sou_dialog_wakegawakaranaiyo),
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-
-        		        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ScoreList.this);
-        		        alertDialogBuilder.setIcon(drawable.ic_dialog_alert);
-        		        alertDialogBuilder.setTitle(getResources().getString(R.string.sou_dialog_title_lang));
-        		        alertDialogBuilder.setMessage(getResources().getString(R.string.sou_dialog_message_lang));
-        		        alertDialogBuilder.setPositiveButton(getResources().getString(R.string.ok),
-        		                new DialogInterface.OnClickListener() {
-        		                    public void onClick(DialogInterface dialog, int which) {
-        		                    	mSouNext = 0;
-        		                    	mSouList.clear();
-        		                    	MusicDataAdapter mda = ((MusicDataAdapter)mScoreListView.getAdapter());
-        		                    	int count = mda.getCount();
-        		                    	for(int i = 0; i < count; i++)
-        		                    	{
-        		                    		mSouList.add(mda.getItem(i));
-        		                    	}
-        		                    	souGetNext();
-        		                    }
-        		                });
-        		        alertDialogBuilder.setNeutralButton(getResources().getString(R.string.cancel),
-        		                new DialogInterface.OnClickListener() {
-        		                    public void onClick(DialogInterface dialog, int which) {
-        		                    }
-        		                });
-        		        alertDialogBuilder.setNegativeButton(getResources().getString(R.string.sou_dialog_title),
-        		                new DialogInterface.OnClickListener() {
-        		                    public void onClick(DialogInterface dialog, int which) {
-
-        		        		        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://blog.livedoor.jp/dbm_capture/archives/51914640.html"));
-        		        		 
-        		        		        startActivityForResult(intent, 1);
-
-        		                    }
-        		                });
-        		        alertDialogBuilder.setCancelable(true);
-        		        AlertDialog alertDialog = alertDialogBuilder.create();
-        		        alertDialog.show();
-
-                    }
-                });
-        alertDialogBuilder.setCancelable(true);
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();*/
-
     }
 
     private void userActionOpenFilterSetting() {
-
         Intent intent = new Intent();
         intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.FilterSetting");
         intent.putExtra("jp.linanfine.dsma.pagerid", mFilterSpinner.getSelectedItemPosition());
 
         startActivityForResult(intent, 1);
-
     }
 
     private void userActionOpenSortSetting() {
-
         Intent intent = new Intent();
         intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.SortSetting");
         intent.putExtra("jp.linanfine.dsma.pagerid", mSortSpinner.getSelectedItemPosition());
 
         startActivityForResult(intent, 1);
-
     }
 
     private void userActionSelectFilter() {
-
         int id = mFilterSpinner.getSelectedItemPosition();
         if (id == mFilterSpinner.getAdapter().getCount() - 1) {
             FileReader.saveMusicFilterCount(ScoreList.this, id + 1);
@@ -863,11 +762,9 @@ public class ScoreList extends Activity {
                 ScoreList.this.initialize();
             }
         }
-
     }
 
     private void userActionSelectSort() {
-
         int id = mSortSpinner.getSelectedItemPosition();
         if (id == mSortSpinner.getAdapter().getCount() - 1) {
             FileReader.saveMusicSortCount(ScoreList.this, id + 1);
@@ -885,7 +782,6 @@ public class ScoreList extends Activity {
                 ScoreList.this.initialize();
             }
         }
-
     }
 
     private void userActionFromGate() {
@@ -893,7 +789,6 @@ public class ScoreList extends Activity {
         mFromGateRivalId = null;
         mFromGateRivalName = null;
         showDialogFromGate();
-
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -932,29 +827,27 @@ public class ScoreList extends Activity {
         str_items.add(this.getResources().getString(R.string.editcopyformats));
 
         new AlertDialog.Builder(ScoreList.this)
-                .setItems((String[]) str_items.toArray(new String[0]), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (which == 3) {
-                                    Intent intent = new Intent();
-                                    intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.CopyFormatList");
-                                    startActivityForResult(intent, 1);
-                                    return;
-                                }
-                                String copyText = "";
-                                for (int index = 0; index < mda.getCount(); ++index) {
-                                    UniquePattern pat = mda.getItem(index);
-                                    MusicData md = pat.musics.get(pat.MusicId);
-                                    ScoreData sd;
-                                    if (!mScoreList.containsKey(pat.MusicId)) {
-                                        sd = new ScoreData();
-                                    } else {
-                                        sd = getScoreDataOfPattern(mScoreList.get(pat.MusicId), pat.Pattern);
-                                    }
-                                    copyText = copyText + TextUtil.textFromCopyFormat(formats[which], pat, md, sd) + "\n";
-                                }
-                                copyText(copyText);
-                                Toast.makeText(ScoreList.this, ScoreList.this.getResources().getString(R.string.dialog_copied_to_clipboard), Toast.LENGTH_LONG).show();
+                .setItems((String[]) str_items.toArray(new String[0]), (dialog, which) -> {
+                            if (which == 3) {
+                                Intent intent = new Intent();
+                                intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.CopyFormatList");
+                                startActivityForResult(intent, 1);
+                                return;
                             }
+                            String copyText = "";
+                            for (int index = 0; index < mda.getCount(); ++index) {
+                                UniquePattern pat1 = mda.getItem(index);
+                                MusicData md1 = pat1.musics.get(pat1.MusicId);
+                                ScoreData sd1;
+                                if (!mScoreList.containsKey(pat1.MusicId)) {
+                                    sd1 = new ScoreData();
+                                } else {
+                                    sd1 = getScoreDataOfPattern(mScoreList.get(pat1.MusicId), pat1.Pattern);
+                                }
+                                copyText = copyText + TextUtil.textFromCopyFormat(formats[which], pat1, md1, sd1) + "\n";
+                            }
+                            copyText(copyText);
+                            Toast.makeText(ScoreList.this, ScoreList.this.getResources().getString(R.string.dialog_copied_to_clipboard), Toast.LENGTH_LONG).show();
                         }
                 ).show();
     }
@@ -975,30 +868,26 @@ public class ScoreList extends Activity {
         str_items.add(this.getResources().getString(R.string.editcopyformats));
 
         new AlertDialog.Builder(ScoreList.this)
-                .setItems((String[]) str_items.toArray(new String[0]), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (which == 3) {
-                                    Intent intent = new Intent();
-                                    intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.CopyFormatList");
-                                    startActivityForResult(intent, 1);
-                                    return;
-                                }
-                                copyText(str_items.get(which));
-                                Toast.makeText(ScoreList.this, ScoreList.this.getResources().getString(R.string.dialog_copied_to_clipboard), Toast.LENGTH_LONG).show();
+                .setItems((String[]) str_items.toArray(new String[0]), (dialog, which) -> {
+                            if (which == 3) {
+                                Intent intent = new Intent();
+                                intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.CopyFormatList");
+                                startActivityForResult(intent, 1);
+                                return;
                             }
+                            copyText(str_items.get(which));
+                            Toast.makeText(ScoreList.this, ScoreList.this.getResources().getString(R.string.dialog_copied_to_clipboard), Toast.LENGTH_LONG).show();
                         }
                 ).show();
     }
 
     private void userActionDirectEdit() {
-
         Intent intent = new Intent();
         intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreEdit");
         intent.putExtra("jp.linanfine.dsma.musicid", mSelectedItemPattern.MusicId);
         intent.putExtra("jp.linanfine.dsma.pattern", mSelectedItemPattern.Pattern);
 
         startActivityForResult(intent, 1);
-
     }
 
     private void userActionRivalFromGate() {
@@ -1006,11 +895,9 @@ public class ScoreList extends Activity {
         mFromGateRivalId = mActiveRivalId;
         mFromGateRivalName = mActiveRivalName;
         showDialogFromGate();
-
     }
 
     private void userActionRivalDirectEdit() {
-
         Intent intent = new Intent();
         intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreEdit");
         intent.putExtra("jp.linanfine.dsma.musicid", mSelectedItemPattern.MusicId);
@@ -1019,11 +906,9 @@ public class ScoreList extends Activity {
         intent.putExtra("jp.linanfine.dsma.rivalname", mActiveRivalName);
 
         startActivityForResult(intent, 1);
-
     }
 
     private void userActionAddToMyList() {
-
         ArrayList<String> items = new ArrayList<String>();
         int count = FileReader.readMyListCount(ScoreList.this);
         for (int i = 0; i < count; i++) {
@@ -1035,48 +920,40 @@ public class ScoreList extends Activity {
 
         new AlertDialog.Builder(ScoreList.this)
                 .setTitle(getResources().getString(R.string.dialog_add_to_list))
-                .setItems((String[]) items.toArray(new String[0]), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (which == mMyListCount) {
-                                    //テキスト入力を受け付けるビューを作成します。
-                                    mTemporaryDialogEditText = (EditText) ScoreList.this.getLayoutInflater().inflate(R.layout.view_singleline_edit_text, null);
-                                    mTemporaryDialogEditText.setText("MyList" + String.valueOf(mMyListCount));
-                                    mTemporaryDialogEditText.setSelectAllOnFocus(true);
-                                    new AlertDialog.Builder(ScoreList.this)
-                                            .setIcon(android.R.drawable.ic_dialog_info)
-                                            .setTitle(ScoreList.this.getResources().getString(R.string.strings____Dialog_MyList____editMylistName))
-                                            //setViewにてビューを設定します。
-                                            .setView(mTemporaryDialogEditText)
-                                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int whichButton) {
-                                                    FileReader.saveMyListCount(ScoreList.this, mMyListCount + 1);
-                                                    String name = mTemporaryDialogEditText.getText().toString();
-                                                    FileReader.saveMyListName(ScoreList.this, mMyListCount, name);
-                                                    ArrayList<UniquePattern> list = new ArrayList<UniquePattern>();
-                                                    list.add(mSelectedItemPattern);
-                                                    FileReader.saveMyList(ScoreList.this, mMyListCount, list);
-                                                    Toast.makeText(ScoreList.this, getResources().getString(R.string.toast_added_to_mylist1) + name + getResources().getString(R.string.toast_added_to_mylist2), Toast.LENGTH_SHORT).show();
-                                                }
-                                            })
-                                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int whichButton) {
-                                                }
-                                            })
-                                            .show();
-                                } else {
-                                    ArrayList<UniquePattern> list = FileReader.readMyList(ScoreList.this, which);
-                                    list.add(mSelectedItemPattern);
-                                    FileReader.saveMyList(ScoreList.this, which, list);
-                                    Toast.makeText(ScoreList.this, getResources().getString(R.string.toast_added_to_mylist1) + FileReader.readMyListName(ScoreList.this, which) + getResources().getString(R.string.toast_added_to_mylist2), Toast.LENGTH_SHORT).show();
-                                }
+                .setItems((String[]) items.toArray(new String[0]), (dialog, which) -> {
+                            if (which == mMyListCount) {
+                                //テキスト入力を受け付けるビューを作成します。
+                                mTemporaryDialogEditText = (EditText) ScoreList.this.getLayoutInflater().inflate(R.layout.view_singleline_edit_text, null);
+                                mTemporaryDialogEditText.setText("MyList" + String.valueOf(mMyListCount));
+                                mTemporaryDialogEditText.setSelectAllOnFocus(true);
+                                new AlertDialog.Builder(ScoreList.this)
+                                        .setIcon(drawable.ic_dialog_info)
+                                        .setTitle(ScoreList.this.getResources().getString(R.string.strings____Dialog_MyList____editMylistName))
+                                        //setViewにてビューを設定します。
+                                        .setView(mTemporaryDialogEditText)
+                                        .setPositiveButton("OK", (dialog12, whichButton) -> {
+                                            FileReader.saveMyListCount(ScoreList.this, mMyListCount + 1);
+                                            String name = mTemporaryDialogEditText.getText().toString();
+                                            FileReader.saveMyListName(ScoreList.this, mMyListCount, name);
+                                            ArrayList<UniquePattern> list = new ArrayList<UniquePattern>();
+                                            list.add(mSelectedItemPattern);
+                                            FileReader.saveMyList(ScoreList.this, mMyListCount, list);
+                                            Toast.makeText(ScoreList.this, getResources().getString(R.string.toast_added_to_mylist1) + name + getResources().getString(R.string.toast_added_to_mylist2), Toast.LENGTH_SHORT).show();
+                                        })
+                                        .setNegativeButton("Cancel", (dialog1, whichButton) -> {
+                                        })
+                                        .show();
+                            } else {
+                                ArrayList<UniquePattern> list = FileReader.readMyList(ScoreList.this, which);
+                                list.add(mSelectedItemPattern);
+                                FileReader.saveMyList(ScoreList.this, which, list);
+                                Toast.makeText(ScoreList.this, getResources().getString(R.string.toast_added_to_mylist1) + FileReader.readMyListName(ScoreList.this, which) + getResources().getString(R.string.toast_added_to_mylist2), Toast.LENGTH_SHORT).show();
                             }
                         }
                 ).show();
-
     }
 
     private void userActionRemoveFromMyList() {
-
         ArrayList<UniquePattern> pats = FileReader.readMyList(ScoreList.this, mCategoryMyListMylistId);
         int count = pats.size();
         int r = -1;
@@ -1092,11 +969,9 @@ public class ScoreList extends Activity {
         FileReader.saveMyList(ScoreList.this, mCategoryMyListMylistId, pats);
 
         initialize();
-
     }
 
     private boolean userActionOpenOwnMusic() {
-
         if (!mCategory.equals("Own Music")) {
             Intent intent = new Intent();
             intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
@@ -1108,97 +983,87 @@ public class ScoreList extends Activity {
             return true;
         }
         return false;
-
     }
 
     private void userActionSelectRivalAction() {
-
         ArrayList<String> str_items = new ArrayList<String>();
         str_items.add(getResources().getString(R.string.dialog_from_gate));
         str_items.add(getResources().getString(R.string.dialog_direct_edit));
 
         new AlertDialog.Builder(ScoreList.this)
                 .setTitle(mActiveRivalName)
-                .setItems((String[]) str_items.toArray(new String[0]), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which) {
-                            case 0:
-                                userActionRivalFromGate();
-                                break;
-                            case 1:
-                                userActionRivalDirectEdit();
-                                break;
-                        }
+                .setItems((String[]) str_items.toArray(new String[0]), (dialog, which) -> {
+                    switch (which) {
+                        case 0:
+                            userActionRivalFromGate();
+                            break;
+                        case 1:
+                            userActionRivalDirectEdit();
+                            break;
                     }
                 }).show();
-
     }
 
     @SuppressWarnings("unused")
     private void userActionShare() {
-
         ArrayList<String> str_items = new ArrayList<String>();
         str_items.add(getResources().getString(R.string.menu_music_share_copy));
         str_items.add(getResources().getString(R.string.menu_music_share_action_send));
 
         new AlertDialog.Builder(ScoreList.this)
                 .setTitle(getResources().getString(R.string.menu_music_share))
-                .setItems((String[]) str_items.toArray(new String[0]), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                MusicData m = mSelectedItemPattern.musics.get(mSelectedItemPattern.MusicId);
-                                MusicScore scoredata = mScoreList.get(mSelectedItemPattern.MusicId);
-                                ScoreData escore;
-                                switch (mSelectedItemPattern.Pattern) {
-                                    case bSP:
-                                        escore = scoredata.bSP;
-                                        break;
-                                    case BSP:
-                                        escore = scoredata.BSP;
-                                        break;
-                                    case DSP:
-                                        escore = scoredata.DSP;
-                                        break;
-                                    case ESP:
-                                        escore = scoredata.ESP;
-                                        break;
-                                    case CSP:
-                                        escore = scoredata.CSP;
-                                        break;
-                                    case BDP:
-                                        escore = scoredata.BDP;
-                                        break;
-                                    case DDP:
-                                        escore = scoredata.DDP;
-                                        break;
-                                    case EDP:
-                                        escore = scoredata.EDP;
-                                        break;
-                                    case CDP:
-                                        escore = scoredata.CDP;
-                                        break;
-                                    default:
-                                        escore = new ScoreData();
-                                        break;
+                .setItems((String[]) str_items.toArray(new String[0]), (dialog, which) -> {
+                            MusicData m = mSelectedItemPattern.musics.get(mSelectedItemPattern.MusicId);
+                            MusicScore scoredata = mScoreList.get(mSelectedItemPattern.MusicId);
+                            ScoreData escore;
+                            switch (mSelectedItemPattern.Pattern) {
+                                case bSP:
+                                    escore = scoredata.bSP;
+                                    break;
+                                case BSP:
+                                    escore = scoredata.BSP;
+                                    break;
+                                case DSP:
+                                    escore = scoredata.DSP;
+                                    break;
+                                case ESP:
+                                    escore = scoredata.ESP;
+                                    break;
+                                case CSP:
+                                    escore = scoredata.CSP;
+                                    break;
+                                case BDP:
+                                    escore = scoredata.BDP;
+                                    break;
+                                case DDP:
+                                    escore = scoredata.DDP;
+                                    break;
+                                case EDP:
+                                    escore = scoredata.EDP;
+                                    break;
+                                case CDP:
+                                    escore = scoredata.CDP;
+                                    break;
+                                default:
+                                    escore = new ScoreData();
+                                    break;
+                            }
+                            String copyText = m.Name + " [" + mSelectedItemPattern.Pattern.toString() + "] " + String.valueOf(escore.Score);
+                            switch (which) {
+                                case 0: {
+                                    //ClipboardManager cm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                                    //cm.setText(copyText);
+                                    break;
                                 }
-                                String copyText = m.Name + " [" + mSelectedItemPattern.Pattern.toString() + "] " + String.valueOf(escore.Score);
-                                switch (which) {
-                                    case 0: {
-                                        //ClipboardManager cm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                                        //cm.setText(copyText);
-                                        break;
-                                    }
-                                    case 1: {
-                                        break;
-                                    }
+                                case 1: {
+                                    break;
                                 }
                             }
                         }
                 ).show();
-
     }
 
     private void userActionShowItemMenu() {
-
         ArrayList<String> str_items = new ArrayList<String>();
         str_items.add(getResources().getString(R.string.dialog_copy_to_clipboard));
         str_items.add(getResources().getString(R.string.dialog_from_gate));
@@ -1331,12 +1196,10 @@ public class ScoreList extends Activity {
                             }
                         }
                 ).show();
-
     }
 
     private void userActionOpenFromGateRecent() {
         showDialogFromGateRecent();
-
     }
 
     private void userActionOmikuji() {
@@ -1345,11 +1208,6 @@ public class ScoreList extends Activity {
             int index = new Random().nextInt(mda.getCount());
             View view = ScoreList.this.getLayoutInflater().inflate(R.layout.view_omikuji, null);
             View iv = mda.getView(index, null, null);
-            //((TextView)iv.findViewById(R.id.musicName)).setText(" ");
-            //((TextView)iv.findViewById(R.id.musicLevel)).setText(" ");
-            //iv.findViewById(R.id.patternTypeD).setBackgroundColor(0x00000000);
-            //iv.findViewById(R.id.patternTypeD2).setBackgroundColor(0x00000000);
-            //iv.findViewById(R.id.patternTypeS).setBackgroundColor(0x00000000);
             ((LinearLayout) view.findViewById(R.id.itemContainer)).addView(iv);
             UniquePattern pat = mda.getItem(index);
             MusicData md = pat.musics.get(pat.MusicId);
@@ -1422,9 +1280,7 @@ public class ScoreList extends Activity {
                     .setTitle(ScoreList.this.getResources().getString(R.string.strings____Dialog_Omikuji____omikuji))
                     .setView(view)
                     .setCancelable(true)
-                    .setNegativeButton(ScoreList.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                        }
+                    .setNegativeButton(ScoreList.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
                     })
                     .show();
         } else {
@@ -1433,9 +1289,7 @@ public class ScoreList extends Activity {
                     .setTitle(ScoreList.this.getResources().getString(R.string.strings____Dialog_Omikuji____omikuji))
                     .setMessage(ScoreList.this.getResources().getString(R.string.global_setting_importzero))
                     .setCancelable(true)
-                    .setNegativeButton(ScoreList.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                        }
+                    .setNegativeButton(ScoreList.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
                     })
                     .show();
         }
@@ -1455,18 +1309,6 @@ public class ScoreList extends Activity {
         this.findViewById(R.id.noItems).setVisibility(View.GONE);
         this.findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
 
-//del by taiheisan start
-//		        Intent intent = getIntent();
-//		        if(intent == null)
-//		        {
-//		        	return;
-//		        }
-//		        
-//				mCategory = intent.getStringExtra("jp.linanfine.dsma2.category");
-//				mCategoryOwnMusicMusicId = intent.getIntExtra("jp.linanfine.dsma2.musicid", -1);
-//				mCategoryMyListMylistId = intent.getIntExtra("jp.linanfine.dsma2.mylistid", -1);
-//del by taiheisan end
-
         mAppearance = FileReader.readAppearanceSettings(this);
         mGestures = FileReader.readGestureSettings(this);
         mUseAsyncDraw = FileReader.readUseAsyncDraw(this);
@@ -1478,41 +1320,23 @@ public class ScoreList extends Activity {
         mSouProgressDialog.setIndeterminate(false);
         mSouProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         mSouProgressDialog.setCancelable(false);
-        mSouProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            public void onCancel(DialogInterface dialog) {
-                mCancelSouThread = true;
-            }
-        });
+        mSouProgressDialog.setOnCancelListener(dialog -> mCancelSouThread = true);
         mSouProgressDialog.setButton(
                 DialogInterface.BUTTON_NEGATIVE,
                 "Cancel",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (dialog != null) {
-                            dialog.cancel();
-                            dialog = null;
-                        }
+                (dialog, which) -> {
+                    if (dialog != null) {
+                        dialog.cancel();
+                        dialog = null;
                     }
                 }
         );
 
-        this.findViewById(R.id.menuButton).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                userActionShowSystemMenu();
-            }
-        });
+        this.findViewById(R.id.menuButton).setOnClickListener(v -> userActionShowSystemMenu());
 
-        this.findViewById(R.id.filterSetting).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                userActionOpenFilterSetting();
-            }
-        });
+        this.findViewById(R.id.filterSetting).setOnClickListener(v -> userActionOpenFilterSetting());
 
-        this.findViewById(R.id.sortSetting).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                userActionOpenSortSetting();
-            }
-        });
+        this.findViewById(R.id.sortSetting).setOnClickListener(v -> userActionOpenSortSetting());
 
         {
             mFilterSpinner = (Spinner) this.findViewById(R.id.filterSelect);
@@ -1535,7 +1359,6 @@ public class ScoreList extends Activity {
                 public void onNothingSelected(AdapterView<?> arg0) {
                 }
             });
-
         }
 
         mScoreListView = (ListView) this.findViewById(R.id.musicList);
@@ -1543,7 +1366,6 @@ public class ScoreList extends Activity {
             public void onScroll(AbsListView arg0, int arg1, int arg2, int arg3) {
                 int s = mScoreListView.getFirstVisiblePosition();
                 if (!mScrollPositionUpdateLock && s >= 0) {
-                    //mScrollPosition = mScoreListView.getScrollY();
                     mScrollPosition = mScoreListView.getFirstVisiblePosition();
                 }
             }
@@ -1551,23 +1373,19 @@ public class ScoreList extends Activity {
             public void onScrollStateChanged(AbsListView arg0, int arg1) {
             }
         });
-        mScoreListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        mScoreListView.setOnItemClickListener((parent, view, position, id) -> {
 
-                mSelectedItemPattern = (UniquePattern) mScoreListView.getAdapter().getItem(position);
-                mSelectedMusicData = mMusicList.get(mSelectedItemPattern.MusicId);
+            mSelectedItemPattern = (UniquePattern) mScoreListView.getAdapter().getItem(position);
+            mSelectedMusicData = mMusicList.get(mSelectedItemPattern.MusicId);
 
-                execUserAction(UserActionFrom.ItemClick);
-            }
+            execUserAction(UserActionFrom.ItemClick);
         });
-        mScoreListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        mScoreListView.setOnItemLongClickListener((parent, view, position, id) -> {
 
-                mSelectedItemPattern = (UniquePattern) mScoreListView.getAdapter().getItem(position);
-                mSelectedMusicData = mMusicList.get(mSelectedItemPattern.MusicId);
+            mSelectedItemPattern = (UniquePattern) mScoreListView.getAdapter().getItem(position);
+            mSelectedMusicData = mMusicList.get(mSelectedItemPattern.MusicId);
 
-                return !execUserAction(UserActionFrom.ItemLongClick);
-            }
+            return !execUserAction(UserActionFrom.ItemLongClick);
         });
 
 // add by taiheisan start
@@ -1585,7 +1403,6 @@ public class ScoreList extends Activity {
             private float adjust = 150;
 
             public boolean onTouch(View v, MotionEvent event) {
-
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         // add by linanfine start
@@ -1638,7 +1455,6 @@ public class ScoreList extends Activity {
              * @param val 増加値(左：+1、右：-1)
              */
             private void initializeByFlick(int val) {
-//				Toast.makeText(ScoreList.this, "mCategory : " + mCategory, Toast.LENGTH_SHORT).show();
                 String[] categoryArray = null;    // カテゴリ配列格納
                 int categoryIndex = 0;                // カテゴリ配列Index
 
@@ -1704,11 +1520,7 @@ public class ScoreList extends Activity {
             ImageView refreshButton = (ImageView) this.findViewById(R.id.refresh);
             refreshButton.setVisibility(View.VISIBLE);
 
-            refreshButton.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    userActionOpenFromGateRecent();
-                }
-            });
+            refreshButton.setOnClickListener(v -> userActionOpenFromGateRecent());
         }
         mScoreList = FileReader.readScoreList(this, null);
         mMusicList = FileReader.readMusicList(this);
@@ -1732,7 +1544,6 @@ public class ScoreList extends Activity {
             mActiveRivalId = r.Id;
             mActiveRivalName = r.Name;
             mActiveRivalScoreList = FileReader.readScoreList(ScoreList.this, mActiveRivalId);
-            //Log.e("DSM", String.valueOf(activeRival));
         }
         if (mAppearance.ShowComments) {
             mComments = FileReader.readComments(this);
@@ -1742,7 +1553,6 @@ public class ScoreList extends Activity {
     }
 
     private void restoreScrollPosition() {
-        //mScoreListView.scrollTo(0, mScrollPosition);
         mScoreListView.setSelectionFromTop(mListViewAdapter.getCount() - 1, 0);
         mScoreListView.setSelectionFromTop(mScrollPosition, 0);
         this.findViewById(R.id.progressBar).setVisibility(View.GONE);
@@ -1804,7 +1614,6 @@ public class ScoreList extends Activity {
             c = name;
         }
         ((TextView) this.findViewById(R.id.musicName)).setText(c + " (" + String.valueOf(clearCount) + "/" + String.valueOf(count) + ")");
-
     }
 
     private void listRefresh() {
@@ -1825,7 +1634,6 @@ public class ScoreList extends Activity {
     }
 
     private void filterSortRefresh() {
-
         {
             int count = FileReader.readMusicFilterCount(this);
             ArrayList<String> items = new ArrayList<String>();
@@ -1865,7 +1673,6 @@ public class ScoreList extends Activity {
         } else {
             int activeFilter = FileReader.readActiveMusicFilter(this);
             int activeSort = FileReader.readActiveMusicSort(this);
-            //Log.d("read", String.valueOf(activePager));
             mMusicFilter = FileReader.readMusicFilter(this, activeFilter);
             mMusicSort = FileReader.readMusicSort(this, activeSort);
             mFilterSpinner.setSelection(activeFilter);
@@ -1888,12 +1695,10 @@ public class ScoreList extends Activity {
                 mMusicFilter.MusicIdList = new ArrayList<Integer>();
                 mMusicFilter.MusicPatternList = new ArrayList<PatternType>();
                 int count = pats.size();
-                //Log.d("count", String.valueOf(count));
                 for (int i = 0; i < count; i++) {
                     UniquePattern pat = pats.get(i);
                     mMusicFilter.MusicIdList.add(pat.MusicId);
                     mMusicFilter.MusicPatternList.add(pat.Pattern);
-                    //Log.d(String.valueOf(pat.MusicId), pat.Pattern.toString());
                 }
             } else if (mCategory.startsWith("Abc")) {
                 mMusicFilter.StartsWith = mCategory.substring(3);
@@ -1917,44 +1722,6 @@ public class ScoreList extends Activity {
                 if (!mCategory.equals("Dif17")) mMusicFilter.Dif17 = false;
                 if (!mCategory.equals("Dif18")) mMusicFilter.Dif18 = false;
                 if (!mCategory.equals("Dif19")) mMusicFilter.Dif19 = false;
-	        	/*mMusicFilter.Dif1 = false;
-	        	mMusicFilter.Dif2 = false;
-	        	mMusicFilter.Dif3 = false;
-	        	mMusicFilter.Dif4 = false;
-	        	mMusicFilter.Dif5 = false;
-	        	mMusicFilter.Dif6 = false;
-	        	mMusicFilter.Dif7 = false;
-	        	mMusicFilter.Dif8 = false;
-	        	mMusicFilter.Dif9 = false;
-	        	mMusicFilter.Dif10 = false;
-	        	mMusicFilter.Dif11 = false;
-	        	mMusicFilter.Dif12 = false;
-	        	mMusicFilter.Dif13 = false;
-	        	mMusicFilter.Dif14 = false;
-	        	mMusicFilter.Dif15 = false;
-	        	mMusicFilter.Dif16 = false;
-	        	mMusicFilter.Dif17 = false;
-	        	mMusicFilter.Dif18 = false;
-	        	mMusicFilter.Dif19 = false;
-	        	if(mCategory.equals("Dif1")) mMusicFilter.Dif1 = true;
-	        	if(mCategory.equals("Dif2")) mMusicFilter.Dif2 = true;
-	        	if(mCategory.equals("Dif3")) mMusicFilter.Dif3 = true;
-	        	if(mCategory.equals("Dif4")) mMusicFilter.Dif4 = true;
-	        	if(mCategory.equals("Dif5")) mMusicFilter.Dif5 = true;
-	        	if(mCategory.equals("Dif6")) mMusicFilter.Dif6 = true;
-	        	if(mCategory.equals("Dif7")) mMusicFilter.Dif7 = true;
-	        	if(mCategory.equals("Dif8")) mMusicFilter.Dif8 = true;
-	        	if(mCategory.equals("Dif9")) mMusicFilter.Dif9 = true;
-	        	if(mCategory.equals("Dif10")) mMusicFilter.Dif10 = true;
-	        	if(mCategory.equals("Dif11")) mMusicFilter.Dif11 = true;
-	        	if(mCategory.equals("Dif12")) mMusicFilter.Dif12 = true;
-	        	if(mCategory.equals("Dif13")) mMusicFilter.Dif13 = true;
-	        	if(mCategory.equals("Dif14")) mMusicFilter.Dif14 = true;
-	        	if(mCategory.equals("Dif15")) mMusicFilter.Dif15 = true;
-	        	if(mCategory.equals("Dif16")) mMusicFilter.Dif16 = true;
-	        	if(mCategory.equals("Dif17")) mMusicFilter.Dif17 = true;
-	        	if(mCategory.equals("Dif18")) mMusicFilter.Dif18 = true;
-	        	if(mCategory.equals("Dif19")) mMusicFilter.Dif19 = true;*/
             } else if (mCategory.startsWith("Ser")) {
                 if (!mCategory.equals("SerWorld")) mMusicFilter.SerWorld = false;
                 if (!mCategory.equals("SerA3")) mMusicFilter.SerA3 = false;
@@ -2170,10 +1937,7 @@ public class ScoreList extends Activity {
                 if (!mCategory.equals("WinLoseRivalDraw")) mMusicFilter.RivalDraw = false;
             }
         }
-
-
     }
-
 
     private DialogFromGateList mFromGateList = null;
     private boolean mFromGateListGetDouble = false;
@@ -2191,19 +1955,13 @@ public class ScoreList extends Activity {
                         .setTitle(ScoreList.this.getResources().getString(R.string.strings____Dialog_FromGate__Dialog_FromGateList____logGetScoreList) + " (" + (mFromGateListGetDouble ? "DP" : "SP") + ") ...")
                         .setView(mFromGateList.getView())
                         .setCancelable(false)
-                        .setNegativeButton(ScoreList.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                if (mFromGateList != null) {
-                                    mFromGateList.cancel();
-                                    mFromGateList = null;
-                                }
+                        .setNegativeButton(ScoreList.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> {
+                            if (mFromGateList != null) {
+                                mFromGateList.cancel();
+                                mFromGateList = null;
                             }
                         })
-                        .setOnCancelListener(new OnCancelListener() {
-                            public void onCancel(DialogInterface arg0) {
-                                ScoreList.this.initialize();
-                            }
-                        })
+                        .setOnCancelListener(arg0 -> ScoreList.this.initialize())
                         .show()
                 , mFromGateListGetDouble, null, null);
 
@@ -2229,19 +1987,13 @@ public class ScoreList extends Activity {
                         .setTitle(mFromGatePattern.Pattern.toString() + " : " + md.Name)
                         .setView(mFromGate.getView())
                         .setCancelable(false)
-                        .setNegativeButton(ScoreList.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                if (mFromGate != null) {
-                                    mFromGate.cancel();
-                                    mFromGate = null;
-                                }
+                        .setNegativeButton(ScoreList.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> {
+                            if (mFromGate != null) {
+                                mFromGate.cancel();
+                                mFromGate = null;
                             }
                         })
-                        .setOnCancelListener(new OnCancelListener() {
-                            public void onCancel(DialogInterface arg0) {
-                                ScoreList.this.initialize();
-                            }
-                        })
+                        .setOnCancelListener(arg0 -> ScoreList.this.initialize())
                         .show()
                 , mFromGatePattern.MusicId, mFromGatePattern.Pattern, mFromGateRivalId, mFromGateRivalName)) {
             mFromGate.cancel();
@@ -2250,15 +2002,12 @@ public class ScoreList extends Activity {
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setMessage(ScoreList.this.getResources().getString(R.string.illegal_id_alert))
                     .setCancelable(true)
-                    .setPositiveButton(ScoreList.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
+                    .setPositiveButton(ScoreList.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
 
-                        }
                     }).show();
         } else {
             mFromGate.start();
         }
-
     }
 
     private DialogFromGateSou mFromGateSou = null;
@@ -2274,10 +2023,8 @@ public class ScoreList extends Activity {
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setMessage(ScoreList.this.getResources().getString(R.string.error_noitem))
                     .setCancelable(true)
-                    .setPositiveButton(ScoreList.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
+                    .setPositiveButton(ScoreList.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
 
-                        }
                     }).show();
             return;
         }
@@ -2296,19 +2043,13 @@ public class ScoreList extends Activity {
                         .setTitle(ScoreList.this.getResources().getString(R.string.sou_progress_title))
                         .setView(mFromGateSou.getView())
                         .setCancelable(false)
-                        .setNegativeButton(ScoreList.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                if (mFromGateSou != null) {
-                                    mFromGateSou.cancel();
-                                    mFromGateSou = null;
-                                }
+                        .setNegativeButton(ScoreList.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> {
+                            if (mFromGateSou != null) {
+                                mFromGateSou.cancel();
+                                mFromGateSou = null;
                             }
                         })
-                        .setOnCancelListener(new OnCancelListener() {
-                            public void onCancel(DialogInterface arg0) {
-                                ScoreList.this.initialize();
-                            }
-                        })
+                        .setOnCancelListener(arg0 -> ScoreList.this.initialize())
                         .show()
                 , mSouList, rivalId, rivalName)) {
             mFromGateSou.cancel();
@@ -2317,15 +2058,12 @@ public class ScoreList extends Activity {
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setMessage(ScoreList.this.getResources().getString(R.string.illegal_id_alert))
                     .setCancelable(true)
-                    .setPositiveButton(ScoreList.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
+                    .setPositiveButton(ScoreList.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
 
-                        }
                     }).show();
         } else {
             mFromGateSou.start();
         }
-
     }
 
     private DialogFromGateRecent mFromGateRecent = null;
@@ -2343,19 +2081,13 @@ public class ScoreList extends Activity {
                 .setTitle(ScoreList.this.getResources().getString(R.string.dialog_title_get_recent))
                 .setView(mFromGateRecent.getView())
                 .setCancelable(false)
-                .setNegativeButton(ScoreList.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        if (mFromGateRecent != null) {
-                            mFromGateRecent.cancel();
-                            mFromGateRecent = null;
-                        }
+                .setNegativeButton(ScoreList.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> {
+                    if (mFromGateRecent != null) {
+                        mFromGateRecent.cancel();
+                        mFromGateRecent = null;
                     }
                 })
-                .setOnCancelListener(new OnCancelListener() {
-                    public void onCancel(DialogInterface arg0) {
-                        ScoreList.this.initialize();
-                    }
-                })
+                .setOnCancelListener(arg0 -> ScoreList.this.initialize())
                 .show());
 
         mFromGateRecent.start();
@@ -2523,5 +2255,4 @@ public class ScoreList extends Activity {
 
         initialize();
     }
-
 }
