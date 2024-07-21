@@ -151,7 +151,7 @@
                             android:layout_weight="1"
                             android:scrollHorizontally="true"
                             android:singleLine="true"
-                            android:text="@string/strings_Activity_CategorySelect_seriesTitle_World"
+                            android:text="WORLD"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="@color/white"
                             android:textSize="0sp" />

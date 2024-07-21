@@ -1366,6 +1366,9 @@ public class FileReader {
         e.putInt("ClearCountDifferenceMinusMax", filter.ClearCountDifferenceMinusMax);
         e.putInt("ClearCountDifferencePlusMin", filter.ClearCountDifferencePlusMin);
         e.putInt("ClearCountDifferencePlusMax", filter.ClearCountDifferencePlusMax);
+
+        // すでに使っているユーザーのフィルターのチェックが勝手に変わらないよう、SerWorldのまま
+        // できれば"SerWORLD"にしたかった
         e.putBoolean("SerWorld", filter.SerWorld);
         e.putBoolean("SerA3", filter.SerA3);
         e.putBoolean("SerA20PLUS", filter.SerA20PLUS);
@@ -1388,8 +1391,7 @@ public class FileReader {
         e.putBoolean("Ser2nd", filter.Ser2nd);
         e.putBoolean("Ser1st", filter.Ser1st);
         e.putBoolean("Deleted", filter.Deleted);
-        e.commit();
-
+        e.apply();
     }
 
     public static MusicFilter readMusicFilter(Context context, int id) {
@@ -1528,6 +1530,9 @@ public class FileReader {
         ret.ClearCountDifferenceMinusMax = pref.getInt("ClearCountDifferenceMinusMax", Integer.MIN_VALUE);
         ret.ClearCountDifferencePlusMin = pref.getInt("ClearCountDifferencePlusMin", -1);
         ret.ClearCountDifferencePlusMax = pref.getInt("ClearCountDifferencePlusMax", Integer.MAX_VALUE);
+
+        // すでに使っているユーザーのフィルターのチェックが勝手に変わらないよう、SerWorldのまま
+        // できれば"SerWORLD"にしたかった
         ret.SerWorld = pref.getBoolean("SerWorld", true);
         ret.SerA3 = pref.getBoolean("SerA3", true);
         ret.SerA20PLUS = pref.getBoolean("SerA20PLUS", true);

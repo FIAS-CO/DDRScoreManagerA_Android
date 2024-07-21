@@ -77,7 +77,7 @@ public class ScoreList extends Activity {
     /**
      * Series Title配列
      */
-    private static final String[] SERIES_TITLE_LIST = {"SerWorld", "SerA3", "SerA20 PLUS", "SerA20", "SerA", "Ser2014", "Ser2013", "SerX3", "SerX2", "SerX",
+    private static final String[] SERIES_TITLE_LIST = {"SerWORLD", "SerA3", "SerA20 PLUS", "SerA20", "SerA", "Ser2014", "Ser2013", "SerX3", "SerX2", "SerX",
             "SerSuperNOVA 2", "SerSuperNOVA", "SerEXTREME", "SerMAX2", "SerMAX", "Ser5th", "Ser4th", "Ser3rd",
             "Ser2nd", "Ser1st"};
 
@@ -1583,6 +1583,7 @@ public class ScoreList extends Activity {
         c = c
                 .replace("Abc", "Name ")
                 .replace("Dif", "Difficulty ")
+                .replace("SerWORLD", "DDR WORLD")
                 .replace("SerA3", "DDR A3")
                 .replace("SerA20 PLUS", "DDR A20 PLUS")
                 .replace("SerA20", "DDR A20")
@@ -1723,7 +1724,7 @@ public class ScoreList extends Activity {
                 if (!mCategory.equals("Dif18")) mMusicFilter.Dif18 = false;
                 if (!mCategory.equals("Dif19")) mMusicFilter.Dif19 = false;
             } else if (mCategory.startsWith("Ser")) {
-                if (!mCategory.equals("SerWorld")) mMusicFilter.SerWorld = false;
+                if (!mCategory.equals("SerWORLD")) mMusicFilter.SerWorld = false;
                 if (!mCategory.equals("SerA3")) mMusicFilter.SerA3 = false;
                 if (!mCategory.equals("SerA20 PLUS")) mMusicFilter.SerA20PLUS = false;
                 if (!mCategory.equals("SerA20")) mMusicFilter.SerA20 = false;
