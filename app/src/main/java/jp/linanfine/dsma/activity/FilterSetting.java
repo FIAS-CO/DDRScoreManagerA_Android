@@ -167,7 +167,7 @@ public class FilterSetting extends Activity {
     }
 
     private void openKeyboard() {
-        if (mHandledView == null) {
+        if (mHandledView == null || mHandledView.getWindowToken() == null) {
             return;
         }
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -175,7 +175,7 @@ public class FilterSetting extends Activity {
     }
 
     private void closeKeyboard() {
-        if (mHandledView == null) {
+        if (mHandledView == null || mHandledView.getWindowToken() == null) {
             return;
         }
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -1539,14 +1539,12 @@ public class FilterSetting extends Activity {
                     //setViewにてビューを設定します。
                     .setView(editView)
                     .setPositiveButton("OK", (dialog, whichButton) -> {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                        closeKeyboard();
                         ((TextView) FilterSetting.this.findViewById(R.id.tabName)).setText(editView.getText());
                         FilterSetting.this.save();
                     })
                     .setNegativeButton("Cancel", (dialog, whichButton) -> {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                        closeKeyboard();
                     })
                     .show();
         });
