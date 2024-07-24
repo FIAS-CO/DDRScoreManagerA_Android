@@ -128,8 +128,7 @@ public class ScoreEdit extends Activity {
                     //setViewにてビューを設定します。
                     .setView(editView)
                     .setPositiveButton(ScoreEdit.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                        closeKeyboard();
                         Editable text = editView.getText();
                         try {
                             int value = Integer.valueOf(text.toString());
@@ -141,8 +140,7 @@ public class ScoreEdit extends Activity {
                         }
                     })
                     .setNegativeButton(ScoreEdit.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                        closeKeyboard();
                     })
                     .show();
         });
@@ -168,8 +166,7 @@ public class ScoreEdit extends Activity {
                     .setView(editView)
                     .setPositiveButton(ScoreEdit.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                            inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                            closeKeyboard();
                             Editable text = editView.getText();
                             try {
                                 int value = Integer.valueOf(text.toString());
@@ -183,8 +180,7 @@ public class ScoreEdit extends Activity {
                     })
                     .setNegativeButton(ScoreEdit.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                            inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                            closeKeyboard();
                         }
                     })
                     .show();
@@ -210,8 +206,7 @@ public class ScoreEdit extends Activity {
                     //setViewにてビューを設定します。
                     .setView(editView)
                     .setPositiveButton(ScoreEdit.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                        closeKeyboard();
                         Editable text = editView.getText();
                         try {
                             int value = Integer.valueOf(text.toString());
@@ -223,8 +218,7 @@ public class ScoreEdit extends Activity {
                         }
                     })
                     .setNegativeButton(ScoreEdit.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                        closeKeyboard();
                     })
                     .show();
         });
@@ -251,8 +245,7 @@ public class ScoreEdit extends Activity {
                             //setViewにてビューを設定します。
                             .setView(editView)
                             .setPositiveButton(ScoreEdit.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
-                                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                                closeKeyboard();
                                 Editable text = editView.getText();
                                 try {
                                     int value = Integer.valueOf(text.toString());
@@ -264,8 +257,7 @@ public class ScoreEdit extends Activity {
                                 }
                             })
                             .setNegativeButton(ScoreEdit.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> {
-                                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                                closeKeyboard();
                             })
                             .show();
                 }
@@ -624,5 +616,13 @@ public class ScoreEdit extends Activity {
         setContentView(R.layout.activity_score_edit);
 
         initialize();
+    }
+
+    private void closeKeyboard() {
+        if (mHandledView == null || mHandledView.getWindowToken() == null) {
+            return;
+        }
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
     }
 }
