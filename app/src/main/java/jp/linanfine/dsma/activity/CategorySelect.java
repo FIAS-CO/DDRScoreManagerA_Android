@@ -9,9 +9,11 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,6 +25,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -39,7 +43,7 @@ import jp.linanfine.dsma.value.AppearanceSettingsSp;
 
 public class CategorySelect extends Activity {
 
-    private final Handler mHandler = new Handler();
+    private final Handler mHandler = new Handler(Looper.getMainLooper());
     private View mHandledView;
 
     private boolean mCloseCategoryOnBackKey = false;
@@ -1307,5 +1311,13 @@ public class CategorySelect extends Activity {
     public void onDestroy() {
         mScrPos = -1;
         super.onDestroy();
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (mDialogRefreshMusicList != null) {
+            mDialogRefreshMusicList.cancel();
+        }
     }
 }

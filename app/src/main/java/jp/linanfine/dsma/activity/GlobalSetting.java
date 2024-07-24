@@ -7,9 +7,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.Editable;
 import android.view.View;
 import android.view.Window;
@@ -24,6 +26,8 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import jp.linanfine.dsma.R;
 import jp.linanfine.dsma.dialog.DialogFromGate;
@@ -47,7 +51,8 @@ public class GlobalSetting extends Activity {
     private GestureSettings mGestures;
     private Spinner mFilterSpinner;
 
-    private Handler mHandler = new Handler();
+    private final Handler mHandler = new Handler(Looper.getMainLooper());
+
     private View mHandledView;
 
     @Override
@@ -475,5 +480,13 @@ public class GlobalSetting extends Activity {
         this.setContentView(mainView);
 
         initialize();
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (mDialogRefreshMusicList != null) {
+            mDialogRefreshMusicList.cancel();
+        }
     }
 }
