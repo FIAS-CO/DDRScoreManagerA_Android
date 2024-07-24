@@ -200,14 +200,12 @@ public class SortSetting extends Activity {
                     //setViewにてビューを設定します。
                     .setView(editView)
                     .setPositiveButton("OK", (dialog, whichButton) -> {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                        closeKeyboard();
                         ((TextView) SortSetting.this.findViewById(R.id.tabName)).setText(editView.getText());
                         SortSetting.this.save();
                     })
                     .setNegativeButton("Cancel", (dialog, whichButton) -> {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                        closeKeyboard();
                     })
                     .show();
         });
@@ -255,5 +253,13 @@ public class SortSetting extends Activity {
         setContentView(R.layout.activity_sort);
 
         initialize();
+    }
+
+    private void closeKeyboard() {
+        if (mHandledView == null || mHandledView.getWindowToken() == null) {
+            return;
+        }
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
     }
 }
