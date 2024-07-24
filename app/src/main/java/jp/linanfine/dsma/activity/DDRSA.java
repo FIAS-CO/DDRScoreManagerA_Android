@@ -109,8 +109,7 @@ public class DDRSA extends Activity {
                     //setViewにてビューを設定します。
                     .setView(mainView)
                     .setPositiveButton(DDRSA.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                        closeKeyboard();
                         Editable text = ddrCodeText.getText();
                         String tt = text.toString();
                         String ddrCode1 = "";
@@ -167,8 +166,7 @@ public class DDRSA extends Activity {
                         mDdrSaAuthenticate.start();
                     })
                     .setNegativeButton(DDRSA.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                        closeKeyboard();
                     })
                     .show();
         });
@@ -235,5 +233,13 @@ public class DDRSA extends Activity {
         setContentView(R.layout.activity_export_to_ddrsa);
 
         initialize();
+    }
+
+    private void closeKeyboard() {
+        if (mHandledView == null || mHandledView.getWindowToken() == null) {
+            return;
+        }
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
     }
 }
