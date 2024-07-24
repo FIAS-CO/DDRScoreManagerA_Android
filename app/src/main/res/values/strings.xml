@@ -2,12 +2,10 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-    <string name="strings____Dialog_UpdateInfo____updates">
-[2024/07/21] 0.144.24072100\n
+[2024/07/25] 0.145.24072500\n
 * Update:\n
-- Flare ranks can now be recorded on the Direct Edit screen.\n
-- Flare rank and flare skill can now be viewed on the list screen. (The display settings can be configured in the Preferences menu.)\n
-- It is now possible to sort and filter songs by recorded flare rank and flare skill.</string>
+- Made it possible to display new songs in DDR WORLD.\n
+- Fixed a bug causing the app to crash.
     </string>
     
     <string name="strings_global____app_name">DDR Score Manager A</string>

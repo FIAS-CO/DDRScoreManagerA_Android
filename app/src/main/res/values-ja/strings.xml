@@ -2,12 +2,12 @@
 <resources>
     
     <string name="strings____Dialog_UpdateInfo____updates">
-[2024/07/21] 0.144.24072100\n
+[2024/07/25] 0.145.24072500\n
 * Update:\n
-- 「直接編集」画面でフレアランクを記録できるようになりました\n
-- 一覧画面でフレアランク、フレアスキルを閲覧できるようになりました。「共通設定」から表示設定が可能です\n
-- 記録したフレアランク、フレアスキルでソート、フィルターが可能になりました    </string>
-    
+・DDR WORLD の新規楽曲を表示できるようにしました。\n
+・アプリがクラッシュするバグの修正を行いました。
+    </string>
+
     <string name="strings_global____app_name">DDR Score Manager A</string>
     
     <string name="strings_global____leader">...</string>

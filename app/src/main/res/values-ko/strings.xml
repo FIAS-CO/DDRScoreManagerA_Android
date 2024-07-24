@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-  <string name="strings____Dialog_UpdateInfo____updates">
-[2024/07/21] 0.144.24072100\n
+    <string name="strings____Dialog_UpdateInfo____updates">
+[2024/07/25] 0.145.24072500\n
 * Update:\n
-- "직접 편집" 화면에서 플레어 랭크를 기록할 수 있게 되었습니다.\n
-- 목록 화면에서 플레어 랭크, 플레어 스킬을 열람할 수 있게 되었습니다. "공통 설정"에서 표시 설정이 가능합니다.\n
-- 기록된 플레어 랭크, 플레어 스킬에 따라 곡을 정렬, 필터링할 수 있게 되었습니다.
-  </string>
+- DDR WORLD의 신규 곡을 표시할 수 있게 했습니다.\n
+- 앱이 충돌하는 버그를 수정했습니다.
+    </string>
 
   <string name="strings_global____app_name">DDR Score Manager A</string>
   <string name="strings_global____leader">...</string>
