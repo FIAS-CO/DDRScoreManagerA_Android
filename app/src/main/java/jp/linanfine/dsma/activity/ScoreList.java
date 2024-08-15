@@ -417,6 +417,18 @@ public class ScoreList extends Activity {
         int fctypeGFC = 0;
         int fctypeLife4 = 0;
         int fctypeNoFC = 0;
+        int flareRankNoRank = 0;
+        int flareRank0 = 0;
+        int flareRankI = 0;
+        int flareRankII = 0;
+        int flareRankIII = 0;
+        int flareRankIV = 0;
+        int flareRankV = 0;
+        int flareRankVI = 0;
+        int flareRankVII = 0;
+        int flareRankVIII = 0;
+        int flareRankIX = 0;
+        int flareRankEX = 0;
         int[] difficulties = new int[21];
         int[] patternTypes = new int[9];
         int[] versions = new int[20];
@@ -511,6 +523,47 @@ public class ScoreList extends Activity {
                     break;
                 case None:
                     ++fctypeNoFC;
+                    break;
+            }
+            switch (score.flareRank) {
+                case -1:  // NoRank
+                    ++flareRankNoRank;
+                    break;
+                case 0:  // FlareRank 0
+                    ++flareRank0;
+                    break;
+                case 1:  // FlareRank I
+                    ++flareRankI;
+                    break;
+                case 2:  // FlareRank II
+                    ++flareRankII;
+                    break;
+                case 3:  // FlareRank III
+                    ++flareRankIII;
+                    break;
+                case 4:  // FlareRank IV
+                    ++flareRankIV;
+                    break;
+                case 5:  // FlareRank V
+                    ++flareRankV;
+                    break;
+                case 6:  // FlareRank VI
+                    ++flareRankVI;
+                    break;
+                case 7:  // FlareRank VII
+                    ++flareRankVII;
+                    break;
+                case 8:  // FlareRank VIII
+                    ++flareRankVIII;
+                    break;
+                case 9:  // FlareRank IX
+                    ++flareRankIX;
+                    break;
+                case 10:  // FlareRank EX
+                    ++flareRankEX;
+                    break;
+                default:
+                    // Handle unexpected values if necessary
                     break;
             }
             ++difficulties[getDifficultyOfPattern(pat.MusicId, pat.Pattern)];
@@ -638,7 +691,20 @@ public class ScoreList extends Activity {
         ((TextView) v.findViewById(R.id.versionA3)).setText(String.valueOf(versions[18]));
         ((TextView) v.findViewById(R.id.versionWorld)).setText(String.valueOf(versions[19]));
 
-        FileReader.requestAd((LinearLayout) v.findViewById(R.id.adContainer), this);
+        ((TextView) v.findViewById(R.id.rankEXCount)).setText(String.valueOf(flareRankEX));
+        ((TextView) v.findViewById(R.id.rank9Count)).setText(String.valueOf(flareRankIX));
+        ((TextView) v.findViewById(R.id.rank8Count)).setText(String.valueOf(flareRankVIII));
+        ((TextView) v.findViewById(R.id.rank7Count)).setText(String.valueOf(flareRankVII));
+        ((TextView) v.findViewById(R.id.rank6Count)).setText(String.valueOf(flareRankVI));
+        ((TextView) v.findViewById(R.id.rank5Count)).setText(String.valueOf(flareRankV));
+        ((TextView) v.findViewById(R.id.rank4Count)).setText(String.valueOf(flareRankIV));
+        ((TextView) v.findViewById(R.id.rank3Count)).setText(String.valueOf(flareRankIII));
+        ((TextView) v.findViewById(R.id.rank2Count)).setText(String.valueOf(flareRankII));
+        ((TextView) v.findViewById(R.id.rank1Count)).setText(String.valueOf(flareRankI));
+        ((TextView) v.findViewById(R.id.rank0Count)).setText(String.valueOf(flareRank0));
+        ((TextView) v.findViewById(R.id.noRankCount)).setText(String.valueOf(flareRankNoRank));
+
+        FileReader.requestAd(v.findViewById(R.id.adContainer), this);
 
         new AlertDialog.Builder(ScoreList.this)
                 .setTitle(c + " (" + FileReader.readMusicFilterName(this, mFilterSpinner.getSelectedItemPosition()) + ")")
@@ -652,6 +718,46 @@ public class ScoreList extends Activity {
                 .show();
 
     }
+
+
+    private void updateFlareRankStatistics() {
+        int[] flareRankCounts = new int[12]; // NoRank(-1) から RankEX(10) まで
+
+        for (MusicScore score : mScoreList.values()) {
+            updateFlareRankCount(flareRankCounts, score.BSP.flareRank);
+            updateFlareRankCount(flareRankCounts, score.DSP.flareRank);
+            updateFlareRankCount(flareRankCounts, score.ESP.flareRank);
+            updateFlareRankCount(flareRankCounts, score.CSP.flareRank);
+            updateFlareRankCount(flareRankCounts, score.BDP.flareRank);
+            updateFlareRankCount(flareRankCounts, score.DDP.flareRank);
+            updateFlareRankCount(flareRankCounts, score.EDP.flareRank);
+            updateFlareRankCount(flareRankCounts, score.CDP.flareRank);
+        }
+
+        displayFlareRankCounts(flareRankCounts);
+    }
+
+    private void updateFlareRankCount(int[] counts, int rank) {
+        if (rank >= -1 && rank <= 10) {
+            counts[rank + 1]++;
+        }
+    }
+
+    private void displayFlareRankCounts(int[] counts) {
+        ((TextView) findViewById(R.id.rankEXCount)).setText(String.valueOf(counts[11]));
+        ((TextView) findViewById(R.id.rank9Count)).setText(String.valueOf(counts[10]));
+        ((TextView) findViewById(R.id.rank8Count)).setText(String.valueOf(counts[9]));
+        ((TextView) findViewById(R.id.rank7Count)).setText(String.valueOf(counts[8]));
+        ((TextView) findViewById(R.id.rank6Count)).setText(String.valueOf(counts[7]));
+        ((TextView) findViewById(R.id.rank5Count)).setText(String.valueOf(counts[6]));
+        ((TextView) findViewById(R.id.rank4Count)).setText(String.valueOf(counts[5]));
+        ((TextView) findViewById(R.id.rank3Count)).setText(String.valueOf(counts[4]));
+        ((TextView) findViewById(R.id.rank2Count)).setText(String.valueOf(counts[3]));
+        ((TextView) findViewById(R.id.rank1Count)).setText(String.valueOf(counts[2]));
+        ((TextView) findViewById(R.id.rank0Count)).setText(String.valueOf(counts[1]));
+        ((TextView) findViewById(R.id.noRankCount)).setText(String.valueOf(counts[0]));
+    }
+
 
     private void userActionShowStatus() {
 

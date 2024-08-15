@@ -2,10 +2,8 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-[2024/07/25] 0.145.24072500\n
-* Update:\n
-- DDR WORLD의 신규 곡을 표시할 수 있게 했습니다.\n
-- 앱이 충돌하는 버그를 수정했습니다.
+[0.146.24080400] Update:\n
+통계 기능에 플레어 랭크 집계 기능을 추가했습니다.
     </string>
 
   <string name="strings_global____app_name">DDR Score Manager A</string>
@@ -30,6 +28,8 @@
   <string name="difficulty">난이도</string>
   <string name="patterntype">보면 종류별</string>
   <string name="version">시리즈 타이틀</string>
+  <string name="flarerank">Flare Rank</string>
+
   <string name="refresh_musiclist">곡 리스트를 업데이트</string>
   <string name="no_update">업데이트가 없었습니다.</string>
   <string name="musiclist_updated">곡 리스트가 업데이트되었습니다.</string>

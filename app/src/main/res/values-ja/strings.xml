@@ -2,10 +2,8 @@
 <resources>
     
     <string name="strings____Dialog_UpdateInfo____updates">
-[2024/07/25] 0.145.24072500\n
-* Update:\n
-・DDR WORLD の新規楽曲を表示できるようにしました。\n
-・アプリがクラッシュするバグの修正を行いました。
+[0.146.24080400] Update:\n
+・統計機能にフレアランクの集計機能を追加しました。
     </string>
 
     <string name="strings_global____app_name">DDR Score Manager A</string>
@@ -31,6 +29,7 @@
     <string name="difficulty">難易度</string>
     <string name="patterntype">譜面種別</string>
     <string name="version">シリーズタイトル</string>
+    <string name="flarerank">フレアランク</string>
     
     <string name="refresh_musiclist">楽曲一覧を更新</string>
     <string name="no_update">更新はありませんでした</string>

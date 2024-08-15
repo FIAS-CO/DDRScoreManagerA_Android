@@ -2,10 +2,8 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-[2024/07/25] 0.145.24072500\n
-* Update:\n
-- Made it possible to display new songs in DDR WORLD.\n
-- Fixed a bug causing the app to crash.
+[0.146.24080400] Update:\n
+- We have added a Flare Rank aggregation feature to the statistics function.
     </string>
     
     <string name="strings_global____app_name">DDR Score Manager A</string>
@@ -49,6 +47,7 @@
     <string name="difficulty">Difficulty</string>
     <string name="patterntype">Pattern Type</string>
     <string name="version">Series Title</string>
+    <string name="flarerank">Flare Rank</string>
     
     <string name="refresh_musiclist">Update Music List</string>
     <string name="no_update">No Update.</string>
