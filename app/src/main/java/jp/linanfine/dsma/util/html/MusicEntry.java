@@ -4,11 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 public class MusicEntry {
     private final String musicName;
     private final List<DifficultyScore> scores;
@@ -34,15 +29,6 @@ public class MusicEntry {
 
     public GameMode getGameMode() {
         return gameMode;
-    }
-
-    @Override
-    public String toString() {
-        return "MusicEntry{" +
-                "musicName='" + musicName + '\'' +
-                ", scores=" + scores +
-                ", gameMode=" + gameMode +
-                '}';
     }
 
     @Override

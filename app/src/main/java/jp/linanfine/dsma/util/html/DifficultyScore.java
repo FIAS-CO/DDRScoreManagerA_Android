@@ -44,16 +44,6 @@ public class DifficultyScore {
     }
 
     @Override
-    public String toString() {
-        return "DifficultyScore{" +
-                "difficultyId='" + difficultyId + '\'' +
-                ", score=" + score +
-                ", rank=" + rank +
-                ", fullComboType=" + fullComboType +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
