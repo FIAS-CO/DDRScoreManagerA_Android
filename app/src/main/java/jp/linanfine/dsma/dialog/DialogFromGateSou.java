@@ -251,7 +251,7 @@ public class DialogFromGateSou {
         // 曲名の確認
         Element musicInfoElement = doc.selectFirst("div.music_name table#music_info tr td:eq(1)");
         if (musicInfoElement != null) {
-            String songTitle = TextUtil.escapeWebTitle(musicInfoElement.html().split("<br>")[0].trim());
+            String songTitle = musicInfoElement.html().split("<br>")[0].trim();
             WebMusicId webMusicId = mWebMusicIds.get(mItemId);
             if (webMusicId == null) {
                 // mItemIdに該当するアイテムが存在しない場合の処理

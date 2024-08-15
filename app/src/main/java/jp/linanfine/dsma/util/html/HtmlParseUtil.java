@@ -68,7 +68,6 @@ public class HtmlParseUtil {
         if (titleLink == null) return null;
 
         String musicName = titleLink.text().trim();
-        musicName = TextUtil.escapeWebTitle(musicName);
 
         List<DifficultyScore> scores = new ArrayList<>();
         Elements difficultyColumns = row.select("td.rank");
@@ -172,7 +171,6 @@ public class HtmlParseUtil {
         if (titleLink == null) return null;
 
         String musicName = titleLink.text().trim();
-        musicName = TextUtil.escapeWebTitle(musicName);
 
         List<DifficultyScore> scores = new ArrayList<>();
         Elements difficultyColumns = row.select("td.rank");

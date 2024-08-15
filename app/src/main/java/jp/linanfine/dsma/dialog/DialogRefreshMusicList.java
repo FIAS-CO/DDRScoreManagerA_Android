@@ -323,7 +323,7 @@ public class DialogRefreshMusicList {
                     FileReader.saveMusicListVersion(mParent, version);
                     FileReader.saveText(mParent, MusicNames, "MusicNames.txt");
                     FileReader.saveText(mParent, ShockArrowExists, "ShockArrowExists.txt");
-                    FileReader.saveText(mParent, TextUtil.escapeWebTitle(WebMusicIds), "WebMusicIds.txt");
+                    FileReader.saveText(mParent, WebMusicIds, "WebMusicIds.txt");
                     publishProgress(101, 2);
                 } else {
                     publishProgress(101, 3);

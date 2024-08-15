@@ -287,18 +287,9 @@ public class DialogFromGateIds {
             //int musicId = Integer.valueOf(idText);
             String musicName = musicBlock.substring(musicBlock.indexOf(">") + 1);
             musicName = musicName.substring(0, musicName.indexOf("</")).trim();
-            musicName = TextUtil.escapeWebTitle(musicName);
 
             mIdList.put(idText, musicName);
-            //sb.append(musicId);
-            //sb.append("\t");
-            //sb.append(musicName);
-            //sb.append("\n");
-
         }
-
-        //mResult = mResult+sb.toString();
-
     }
 
     @android.webkit.JavascriptInterface
@@ -418,5 +409,4 @@ public class DialogFromGateIds {
             mWebView.loadUrl(mUriH + mCurrentPage + mUriF);
         });
     }
-
 }

@@ -1,12 +1,9 @@
 package jp.linanfine.dsma.util.html;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,7 +27,6 @@ public class HtmlParseUtilTest {
         doubleHtml = new String(Files.readAllBytes(Paths.get("src/test/resources/music_data_double.html")));
     }
 
-
     @Test
     public void testParseMusicListSingle_forWorld() throws IOException {
         String htmlContent = loadHtmlContent("WorldSiteDataSingle.html");
@@ -53,6 +49,17 @@ public class HtmlParseUtilTest {
         assertEquals(GameMode.DOUBLE, result.gameMode);
 
         testSpecificSongsDouble(result.musicEntries);
+    }
+
+    @Test
+    public void testParseMusicListSingle_forWorld_楽曲データ取得不可検証() throws IOException {
+        String htmlContent = loadHtmlContent("WorldSiteDataSingle_VerWorld.html");
+        HtmlParseUtil.ParseResult result = HtmlParseUtil.parseMusicListForWorld(htmlContent);
+
+        assertFalse(result.musicEntries.isEmpty(), "Result should not be empty");
+        assertEquals(GameMode.SINGLE, result.gameMode);
+
+        testSpecificSongs_検証(result.musicEntries);
     }
 
     @Test
@@ -165,7 +172,7 @@ public class HtmlParseUtilTest {
     private void testSpecificSongs(List<MusicEntry> result) {
         MusicEntry songEntry = findSongByName(result, "とこにゃつ☆トロピカル");
         assertNotNull(songEntry, "Song 'とこにゃつ☆トロピカル' not found");
-        assertEquals(5, songEntry.getScores().size(),"Should have 5 difficulty scores");
+        assertEquals(5, songEntry.getScores().size(), "Should have 5 difficulty scores");
 
         DifficultyScore difficultScore = findScoreByDifficulty(songEntry, "basic");
         assertNotNull(difficultScore, "BASIC score for 'とこにゃつ☆トロピカル' not found");
@@ -177,7 +184,7 @@ public class HtmlParseUtilTest {
         // "晴天Bon Voyage"のテスト
         songEntry = findSongByName(result, "晴天Bon Voyage");
         assertNotNull(songEntry, "Song '晴天Bon Voyage' not found");
-        assertEquals(5, songEntry.getScores().size(),"Should have 5 difficulty scores");
+        assertEquals(5, songEntry.getScores().size(), "Should have 5 difficulty scores");
 
         difficultScore = findScoreByDifficulty(songEntry, "difficult");
         assertNotNull(difficultScore, "DIFFICULT score for '晴天Bon Voyage' not found");
@@ -304,7 +311,7 @@ public class HtmlParseUtilTest {
         assertEquals(MusicRank.E, expertScore.getRank());
         assertEquals(FullComboType.None, expertScore.getFullComboType());
         assertEquals(-1, expertScore.getFlareRank()); // フレアランクなし
-   }
+    }
 
     private void testSpecificSongsDouble(List<MusicEntry> result) {
         MusicEntry songEntry = findSongByName(result, "蒼い衝動 ～for EXTREME～");
@@ -408,6 +415,41 @@ public class HtmlParseUtilTest {
         assertEquals(MusicRank.E, difficultScore.getRank());
         assertEquals(FullComboType.None, difficultScore.getFullComboType());
         assertEquals(-1, difficultScore.getFlareRank());
+    }
+
+    private void testSpecificSongs_検証(List<MusicEntry> result) {
+        MusicEntry songEntry = findSongByName(result, "きらきら☆ユニバース");
+        assertNotNull(songEntry, "Song 'きらきら☆ユニバース' not found");
+        assertEquals(5, songEntry.getScores().size(), "Should have 5 difficulty scores");
+
+        DifficultyScore basicScore = findScoreByDifficulty(songEntry, "basic");
+        assertNotNull(basicScore, "BASIC score for 'きらきら☆ユニバース' not found");
+        assertEquals(997230, basicScore.getScore());
+        assertEquals(MusicRank.AAA, basicScore.getRank());
+        assertEquals(FullComboType.FullCombo, basicScore.getFullComboType());
+        assertEquals(10, basicScore.getFlareRank()); // フレアランクなし
+
+        // "零 - ZERO -"のテスト（EXフレアランクの確認）
+        songEntry = findSongByName(result, "Don't Stop The HYPERCORE");
+        assertNotNull(songEntry, "Song 'Don't Stop The HYPERCORE' not found");
+
+        DifficultyScore expertScore = findScoreByDifficulty(songEntry, "expert");
+        assertNotNull(expertScore, "Expert score for '994080' not found");
+        assertEquals(994080, expertScore.getScore());
+        assertEquals(MusicRank.AAA, expertScore.getRank());
+        assertEquals(FullComboType.GoodFullCombo, expertScore.getFullComboType());
+        assertEquals(9, expertScore.getFlareRank());
+
+        // "打打打打打打打打打打"のテスト（フレアランク9の確認）
+        songEntry = findSongByName(result, "Happy Dance Day 2 U");
+        assertNotNull(songEntry, "Song 'Happy Dance Day 2 U' not found");
+
+        expertScore = findScoreByDifficulty(songEntry, "expert");
+        assertNotNull(expertScore, "EXPERT score for 'Happy Dance Day 2 U' not found");
+        assertEquals(971390, expertScore.getScore());
+        assertEquals(MusicRank.AAp, expertScore.getRank());
+        assertEquals(FullComboType.GoodFullCombo, expertScore.getFullComboType());
+        assertEquals(1, expertScore.getFlareRank());
     }
 
     private MusicEntry findSongByName(List<MusicEntry> entries, String name) {

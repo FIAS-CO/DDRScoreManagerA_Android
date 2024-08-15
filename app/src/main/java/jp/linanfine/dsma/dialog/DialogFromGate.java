@@ -186,7 +186,7 @@ public class DialogFromGate {
         if (src.contains(cmp)) {
             String dr = src.substring(src.indexOf(cmp) + cmp.length());
             cmp = "<br>";
-            dr = TextUtil.escapeWebTitle(dr.substring(0, dr.indexOf(cmp)).trim());
+            dr = dr.substring(0, dr.indexOf(cmp)).trim();
             if (!dr.equals(mWebMusicIds.get(mItemId).titleOnWebPage)) {
                 new AlertDialog.Builder(mParent)
                         .setIcon(android.R.drawable.ic_dialog_info)
