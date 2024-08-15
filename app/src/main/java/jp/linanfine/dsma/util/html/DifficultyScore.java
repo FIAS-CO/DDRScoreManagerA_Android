@@ -10,7 +10,12 @@ public class DifficultyScore {
     private final int score;
     private final MusicRank rank;
     private final FullComboType fullComboType;
+    private int flareRank = -1;
 
+    public DifficultyScore(String difficultyId, int score, MusicRank rank, FullComboType fullComboType, int flareRank) {
+        this(difficultyId, score,rank,fullComboType);
+        this.flareRank = flareRank;
+    }
     public DifficultyScore(String difficultyId, int score, MusicRank rank, FullComboType fullComboType) {
         this.difficultyId = difficultyId;
         this.score = score;
@@ -32,6 +37,10 @@ public class DifficultyScore {
 
     public FullComboType getFullComboType() {
         return fullComboType;
+    }
+
+    public int getFlareRank() {
+        return flareRank;
     }
 
     @Override
