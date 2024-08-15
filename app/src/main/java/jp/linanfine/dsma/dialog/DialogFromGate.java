@@ -37,7 +37,6 @@ public class DialogFromGate {
     private AlertDialog mDialog;
     private final View mView;
 
-    //private TreeMap<Integer, MusicData> mMusicList;
     private IdToWebMusicIdList mWebMusicIds;
     private TreeMap<Integer, MusicScore> mScoreList;
     private WebView mWebView;
@@ -88,14 +87,11 @@ public class DialogFromGate {
         };
 
         mWebView = mView.findViewById(R.id.webView);
-        //mWebView.getSettings().setBlockNetworkImage(true);
         mWebView.getSettings().setBuiltInZoomControls(true);
         mWebView.setWebViewClient(client);
         mWebView.setWebChromeClient(chrome);
-        //mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.addJavascriptInterface(this, "viewsourceactivity");
-
     }
 
     public boolean setArguments(AlertDialog dialog, int itemId, PatternType pattern, String rivalId, String rivalName) {
@@ -151,7 +147,6 @@ public class DialogFromGate {
         } else {
             mRequestUri += "rival/music_detail.html?index=" + mWebItemId + "&diff=" + patternInt + "&rival_id=" + mRivalId;
         }
-        //String uri = "file:///android_asset/status.html";
         mWebView.loadUrl(mRequestUri);
     }
 
@@ -206,23 +201,7 @@ public class DialogFromGate {
         }
         Log.d("POINT", "2");
         cmp = "NO PLAY...";
-        //if(src.contains(cmp) || loggedin)
-        //{
-            /*Toast.makeText(mParent, "Complete !!\n\n(NoPlay)", Toast.LENGTH_LONG).show();
-            (new Thread(new Runnable() {
-                public void run() {
-            		try { Thread.sleep(1000);} catch (InterruptedException e) {}
-                    mHandler.post(new Runnable() {
-                    	public void run() {
-                            mDialog.cancel();
-                    	}
-                    });
-                    }
-                }
-            )).start();
-            return true;*/
-        //}
-        //else
+
         Log.d("POINT", "3");
         if (!src.contains(cmp)) {
             if (mCanceled) {
@@ -450,22 +429,6 @@ public class DialogFromGate {
                 }
             }
         }
-
-        // 「取得したFCでGFCを上書き」 が無効
-        /*if(!mGateSetting.OverWriteFullCombo)
-        {
-        	// 取得した値がFC
-        	if(sd.FullComboType == FullComboType.FullCombo)
-        	{
-	        	// 元の値がGFC
-	        	if(msd.FullComboType == FullComboType.GoodFullCombo)
-	        	{
-	        		// 元のフルコンタイプに戻す
-	        		sd.FullComboType = msd.FullComboType;
-	        	}
-        	}
-        }*/
-
         // 「低いスコアを上書き」 が無効
         if (!mGateSetting.OverWriteLowerScores) {
             // スコアが低かったら
@@ -479,74 +442,6 @@ public class DialogFromGate {
                 // コンボを元に戻す
                 sd.MaxCombo = msd.MaxCombo;
             }
-        	/*
-        	// 元の値がAAA
-        	if(msd.Rank == MusicRank.AAA)
-        	{
-        		// AAAにする
-        		sd.Rank = msd.Rank;
-        	}
-        	// 元の値がAA
-        	else if(msd.Rank == MusicRank.AA)
-        	{
-        		// 取得した値がAAAでない
-        		if(sd.Rank != MusicRank.AAA)
-        		{
-        			// AAにする
-        			sd.Rank = msd.Rank;
-        		}
-        	}
-        	// 元の値がA
-        	else if(msd.Rank == MusicRank.A)
-        	{
-        		// 取得した値がAAAでもAAでもない
-        		if(sd.Rank != MusicRank.AAA && sd.Rank != MusicRank.AA)
-        		{
-        			// Aにする
-        			sd.Rank = msd.Rank;
-        		}
-        	}
-        	// 元の値がB
-        	else if(msd.Rank == MusicRank.B)
-        	{
-        		// 取得した値がAAAでもAAでもAでもない
-        		if(sd.Rank != MusicRank.AAA && sd.Rank != MusicRank.AA && sd.Rank != MusicRank.A)
-        		{
-        			// Bにする
-        			sd.Rank = msd.Rank;
-        		}
-        	}
-        	// 元の値がC
-        	else if(msd.Rank == MusicRank.C)
-        	{
-        		// 取得した値がNoPlayかEかD
-        		if(sd.Rank == MusicRank.Noplay || sd.Rank == MusicRank.E || sd.Rank == MusicRank.D)
-        		{
-        			// Cにする
-        			sd.Rank = msd.Rank;
-        		}
-        	}
-        	// 元の値がD
-        	else if(msd.Rank == MusicRank.D)
-        	{
-        		// 取得した値がNoPlayかE
-        		if(sd.Rank == MusicRank.Noplay || sd.Rank == MusicRank.E)
-        		{
-        			// Dにする
-        			sd.Rank = msd.Rank;
-        		}
-        	}
-        	// 元の値がE
-        	else if(msd.Rank == MusicRank.E)
-        	{
-        		// 取得した値がNoPlay
-        		if(sd.Rank == MusicRank.Noplay)
-        		{
-        			// Eにする
-        			sd.Rank = msd.Rank;
-        		}
-        	}
-        	*/
             // 元の値がMFC
             if (msd.FullComboType == FullComboType.MerverousFullCombo) {
                 // MFCにする
@@ -682,8 +577,6 @@ public class DialogFromGate {
                 mHandler.post(() -> mDialog.cancel());
             }
             )).start();
-
         });
     }
-
 }

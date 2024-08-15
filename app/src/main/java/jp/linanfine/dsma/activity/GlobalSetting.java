@@ -22,7 +22,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -93,7 +92,7 @@ public class GlobalSetting extends Activity {
     int debugCount = -9;
 
     private void initialize() {
-        final Button debug = (Button) this.findViewById(R.id.debug);
+        final Button debug = this.findViewById(R.id.debug);
         debug.setOnClickListener(view -> {
             Intent intent = new Intent();
             intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.StatusActivity");
@@ -108,7 +107,7 @@ public class GlobalSetting extends Activity {
             }
         });
 
-        mFilterSpinner = (Spinner) this.findViewById(R.id.filterPage);
+        mFilterSpinner = this.findViewById(R.id.filterPage);
 
         mFilterSpinner.setVisibility(View.GONE);
 
@@ -137,7 +136,7 @@ public class GlobalSetting extends Activity {
         ((CheckBox) this.findViewById(R.id.showComment)).setChecked(mAppearances.ShowComments);
 
         ((CheckBox) this.findViewById(R.id.fullScreen)).setChecked(mAppearances.ShowFullScreen);
-        ((CheckBox) this.findViewById(R.id.titleBarVisible)).setVisibility(View.GONE);
+        this.findViewById(R.id.titleBarVisible).setVisibility(View.GONE);
         ((CheckBox) this.findViewById(R.id.titleBarVisible)).setChecked(mAppearances.ShowTitleBar);
         ((TextView) this.findViewById(R.id.setpfc)).setText(TextUtil.getScoreText(mGateSetting.SetPfcScore));
 
@@ -146,7 +145,7 @@ public class GlobalSetting extends Activity {
         View editPfc = this.findViewById(R.id.editSetPfc);
         editPfc.setOnClickListener(view -> {
             //テキスト入力を受け付けるビューを作成します。
-            final EditText editView = (EditText) GlobalSetting.this.getLayoutInflater().inflate(R.layout.view_digit_edit_text, null).findViewById(R.id.editText);
+            final EditText editView = GlobalSetting.this.getLayoutInflater().inflate(R.layout.view_digit_edit_text, null).findViewById(R.id.editText);
             editView.setText(String.valueOf(mGateSetting.SetPfcScore));
             editView.setOnFocusChangeListener((view1, focused) -> {
                 if (focused) {
@@ -173,7 +172,7 @@ public class GlobalSetting extends Activity {
                                 FileReader.saveGateSetting(GlobalSetting.this, mGateSetting);
                                 GlobalSetting.this.initialize();
                             }
-                        } catch (Exception e) {
+                        } catch (Exception ignored) {
                         }
                     })
                     .setNegativeButton(GlobalSetting.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> {
@@ -183,7 +182,7 @@ public class GlobalSetting extends Activity {
                     .show();
         });
 
-        Button logoutGate = (Button) this.findViewById(R.id.logout);
+        Button logoutGate = this.findViewById(R.id.logout);
         logoutGate.setOnClickListener(view -> {
             Intent intent = new Intent();
             intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.GateLoginManually");
@@ -248,7 +247,7 @@ public class GlobalSetting extends Activity {
             GlobalSetting.this.findViewById(R.id.showClearCount).setEnabled(!mUseOldStyleDraw);
         });
 
-        Button testSizeSetting = (Button) this.findViewById(R.id.textsizeSetting);
+        Button testSizeSetting = this.findViewById(R.id.textsizeSetting);
         testSizeSetting.setOnClickListener(view -> {
             Intent intent = new Intent();
             intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.TextSizeSettingDefaultViews");
@@ -256,7 +255,7 @@ public class GlobalSetting extends Activity {
             startActivityForResult(intent, 1);
         });
 
-        ((Button) this.findViewById(R.id.updateMusicList)).setOnClickListener(view -> {
+        this.findViewById(R.id.updateMusicList).setOnClickListener(view -> {
 
             FileReader.saveLastBootTime(GlobalSetting.this);
 
@@ -282,7 +281,7 @@ public class GlobalSetting extends Activity {
 
         });
 
-        Button pagerSetting = (Button) this.findViewById(R.id.filterSetting);
+        Button pagerSetting = this.findViewById(R.id.filterSetting);
         pagerSetting.setVisibility(View.GONE);
         pagerSetting.setOnClickListener(view -> {
 
@@ -294,7 +293,7 @@ public class GlobalSetting extends Activity {
 
         });
 
-        Button resetScores = (Button) this.findViewById(R.id.resetscores);
+        Button resetScores = this.findViewById(R.id.resetscores);
         resetScores.setOnClickListener(view -> {
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(GlobalSetting.this);
@@ -321,10 +320,9 @@ public class GlobalSetting extends Activity {
             AlertDialog alertDialog = alertDialogBuilder.create();
             // アラートダイアログを表示します
             alertDialog.show();
-
         });
 
-        Button exportBackup = (Button) this.findViewById(R.id.exportbackupdata);
+        Button exportBackup = this.findViewById(R.id.exportbackupdata);
         exportBackup.setOnClickListener(view -> {
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(GlobalSetting.this);
@@ -345,10 +343,9 @@ public class GlobalSetting extends Activity {
             AlertDialog alertDialog = alertDialogBuilder.create();
             // アラートダイアログを表示します
             alertDialog.show();
-
         });
 
-        Button importBackup = (Button) this.findViewById(R.id.importbackupdata);
+        Button importBackup = this.findViewById(R.id.importbackupdata);
         importBackup.setOnClickListener(view -> {
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(GlobalSetting.this);
@@ -369,10 +366,9 @@ public class GlobalSetting extends Activity {
             AlertDialog alertDialog = alertDialogBuilder.create();
             // アラートダイアログを表示します
             alertDialog.show();
-
         });
 
-        Button exportMyList = (Button) this.findViewById(R.id.exportmylist);
+        Button exportMyList = this.findViewById(R.id.exportmylist);
         exportMyList.setOnClickListener(view -> {
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(GlobalSetting.this);
@@ -393,10 +389,9 @@ public class GlobalSetting extends Activity {
             AlertDialog alertDialog = alertDialogBuilder.create();
             // アラートダイアログを表示します
             alertDialog.show();
-
         });
 
-        Button importMyList = (Button) this.findViewById(R.id.importmylist);
+        Button importMyList = this.findViewById(R.id.importmylist);
         importMyList.setOnClickListener(view -> {
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(GlobalSetting.this);
@@ -417,9 +412,7 @@ public class GlobalSetting extends Activity {
             AlertDialog alertDialog = alertDialogBuilder.create();
             // アラートダイアログを表示します
             alertDialog.show();
-
         });
-
 
         mGestures = FileReader.readGestureSettings(this);
         ((CheckBox) this.findViewById(R.id.gestureEnableFlick)).setChecked(mGestures.GestureEnabled);
@@ -453,7 +446,7 @@ public class GlobalSetting extends Activity {
             }
         });
 
-        CheckBox showAd = (CheckBox) this.findViewById(R.id.showAd);
+        CheckBox showAd = this.findViewById(R.id.showAd);
         showAd.setChecked(FileReader.readShowAd(this));
         showAd.setOnCheckedChangeListener((arg0, arg1) -> {
             SharedPreferences pref = getSharedPreferences("GeneralSetting", MODE_PRIVATE);
@@ -467,7 +460,7 @@ public class GlobalSetting extends Activity {
     public void onResume() {
         super.onResume();
         ActivitySetting.setTitleBarShown(this, this.findViewById(R.id.titleBar));
-        FileReader.requestAd((LinearLayout) this.findViewById(R.id.adContainer), this);
+        FileReader.requestAd(this.findViewById(R.id.adContainer), this);
     }
 
     @Override

@@ -109,11 +109,9 @@ public class DialogFromGateList {
         };
 
         mWebView = mView.findViewById(R.id.webView);
-        //mWebView.getSettings().setBlockNetworkImage(true);
         mWebView.getSettings().setBuiltInZoomControls(true);
         mWebView.setWebViewClient(client);
         mWebView.setWebChromeClient(chrome);
-        //mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.addJavascriptInterface(this, "viewsourceactivity");
     }
@@ -156,7 +154,6 @@ public class DialogFromGateList {
             mUriH += "rival/rival_musicdata_" + sd + ".html?offset=";
             mUriF = "&rival_id=" + mRivalId;
         }
-        //String uri = "file:///android_asset/status.html";
         mLogView.setText((mRivalName == null ? "My Score\n" : ("Rival: " + mRivalName + "\n")) + (mDouble ? "DP\n" : "SP\n") + mParent.getResources().getString(R.string.strings____Dialog_FromGate__Dialog_FromGateList____logGetPageCount));
         mWebView.loadUrl(mUriH + "0" + mUriF);
     }
@@ -173,7 +170,6 @@ public class DialogFromGateList {
 
     @android.webkit.JavascriptInterface
     public void viewSource(final String src) {
-        //Log.d("list", src);
         mHandler.post(() -> {
             mWebProgress.setProgress(0);
 
