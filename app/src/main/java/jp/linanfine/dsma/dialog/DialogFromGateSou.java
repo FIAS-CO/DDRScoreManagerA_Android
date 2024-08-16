@@ -22,6 +22,7 @@ import org.jsoup.select.Elements;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.TreeMap;
 
 import jp.linanfine.dsma.R;
@@ -88,7 +89,6 @@ public class DialogFromGateSou {
             return;
         }
 
-        //mMusicList = FileReader.readMusicList(mParent);
         mGateSetting = FileReader.readGateSetting(mParent);
 
         mWebMusicIds = FileReader.readWebMusicIds(mParent);
@@ -118,7 +118,6 @@ public class DialogFromGateSou {
 
         WebChromeClient chrome = new WebChromeClient() {
             public void onProgressChanged(WebView view, int progress) {
-                //try { Thread.sleep(10);} catch (InterruptedException e) {}
                 mWebProgress.setProgress(1 + progress);
                 mProgress.setProgress(mCurrentPage * 100 + (mPageCount == 0 ? 0 : progress));
                 mPercent.setText((100 * mCurrentPage + (mPageCount == 0 ? 0 : progress)) / (mPageCount == 0 ? 10000 : mPageCount) + "%");
@@ -126,14 +125,11 @@ public class DialogFromGateSou {
         };
 
         mWebView = mView.findViewById(R.id.webView);
-        //mWebView.getSettings().setBlockNetworkImage(true);
         mWebView.getSettings().setBuiltInZoomControls(true);
         mWebView.setWebViewClient(client);
         mWebView.setWebChromeClient(chrome);
-        //mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.addJavascriptInterface(this, "viewsourceactivity");
-
     }
 
     public boolean setArguments(AlertDialog dialog, ArrayList<UniquePattern> souList, String rivalId, String rivalName) {
@@ -193,7 +189,7 @@ public class DialogFromGateSou {
             mUriM = "&diff=";
             mUriF = "&rival_id=" + mRivalId + "&name=" + mRivalName.trim();
         }
-        //String uri = "file:///android_asset/status.html";
+
         mCurrentPage = 0;
         UniquePattern c = mSouList.get(mCurrentPage);
         mItemId = c.MusicId;
@@ -208,7 +204,7 @@ public class DialogFromGateSou {
             mDialog.cancel();
             return;
         } else {
-            mWebItemId = mWebMusicIds.get(mItemId).idOnWebPage;
+            mWebItemId = Objects.requireNonNull(mWebMusicIds.get(mItemId)).idOnWebPage;
         }
         mPattern = c.Pattern;
         mRequestUri = mUriH + mWebItemId + mUriM + getPatternInt(mPattern) + mUriF;
@@ -529,7 +525,7 @@ public class DialogFromGateSou {
         DecimalFormat df = new DecimalFormat("0,000,000");
         UniquePattern c = mSouList.get(mCurrentPage);
         return (mRivalName == null ? "" : "Rival: " + mRivalName + "\n") +
-                mPattern.toString() + " : " + c.musics.get(mItemId).Name + "\n" +
+                mPattern.toString() + " : " + Objects.requireNonNull(c.musics.get(mItemId)).Name + "\n" +
                 "  Full Combo :  " + (localScoreData.FullComboType.equals(scoreData.FullComboType) ? "" : localScoreData.FullComboType + " -> ") + scoreData.FullComboType.toString() + "\n" +
                 "  Rank :  " + (localScoreData.Rank.equals(scoreData.Rank) ? "" : (localScoreData.Rank + " -> ")) + scoreData.Rank.toString() + "\n" +
                 "  Score :  " + (localScoreData.Score == scoreData.Score ? "" : (df.format(localScoreData.Score) + " -> ")) + df.format(scoreData.Score) + "\n" +
@@ -624,7 +620,7 @@ public class DialogFromGateSou {
             }
             UniquePattern c = mSouList.get(mCurrentPage);
             mItemId = c.MusicId;
-            if (!mWebMusicIds.containsKey(mItemId) || mWebMusicIds.get(mItemId).idOnWebPage.equals("")) {
+            if (!mWebMusicIds.containsKey(mItemId) || Objects.requireNonNull(mWebMusicIds.get(mItemId)).idOnWebPage.isEmpty()) {
                 new AlertDialog.Builder(mParent)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setMessage(mParent.getResources().getString(R.string.illegal_id_alert))
@@ -635,7 +631,7 @@ public class DialogFromGateSou {
                 mDialog.cancel();
                 return;
             } else {
-                mWebItemId = mWebMusicIds.get(mItemId).idOnWebPage;
+                mWebItemId = Objects.requireNonNull(mWebMusicIds.get(mItemId)).idOnWebPage;
             }
             mPattern = c.Pattern;
             mRequestUri = mUriH + mWebItemId + mUriM + getPatternInt(mPattern) + mUriF;
