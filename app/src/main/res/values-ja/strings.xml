@@ -2,8 +2,12 @@
 <resources>
     
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.146.24080400] Update:\n
-・統計機能にフレアランクの集計機能を追加しました。
+[0.147.24081600] Update:\n
+DDR WORLDの公式ページから楽曲データを取得できるようになりました！\n
+ただ、以下の機能はまだA3から取得するようになっています。今後のアップデートをお待ちください。\n
+- Recent楽曲データ（近日対応予定）\n
+- プレイヤー情報（近日対応予定）\n
+- ライバル情報（公式ページ未対応）\n
     </string>
 
     <string name="strings_global____app_name">DDR Score Manager A</string>

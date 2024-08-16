@@ -2,8 +2,13 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.146.24080400] Update:\n
-- We have added a Flare Rank aggregation feature to the statistics function.
+[0.147.24081600] Update:\n
+You can now retrieve song data from the DDR WORLD official page!\n
+However, the following features are still being retrieved from A3 and will be updated in future releases:\n
+\n
+- Recent song data (coming soon)\n
+- Player information (coming soon)\n
+- Rival information (not supported by the official page)\n
     </string>
     
     <string name="strings_global____app_name">DDR Score Manager A</string>
