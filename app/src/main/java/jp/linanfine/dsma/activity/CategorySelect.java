@@ -4,7 +4,6 @@ import android.R.drawable;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -17,7 +16,6 @@ import android.os.Looper;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
@@ -67,7 +65,6 @@ public class CategorySelect extends Activity {
         DebugOutput.getInstance(this).ToastLong(v + "\n" + FileReader.readLastVersion(this));
 
         if (!FileReader.readLastVersion(this).equals(v)) {
-
             FileReader.saveMusicListVersion(this, "Implemented File");
             FileReader.copyMusicIdList(this);
             FileReader.copyMusicNames(this);
@@ -95,7 +92,6 @@ public class CategorySelect extends Activity {
     }
 
     private void userActionShowSystemMenu() {
-
         //選択項目を準備する。
         ArrayList<String> str_items = new ArrayList<>();
         str_items.add(getResources().getString(R.string.strings____Menu_System____preference));
@@ -123,24 +119,20 @@ public class CategorySelect extends Activity {
                         case 4:
                             userActionFromGateList();
                             break;
-                        //case 5: userActionOpenOcrMode(); break;
                     }
                 }).show();
     }
 
     private void userActionOpenPreference() {
-
         Intent intent = new Intent();
         intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.GlobalSetting");
 
         startActivityForResult(intent, 1);
-
     }
 
     private DialogRefreshMusicList mDialogRefreshMusicList = null;
 
     private void userActionRefreshMusicList(boolean force) {
-
         if (!force) {
             if (FileReader.readLastVersion(this).equals("0.54.14080800")) {
                 FileReader.saveAutoUpdateMusicList(this, true);
@@ -177,35 +169,27 @@ public class CategorySelect extends Activity {
                 .show());
 
         mDialogRefreshMusicList.start();
-
     }
 
     private void userActionDdrSa() {
-
         Intent intent = new Intent();
         intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.DDRSA");
-        //intent.putExtra("jp.linanfine.dsma.category", "All Musics");
 
         startActivity(intent);
-
     }
 
     private void userActionShowStatus() {
-
         Intent intent = new Intent();
         intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.StatusActivity");
 
         startActivityForResult(intent, 1);
-
     }
 
     private void userActionManageRivals() {
-
         Intent intent = new Intent();
         intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ManageRivals");
 
         startActivityForResult(intent, 1);
-
     }
 
     private void userActionOpenOcrMode() {
@@ -216,7 +200,6 @@ public class CategorySelect extends Activity {
     }
 
     private void userActionFromGateList() {
-
         new AlertDialog.Builder(CategorySelect.this)
                 .setTitle(getResources().getString(R.string.strings____Dialog_GetScores____getScore))
                 .setMessage(getResources().getString(R.string.strings____Dialog_GetScores____getScoreMessage))
@@ -234,7 +217,6 @@ public class CategorySelect extends Activity {
     }
 
     private void initialize() {
-
         FileReader.convertOldFilterSortSetting(this);
 
         mCloseCategoryOnBackKey = FileReader.readCloseCategoryOnBackKeyPressed(this);
@@ -407,11 +389,9 @@ public class CategorySelect extends Activity {
 
         LinearLayout categoryAllMusics = mMainView.findViewById(R.id.categoryAllMusics);
         categoryAllMusics.setOnClickListener(view -> {
-
             categoryClose(true);
 
             Intent intent = new Intent();
-            //intent.setClassName("jp.linanfine.dsma","jp.linanfine.dsma.activity.ScoreList");
             intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
             intent.putExtra("jp.linanfine.dsma.category", "All Musics");
 
@@ -423,7 +403,6 @@ public class CategorySelect extends Activity {
             categoryClose(true);
 
             Intent intent = new Intent();
-            //intent.setClassName("jp.linanfine.dsma","jp.linanfine.dsma.activity.ScoreList");
             intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
             intent.putExtra("jp.linanfine.dsma.category", "Recents");
 
@@ -731,17 +710,13 @@ public class CategorySelect extends Activity {
                                     final EditText editView = CategorySelect.this.getLayoutInflater().inflate(R.layout.view_singleline_edit_text, null).findViewById(R.id.editText);
                                     editView.setText(mGlobalS);
                                     editView.setSelectAllOnFocus(true);
-                                    editView.setOnFocusChangeListener(new OnFocusChangeListener() {
-                                        public void onFocusChange(View view1, boolean focused) {
-                                            if (focused) {
-                                                mHandledView = view1;
-                                                mHandler.post(new Runnable() {
-                                                    public void run() {
-                                                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                                        inputMethodManager.showSoftInput(mHandledView, InputMethodManager.SHOW_FORCED);
-                                                    }
-                                                });
-                                            }
+                                    editView.setOnFocusChangeListener((view1, focused) -> {
+                                        if (focused) {
+                                            mHandledView = view1;
+                                            mHandler.post(() -> {
+                                                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                                inputMethodManager.showSoftInput(mHandledView, InputMethodManager.SHOW_FORCED);
+                                            });
                                         }
                                     });
                                     new AlertDialog.Builder(CategorySelect.this)
@@ -749,26 +724,21 @@ public class CategorySelect extends Activity {
                                             .setTitle(CategorySelect.this.getResources().getString(R.string.strings____Dialog_MyList____editMylistName))
                                             //setViewにてビューを設定します。
                                             .setView(editView)
-                                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int whichButton) {
-                                                    InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                                    inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
-                                                    FileReader.saveMyListName(CategorySelect.this, mGlobalI, editView.getText().toString());
-                                                    initialize();
-                                                }
+                                            .setPositiveButton("OK", (dialog14, whichButton) -> {
+                                                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                                inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                                                FileReader.saveMyListName(CategorySelect.this, mGlobalI, editView.getText().toString());
+                                                initialize();
                                             })
-                                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int whichButton) {
-                                                    InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                                    inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
-                                                }
+                                            .setNegativeButton("Cancel", (dialog13, whichButton) -> {
+                                                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                                inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
                                             })
                                             .show();
 
                                     break;
                                 }
                                 case 1: {
-
                                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CategorySelect.this);
                                     // アラートダイアログのタイトルを設定します
                                     alertDialogBuilder.setIcon(drawable.ic_dialog_alert);
@@ -777,17 +747,13 @@ public class CategorySelect extends Activity {
                                     alertDialogBuilder.setMessage(getResources().getString(R.string.strings____Dialog_MyList____deleteConferm));
                                     // アラートダイアログの肯定ボタンがクリックされた時に呼び出されるコールバックリスナーを登録します
                                     alertDialogBuilder.setPositiveButton(getResources().getString(R.string.strings_global____ok),
-                                            new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    FileReader.deleteMyList(CategorySelect.this, mGlobalI);
-                                                    initialize();
-                                                }
+                                            (dialog12, which12) -> {
+                                                FileReader.deleteMyList(CategorySelect.this, mGlobalI);
+                                                initialize();
                                             });
                                     // アラートダイアログの否定ボタンがクリックされた時に呼び出されるコールバックリスナーを登録します
                                     alertDialogBuilder.setNegativeButton(getResources().getString(R.string.strings_global____cancel),
-                                            new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                }
+                                            (dialog1, which1) -> {
                                             });
                                     // アラートダイアログのキャンセルが可能かどうかを設定します
                                     alertDialogBuilder.setCancelable(true);
@@ -803,34 +769,31 @@ public class CategorySelect extends Activity {
                 return false;
             });
         }
-        categoryMyList.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
-                if (mylists.getVisibility() == View.GONE) {
-                    categoryClose(true);
-                    mOpenedCategory = 5;
-                    mylists.setVisibility(View.VISIBLE);
-                    (new AsyncTask<View, Void, View>() {
-                        @Override
-                        protected View doInBackground(View... params) {
-                            return params[0];
-                        }
+        categoryMyList.setOnClickListener(view -> {
+            if (mylists.getVisibility() == View.GONE) {
+                categoryClose(true);
+                mOpenedCategory = 5;
+                mylists.setVisibility(View.VISIBLE);
+                (new AsyncTask<View, Void, View>() {
+                    @Override
+                    protected View doInBackground(View... params) {
+                        return params[0];
+                    }
 
-                        @Override
-                        protected void onPostExecute(View result) {
-                            int sy = scrollView.getScrollY();
-                            int[] loc = new int[2];
-                            result.getLocationInWindow(loc);
-                            int[] ll = new int[2];
-                            mMainView.findViewById(R.id.scrollView).getLocationInWindow(ll);
-                            scrollView.scrollTo(0, loc[1] - ll[1] + sy);
-                        }
-                    }).execute(view);
-                } else {
-                    categoryClose(true);
-                }
+                    @Override
+                    protected void onPostExecute(View result) {
+                        int sy = scrollView.getScrollY();
+                        int[] loc = new int[2];
+                        result.getLocationInWindow(loc);
+                        int[] ll = new int[2];
+                        mMainView.findViewById(R.id.scrollView).getLocationInWindow(ll);
+                        scrollView.scrollTo(0, loc[1] - ll[1] + sy);
+                    }
+                }).execute(view);
+            } else {
+                categoryClose(true);
             }
         });
-
 
         {
             OnClickListener serClicked = view -> {
@@ -1108,7 +1071,6 @@ public class CategorySelect extends Activity {
                 showDialogFromGateIds();
             }
         });
-
     }
 
     @Override
@@ -1142,14 +1104,6 @@ public class CategorySelect extends Activity {
         }
     }
 
-    /*
-        @Override
-        public void onPause()
-        {
-            mScrPos = ((ScrollView)mMainView.findViewById(R.id.scrollView)).getScrollY();
-            super.onPause();
-        }
-*/
     LinearLayout dificulties;
     LinearLayout seriesTitles;
     LinearLayout abcs;
