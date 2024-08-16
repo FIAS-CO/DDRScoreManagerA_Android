@@ -170,6 +170,9 @@ public class ManageRivals extends Activity {
                     ManageRivals.this.initialize();
                 })
                 .setNegativeButton(ManageRivals.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> {
+                    if (mHandledView == null || mHandledView.getWindowToken() == null) {
+                        return;
+                    }
                     InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
                 })
@@ -443,6 +446,9 @@ public class ManageRivals extends Activity {
                                             ManageRivals.this.initialize();
                                         })
                                         .setNegativeButton(ManageRivals.this.getResources().getString(R.string.strings_global____cancel), (dialog1, whichButton) -> {
+                                            if (mHandledView == null || mHandledView.getWindowToken() == null) {
+                                                return;
+                                            }
                                             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                                             inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
                                         })

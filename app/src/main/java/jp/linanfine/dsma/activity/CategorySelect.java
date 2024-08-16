@@ -725,14 +725,18 @@ public class CategorySelect extends Activity {
                                             //setViewにてビューを設定します。
                                             .setView(editView)
                                             .setPositiveButton("OK", (dialog14, whichButton) -> {
-                                                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                                inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                                                if (mHandledView != null && mHandledView.getWindowToken() != null) {
+                                                    InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                                    inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                                                }
                                                 FileReader.saveMyListName(CategorySelect.this, mGlobalI, editView.getText().toString());
                                                 initialize();
                                             })
                                             .setNegativeButton("Cancel", (dialog13, whichButton) -> {
-                                                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                                inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                                                if (mHandledView != null && mHandledView.getWindowToken() != null) {
+                                                    InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                                    inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                                                }
                                             })
                                             .show();
 
