@@ -56,15 +56,15 @@ public class FileReaderTest {
         assertEquals(MusicRank.AA, score233.EDP.Rank);
         assertEquals(944400, score233.EDP.Score);
         assertEquals(FullComboType.None, score233.EDP.FullComboType);
-        assertEquals(10, score233.bSP.flareRank);
-        assertEquals(7, score233.BSP.flareRank);
-        assertEquals(6, score233.DSP.flareRank);
-        assertEquals(5, score233.ESP.flareRank);
-        assertEquals(4, score233.CSP.flareRank);
-        assertEquals(3, score233.BDP.flareRank);
-        assertEquals(2, score233.DDP.flareRank);
-        assertEquals(1, score233.EDP.flareRank);
-        assertEquals(0, score233.CDP.flareRank);
+        assertEquals(10, score233.bSP.FlareRank);
+        assertEquals(7, score233.BSP.FlareRank);
+        assertEquals(6, score233.DSP.FlareRank);
+        assertEquals(5, score233.ESP.FlareRank);
+        assertEquals(4, score233.CSP.FlareRank);
+        assertEquals(3, score233.BDP.FlareRank);
+        assertEquals(2, score233.DDP.FlareRank);
+        assertEquals(1, score233.EDP.FlareRank);
+        assertEquals(0, score233.CDP.FlareRank);
 
         MusicScore score453 = scores.get(453);
         assertNotNull(score453, "ID 453 のスコアが存在しません");
@@ -80,8 +80,8 @@ public class FileReaderTest {
         assertEquals(MusicRank.AAm, score453.CDP.Rank);
         assertEquals(898950, score453.CDP.Score);
         assertEquals(FullComboType.None, score453.CDP.FullComboType);
-        assertEquals(8, score453.EDP.flareRank);
-        assertEquals(9, score453.CDP.flareRank);
+        assertEquals(8, score453.EDP.FlareRank);
+        assertEquals(9, score453.CDP.FlareRank);
     }
 
     @Test
@@ -449,6 +449,6 @@ public class FileReaderTest {
                 lhs.FullComboType == rhs.FullComboType &&
                 lhs.PlayCount == rhs.PlayCount &&
                 lhs.ClearCount == rhs.ClearCount &&
-                lhs.flareRank == rhs.flareRank;
+                lhs.FlareRank == rhs.FlareRank;
     }
 }

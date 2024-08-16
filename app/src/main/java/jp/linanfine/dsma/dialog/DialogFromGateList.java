@@ -290,7 +290,7 @@ public class DialogFromGateList {
                 sd.Score = diffScore.getScore();
                 sd.Rank = diffScore.getRank();
                 sd.FullComboType = diffScore.getFullComboType();
-                sd.flareRank = diffScore.getFlareRank();
+                sd.FlareRank = diffScore.getFlareRank();
 
                 ScoreData msd = getScoreDataForDifficulty(ms, diffScore.getDifficultyId());
                 updateScoreData(sd, msd);
@@ -370,8 +370,8 @@ public class DialogFromGateList {
             if (msd.FullComboType.ordinal() > sd.FullComboType.ordinal()) {
                 sd.FullComboType = msd.FullComboType;
             }
-            if (msd.flareRank > sd.flareRank) {
-                sd.flareRank = msd.flareRank;
+            if (msd.FlareRank > sd.FlareRank) {
+                sd.FlareRank = msd.FlareRank;
             }
         }
 

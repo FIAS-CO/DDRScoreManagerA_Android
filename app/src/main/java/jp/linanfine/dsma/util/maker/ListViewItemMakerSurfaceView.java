@@ -252,7 +252,7 @@ public class ListViewItemMakerSurfaceView extends ListViewItemMaker {
                         mPaint.setTypeface(Typeface.DEFAULT_BOLD);
                         mPaint.setTextSize(mAppearance.ItemMusicScoreFontSize);
 
-                        String flareSkillText = String.format("%04d", mScoreData.flareSkill);
+                        String flareSkillText = String.format("%04d", mScoreData.FlareSkill);
                         float flareSkillWidth = mPaint.measureText("0000");
                         nextRight -= flareSkillWidth + mAppearance.ItemMusicScoreFontSize / 4.0f; // スコアとフレアスキルの間隔
 
@@ -279,7 +279,7 @@ public class ListViewItemMakerSurfaceView extends ListViewItemMaker {
                         mPaint.setTextSize(mAppearance.ItemMusicScoreFontSize);
                         mPaint.setColor(0xff999999);
 
-                        String flareRankText = FlareSkillUpdater.getFlareRankText(mScoreData.flareRank);
+                        String flareRankText = FlareSkillUpdater.getFlareRankText(mScoreData.FlareRank);
                         float maxFlareRankWidth = mPaint.measureText("VIII");  // 最大幅を "VIII" の幅に設定
                         nextRight -= maxFlareRankWidth + mAppearance.ItemMusicScoreFontSize / 4.0f; // スコアとフレアランクの間隔
                         canvas.drawText(flareRankText, nextRight + maxFlareRankWidth, myRankBottom, mPaint);

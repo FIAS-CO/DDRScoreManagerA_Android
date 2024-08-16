@@ -547,10 +547,10 @@ public class MusicSort {
                 ret = cp - cm;
                 break;
             case FlareRank:
-                ret = scoreP.flareRank - scoreM.flareRank;
+                ret = scoreP.FlareRank - scoreM.FlareRank;
                 break;
             case FlareSkill:
-                ret = scoreP.flareSkill - scoreM.flareSkill;
+                ret = scoreP.FlareSkill - scoreM.FlareSkill;
                 break;
             default:
                 ret = 0;

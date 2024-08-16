@@ -311,7 +311,7 @@ public class ScoreEdit extends Activity {
             case bSP:
                 rankData = scoredata.bSP.Rank;
                 score = scoredata.bSP.Score;
-                flareRank = scoredata.bSP.flareRank;
+                flareRank = scoredata.bSP.FlareRank;
                 combo = scoredata.bSP.MaxCombo;
                 play = scoredata.bSP.PlayCount;
                 clear = scoredata.bSP.ClearCount;
@@ -324,7 +324,7 @@ public class ScoreEdit extends Activity {
             case BSP:
                 rankData = scoredata.BSP.Rank;
                 score = scoredata.BSP.Score;
-                flareRank = scoredata.BSP.flareRank;
+                flareRank = scoredata.BSP.FlareRank;
                 combo = scoredata.BSP.MaxCombo;
                 play = scoredata.BSP.PlayCount;
                 clear = scoredata.BSP.ClearCount;
@@ -337,7 +337,7 @@ public class ScoreEdit extends Activity {
             case DSP:
                 rankData = scoredata.DSP.Rank;
                 score = scoredata.DSP.Score;
-                flareRank = scoredata.DSP.flareRank;
+                flareRank = scoredata.DSP.FlareRank;
                 combo = scoredata.DSP.MaxCombo;
                 play = scoredata.DSP.PlayCount;
                 clear = scoredata.DSP.ClearCount;
@@ -350,7 +350,7 @@ public class ScoreEdit extends Activity {
             case ESP:
                 rankData = scoredata.ESP.Rank;
                 score = scoredata.ESP.Score;
-                flareRank = scoredata.ESP.flareRank;
+                flareRank = scoredata.ESP.FlareRank;
                 combo = scoredata.ESP.MaxCombo;
                 play = scoredata.ESP.PlayCount;
                 clear = scoredata.ESP.ClearCount;
@@ -363,7 +363,7 @@ public class ScoreEdit extends Activity {
             case CSP:
                 rankData = scoredata.CSP.Rank;
                 score = scoredata.CSP.Score;
-                flareRank = scoredata.CSP.flareRank;
+                flareRank = scoredata.CSP.FlareRank;
                 combo = scoredata.CSP.MaxCombo;
                 play = scoredata.CSP.PlayCount;
                 clear = scoredata.CSP.ClearCount;
@@ -376,7 +376,7 @@ public class ScoreEdit extends Activity {
             case BDP:
                 rankData = scoredata.BDP.Rank;
                 score = scoredata.BDP.Score;
-                flareRank = scoredata.BDP.flareRank;
+                flareRank = scoredata.BDP.FlareRank;
                 combo = scoredata.BDP.MaxCombo;
                 play = scoredata.BDP.PlayCount;
                 clear = scoredata.BDP.ClearCount;
@@ -389,7 +389,7 @@ public class ScoreEdit extends Activity {
             case DDP:
                 rankData = scoredata.DDP.Rank;
                 score = scoredata.DDP.Score;
-                flareRank = scoredata.DDP.flareRank;
+                flareRank = scoredata.DDP.FlareRank;
                 combo = scoredata.DDP.MaxCombo;
                 play = scoredata.DDP.PlayCount;
                 clear = scoredata.DDP.ClearCount;
@@ -402,7 +402,7 @@ public class ScoreEdit extends Activity {
             case EDP:
                 rankData = scoredata.EDP.Rank;
                 score = scoredata.EDP.Score;
-                flareRank = scoredata.EDP.flareRank;
+                flareRank = scoredata.EDP.FlareRank;
                 combo = scoredata.EDP.MaxCombo;
                 play = scoredata.EDP.PlayCount;
                 clear = scoredata.EDP.ClearCount;
@@ -415,7 +415,7 @@ public class ScoreEdit extends Activity {
             case CDP:
                 rankData = scoredata.CDP.Rank;
                 score = scoredata.CDP.Score;
-                flareRank = scoredata.CDP.flareRank;
+                flareRank = scoredata.CDP.FlareRank;
                 combo = scoredata.CDP.MaxCombo;
                 play = scoredata.CDP.PlayCount;
                 clear = scoredata.CDP.ClearCount;
@@ -513,7 +513,7 @@ public class ScoreEdit extends Activity {
                 case bSP:
                     scoredata.bSP.Rank = dataRank;
                     scoredata.bSP.Score = dataScore;
-                    scoredata.bSP.flareRank = dataFlareRank;
+                    scoredata.bSP.FlareRank = dataFlareRank;
                     scoredata.bSP.MaxCombo = dataCombo;
                     scoredata.bSP.PlayCount = dataPlay;
                     scoredata.bSP.ClearCount = dataClear;
@@ -522,7 +522,7 @@ public class ScoreEdit extends Activity {
                 case BSP:
                     scoredata.BSP.Rank = dataRank;
                     scoredata.BSP.Score = dataScore;
-                    scoredata.BSP.flareRank = dataFlareRank;
+                    scoredata.BSP.FlareRank = dataFlareRank;
                     scoredata.BSP.MaxCombo = dataCombo;
                     scoredata.BSP.PlayCount = dataPlay;
                     scoredata.BSP.ClearCount = dataClear;
@@ -530,7 +530,7 @@ public class ScoreEdit extends Activity {
                     break;
                 case DSP:
                     scoredata.DSP.Rank = dataRank;
-                    scoredata.DSP.flareRank = dataFlareRank;
+                    scoredata.DSP.FlareRank = dataFlareRank;
                     scoredata.DSP.Score = dataScore;
                     scoredata.DSP.MaxCombo = dataCombo;
                     scoredata.DSP.PlayCount = dataPlay;
@@ -540,7 +540,7 @@ public class ScoreEdit extends Activity {
                 case ESP:
                     scoredata.ESP.Rank = dataRank;
                     scoredata.ESP.Score = dataScore;
-                    scoredata.ESP.flareRank = dataFlareRank;
+                    scoredata.ESP.FlareRank = dataFlareRank;
                     scoredata.ESP.MaxCombo = dataCombo;
                     scoredata.ESP.PlayCount = dataPlay;
                     scoredata.ESP.ClearCount = dataClear;
@@ -549,7 +549,7 @@ public class ScoreEdit extends Activity {
                 case CSP:
                     scoredata.CSP.Rank = dataRank;
                     scoredata.CSP.Score = dataScore;
-                    scoredata.CSP.flareRank = dataFlareRank;
+                    scoredata.CSP.FlareRank = dataFlareRank;
                     scoredata.CSP.MaxCombo = dataCombo;
                     scoredata.CSP.FullComboType = dataFC;
                     // TODO PlayCountなど足りてなさそう
@@ -557,7 +557,7 @@ public class ScoreEdit extends Activity {
                 case BDP:
                     scoredata.BDP.Rank = dataRank;
                     scoredata.BDP.Score = dataScore;
-                    scoredata.BDP.flareRank = dataFlareRank;
+                    scoredata.BDP.FlareRank = dataFlareRank;
                     scoredata.BDP.MaxCombo = dataCombo;
                     scoredata.BDP.PlayCount = dataPlay;
                     scoredata.BDP.ClearCount = dataClear;
@@ -566,7 +566,7 @@ public class ScoreEdit extends Activity {
                 case DDP:
                     scoredata.DDP.Rank = dataRank;
                     scoredata.DDP.Score = dataScore;
-                    scoredata.DDP.flareRank = dataFlareRank;
+                    scoredata.DDP.FlareRank = dataFlareRank;
                     scoredata.DDP.MaxCombo = dataCombo;
                     scoredata.DDP.PlayCount = dataPlay;
                     scoredata.DDP.ClearCount = dataClear;
@@ -575,7 +575,7 @@ public class ScoreEdit extends Activity {
                 case EDP:
                     scoredata.EDP.Rank = dataRank;
                     scoredata.EDP.Score = dataScore;
-                    scoredata.EDP.flareRank = dataFlareRank;
+                    scoredata.EDP.FlareRank = dataFlareRank;
                     scoredata.EDP.MaxCombo = dataCombo;
                     scoredata.EDP.PlayCount = dataPlay;
                     scoredata.EDP.ClearCount = dataClear;
@@ -584,7 +584,7 @@ public class ScoreEdit extends Activity {
                 case CDP:
                     scoredata.CDP.Rank = dataRank;
                     scoredata.CDP.Score = dataScore;
-                    scoredata.CDP.flareRank = dataFlareRank;
+                    scoredata.CDP.FlareRank = dataFlareRank;
                     scoredata.CDP.MaxCombo = dataCombo;
                     scoredata.CDP.PlayCount = dataPlay;
                     scoredata.CDP.ClearCount = dataClear;

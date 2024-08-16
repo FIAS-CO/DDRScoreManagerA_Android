@@ -2139,11 +2139,11 @@ public class FileReader {
 
         if (sp.length > spi + 9) {
             for (ScoreData sd : scoreDataArray) {
-                sd.flareRank = Integer.valueOf(sp[++spi]);
+                sd.FlareRank = Integer.valueOf(sp[++spi]);
             }
         } else {
             for (ScoreData sd : scoreDataArray) {
-                sd.flareRank = -1;
+                sd.FlareRank = -1;
             }
         }
 

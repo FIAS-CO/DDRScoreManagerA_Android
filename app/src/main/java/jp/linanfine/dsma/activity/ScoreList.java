@@ -525,7 +525,7 @@ public class ScoreList extends Activity {
                     ++fctypeNoFC;
                     break;
             }
-            switch (score.flareRank) {
+            switch (score.FlareRank) {
                 case -1:  // NoRank
                     ++flareRankNoRank;
                     break;
@@ -724,14 +724,14 @@ public class ScoreList extends Activity {
         int[] flareRankCounts = new int[12]; // NoRank(-1) から RankEX(10) まで
 
         for (MusicScore score : mScoreList.values()) {
-            updateFlareRankCount(flareRankCounts, score.BSP.flareRank);
-            updateFlareRankCount(flareRankCounts, score.DSP.flareRank);
-            updateFlareRankCount(flareRankCounts, score.ESP.flareRank);
-            updateFlareRankCount(flareRankCounts, score.CSP.flareRank);
-            updateFlareRankCount(flareRankCounts, score.BDP.flareRank);
-            updateFlareRankCount(flareRankCounts, score.DDP.flareRank);
-            updateFlareRankCount(flareRankCounts, score.EDP.flareRank);
-            updateFlareRankCount(flareRankCounts, score.CDP.flareRank);
+            updateFlareRankCount(flareRankCounts, score.BSP.FlareRank);
+            updateFlareRankCount(flareRankCounts, score.DSP.FlareRank);
+            updateFlareRankCount(flareRankCounts, score.ESP.FlareRank);
+            updateFlareRankCount(flareRankCounts, score.CSP.FlareRank);
+            updateFlareRankCount(flareRankCounts, score.BDP.FlareRank);
+            updateFlareRankCount(flareRankCounts, score.DDP.FlareRank);
+            updateFlareRankCount(flareRankCounts, score.EDP.FlareRank);
+            updateFlareRankCount(flareRankCounts, score.CDP.FlareRank);
         }
 
         displayFlareRankCounts(flareRankCounts);

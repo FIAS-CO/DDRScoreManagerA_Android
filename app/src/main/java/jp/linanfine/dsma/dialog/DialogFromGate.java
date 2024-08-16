@@ -482,8 +482,8 @@ public class DialogFromGate {
         }
 
         // Revisit 公式ページのデータ更新ができるようになったらオプションを追加する
-        if (sd.flareRank < msd.flareRank) {
-            sd.flareRank = msd.flareRank;
+        if (sd.FlareRank < msd.FlareRank) {
+            sd.FlareRank = msd.FlareRank;
         }
 
         switch (mPattern) {

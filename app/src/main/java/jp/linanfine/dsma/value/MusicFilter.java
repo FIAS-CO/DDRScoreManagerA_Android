@@ -362,13 +362,13 @@ public class MusicFilter {
             if (!FcNoFC && scoreData.FullComboType == FullComboType.None) return false;
 
             // フレアランクのチェック
-            if (!checkFlareRank(scoreData.flareRank)) {
+            if (!checkFlareRank(scoreData.FlareRank)) {
                 return false;
             }
 
             if (scoreData.Score < ScoreMin || ScoreMax < scoreData.Score) return false;
             // フレアスキルの範囲チェック
-            if (scoreData.flareSkill < FlareSkillMin || scoreData.flareSkill > FlareSkillMax) {
+            if (scoreData.FlareSkill < FlareSkillMin || scoreData.FlareSkill > FlareSkillMax) {
                 return false;
             }
 

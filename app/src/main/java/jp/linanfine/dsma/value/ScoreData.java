@@ -11,17 +11,17 @@ public class ScoreData {
 	public int PlayCount;
 	public int ClearCount;
 
-	public int flareRank = -1;
-	public int flareSkill = 0;
+	public int FlareRank = -1;
+	public int FlareSkill = 0;
 
 	public void updateFlareSkill(int songDifficulty) {
-		if (flareRank == -1) {  // ランクなし
-			flareSkill = 0;
+		if (FlareRank == -1) {  // ランクなし
+			FlareSkill = 0;
 			return;
 		}
 
 		if (songDifficulty < 1 || songDifficulty > 19) {
-			flareSkill = 0;
+			FlareSkill = 0;
 			return;
 		}
 
@@ -47,6 +47,6 @@ public class ScoreData {
 				{665, 704, 744, 784, 824, 864, 904, 944, 984, 1024, 1064}
 		};
 
-		flareSkill = skillValues[songDifficulty - 1][flareRank];
+		FlareSkill = skillValues[songDifficulty - 1][FlareRank];
 	}
 }

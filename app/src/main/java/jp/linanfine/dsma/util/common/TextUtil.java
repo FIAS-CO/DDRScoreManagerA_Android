@@ -432,23 +432,23 @@ public class TextUtil {
 
         // フレアランクの追加
         sb.append("\t");
-        sb.append(score.bSP.flareRank);
+        sb.append(score.bSP.FlareRank);
         sb.append("\t");
-        sb.append(score.BSP.flareRank);
+        sb.append(score.BSP.FlareRank);
         sb.append("\t");
-        sb.append(score.DSP.flareRank);
+        sb.append(score.DSP.FlareRank);
         sb.append("\t");
-        sb.append(score.ESP.flareRank);
+        sb.append(score.ESP.FlareRank);
         sb.append("\t");
-        sb.append(score.CSP.flareRank);
+        sb.append(score.CSP.FlareRank);
         sb.append("\t");
-        sb.append(score.BDP.flareRank);
+        sb.append(score.BDP.FlareRank);
         sb.append("\t");
-        sb.append(score.DDP.flareRank);
+        sb.append(score.DDP.FlareRank);
         sb.append("\t");
-        sb.append(score.EDP.flareRank);
+        sb.append(score.EDP.FlareRank);
         sb.append("\t");
-        sb.append(score.CDP.flareRank);
+        sb.append(score.CDP.FlareRank);
 
         return sb.toString();
     }
