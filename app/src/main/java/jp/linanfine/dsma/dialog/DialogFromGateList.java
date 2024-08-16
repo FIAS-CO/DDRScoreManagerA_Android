@@ -276,7 +276,9 @@ public class DialogFromGateList {
         boolean scoreExists = false;
         for (MusicEntry entry : musicEntries) {
             MusicId mi = mMusicIds.get(entry.getMusicName());
-            if (mi == null) continue;
+            if (mi == null) {
+                continue;
+            }
 
             int musicIdSaved = mi.musicId;
 
