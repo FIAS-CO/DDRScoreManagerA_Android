@@ -101,7 +101,7 @@ public class DialogFromGateRecent {
         if (mGateSetting.FromNewSite) {
             mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/playdata/music_recent.html";
         } else {
-            mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_recent.html";
+            mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/playdata/music_recent.html";
         }
         mWebView.loadUrl(mRequestUri);
     }

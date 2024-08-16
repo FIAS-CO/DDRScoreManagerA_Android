@@ -97,7 +97,7 @@ public class DialogFromGateRivalList {
         if (mGateSetting.FromNewSite) {
             mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/rival/index.html";
         } else {
-            mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra20/p/rival/index.html";
+            mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/rival/index.html";
         }
         mWebView.loadUrl(mRequestUri);
     }

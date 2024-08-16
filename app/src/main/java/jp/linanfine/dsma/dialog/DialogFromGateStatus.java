@@ -104,7 +104,7 @@ public class DialogFromGateStatus {
         if (mGateSetting.FromNewSite) {
             mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
         } else {
-            mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra20/p/";
+            mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
         }
 
         if (mRivalId == null) {
