@@ -3,8 +3,6 @@ package jp.linanfine.dsma.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -13,7 +11,6 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,48 +25,30 @@ import jp.linanfine.dsma.value.StatusData;
 
 public class StatusActivity extends Activity {
 
-    private float mCenter;
-    private float mHankei;
-    private StatusData mStatus;
-    private MgrView mMgr;
-    private int mMgrWidth;
-
     private int debugCount;
     private View showstatisticstable;
 
     private void initialize() {
-        LinearLayout mgrw = (LinearLayout) this.findViewById(R.id.mgr);
-        mStatus = FileReader.readStatusData(this);
+        LinearLayout mgrw = this.findViewById(R.id.mgr);
+        StatusData mStatus = FileReader.readStatusData(this);
         mgrw.removeAllViews();
-        mMgr = new MgrView(this);
+        MgrView mMgr = new MgrView(this);
         mgrw.addView(mMgr);
 
-        this.findViewById(R.id.refresh).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                showDialogFromGateStatus();
-            }
-        });
+        this.findViewById(R.id.refresh).setOnClickListener(v -> showDialogFromGateStatus());
 
-        //this.findViewById(R.id.showstatisticstable).setVisibility(View.GONE);
-        this.findViewById(R.id.showstatisticstable).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                openStatisticsTable();
-            }
-        });
+        this.findViewById(R.id.showstatisticstable).setOnClickListener(v -> openStatisticsTable());
 
         showstatisticstable = this.findViewById(R.id.showstatisticstable);
         showstatisticstable.setVisibility(View.GONE);
 
         debugCount = -9;
-        this.findViewById(R.id.sou).setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                ++debugCount;
-                if (debugCount > 0) {
-                    showstatisticstable.setVisibility(View.VISIBLE);
-                }
+        this.findViewById(R.id.sou).setOnClickListener(v -> {
+            ++debugCount;
+            if (debugCount > 0) {
+                showstatisticstable.setVisibility(View.VISIBLE);
             }
         });
-
 
         ((TextView) this.findViewById(R.id.dancerName)).setText(mStatus.DancerName);
         ((TextView) this.findViewById(R.id.ddrCode)).setText(mStatus.DdrCode);
@@ -82,21 +61,16 @@ public class StatusActivity extends Activity {
         ((TextView) this.findViewById(R.id.spLastPlay)).setText(mStatus.LastPlaySingle);
         ((TextView) this.findViewById(R.id.dpPlayCount)).setText(String.valueOf(mStatus.PlayCountDouble));
         ((TextView) this.findViewById(R.id.dpLastPlay)).setText(mStatus.LastPlayDouble);
-
     }
 
     private void openStatisticsTable() {
-
         Intent intent = new Intent();
         intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.StatisticsTable");
 
         startActivityForResult(intent, 1);
-
     }
 
     private DialogFromGateStatus mFromGateStatus = null;
-    private String mFromGateRivalId = null;
-    private String mFromGateRivalName = null;
 
     private void showDialogFromGateStatus() {
         if (mFromGateStatus != null) {
@@ -111,43 +85,31 @@ public class StatusActivity extends Activity {
                         .setTitle(StatusActivity.this.getResources().getString(R.string.dialog_gettin_status))
                         .setView(mFromGateStatus.getView())
                         .setCancelable(false)
-                        .setNegativeButton(StatusActivity.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                if (mFromGateStatus != null) {
-                                    mFromGateStatus.cancel();
-                                    mFromGateStatus = null;
-                                }
+                        .setNegativeButton(StatusActivity.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> {
+                            if (mFromGateStatus != null) {
+                                mFromGateStatus.cancel();
+                                mFromGateStatus = null;
                             }
                         })
-                        .setOnCancelListener(new OnCancelListener() {
-                            public void onCancel(DialogInterface arg0) {
-                                StatusActivity.this.initialize();
-                            }
-                        })
+                        .setOnCancelListener(arg0 -> StatusActivity.this.initialize())
                         .show()
-                , mFromGateRivalId, mFromGateRivalName);
+                , null);
 
         mFromGateStatus.start();
     }
 
     private void userActionShowSystemMenu() {
-
         //選択項目を準備する。
-        ArrayList<String> str_items = new ArrayList<String>();
+        ArrayList<String> str_items = new ArrayList<>();
         str_items.add(getResources().getString(R.string.menu_refresh_status));
 
         new AlertDialog.Builder(StatusActivity.this)
-                .setItems((String[]) str_items.toArray(new String[0]), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                switch (which) {
-                                    case 0:
-                                        showDialogFromGateStatus();
-                                        break;
-                                }
+                .setItems(str_items.toArray(new String[0]), (dialog, which) -> {
+                            if (which == 0) {
+                                showDialogFromGateStatus();
                             }
                         }
                 ).show();
-
     }
 
     @Override
@@ -162,7 +124,7 @@ public class StatusActivity extends Activity {
     public void onResume() {
         super.onResume();
         ActivitySetting.setTitleBarShown(this, this.findViewById(R.id.titleBar));
-        FileReader.requestAd((LinearLayout) this.findViewById(R.id.adContainer), this);
+        FileReader.requestAd(this.findViewById(R.id.adContainer), this);
     }
 
     @Override
@@ -174,35 +136,29 @@ public class StatusActivity extends Activity {
         this.setContentView(view);
 
         initialize();
-
     }
 
-    public class MgrView extends View {
+    public static class MgrView extends View {
 
         public MgrView(Context context) {
             super(context);
-            //this.setBackgroundColor(0xff000000);
         }
 
         protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-            mMgrWidth = MeasureSpec.getSize(widthMeasureSpec);
+            int mMgrWidth = MeasureSpec.getSize(widthMeasureSpec);
             setMeasuredDimension(mMgrWidth, mMgrWidth);
-            mHankei = 2 * mMgrWidth / 9.0f;
-            mCenter = mMgrWidth / 2.0f;
         }
 
-        private Paint mPaint = new Paint();
-        private Rect mRect = new Rect();
-        private Path mClip = new Path();
-        private Path mSingle = new Path();
-        private Path mDouble = new Path();
+        private final Paint mPaint = new Paint();
+        private final Rect mRect = new Rect();
+        private final Path mClip = new Path();
+        private final Path mSingle = new Path();
+        private final Path mDouble = new Path();
 
         @Override
         public void onDraw(Canvas canvas) {
-
         }
-
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -212,5 +168,4 @@ public class StatusActivity extends Activity {
             }
         }
     }
-
 }

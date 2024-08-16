@@ -9,7 +9,6 @@ import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,18 +28,15 @@ public class DialogFromGateStatus {
 
     public static int LoginRequestCode = 20006;
 
-    private Handler mHandler = new Handler();
-    private Activity mParent;
+    private final Handler mHandler = new Handler();
+    private final Activity mParent;
     private AlertDialog mDialog;
-    private View mView;
+    private final View mView;
 
     private WebView mWebView;
-    private TextView mLogView;
     private ProgressBar mWebProgress;
     private String mRivalId;
-    private String mRivalName;
     private String mRequestUri;
-    private GateSetting mGateSetting;
 
     private StatusData mStatusData;
 
@@ -56,8 +52,8 @@ public class DialogFromGateStatus {
             return;
         }
 
-        mWebProgress = (ProgressBar) mView.findViewById(R.id.webProgress);
-        mLogView = (TextView) mView.findViewById(R.id.log);
+        mWebProgress = mView.findViewById(R.id.webProgress);
+        TextView mLogView = mView.findViewById(R.id.log);
 
         mLogView.setText(mParent.getResources().getString(R.string.dialog_log_get_status));
 
@@ -81,21 +77,17 @@ public class DialogFromGateStatus {
             }
         };
 
-        mWebView = (WebView) mView.findViewById(R.id.webView);
-        //mWebView.getSettings().setBlockNetworkImage(true);
+        mWebView = mView.findViewById(R.id.webView);
         mWebView.getSettings().setBuiltInZoomControls(true);
         mWebView.setWebViewClient(client);
         mWebView.setWebChromeClient(chrome);
-        //mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.addJavascriptInterface(this, "viewsourceactivity");
-
     }
 
-    public void setArguments(AlertDialog dialog, String rivalId, String rivalName) {
+    public void setArguments(AlertDialog dialog, String rivalId) {
         mDialog = dialog;
         mRivalId = rivalId;
-        mRivalName = rivalName;
     }
 
     public View getView() {
@@ -106,9 +98,9 @@ public class DialogFromGateStatus {
         if (mDialog == null) {
             return;
         }
-        FileReader.requestAd((LinearLayout) mView.findViewById(R.id.adContainer), mParent);
+        FileReader.requestAd(mView.findViewById(R.id.adContainer), mParent);
 
-        mGateSetting = FileReader.readGateSetting(mParent);
+        GateSetting mGateSetting = FileReader.readGateSetting(mParent);
         if (mGateSetting.FromNewSite) {
             mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
         } else {
@@ -120,13 +112,12 @@ public class DialogFromGateStatus {
         } else {
             mRequestUri += "rival/rival_status.html?rival_id=" + mRivalId;
         }
-        //String uri = "file:///android_asset/status.html";
         mWebView.loadUrl(mRequestUri);
     }
 
     public void cancel() {
         mCanceled = true;
-        WebView web = (WebView) mView.findViewById(R.id.webView);
+        WebView web = mView.findViewById(R.id.webView);
         web.stopLoading();
         if (mDialog != null) {
             mDialog.cancel();
@@ -134,7 +125,7 @@ public class DialogFromGateStatus {
     }
 
     private boolean analyzeStatus(String src) {
-        WebView web = (WebView) mView.findViewById(R.id.webView);
+        WebView web = mView.findViewById(R.id.webView);
         String uri = web.getUrl();
 
         assert uri != null;
@@ -161,7 +152,7 @@ public class DialogFromGateStatus {
                         mStatusData.Todofuken = value;
                         break;
                     case "総プレー回数":
-                        mStatusData.PlayCount = Integer.valueOf(value.replace("回", "").trim());
+                        mStatusData.PlayCount = Integer.parseInt(value.replace("回", "").trim());
                         break;
                     case "最終プレー日時":
                         mStatusData.LastPlay = value;
@@ -178,7 +169,7 @@ public class DialogFromGateStatus {
                 String value = row.select("td").text();
 
                 if (header.equals("プレー回数")) {
-                    mStatusData.PlayCountSingle = Integer.valueOf(value.replace("回", "").trim());
+                    mStatusData.PlayCountSingle = Integer.parseInt(value.replace("回", "").trim());
                 } else if (header.equals("最終プレー日時")) {
                     mStatusData.LastPlaySingle = value;
                 }
@@ -189,7 +180,7 @@ public class DialogFromGateStatus {
                 String value = row.select("td").text();
 
                 if (header.equals("プレー回数")) {
-                    mStatusData.PlayCountDouble = Integer.valueOf(value.replace("回", "").trim());
+                    mStatusData.PlayCountDouble = Integer.parseInt(value.replace("回", "").trim());
                 } else if (header.equals("最終プレー日時")) {
                     mStatusData.LastPlayDouble = value;
                 }
@@ -229,22 +220,18 @@ public class DialogFromGateStatus {
                         Toast.makeText(mParent, mParent.getResources().getString(R.string.dialog_networkerrorexit), Toast.LENGTH_LONG).show();
                         break;
                     default:
-                        //analyzeStatus(src);
                         break;
                 }
             }
 
-
             (new Thread(() -> {
                 try {
                     Thread.sleep(1000);
-                } catch (InterruptedException e) {
+                } catch (InterruptedException ignored) {
                 }
                 mHandler.post(() -> mDialog.cancel());
             }
             )).start();
-
         });
     }
-
 }
