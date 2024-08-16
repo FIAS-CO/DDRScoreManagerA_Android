@@ -7,16 +7,10 @@ import java.util.Objects;
 public class MusicEntry {
     private final String musicName;
     private final List<DifficultyScore> scores;
-    private GameMode gameMode;
 
     public MusicEntry(String musicName, List<DifficultyScore> scores) {
         this.musicName = musicName;
         this.scores = new ArrayList<>(scores);
-    }
-
-    public MusicEntry(String musicName, List<DifficultyScore> scores, GameMode gameMode) {
-        this(musicName, scores);
-        this.gameMode = gameMode;
     }
 
     public String getMusicName() {
@@ -27,22 +21,17 @@ public class MusicEntry {
         return new ArrayList<>(scores);
     }
 
-    public GameMode getGameMode() {
-        return gameMode;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MusicEntry that = (MusicEntry) o;
         return Objects.equals(musicName, that.musicName) &&
-                Objects.equals(scores, that.scores) &&
-                gameMode == that.gameMode;
+                Objects.equals(scores, that.scores);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(musicName, scores, gameMode);
+        return Objects.hash(musicName, scores);
     }
 }

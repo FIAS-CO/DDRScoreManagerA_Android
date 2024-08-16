@@ -5,27 +5,15 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import jp.linanfine.dsma.util.common.TextUtil;
 import jp.linanfine.dsma.value._enum.FullComboType;
 import jp.linanfine.dsma.value._enum.MusicRank;
 
 public class HtmlParseUtil {
 
-    public static class ParseResult {
-        public GameMode gameMode;
-        public List<MusicEntry> musicEntries;
-
-        public ParseResult(GameMode gameMode, List<MusicEntry> musicEntries) {
-            this.gameMode = gameMode;
-            this.musicEntries = musicEntries;
-        }
-    }
-
-    public static ParseResult parseMusicListForWorld(String src) throws IOException {
+    public static List<MusicEntry> parseMusicListForWorld(String src) {
         Document doc = Jsoup.parse(src);
         GameMode gameMode = determineGameMode(doc);
         List<MusicEntry> musicEntries = new ArrayList<>();
@@ -38,7 +26,7 @@ public class HtmlParseUtil {
             }
         }
 
-        return new ParseResult(gameMode, musicEntries);
+        return musicEntries;
     }
 
     private static GameMode determineGameMode(Document doc) {
@@ -74,18 +62,17 @@ public class HtmlParseUtil {
         for (int i = 0; i < difficultyColumns.size(); i++) {
             Element column = difficultyColumns.get(i);
             DifficultyScore score = parseDifficultyScore(column, i, gameMode);
-            if (score != null) {
-                scores.add(score);
-            }
+            scores.add(score);
         }
 
-        return new MusicEntry(musicName, scores, gameMode);
+        return new MusicEntry(musicName, scores);
     }
 
     private static DifficultyScore parseDifficultyScore(Element column, int index, GameMode gameMode) {
         String diffId = getDifficultyId(index, gameMode);
         Element scoreElement = column.selectFirst("div.data_score");
-        if (scoreElement == null) return new DifficultyScore(diffId, 0, MusicRank.Noplay, FullComboType.None, -1);
+        if (scoreElement == null)
+            return new DifficultyScore(diffId, 0, MusicRank.Noplay, FullComboType.None, -1);
         String scoreText = scoreElement.text();
         int score = 0;
         try {

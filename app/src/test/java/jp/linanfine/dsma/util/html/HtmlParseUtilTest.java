@@ -16,6 +16,7 @@ import java.util.List;
 import jp.linanfine.dsma.value._enum.FullComboType;
 import jp.linanfine.dsma.value._enum.MusicRank;
 
+/** @noinspection NonAsciiCharacters*/
 public class HtmlParseUtilTest {
 
     private String singleHtml;
@@ -30,36 +31,33 @@ public class HtmlParseUtilTest {
     @Test
     public void testParseMusicListSingle_forWorld() throws IOException {
         String htmlContent = loadHtmlContent("WorldSiteDataSingle.html");
-        HtmlParseUtil.ParseResult result = HtmlParseUtil.parseMusicListForWorld(htmlContent);
+        List<MusicEntry> result = HtmlParseUtil.parseMusicListForWorld(htmlContent);
 
-        assertFalse(result.musicEntries.isEmpty(), "Result should not be empty");
-        assertEquals(GameMode.SINGLE, result.gameMode);
+        assertFalse(result.isEmpty(), "Result should not be empty");
 
-        testSpecificSongs(result.musicEntries);
-        checkFlareRanks(result.musicEntries);
-        checkFullComboTypes(result.musicEntries);
+        testSpecificSongs(result);
+        checkFlareRanks(result);
+        checkFullComboTypes(result);
     }
 
     @Test
     public void testParseMusicListDouble_forWorld() throws IOException {
         String htmlContent = loadHtmlContent("WorldSiteDataDouble.html");
-        HtmlParseUtil.ParseResult result = HtmlParseUtil.parseMusicListForWorld(htmlContent);
+        List<MusicEntry> result = HtmlParseUtil.parseMusicListForWorld(htmlContent);
 
-        assertFalse(result.musicEntries.isEmpty(), "Result should not be empty");
-        assertEquals(GameMode.DOUBLE, result.gameMode);
+        assertFalse(result.isEmpty(), "Result should not be empty");
 
-        testSpecificSongsDouble(result.musicEntries);
+        testSpecificSongsDouble(result);
     }
 
     @Test
     public void testParseMusicListSingle_forWorld_楽曲データ取得不可検証() throws IOException {
         String htmlContent = loadHtmlContent("WorldSiteDataSingle_VerWorld.html");
-        HtmlParseUtil.ParseResult result = HtmlParseUtil.parseMusicListForWorld(htmlContent);
+        List<MusicEntry> result = HtmlParseUtil.parseMusicListForWorld(htmlContent);
 
-        assertFalse(result.musicEntries.isEmpty(), "Result should not be empty");
-        assertEquals(GameMode.SINGLE, result.gameMode);
+        assertFalse(result.isEmpty(), "Result should not be empty");
 
-        testSpecificSongs_検証(result.musicEntries);
+        testSpecificSongs_検証(result);
     }
 
     @Test
