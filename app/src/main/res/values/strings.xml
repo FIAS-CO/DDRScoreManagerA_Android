@@ -195,7 +195,7 @@
     <string name="global_setting_general">General</string>
     <string name="global_setting_closecategoryonbackpressed">Close category on Back key is pressed.</string>
     <string name="global_setting_gate">GATE</string>
-    <string name="global_setting_from_new_site">Load score data from A3</string>
+    <string name="global_setting_from_new_site">Load score data from WORLD</string>
     <string name="global_setting_overwritelowerscore">Overwrite lower scores</string>
     <string name="global_setting_overwritefullcombo">Overwrite \"Good Full Combo\" -> \"Full Combo\"</string>
     <string name="global_setting_overwritelife4">Overwrite \"Life4\" -> \"No Full Combo\"</string>

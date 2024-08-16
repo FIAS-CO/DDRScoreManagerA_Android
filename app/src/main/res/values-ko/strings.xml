@@ -151,7 +151,7 @@
   <string name="global_setting_general">일반 설정</string>
   <string name="global_setting_closecategoryonbackpressed">뒤로가기 키로 카테고리를 닫는다</string>
   <string name="global_setting_gate">GATE</string>
-  <string name="global_setting_from_new_site">A3 점수 획득</string>
+  <string name="global_setting_from_new_site">WORLD 점수 획득</string>
   <string name="global_setting_overwritelowerscore">받아온 스코어가 낮은 경우에도 덮어쓰기</string>
   <string name="global_setting_overwritefullcombo">\'Good 풀콤보\'를, 받아온 결과인 \'풀콤보\'로 덮어쓰기</string>
   <string name="global_setting_overwritelife4">\'LIFE4 클리어\'를, 받아온 결과인 \'풀콤보 미달성\'으로 덮어쓰기</string>

@@ -23,7 +23,6 @@ import jp.linanfine.dsma.util.html.DifficultyScore;
 import jp.linanfine.dsma.util.html.HtmlParseUtil;
 import jp.linanfine.dsma.util.html.MusicEntry;
 import jp.linanfine.dsma.value.GateSetting;
-import jp.linanfine.dsma.value.MusicData;
 import jp.linanfine.dsma.value.MusicId;
 import jp.linanfine.dsma.value.MusicScore;
 import jp.linanfine.dsma.value.ScoreData;
@@ -39,7 +38,6 @@ public class DialogFromGateList {
     private AlertDialog mDialog;
     private final View mView;
 
-    private TreeMap<Integer, MusicData> mMusicList;
     private TreeMap<Integer, MusicScore> mScoreList;
     private WebTitleToMusicIdList mMusicIds;
     private WebView mWebView;
@@ -72,7 +70,6 @@ public class DialogFromGateList {
             return;
         }
 
-        mMusicList = FileReader.readMusicList(mParent);
         mMusicIds = FileReader.readWebMusicIds(mParent).toWebTitleToMusicIdList();
         mGateSetting = FileReader.readGateSetting(mParent);
 
@@ -142,9 +139,9 @@ public class DialogFromGateList {
 
         mGateSetting = FileReader.readGateSetting(mParent);
         if (mGateSetting.FromNewSite) {
-            mUriH = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
+            mUriH = "https://p.eagate.573.jp/game/ddr/ddrworld/";
         } else {
-            mUriH = "https://p.eagate.573.jp/game/ddr/ddra20/p/";
+            mUriH = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
         }
 
         if (mRivalId == null) {
@@ -269,7 +266,12 @@ public class DialogFromGateList {
     }
 
     private void analyzeScoreList(String src) {
-        List<MusicEntry> musicEntries = HtmlParseUtil.parseMusicList(src);
+        List<MusicEntry> musicEntries;
+        if (mGateSetting.FromNewSite) {
+            musicEntries = HtmlParseUtil.parseMusicListForWorld(src);
+        } else {
+            musicEntries = HtmlParseUtil.parseMusicList(src);
+        }
 
         boolean scoreExists = false;
         for (MusicEntry entry : musicEntries) {
@@ -288,6 +290,7 @@ public class DialogFromGateList {
                 sd.Score = diffScore.getScore();
                 sd.Rank = diffScore.getRank();
                 sd.FullComboType = diffScore.getFullComboType();
+                sd.flareRank = diffScore.getFlareRank();
 
                 ScoreData msd = getScoreDataForDifficulty(ms, diffScore.getDifficultyId());
                 updateScoreData(sd, msd);
@@ -367,16 +370,14 @@ public class DialogFromGateList {
             if (msd.FullComboType.ordinal() > sd.FullComboType.ordinal()) {
                 sd.FullComboType = msd.FullComboType;
             }
+            if (msd.flareRank > sd.flareRank) {
+                sd.flareRank = msd.flareRank;
+            }
         }
 
         // MaxCombo, ClearCount, PlayCount の更新
         sd.MaxCombo = Math.max(sd.MaxCombo, msd.MaxCombo);
         sd.ClearCount = msd.ClearCount;
         sd.PlayCount = msd.PlayCount;
-
-        // Revisit 公式ページのデータ更新ができるようになったらオプションを追加する
-        if (sd.flareRank < msd.flareRank) {
-            sd.flareRank = msd.flareRank;
-        }
     }
 }
