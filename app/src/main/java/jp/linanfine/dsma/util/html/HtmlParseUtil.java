@@ -8,6 +8,8 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.linanfine.dsma.value.ScoreData;
+import jp.linanfine.dsma.value.WebMusicId;
 import jp.linanfine.dsma.value._enum.FullComboType;
 import jp.linanfine.dsma.value._enum.MusicRank;
 
@@ -27,6 +29,40 @@ public class HtmlParseUtil {
         }
 
         return musicEntries;
+    }
+
+    public static ScoreData parseMusicDetailForWorld(String src, WebMusicId webMusicId) throws ParseException {
+        Document doc = Jsoup.parse(src);
+        ScoreData sd = new ScoreData();
+
+        // タイトルの確認
+        Element titleElement = doc.select("table#music_info td").last();
+        if (titleElement == null) {
+            throw new ParseException("Title element not found");
+        }
+        String fullTitle = titleElement.html().trim();
+        String[] titleComponents = fullTitle.split("<br>");
+        String title = titleComponents[0].trim();
+
+        if (!title.equals(webMusicId.titleOnWebPage)) {
+            throw new ParseException("Music ID mismatch: " + webMusicId.titleOnWebPage + " vs " + title);
+        }
+
+        // "NO PLAY..." の確認
+        if (doc.text().contains("NO PLAY...")) {
+            return new ScoreData();
+        }
+
+        int score = parseScore(doc);
+        sd.Score = score;
+        sd.Rank = parseRank(doc, score);
+        sd.MaxCombo = parseMaxCombo(doc);
+        sd.FullComboType = parseFullComboType(doc);
+        sd.PlayCount = parsePlayCount(doc);
+        sd.ClearCount = parseClearCount(doc);
+        sd.FlareRank = parseFlareRank(doc);
+
+        return sd;
     }
 
     private static GameMode determineGameMode(Document doc) {
@@ -223,5 +259,153 @@ public class HtmlParseUtil {
         if (fcSrc.contains("cl_good")) return FullComboType.GoodFullCombo;
         if (fcSrc.contains("cl_li4clear")) return FullComboType.Life4;
         return FullComboType.None;
+    }
+
+    private static MusicRank parseRank(Document doc, int score) throws ParseException {
+        Element rankElement = doc.select("th:contains(ハイスコア時のランク) + td").first();
+        if (rankElement == null) {
+            throw new ParseException("Rank element not found");
+        }
+        String rankText = rankElement.text();
+
+        return getRank(score, rankText.equals("E"));
+    }
+
+    private static int parseScore(Document doc) throws ParseException {
+        Elements thElements = doc.select("th");
+        for (Element th : thElements) {
+            if (th.text().trim().equals("ハイスコア")) {
+                Element scoreElement = th.nextElementSibling();
+                if (scoreElement != null) {
+                    String scoreText = scoreElement.text();
+                    try {
+                        return Integer.parseInt(scoreText);
+                    } catch (NumberFormatException e) {
+                        throw new ParseException("Invalid score format: " + scoreText);
+                    }
+                }
+            }
+        }
+        throw new ParseException("Score element not found");
+    }
+
+    private static int parseMaxCombo(Document doc) throws ParseException {
+        Element comboElement = doc.select("th:contains(最大コンボ数) + td").first();
+        if (comboElement == null) {
+            throw new ParseException("Max combo element not found");
+        }
+        String comboText = comboElement.text();
+        try {
+            return Integer.parseInt(comboText);
+        } catch (NumberFormatException e) {
+            throw new ParseException("Invalid max combo format: " + comboText);
+        }
+    }
+
+    private static FullComboType parseFullComboType(Document doc) {
+        Elements fcElements = doc.select("#clear_detail_table tr[id^='fc_']");
+        for (Element element : fcElements) {
+            String fcTypeText = element.select("th").text().trim();
+            String fcCountText = element.select("td").text().trim();
+            int fcCount = 0;
+
+            try {
+                fcCount = Integer.parseInt(fcCountText);
+            } catch (NumberFormatException ignored) {
+            }
+
+            if (fcCount > 0) {
+                switch (fcTypeText) {
+                    case "マーベラスフルコンボ":
+                        return FullComboType.MerverousFullCombo;
+                    case "パーフェクトフルコンボ":
+                        return FullComboType.PerfectFullCombo;
+                    case "グレートフルコンボ":
+                        return FullComboType.FullCombo;
+                    case "グッドフルコンボ":
+                        return FullComboType.GoodFullCombo;
+                }
+            }
+        }
+
+        Element life4Element = doc.select("#clear_detail_table tr#clear_life4 td").first();
+        if (life4Element != null) {
+            int life4Count = 0;
+
+            try {
+                life4Count = Integer.parseInt(life4Element.text().trim());
+            } catch (NumberFormatException ignored) {
+            }
+
+            if (life4Count > 0) {
+                return FullComboType.Life4;
+            }
+        }
+
+        return FullComboType.None;
+    }
+
+    private static int parsePlayCount(Document doc) throws ParseException {
+        Element playCountElement = doc.select("th:contains(プレー回数) + td").first();
+        if (playCountElement == null) {
+            throw new ParseException("Play count element not found");
+        }
+        String playCountText = playCountElement.text();
+        try {
+            return Integer.parseInt(playCountText);
+        } catch (NumberFormatException e) {
+            throw new ParseException("Invalid play count format: " + playCountText);
+        }
+    }
+
+    private static int parseClearCount(Document doc) throws ParseException {
+        Element clearCountElement = doc.select("th:contains(クリア回数) + td").first();
+        if (clearCountElement == null) {
+            throw new ParseException("Clear count element not found");
+        }
+        String clearCountText = clearCountElement.text();
+        try {
+            return Integer.parseInt(clearCountText);
+        } catch (NumberFormatException e) {
+            throw new ParseException("Invalid clear count format: " + clearCountText);
+        }
+    }
+
+    private static int parseFlareRank(Document doc) throws ParseException {
+        Element flareRankElement = doc.select("th:contains(フレアランク) + td").first();
+        if (flareRankElement == null) {
+            throw new ParseException("Flare rank element not found");
+        }
+        String flareRankText = flareRankElement.text();
+        switch (flareRankText) {
+            case "EX":
+                return 10;
+            case "IX":
+                return 9;
+            case "VIII":
+                return 8;
+            case "VII":
+                return 7;
+            case "VI":
+                return 6;
+            case "V":
+                return 5;
+            case "IV":
+                return 4;
+            case "III":
+                return 3;
+            case "II":
+                return 2;
+            case "I":
+                return 1;
+            default:
+                return -1;
+        }
+    }
+
+    public static class ParseException extends Exception {
+        public ParseException(String message) {
+            super(message);
+        }
     }
 }

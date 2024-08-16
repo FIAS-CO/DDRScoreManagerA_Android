@@ -13,10 +13,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+import jp.linanfine.dsma.value.ScoreData;
+import jp.linanfine.dsma.value.WebMusicId;
 import jp.linanfine.dsma.value._enum.FullComboType;
 import jp.linanfine.dsma.value._enum.MusicRank;
 
-/** @noinspection NonAsciiCharacters*/
+/**
+ * @noinspection NonAsciiCharacters
+ */
 public class HtmlParseUtilTest {
 
     private String singleHtml;
@@ -165,6 +169,119 @@ public class HtmlParseUtilTest {
         assertEquals(0, edgeCaseScore.getScore());
         assertEquals(MusicRank.Noplay, edgeCaseScore.getRank());
         assertEquals(FullComboType.None, edgeCaseScore.getFullComboType());
+    }
+
+    @Test
+    void testParseMusicDetailForWorld_PFC_AAA_FlareEX() throws HtmlParseUtil.ParseException, IOException {
+        String htmlContent = loadHTMLContent("WorldSiteDataDetail");
+        WebMusicId webMusicId = new WebMusicId();
+        webMusicId.titleOnWebPage = "星座が恋した瞬間を。";
+        webMusicId.idOnWebPage = "dummy";
+
+        ScoreData scoreData = HtmlParseUtil.parseMusicDetailForWorld(htmlContent, webMusicId);
+
+        assertEquals(MusicRank.AAA, scoreData.Rank);
+        assertEquals(999500, scoreData.Score);
+        assertEquals(462, scoreData.MaxCombo);
+        assertEquals(FullComboType.PerfectFullCombo, scoreData.FullComboType);
+        assertEquals(22, scoreData.PlayCount);
+        assertEquals(21, scoreData.ClearCount);
+        assertEquals(10, scoreData.FlareRank); // EX rank
+    }
+
+    @Test
+    void testParseMusicDetailForWorld_GFC_AAp_NoFlare() throws HtmlParseUtil.ParseException, IOException {
+        String htmlContent = loadHTMLContent("WorldSiteDataDetail_AAp_GFC_NoRank");
+        WebMusicId webMusicId = new WebMusicId();
+        webMusicId.titleOnWebPage = "アルストロメリア (walk with you remix)";
+        webMusicId.idOnWebPage = "dummy";
+
+        ScoreData scoreData = HtmlParseUtil.parseMusicDetailForWorld(htmlContent, webMusicId);
+
+        assertEquals(MusicRank.AAp, scoreData.Rank);
+        assertEquals(989460, scoreData.Score);
+        assertEquals(425, scoreData.MaxCombo);
+        assertEquals(FullComboType.FullCombo, scoreData.FullComboType);
+        assertEquals(7, scoreData.PlayCount);
+        assertEquals(4, scoreData.ClearCount);
+        assertEquals(-1, scoreData.FlareRank);
+    }
+
+    @Test
+    void testParseMusicDetailForWorld_Life4_AA_FlareIX() throws HtmlParseUtil.ParseException, IOException {
+        String htmlContent = loadHTMLContent("WorldSiteDataDetail_AA_Life4_FlareIX");
+        WebMusicId webMusicId = new WebMusicId();
+        webMusicId.titleOnWebPage = "イノセントバイブル";
+        webMusicId.idOnWebPage = "dummy";
+
+        ScoreData scoreData = HtmlParseUtil.parseMusicDetailForWorld(htmlContent, webMusicId);
+
+        assertEquals(MusicRank.AA, scoreData.Rank);
+        assertEquals(947070, scoreData.Score);
+        assertEquals(147, scoreData.MaxCombo);
+        assertEquals(FullComboType.Life4, scoreData.FullComboType);
+        assertEquals(1, scoreData.PlayCount);
+        assertEquals(1, scoreData.ClearCount);
+        assertEquals(9, scoreData.FlareRank);
+    }
+
+    @Test
+    void testParseMusicDetailForWorld_Noplay() throws HtmlParseUtil.ParseException, IOException {
+        String htmlContent = loadHTMLContent("WorldSiteDataDetail_Noplay");
+        WebMusicId webMusicId = new WebMusicId();
+        webMusicId.titleOnWebPage = "蒼い衝動 ～for EXTREME～";
+        webMusicId.idOnWebPage = "dummy";
+
+        ScoreData scoreData = HtmlParseUtil.parseMusicDetailForWorld(htmlContent, webMusicId);
+
+        assertEquals(MusicRank.Noplay, scoreData.Rank);
+        assertEquals(0, scoreData.Score);
+        assertEquals(0, scoreData.MaxCombo);
+        assertEquals(FullComboType.None, scoreData.FullComboType);
+        assertEquals(0, scoreData.PlayCount);
+        assertEquals(0, scoreData.ClearCount);
+        assertEquals(-1, scoreData.FlareRank);
+    }
+
+    @Test
+    void testParseMusicDetailForWorld_A_GdFC_FlareEx() throws HtmlParseUtil.ParseException, IOException {
+        String htmlContent = loadHTMLContent("WorldSiteDataDetail_A_GdFc_FlareEX");
+        WebMusicId webMusicId = new WebMusicId();
+        webMusicId.titleOnWebPage = "阿波おどり -Awaodori- やっぱり踊りはやめられない";
+        webMusicId.idOnWebPage = "dummy";
+
+        ScoreData scoreData = HtmlParseUtil.parseMusicDetailForWorld(htmlContent, webMusicId);
+
+        assertEquals(MusicRank.A, scoreData.Rank);
+        assertEquals(811110, scoreData.Score);
+        assertEquals(474, scoreData.MaxCombo);
+        assertEquals(FullComboType.GoodFullCombo, scoreData.FullComboType);
+        assertEquals(17, scoreData.PlayCount);
+        assertEquals(14, scoreData.ClearCount);
+        assertEquals(10, scoreData.FlareRank);
+    }
+
+    @Test
+    void testParseMusicDetailForWorld_E() throws HtmlParseUtil.ParseException, IOException {
+        String htmlContent = loadHTMLContent("WorldSiteDataDetail_E");
+        WebMusicId webMusicId = new WebMusicId();
+        webMusicId.titleOnWebPage = "春を告げる";
+        webMusicId.idOnWebPage = "dummy";
+
+        ScoreData scoreData = HtmlParseUtil.parseMusicDetailForWorld(htmlContent, webMusicId);
+
+        assertEquals(MusicRank.E, scoreData.Rank);
+        assertEquals(735190, scoreData.Score);
+        assertEquals(184, scoreData.MaxCombo);
+        assertEquals(FullComboType.None, scoreData.FullComboType);
+        assertEquals(1, scoreData.PlayCount);
+        assertEquals(0, scoreData.ClearCount);
+        assertEquals(-1, scoreData.FlareRank);
+    }
+
+    private String loadHTMLContent(String fileName) throws IOException {
+        String filePath = "src/test/resources/" + fileName + ".html";
+        return new String(Files.readAllBytes(Paths.get(filePath)));
     }
 
     private void testSpecificSongs(List<MusicEntry> result) {
