@@ -20,10 +20,12 @@ import java.util.TreeMap;
 import jp.linanfine.dsma.R;
 import jp.linanfine.dsma.util.common.TextUtil;
 import jp.linanfine.dsma.util.file.FileReader;
+import jp.linanfine.dsma.util.html.HtmlParseUtil;
 import jp.linanfine.dsma.value.GateSetting;
 import jp.linanfine.dsma.value.IdToWebMusicIdList;
 import jp.linanfine.dsma.value.MusicScore;
 import jp.linanfine.dsma.value.ScoreData;
+import jp.linanfine.dsma.value.WebMusicId;
 import jp.linanfine.dsma.value._enum.FullComboType;
 import jp.linanfine.dsma.value._enum.MusicRank;
 import jp.linanfine.dsma.value._enum.PatternType;
@@ -124,30 +126,118 @@ public class DialogFromGate {
         }
         FileReader.requestAd(mView.findViewById(R.id.adContainer), mParent);
 
-        int patternInt =
-                mPattern == PatternType.bSP ? 0 :
-                        mPattern == PatternType.BSP ? 1 :
-                                mPattern == PatternType.DSP ? 2 :
-                                        mPattern == PatternType.ESP ? 3 :
-                                                mPattern == PatternType.CSP ? 4 :
-                                                        mPattern == PatternType.BDP ? 5 :
-                                                                mPattern == PatternType.DDP ? 6 :
-                                                                        mPattern == PatternType.EDP ? 7 :
-                                                                                mPattern == PatternType.CDP ? 8 :
-                                                                                        0;
-
         if (mGateSetting.FromNewSite) {
-            mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
+            startFromNewSite();
         } else {
-            mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra20/p/";
+            startFromA3();
         }
+    }
+
+    private void startFromNewSite() {
+        String baseUri = "https://p.eagate.573.jp/game/ddr/ddrworld/";
+        int patternInt = getPatternIntForWorld(mPattern);
 
         if (mRivalId == null) {
-            mRequestUri += "playdata/music_detail.html?index=" + mWebItemId + "&diff=" + patternInt;
+            int style = getStyleInt(mPattern);
+            mRequestUri = baseUri + "playdata/music_detail.html?index=" + mWebItemId + "&style=" + style + "&difficulty=" + patternInt;
         } else {
-            mRequestUri += "rival/music_detail.html?index=" + mWebItemId + "&diff=" + patternInt + "&rival_id=" + mRivalId;
+            mRequestUri = baseUri + "rival/music_detail.html?index=" + mWebItemId + "&diff=" + patternInt + "&rival_id=" + mRivalId;
         }
+
         mWebView.loadUrl(mRequestUri);
+    }
+
+    private void startFromA3() {
+        String baseUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
+        int patternInt = getPatternIntForA3(mPattern);
+
+        if (mRivalId == null) {
+            mRequestUri = baseUri + "playdata/music_detail.html?index=" + mWebItemId + "&diff=" + patternInt;
+        } else {
+            mRequestUri = baseUri + "rival/music_detail.html?index=" + mWebItemId + "&diff=" + patternInt + "&rival_id=" + mRivalId;
+        }
+
+        mWebView.loadUrl(mRequestUri);
+    }
+
+    private int getPatternIntForA3(PatternType pattern) {
+        switch (pattern) {
+            case BSP:
+                return 1;
+            case DSP:
+                return 2;
+            case ESP:
+                return 3;
+            case CSP:
+                return 4;
+            case BDP:
+                return 5;
+            case DDP:
+                return 6;
+            case EDP:
+                return 7;
+            case CDP:
+                return 8;
+            case bSP:
+            default:
+                return 0;
+        }
+    }
+
+    private int getPatternIntForWorld(PatternType patternType) {
+        int patternValue;
+
+        switch (patternType) {
+            case bSP:
+                patternValue = 0;
+                break;
+            case BSP:
+            case BDP:
+                patternValue = 1;
+                break;
+            case DSP:
+            case DDP:
+                patternValue = 2;
+                break;
+            case ESP:
+            case EDP:
+                patternValue = 3;
+                break;
+            case CSP:
+            case CDP:
+                patternValue = 4;
+                break;
+            default:
+                patternValue = -1; // デフォルト値としてエラー処理のための値を設定
+                break;
+        }
+
+        return patternValue;
+    }
+
+    private int getStyleInt(PatternType patternType) {
+        int styleValue;
+
+        switch (patternType) {
+            case bSP:
+            case BSP:
+            case DSP:
+            case ESP:
+            case CSP:
+                styleValue = 0;
+                break;
+            case BDP:
+            case DDP:
+            case EDP:
+            case CDP:
+                styleValue = 1;
+                break;
+            default:
+                styleValue = -1; // エラー処理のためにデフォルト値を設定
+                break;
+        }
+
+        return styleValue;
     }
 
     public void cancel() {
@@ -181,197 +271,200 @@ public class DialogFromGate {
             }
         }
         ScoreData sd = new ScoreData();
-        String cmp = "0\"></td>  <td>";
-        Log.d("POINT", "1");
-        if (src.contains(cmp)) {
-            String dr = src.substring(src.indexOf(cmp) + cmp.length());
-            cmp = "<br>";
-            dr = dr.substring(0, dr.indexOf(cmp)).trim();
-            if (!dr.equals(mWebMusicIds.get(mItemId).titleOnWebPage)) {
-                new AlertDialog.Builder(mParent)
-                        .setIcon(android.R.drawable.ic_dialog_info)
-                        .setMessage(mParent.getResources().getString(R.string.name_different_alert) + "\n\n\"" + mWebMusicIds.get(mItemId).titleOnWebPage + "\"\n↓\n\"" + dr + "\"")
-                        .setCancelable(true)
-                        .setPositiveButton(mParent.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
-                        }).show();
-                return true;
+        WebMusicId webMusicId = mWebMusicIds.get(mItemId);
+        if (mGateSetting.FromNewSite) {
+            try {
+                sd = HtmlParseUtil.parseMusicDetailForWorld(src, webMusicId);
+            } catch (HtmlParseUtil.ParseException ignored) {
             }
         } else {
-            return false;
-        }
-        Log.d("POINT", "2");
-        cmp = "NO PLAY...";
+            String cmp = "0\"></td>  <td>";
+            Log.d("POINT", "1");
+            if (src.contains(cmp)) {
+                String dr = src.substring(src.indexOf(cmp) + cmp.length());
+                cmp = "<br>";
+                dr = dr.substring(0, dr.indexOf(cmp)).trim();
+                if (webMusicId == null || !dr.equals(webMusicId.titleOnWebPage)) {
+                    assert webMusicId != null;
+                    new AlertDialog.Builder(mParent)
+                            .setIcon(android.R.drawable.ic_dialog_info)
+                            .setMessage(mParent.getResources().getString(R.string.name_different_alert) + "\n\n\"" + webMusicId.titleOnWebPage + "\"\n↓\n\"" + dr + "\"")
+                            .setCancelable(true)
+                            .setPositiveButton(mParent.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                            }).show();
+                    return true;
+                }
+            } else {
+                return false;
+            }
+            Log.d("POINT", "2");
+            cmp = "NO PLAY...";
 
-        Log.d("POINT", "3");
-        if (!src.contains(cmp)) {
-            if (mCanceled) {
-                return true;
-            }
-            Log.d("POINT", "4");
-            if (mGateSetting.FromNewSite) {
+            Log.d("POINT", "3");
+            if (!src.contains(cmp)) {
+                if (mCanceled) {
+                    return true;
+                }
+                Log.d("POINT", "4");
                 cmp = "<th>ハイスコア時のランク</th><td>";
-            } else {
+
+                if (src.contains(cmp)) {
+                    String dr = src.substring(src.indexOf(cmp) + cmp.length());
+                    cmp = "</td>";
+                    dr = dr.substring(0, dr.indexOf(cmp));
+                    switch (dr) {
+                        case "AAA":
+                            sd.Rank = MusicRank.AAA;
+                            break;
+                        case "AA+":
+                            sd.Rank = MusicRank.AAp;
+                            break;
+                        case "AA":
+                            sd.Rank = MusicRank.AA;
+                            break;
+                        case "AA-":
+                            sd.Rank = MusicRank.AAm;
+                            break;
+                        case "A+":
+                            sd.Rank = MusicRank.Ap;
+                            break;
+                        case "A":
+                            sd.Rank = MusicRank.A;
+                            break;
+                        case "A-":
+                            sd.Rank = MusicRank.Am;
+                            break;
+                        case "B+":
+                            sd.Rank = MusicRank.Bp;
+                            break;
+                        case "B":
+                            sd.Rank = MusicRank.B;
+                            break;
+                        case "B-":
+                            sd.Rank = MusicRank.Bm;
+                            break;
+                        case "C+":
+                            sd.Rank = MusicRank.Cp;
+                            break;
+                        case "C":
+                            sd.Rank = MusicRank.C;
+                            break;
+                        case "C-":
+                            sd.Rank = MusicRank.Cm;
+                            break;
+                        case "D+":
+                            sd.Rank = MusicRank.Dp;
+                            break;
+                        case "D":
+                            sd.Rank = MusicRank.D;
+                            break;
+                        case "E":
+                            sd.Rank = MusicRank.E;
+                            break;
+                        default:
+                            sd.Rank = MusicRank.Noplay;
+                            break;
+                    }
+                } else {
+                    return false;
+                }
+                Log.d("POINT", "5");
+                cmp = "<th>ハイスコア</th><td>";
+                if (src.contains(cmp)) {
+                    String dr = src.substring(src.indexOf(cmp) + cmp.length());
+                    cmp = "</td>";
+                    dr = dr.substring(0, dr.indexOf(cmp));
+                    sd.Score = Integer.parseInt(dr);
+                } else {
+                    Toast.makeText(mParent, "Failed", Toast.LENGTH_LONG).show();
+                }
+                Log.d("POINT", "6");
+                cmp = "<th>最大コンボ数</th><td>";
+                if (src.contains(cmp)) {
+                    String dr = src.substring(src.indexOf(cmp) + cmp.length());
+                    cmp = "</td>";
+                    dr = dr.substring(0, dr.indexOf(cmp));
+                    sd.MaxCombo = Integer.parseInt(dr);
+                } else {
+                    return false;
+                }
+                Log.d("POINT", "7");
                 if (mRivalId == null) {
-                    cmp = "<th>ハイスコア時のダンスレベル</th><td>";
-                } else {
-                    cmp = "<th>最高ダンスレベル</th><td>";
-                }
-            }
-            if (src.contains(cmp)) {
-                String dr = src.substring(src.indexOf(cmp) + cmp.length());
-                cmp = "</td>";
-                dr = dr.substring(0, dr.indexOf(cmp));
-                switch (dr) {
-                    case "AAA":
-                        sd.Rank = MusicRank.AAA;
-                        break;
-                    case "AA+":
-                        sd.Rank = MusicRank.AAp;
-                        break;
-                    case "AA":
-                        sd.Rank = MusicRank.AA;
-                        break;
-                    case "AA-":
-                        sd.Rank = MusicRank.AAm;
-                        break;
-                    case "A+":
-                        sd.Rank = MusicRank.Ap;
-                        break;
-                    case "A":
-                        sd.Rank = MusicRank.A;
-                        break;
-                    case "A-":
-                        sd.Rank = MusicRank.Am;
-                        break;
-                    case "B+":
-                        sd.Rank = MusicRank.Bp;
-                        break;
-                    case "B":
-                        sd.Rank = MusicRank.B;
-                        break;
-                    case "B-":
-                        sd.Rank = MusicRank.Bm;
-                        break;
-                    case "C+":
-                        sd.Rank = MusicRank.Cp;
-                        break;
-                    case "C":
-                        sd.Rank = MusicRank.C;
-                        break;
-                    case "C-":
-                        sd.Rank = MusicRank.Cm;
-                        break;
-                    case "D+":
-                        sd.Rank = MusicRank.Dp;
-                        break;
-                    case "D":
-                        sd.Rank = MusicRank.D;
-                        break;
-                    case "E":
-                        sd.Rank = MusicRank.E;
-                        break;
-                    default:
-                        sd.Rank = MusicRank.Noplay;
-                        break;
-                }
-            } else {
-                return false;
-            }
-            Log.d("POINT", "5");
-            cmp = "<th>ハイスコア</th><td>";
-            if (src.contains(cmp)) {
-                String dr = src.substring(src.indexOf(cmp) + cmp.length());
-                cmp = "</td>";
-                dr = dr.substring(0, dr.indexOf(cmp));
-                sd.Score = Integer.parseInt(dr);
-            } else {
-                Toast.makeText(mParent, "Failed", Toast.LENGTH_LONG).show();
-            }
-            Log.d("POINT", "6");
-            cmp = "<th>最大コンボ数</th><td>";
-            if (src.contains(cmp)) {
-                String dr = src.substring(src.indexOf(cmp) + cmp.length());
-                cmp = "</td>";
-                dr = dr.substring(0, dr.indexOf(cmp));
-                sd.MaxCombo = Integer.parseInt(dr);
-            } else {
-                return false;
-            }
-            Log.d("POINT", "7");
-            if (mRivalId == null) {
-                cmp = "<th>フルコンボ種別</th><td>";
-                if (src.contains(cmp)) {
-                    String dr = src.substring(src.indexOf(cmp) + cmp.length());
-                    cmp = "</td>";
-                    dr = dr.substring(0, dr.indexOf(cmp));
-                    switch (dr) {
-                        case "グッドフルコンボ":
-                            sd.FullComboType = FullComboType.GoodFullCombo;
-                            break;
-                        case "グレートフルコンボ":
-                            sd.FullComboType = FullComboType.FullCombo;
-                            break;
-                        case "パーフェクトフルコンボ":
-                            sd.FullComboType = FullComboType.PerfectFullCombo;
-                            break;
-                        case "マーベラスフルコンボ":
-                            sd.FullComboType = FullComboType.MerverousFullCombo;
-                            break;
-                        default:
-                            sd.FullComboType = FullComboType.None;
-                            break;
+                    cmp = "<th>フルコンボ種別</th><td>";
+                    if (src.contains(cmp)) {
+                        String dr = src.substring(src.indexOf(cmp) + cmp.length());
+                        cmp = "</td>";
+                        dr = dr.substring(0, dr.indexOf(cmp));
+                        switch (dr) {
+                            case "グッドフルコンボ":
+                                sd.FullComboType = FullComboType.GoodFullCombo;
+                                break;
+                            case "グレートフルコンボ":
+                                sd.FullComboType = FullComboType.FullCombo;
+                                break;
+                            case "パーフェクトフルコンボ":
+                                sd.FullComboType = FullComboType.PerfectFullCombo;
+                                break;
+                            case "マーベラスフルコンボ":
+                                sd.FullComboType = FullComboType.MerverousFullCombo;
+                                break;
+                            default:
+                                sd.FullComboType = FullComboType.None;
+                                break;
+                        }
+                    } else {
+                        return false;
+                    }
+                    Log.d("POINT", "8");
+                    cmp = "<th>プレー回数</th><td>";
+                    if (src.contains(cmp)) {
+                        String dr = src.substring(src.indexOf(cmp) + cmp.length());
+                        cmp = "</td>";
+                        dr = dr.substring(0, dr.indexOf(cmp));
+                        sd.PlayCount = Integer.parseInt(dr);
+                    } else {
+                        return false;
+                    }
+                    Log.d("POINT", "9");
+                    cmp = "<th>クリア回数</th><td>";
+                    if (src.contains(cmp)) {
+                        String dr = src.substring(src.indexOf(cmp) + cmp.length());
+                        cmp = "</td>";
+                        dr = dr.substring(0, dr.indexOf(cmp));
+                        sd.ClearCount = Integer.parseInt(dr);
+                    } else {
+                        return false;
                     }
                 } else {
-                    return false;
-                }
-                Log.d("POINT", "8");
-                cmp = "<th>プレー回数</th><td>";
-                if (src.contains(cmp)) {
-                    String dr = src.substring(src.indexOf(cmp) + cmp.length());
-                    cmp = "</td>";
-                    dr = dr.substring(0, dr.indexOf(cmp));
-                    sd.PlayCount = Integer.parseInt(dr);
-                } else {
-                    return false;
-                }
-                Log.d("POINT", "9");
-                cmp = "<th>クリア回数</th><td>";
-                if (src.contains(cmp)) {
-                    String dr = src.substring(src.indexOf(cmp) + cmp.length());
-                    cmp = "</td>";
-                    dr = dr.substring(0, dr.indexOf(cmp));
-                    sd.ClearCount = Integer.parseInt(dr);
-                } else {
-                    return false;
-                }
-            } else {
-                cmp = "<th>フルコンボ種別</th><td>";
-                if (src.contains(cmp)) {
-                    String dr = src.substring(src.indexOf(cmp) + cmp.length());
-                    cmp = "</td>";
-                    dr = dr.substring(0, dr.indexOf(cmp));
-                    switch (dr) {
-                        case "グッドフルコンボ":
-                            sd.FullComboType = FullComboType.GoodFullCombo;
-                            break;
-                        case "グレートフルコンボ":
-                            sd.FullComboType = FullComboType.FullCombo;
-                            break;
-                        case "パーフェクトフルコンボ":
-                            sd.FullComboType = FullComboType.PerfectFullCombo;
-                            break;
-                        case "マーベラスフルコンボ":
-                            sd.FullComboType = FullComboType.MerverousFullCombo;
-                            break;
-                        default:
-                            sd.FullComboType = FullComboType.None;
-                            break;
+                    cmp = "<th>フルコンボ種別</th><td>";
+                    if (src.contains(cmp)) {
+                        String dr = src.substring(src.indexOf(cmp) + cmp.length());
+                        cmp = "</td>";
+                        dr = dr.substring(0, dr.indexOf(cmp));
+                        switch (dr) {
+                            case "グッドフルコンボ":
+                                sd.FullComboType = FullComboType.GoodFullCombo;
+                                break;
+                            case "グレートフルコンボ":
+                                sd.FullComboType = FullComboType.FullCombo;
+                                break;
+                            case "パーフェクトフルコンボ":
+                                sd.FullComboType = FullComboType.PerfectFullCombo;
+                                break;
+                            case "マーベラスフルコンボ":
+                                sd.FullComboType = FullComboType.MerverousFullCombo;
+                                break;
+                            default:
+                                sd.FullComboType = FullComboType.None;
+                                break;
+                        }
+                    } else {
+                        return false;
                     }
-                } else {
-                    return false;
                 }
             }
         }
+
         Log.d("POINT", "10");
         MusicScore ms;
         if (mScoreList.containsKey(mItemId)) {
