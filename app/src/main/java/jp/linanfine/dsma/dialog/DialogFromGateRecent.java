@@ -14,11 +14,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jp.linanfine.dsma.R;
 import jp.linanfine.dsma.util.common.TextUtil;
 import jp.linanfine.dsma.util.file.FileReader;
+import jp.linanfine.dsma.util.html.HtmlParseRecentUtil;
 import jp.linanfine.dsma.value.GateSetting;
 import jp.linanfine.dsma.value.RecentData;
 import jp.linanfine.dsma.value.WebIdToMusicIdWebTitleList;
@@ -37,6 +39,7 @@ public class DialogFromGateRecent {
 
     private WebView mWebView;
     private ProgressBar mWebProgress;
+    private GateSetting mGateSetting;
 
     private boolean mCanceled = false;
 
@@ -81,6 +84,8 @@ public class DialogFromGateRecent {
         mWebView.setWebChromeClient(chrome);
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.addJavascriptInterface(this, "viewsourceactivity");
+
+        mGateSetting = FileReader.readGateSetting(mParent);
     }
 
     public void setArguments(AlertDialog dialog) {
@@ -96,10 +101,9 @@ public class DialogFromGateRecent {
             return;
         }
         FileReader.requestAd(mView.findViewById(R.id.adContainer), mParent);
-        GateSetting mGateSetting = FileReader.readGateSetting(mParent);
         String mRequestUri;
         if (mGateSetting.FromNewSite) {
-            mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/playdata/music_recent.html";
+            mRequestUri = "https://p.eagate.573.jp/game/ddr/ddrworld/playdata/music_recent.html";
         } else {
             mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/playdata/music_recent.html";
         }
@@ -116,7 +120,26 @@ public class DialogFromGateRecent {
     }
 
     private boolean analyzeRecent(String src) {
+        GateSetting mGateSetting = FileReader.readGateSetting(mParent);
+        if (mGateSetting.FromNewSite) {
+            List<RecentData> recent = null;
+            try {
+                recent = HtmlParseRecentUtil.parseRecentHTML(src, mMusicIds.getWebIdToMusicIdMap());
+            } catch (HtmlParseRecentUtil.ParseException e) {
+                return false;
+            }
 
+            if (recent.isEmpty()) {
+                return false;
+            }
+
+            FileReader.saveRecentList(mParent, recent);
+            return true;
+        }
+        return analyzeRecentForA3AndBefore(src);
+    }
+
+    private boolean analyzeRecentForA3AndBefore(String src) {
         String musicDetailLinkStartText = "/game/ddr/ddra3/p/playdata/music_detail.html?index=";
         int musicDetailLinkStartTextLength = musicDetailLinkStartText.length();
         String musicDetailLinkEndText = "&amp;";

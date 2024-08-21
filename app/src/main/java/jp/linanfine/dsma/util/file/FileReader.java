@@ -27,6 +27,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.TreeMap;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -781,14 +782,14 @@ public class FileReader {
         return ret;
     }
 
-    public static void saveRecentList(Context context, ArrayList<RecentData> recent) {
+    public static void saveRecentList(Context context, List<RecentData> recent) {
         FileOutputStream out = null;
         try {
             String fileName = "Recent.txt";
             out = context.openFileOutput(fileName, Context.MODE_PRIVATE);
             int count = recent.size();
             for (int i = 0; i < count; ++i) {
-                out.write((String.valueOf(recent.get(i).Id) + "\t" + String.valueOf(recent.get(i).PatternType_.toString()) + "\n").getBytes());
+                out.write((recent.get(i).Id + "\t" + recent.get(i).PatternType_.toString() + "\n").getBytes());
                 out.flush();
             }
         } catch (IOException e) {
