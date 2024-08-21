@@ -138,10 +138,17 @@ public class DialogFromGateList {
         }
 
         mGateSetting = FileReader.readGateSetting(mParent);
-        if (mGateSetting.FromNewSite) {
-            mUriH = "https://p.eagate.573.jp/game/ddr/ddrworld/";
-        } else {
-            mUriH = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
+        switch (mGateSetting.FromSite) {
+            case A20PLUS:
+                mUriH = "https://p.eagate.573.jp/game/ddr/ddra20/p/";
+                break;
+            case A3:
+                mUriH = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
+                break;
+            case WORLD:
+            default:
+                mUriH = "https://p.eagate.573.jp/game/ddr/ddrworld/";
+                break;
         }
 
         if (mRivalId == null) {
@@ -267,7 +274,7 @@ public class DialogFromGateList {
 
     private void analyzeScoreList(String src) {
         List<MusicEntry> musicEntries;
-        if (mGateSetting.FromNewSite) {
+        if (mGateSetting.FromSite == GateSetting.SiteVersion.WORLD) {
             musicEntries = HtmlParseUtil.parseMusicListForWorld(src);
         } else {
             musicEntries = HtmlParseUtil.parseMusicList(src);

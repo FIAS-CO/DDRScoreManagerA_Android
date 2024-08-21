@@ -910,12 +910,10 @@ public class FileReader {
         ret.OverWriteFullCombo = pref.getBoolean("OWFC", false);
         ret.OverWriteLowerScores = pref.getBoolean("OWLS", true);
         ret.SetPfcScore = pref.getInt("SetPFC", 999990);
-        String fromSite = pref.getString("FromSite", ret.FromNewSite ? "WORLD" : "NoData");
-        if(fromSite.equals("NoData")) {
-            ret.FromSite = GateSetting.SiteVersion.fromString(ret.FromNewSite? "WORLD": "A3");
-        } else {
-            ret.FromSite = GateSetting.SiteVersion.fromString(fromSite);
-        }
+
+        String defaultSite = ret.FromNewSite ? "WORLD" : "A3";
+        String fromSite = pref.getString("FromSite", defaultSite);
+        ret.FromSite = GateSetting.SiteVersion.fromString(fromSite);
         return ret;
     }
 

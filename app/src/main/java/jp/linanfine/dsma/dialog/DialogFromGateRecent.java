@@ -102,10 +102,17 @@ public class DialogFromGateRecent {
         }
         FileReader.requestAd(mView.findViewById(R.id.adContainer), mParent);
         String mRequestUri;
-        if (mGateSetting.FromNewSite) {
-            mRequestUri = "https://p.eagate.573.jp/game/ddr/ddrworld/playdata/music_recent.html";
-        } else {
-            mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/playdata/music_recent.html";
+        switch (mGateSetting.FromSite) {
+            case A20PLUS:
+                mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_recent.html";
+                break;
+            case A3:
+                mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/playdata/music_recent.html";
+                break;
+            case WORLD:
+            default:
+                mRequestUri = "https://p.eagate.573.jp/game/ddr/ddrworld/playdata/music_recent.html";
+                break;
         }
         mWebView.loadUrl(mRequestUri);
     }
@@ -121,8 +128,8 @@ public class DialogFromGateRecent {
 
     private boolean analyzeRecent(String src) {
         GateSetting mGateSetting = FileReader.readGateSetting(mParent);
-        if (mGateSetting.FromNewSite) {
-            List<RecentData> recent = null;
+        if (mGateSetting.FromSite == GateSetting.SiteVersion.WORLD) {
+            List<RecentData> recent;
             try {
                 recent = HtmlParseRecentUtil.parseRecentHTML(src, mMusicIds.getWebIdToMusicIdMap());
             } catch (HtmlParseRecentUtil.ParseException e) {
@@ -140,7 +147,7 @@ public class DialogFromGateRecent {
     }
 
     private boolean analyzeRecentForA3AndBefore(String src) {
-        String musicDetailLinkStartText = "/game/ddr/ddra3/p/playdata/music_detail.html?index=";
+        String musicDetailLinkStartText = "p/playdata/music_detail.html?index=";
         int musicDetailLinkStartTextLength = musicDetailLinkStartText.length();
         String musicDetailLinkEndText = "&amp;";
         String patternTypeNumberStartText = "diff=";
