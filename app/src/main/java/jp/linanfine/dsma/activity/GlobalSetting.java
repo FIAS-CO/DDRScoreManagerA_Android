@@ -22,6 +22,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -118,7 +120,21 @@ public class GlobalSetting extends Activity {
         mAppearances = FileReader.readAppearanceSettings(this);
 
         mGateSetting = FileReader.readGateSetting(this);
-        ((CheckBox) this.findViewById(R.id.fromNewSite)).setChecked(mGateSetting.FromNewSite);
+//        ((CheckBox) this.findViewById(R.id.fromNewSite)).setChecked(mGateSetting.FromNewSite);
+
+        switch (mGateSetting.FromSite) {
+            case A3:
+                ((RadioButton) this.findViewById(R.id.radioButtonA3)).setChecked(true);
+                break;
+            case A20PLUS:
+                ((RadioButton) this.findViewById(R.id.radioButtonA20Plus)).setChecked(true);
+                break;
+            case WORLD:
+            default:
+                ((RadioButton) this.findViewById(R.id.radioButtonWorld)).setChecked(true);
+                break;
+        }
+
         ((CheckBox) this.findViewById(R.id.overwriteLife4)).setChecked(mGateSetting.OverWriteLife4);
         ((CheckBox) this.findViewById(R.id.overwriteLowerScores)).setChecked(mGateSetting.OverWriteLowerScores);
         ((CheckBox) this.findViewById(R.id.closeCategoryOnBackKeyPressed)).setChecked(mCloseCategoryOnBackKeyPressed);
@@ -192,7 +208,6 @@ public class GlobalSetting extends Activity {
         OnCheckedChangeListener ccl = (arg0, arg1) -> {
             mGestures.GestureEnabled = ((CheckBox) GlobalSetting.this.findViewById(R.id.gestureEnableFlick)).isChecked();
             mAutoUpdateMusicList = ((CheckBox) GlobalSetting.this.findViewById(R.id.autoUpdateMusicList)).isChecked();
-            mGateSetting.FromNewSite = ((CheckBox) GlobalSetting.this.findViewById(R.id.fromNewSite)).isChecked();
             mGateSetting.OverWriteLife4 = ((CheckBox) GlobalSetting.this.findViewById(R.id.overwriteLife4)).isChecked();
             mGateSetting.OverWriteLowerScores = ((CheckBox) GlobalSetting.this.findViewById(R.id.overwriteLowerScores)).isChecked();
 
@@ -216,7 +231,15 @@ public class GlobalSetting extends Activity {
         };
 
         ((CheckBox) GlobalSetting.this.findViewById(R.id.gestureEnableFlick)).setOnCheckedChangeListener(ccl);
-        ((CheckBox) GlobalSetting.this.findViewById(R.id.fromNewSite)).setOnCheckedChangeListener(ccl);
+//        ((CheckBox) GlobalSetting.this.findViewById(R.id.fromNewSite)).setOnCheckedChangeListener(ccl);
+
+        ((RadioGroup) this.findViewById(R.id.radioGroup)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton radioButton = findViewById(checkedId);
+                onOptionSelected(radioButton.getText().toString());
+            }
+        });
         ((CheckBox) GlobalSetting.this.findViewById(R.id.overwriteLife4)).setOnCheckedChangeListener(ccl);
         ((CheckBox) GlobalSetting.this.findViewById(R.id.overwriteLowerScores)).setOnCheckedChangeListener(ccl);
         ((CheckBox) GlobalSetting.this.findViewById(R.id.autoUpdateMusicList)).setOnCheckedChangeListener(ccl);
@@ -481,5 +504,11 @@ public class GlobalSetting extends Activity {
         if (mDialogRefreshMusicList != null) {
             mDialogRefreshMusicList.cancel();
         }
+    }
+
+    private void onOptionSelected(String option) {
+        mGateSetting.FromSite = GateSetting.SiteVersion.fromString(option);
+        // 選択されたオプションに基づいて処理を行う
+        FileReader.saveGateSetting(GlobalSetting.this, mGateSetting);
     }
 }

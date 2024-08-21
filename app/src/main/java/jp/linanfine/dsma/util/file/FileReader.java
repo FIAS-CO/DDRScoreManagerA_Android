@@ -898,18 +898,24 @@ public class FileReader {
         e.putBoolean("OWFC", setting.OverWriteFullCombo);
         e.putBoolean("OWLS", setting.OverWriteLowerScores);
         e.putInt("SetPFC", setting.SetPfcScore);
-        e.commit();
+        e.putString("FromSite", setting.FromSite.toString());
+        e.apply();
     }
 
     public static GateSetting readGateSetting(Context context) {
         GateSetting ret = new GateSetting();
-        //SharedPreferences pref = context.getSharedPreferences("GateSetting", Context.MODE_WORLD_READABLE | Context.MODE_WORLD_WRITEABLE);
         SharedPreferences pref = context.getSharedPreferences("GateSetting", Context.MODE_PRIVATE);
         ret.FromNewSite = pref.getBoolean("FromNewSite", true);
         ret.OverWriteLife4 = pref.getBoolean("OWL4", false);
         ret.OverWriteFullCombo = pref.getBoolean("OWFC", false);
         ret.OverWriteLowerScores = pref.getBoolean("OWLS", true);
         ret.SetPfcScore = pref.getInt("SetPFC", 999990);
+        String fromSite = pref.getString("FromSite", ret.FromNewSite ? "WORLD" : "NoData");
+        if(fromSite.equals("NoData")) {
+            ret.FromSite = GateSetting.SiteVersion.fromString(ret.FromNewSite? "WORLD": "A3");
+        } else {
+            ret.FromSite = GateSetting.SiteVersion.fromString(fromSite);
+        }
         return ret;
     }
 

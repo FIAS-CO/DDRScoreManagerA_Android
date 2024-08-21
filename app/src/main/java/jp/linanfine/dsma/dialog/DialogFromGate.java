@@ -126,10 +126,21 @@ public class DialogFromGate {
         }
         FileReader.requestAd(mView.findViewById(R.id.adContainer), mParent);
 
-        if (mGateSetting.FromNewSite) {
-            startFromNewSite();
-        } else {
-            startFromA3();
+        GateSetting.SiteVersion fromSite = mGateSetting.FromSite;
+        switch (fromSite) {
+            case WORLD:
+                startFromNewSite();
+                break;
+            case A3:
+                startFromA3();
+                break;
+            case A20PLUS:
+                startFromA20Plus();
+                break;
+            default:
+                // 将来新しい SiteVersion が追加された場合のための処理
+                Log.e("YourActivity", "Unhandled FromSite value: " + fromSite);
+                throw new IllegalStateException("Unexpected value: " + fromSite);
         }
     }
 
@@ -149,6 +160,15 @@ public class DialogFromGate {
 
     private void startFromA3() {
         String baseUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
+        startFromA3AndBefore(baseUri);
+    }
+
+    private void startFromA20Plus() {
+        String baseUri = "https://p.eagate.573.jp/game/ddr/ddra20/p/";
+        startFromA3AndBefore(baseUri);
+    }
+
+    private void startFromA3AndBefore(String baseUri) {
         int patternInt = getPatternIntForA3(mPattern);
 
         if (mRivalId == null) {
@@ -272,7 +292,7 @@ public class DialogFromGate {
         }
         ScoreData sd = new ScoreData();
         WebMusicId webMusicId = mWebMusicIds.get(mItemId);
-        if (mGateSetting.FromNewSite) {
+        if (mGateSetting.FromSite == GateSetting.SiteVersion.WORLD) {
             try {
                 sd = HtmlParseUtil.parseMusicDetailForWorld(src, webMusicId);
             } catch (HtmlParseUtil.ParseException ignored) {
@@ -306,7 +326,15 @@ public class DialogFromGate {
                     return true;
                 }
                 Log.d("POINT", "4");
-                cmp = "<th>ハイスコア時のランク</th><td>";
+                if (mGateSetting.FromSite == GateSetting.SiteVersion.A3) {
+                    cmp = "<th>ハイスコア時のランク</th><td>";
+                } else {
+                    if (mRivalId == null) {
+                        cmp = "<th>ハイスコア時のダンスレベル</th><td>";
+                    } else {
+                        cmp = "<th>最高ダンスレベル</th><td>";
+                    }
+                }
 
                 if (src.contains(cmp)) {
                     String dr = src.substring(src.indexOf(cmp) + cmp.length());
