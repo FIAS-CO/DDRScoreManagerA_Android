@@ -2,13 +2,9 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.147.24081600] Update:\n
-You can now retrieve song data from the DDR WORLD official page!\n
-However, the following features are still being retrieved from A3 and will be updated in future releases:\n
-\n
-- Recent song data (coming soon)\n
-- Player information (coming soon)\n
-- Rival information (not supported by the official page)\n
+[0.148.24082100] Update:\n
+- Enabled the retrieval of WORLD data on the Recent page.\n
+- You can now select the page to retrieve data from WORLD, A3, or A20PLUS. This can be configured in Preferences.\n
     </string>
     
     <string name="strings_global____app_name">DDR Score Manager A</string>
