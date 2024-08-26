@@ -295,7 +295,19 @@ public class DialogFromGate {
         if (mGateSetting.FromSite == GateSetting.SiteVersion.WORLD) {
             try {
                 sd = HtmlParseUtil.parseMusicDetailForWorld(src, webMusicId);
-            } catch (HtmlParseUtil.ParseException ignored) {
+            } catch (HtmlParseUtil.NameMismatchException e) {
+                if (webMusicId == null || !e.webMusicIdTitle.equals(e.htmlTitle)) {
+                    assert webMusicId != null;
+                    new AlertDialog.Builder(mParent)
+                            .setIcon(android.R.drawable.ic_dialog_info)
+                            .setMessage(mParent.getResources().getString(R.string.name_different_alert) + "\n\n\"" + e.webMusicIdTitle + "\"\n↓\n\"" + e.htmlTitle + "\"")
+                            .setCancelable(true)
+                            .setPositiveButton(mParent.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                            }).show();
+                    return true;
+                }
+            } catch (HtmlParseUtil.ParseException ignore) {
+                return false;
             }
         } else {
             String cmp = "0\"></td>  <td>";

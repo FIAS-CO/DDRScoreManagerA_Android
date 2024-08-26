@@ -46,7 +46,7 @@ public class HtmlParseUtil {
         return musicEntries;
     }
 
-    public static ScoreData parseMusicDetailForWorld(String src, WebMusicId webMusicId) throws ParseException {
+    public static ScoreData parseMusicDetailForWorld(String src, WebMusicId webMusicId) throws ParseException, NameMismatchException {
         Document doc = Jsoup.parse(src);
         ScoreData sd = new ScoreData();
 
@@ -55,12 +55,13 @@ public class HtmlParseUtil {
         if (titleElement == null) {
             throw new ParseException("Title element not found");
         }
+
         String fullTitle = titleElement.html().trim();
         String[] titleComponents = fullTitle.split("<br>");
         String title = titleComponents[0].trim();
 
         if (!title.equals(webMusicId.titleOnWebPage)) {
-            throw new ParseException("Music ID mismatch: " + webMusicId.titleOnWebPage + " vs " + title);
+            throw new NameMismatchException(title, webMusicId.titleOnWebPage);
         }
 
         // "NO PLAY..." の確認
@@ -445,6 +446,16 @@ public class HtmlParseUtil {
     public static class ParseException extends Exception {
         public ParseException(String message) {
             super(message);
+        }
+    }
+
+    public static class NameMismatchException extends Exception {
+        public String htmlTitle;
+        public String webMusicIdTitle;
+        public NameMismatchException(String htmlTitle, String webMusicIdTitle) {
+            super ();
+            this.htmlTitle = htmlTitle;
+            this.webMusicIdTitle = webMusicIdTitle;
         }
     }
 }

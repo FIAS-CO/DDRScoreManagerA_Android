@@ -172,7 +172,7 @@ public class HtmlParseUtilTest {
     }
 
     @Test
-    void testParseMusicDetailForWorld_PFC_AAA_FlareEX() throws HtmlParseUtil.ParseException, IOException {
+    void testParseMusicDetailForWorld_PFC_AAA_FlareEX() throws HtmlParseUtil.ParseException, IOException, HtmlParseUtil.NameMismatchException {
         String htmlContent = loadHTMLContent("WorldSiteDataDetail");
         WebMusicId webMusicId = new WebMusicId();
         webMusicId.titleOnWebPage = "星座が恋した瞬間を。";
@@ -190,7 +190,7 @@ public class HtmlParseUtilTest {
     }
 
     @Test
-    void testParseMusicDetailForWorld_GFC_AAp_NoFlare() throws HtmlParseUtil.ParseException, IOException {
+    void testParseMusicDetailForWorld_GFC_AAp_NoFlare() throws HtmlParseUtil.ParseException, IOException, HtmlParseUtil.NameMismatchException {
         String htmlContent = loadHTMLContent("WorldSiteDataDetail_AAp_GFC_NoRank");
         WebMusicId webMusicId = new WebMusicId();
         webMusicId.titleOnWebPage = "アルストロメリア (walk with you remix)";
@@ -208,7 +208,7 @@ public class HtmlParseUtilTest {
     }
 
     @Test
-    void testParseMusicDetailForWorld_Life4_AA_FlareIX() throws HtmlParseUtil.ParseException, IOException {
+    void testParseMusicDetailForWorld_Life4_AA_FlareIX() throws HtmlParseUtil.ParseException, IOException, HtmlParseUtil.NameMismatchException {
         String htmlContent = loadHTMLContent("WorldSiteDataDetail_AA_Life4_FlareIX");
         WebMusicId webMusicId = new WebMusicId();
         webMusicId.titleOnWebPage = "イノセントバイブル";
@@ -226,7 +226,7 @@ public class HtmlParseUtilTest {
     }
 
     @Test
-    void testParseMusicDetailForWorld_Noplay() throws HtmlParseUtil.ParseException, IOException {
+    void testParseMusicDetailForWorld_Noplay() throws HtmlParseUtil.ParseException, IOException, HtmlParseUtil.NameMismatchException {
         String htmlContent = loadHTMLContent("WorldSiteDataDetail_Noplay");
         WebMusicId webMusicId = new WebMusicId();
         webMusicId.titleOnWebPage = "蒼い衝動 ～for EXTREME～";
@@ -244,7 +244,7 @@ public class HtmlParseUtilTest {
     }
 
     @Test
-    void testParseMusicDetailForWorld_A_GdFC_FlareEx() throws HtmlParseUtil.ParseException, IOException {
+    void testParseMusicDetailForWorld_A_GdFC_FlareEx() throws HtmlParseUtil.ParseException, IOException, HtmlParseUtil.NameMismatchException {
         String htmlContent = loadHTMLContent("WorldSiteDataDetail_A_GdFc_FlareEX");
         WebMusicId webMusicId = new WebMusicId();
         webMusicId.titleOnWebPage = "阿波おどり -Awaodori- やっぱり踊りはやめられない";
@@ -262,7 +262,7 @@ public class HtmlParseUtilTest {
     }
 
     @Test
-    void testParseMusicDetailForWorld_E() throws HtmlParseUtil.ParseException, IOException {
+    void testParseMusicDetailForWorld_E() throws HtmlParseUtil.ParseException, IOException, HtmlParseUtil.NameMismatchException {
         String htmlContent = loadHTMLContent("WorldSiteDataDetail_E");
         WebMusicId webMusicId = new WebMusicId();
         webMusicId.titleOnWebPage = "春を告げる";
@@ -280,7 +280,7 @@ public class HtmlParseUtilTest {
     }
 
     @Test
-    public void testParseMusicDetailForWorld_Rank0() throws HtmlParseUtil.ParseException, IOException {
+    public void testParseMusicDetailForWorld_Rank0() throws HtmlParseUtil.ParseException, IOException, HtmlParseUtil.NameMismatchException {
         String htmlContent = loadHTMLContent("WorldSiteDataDetail_Rank0");
         WebMusicId webMusicId = new WebMusicId();
         webMusicId.titleOnWebPage = "蒼が消えるとき";
