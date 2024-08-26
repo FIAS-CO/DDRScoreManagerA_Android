@@ -1,5 +1,9 @@
 package jp.linanfine.dsma.dialog;
 
+import static jp.linanfine.dsma.value.GateSetting.SiteVersion.A20PLUS;
+import static jp.linanfine.dsma.value.GateSetting.SiteVersion.A3;
+import static jp.linanfine.dsma.value.GateSetting.SiteVersion.WORLD;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -28,6 +32,8 @@ import java.util.TreeMap;
 import jp.linanfine.dsma.R;
 import jp.linanfine.dsma.util.common.TextUtil;
 import jp.linanfine.dsma.util.file.FileReader;
+import jp.linanfine.dsma.util.html.HtmlParseUtil;
+import jp.linanfine.dsma.util.songdata.PatternTypeUtil;
 import jp.linanfine.dsma.value.GateSetting;
 import jp.linanfine.dsma.value.IdToWebMusicIdList;
 import jp.linanfine.dsma.value.MusicScore;
@@ -71,6 +77,7 @@ public class DialogFromGateSou {
 
     private String mUriH;
     private String mUriM;
+    private String mUriM2;
     private String mUriF;
     private String mRequestUri;
     private int mItemId;
@@ -174,10 +181,56 @@ public class DialogFromGateSou {
         mMax.setText(String.valueOf(mPageCount));
 
         mGateSetting = FileReader.readGateSetting(mParent);
-        if (mGateSetting.FromNewSite) {
+
+        if (mGateSetting.FromSite == WORLD) {
+            startFromWorld();
+        } else {
+            startFromA3AndA20Plus();
+        }
+    }
+
+    private void startFromWorld() {
+        mUriH = "https://p.eagate.573.jp/game/ddr/ddrworld/";
+        if (mRivalId == null) {
+            mUriH += "playdata/music_detail.html?index=";
+            mUriF = "";
+        } else {
+            mUriH += "rival/music_detail.html?index=";
+            mUriF = "&rival_id=" + mRivalId + "&name=" + mRivalName.trim();
+        }
+        mUriM = "&style=";
+        mUriM2 = "&difficulty=";
+
+        mCurrentPage = 0;
+        UniquePattern c = mSouList.get(mCurrentPage);
+        mItemId = c.MusicId;
+        if (!mWebMusicIds.containsKey(mItemId) || mWebMusicIds.get(mItemId).idOnWebPage.equals("")) {
+            new AlertDialog.Builder(mParent)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setMessage(mParent.getResources().getString(R.string.illegal_id_alert))
+                    .setCancelable(true)
+                    .setPositiveButton(mParent.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                    }).show();
+
+            mDialog.cancel();
+            return;
+        } else {
+            mWebItemId = Objects.requireNonNull(mWebMusicIds.get(mItemId)).idOnWebPage;
+        }
+        mPattern = c.Pattern;
+
+        int style = PatternTypeUtil.getStyleInt(mPattern);
+        int patternInt = PatternTypeUtil.getPatternIntForWorld(mPattern);
+        mRequestUri = mUriH + mWebItemId + mUriM + style + mUriM2 + patternInt + mUriF;
+        mLogView.setText("Loading...\n" + (mRivalName == null ? "My Score\n" : ("Rival: " + mRivalName + "\n")) + mPattern.toString() + " : " + c.musics.get(mItemId).Name);
+        mWebView.loadUrl(mRequestUri);
+    }
+
+    private void startFromA3AndA20Plus() {
+        if (mGateSetting.FromSite == A3) {
             mUriH = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
         } else {
-            mUriH = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
+            mUriH = "https://p.eagate.573.jp/game/ddr/ddra20/p/";
         }
 
         if (mRivalId == null) {
@@ -227,7 +280,72 @@ public class DialogFromGateSou {
         String uri = web.getUrl();
 
         assert uri != null;
+        if (mGateSetting.FromSite == WORLD) {
+            return analyzeScoreForWorld(src, uri);
+        }
         return analyzeScore(src, uri);
+    }
+
+    private boolean analyzeScoreForWorld(String src, String uri) {
+        ScoreData scoreData = new ScoreData();
+        WebMusicId webMusicId = mWebMusicIds.get(mItemId);
+        try {
+            scoreData = HtmlParseUtil.parseMusicDetailForWorld(src, webMusicId);
+        } catch (HtmlParseUtil.NameMismatchException e) {
+            if (webMusicId == null || !e.webMusicIdTitle.equals(e.htmlTitle)) {
+                assert webMusicId != null;
+                new AlertDialog.Builder(mParent)
+                        .setIcon(android.R.drawable.ic_dialog_info)
+                        .setMessage(mParent.getResources().getString(R.string.name_different_alert) + "\n\n\"" + e.webMusicIdTitle + "\"\n↓\n\"" + e.htmlTitle + "\"")
+                        .setCancelable(true)
+                        .setPositiveButton(mParent.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                        }).show();
+                return true;
+            }
+        } catch (HtmlParseUtil.ParseException ignore) {
+            Toast.makeText(mParent, "Failed", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        MusicScore musicScore;
+        if (mScoreList.containsKey(mItemId)) {
+            musicScore = mScoreList.get(mItemId);
+            mScoreList.remove(mItemId);
+        } else {
+            musicScore = new MusicScore();
+        }
+
+        ScoreData localScoreData = getLocalScoreData(musicScore);
+
+        // スコアデータの更新ロジック
+        if (!mGateSetting.OverWriteLife4) {
+            if (scoreData.FullComboType == FullComboType.None && localScoreData.FullComboType == FullComboType.Life4) {
+                scoreData.FullComboType = localScoreData.FullComboType;
+            }
+        }
+
+        if (!mGateSetting.OverWriteLowerScores) {
+            if (scoreData.Score < localScoreData.Score) {
+                scoreData.Score = localScoreData.Score;
+                scoreData.Rank = localScoreData.Rank;
+            }
+            if (scoreData.MaxCombo < localScoreData.MaxCombo) {
+                scoreData.MaxCombo = localScoreData.MaxCombo;
+            }
+            scoreData.FullComboType = getBetterFullComboType(scoreData.FullComboType, localScoreData.FullComboType);
+        }
+
+        setScoreDataForPattern(musicScore, scoreData);
+
+        mScoreList.put(mItemId, musicScore);
+        FileReader.saveScoreData(mParent, mRivalId, mScoreList);
+
+        String toastString = generateToastString(localScoreData, scoreData);
+        mLogView2.setText(toastString);
+
+        Toast.makeText(mParent, toastString, Toast.LENGTH_LONG).show();
+
+        return true;
     }
 
     private boolean analyzeScore(String src, String uri) {
@@ -288,7 +406,7 @@ public class DialogFromGateSou {
                 String header = headers.get(i).text();
                 String value = values.get(i).text();
 
-                if (mGateSetting.FromNewSite) {
+                if (mGateSetting.FromSite != A20PLUS) {
                     switch (header) {
                         case "ハイスコア時のランク":
                             scoreData.Rank = parseRank(value);
@@ -634,7 +752,14 @@ public class DialogFromGateSou {
                 mWebItemId = Objects.requireNonNull(mWebMusicIds.get(mItemId)).idOnWebPage;
             }
             mPattern = c.Pattern;
-            mRequestUri = mUriH + mWebItemId + mUriM + getPatternInt(mPattern) + mUriF;
+            if (mGateSetting.FromSite == WORLD) {
+                int style = PatternTypeUtil.getStyleInt(mPattern);
+                int patternInt = PatternTypeUtil.getPatternIntForWorld(mPattern);
+
+                mRequestUri = mUriH + mWebItemId + mUriM + style + mUriM2 + patternInt + mUriF;
+            } else {
+                mRequestUri = mUriH + mWebItemId + mUriM + getPatternInt(mPattern) + mUriF;
+            }
             mLogView.setText("Loading...\n" + (mRivalName == null ? "My Score\n" : ("Rival: " + mRivalName + "\n")) + mPattern.toString() + " : " + c.musics.get(mItemId).Name);
             mWebView.loadUrl(mRequestUri);
         });

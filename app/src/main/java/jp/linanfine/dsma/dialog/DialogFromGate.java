@@ -180,6 +180,7 @@ public class DialogFromGate {
         mWebView.loadUrl(mRequestUri);
     }
 
+    // TODO 今度このクラスを直すときは PatternTypeUtil のメソッドに差し替えて
     private int getPatternIntForA3(PatternType pattern) {
         switch (pattern) {
             case BSP:
@@ -204,6 +205,7 @@ public class DialogFromGate {
         }
     }
 
+    // TODO 今度このクラスを直すときは PatternTypeUtil のメソッドに差し替えて
     private int getPatternIntForWorld(PatternType patternType) {
         int patternValue;
 
@@ -235,6 +237,7 @@ public class DialogFromGate {
         return patternValue;
     }
 
+    // TODO 今度このクラスを直すときは PatternTypeUtil のメソッドに差し替えて
     private int getStyleInt(PatternType patternType) {
         int styleValue;
 
