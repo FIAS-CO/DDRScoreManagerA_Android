@@ -2,9 +2,10 @@
 <resources>
     
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.148.24082100] Update:\n
-・RecentページでWORLDのデータを取得できるようにしました\n
-・データを取得するページをWORLD/A3/A20PLUSから選択できるようにしました。共通設定から選択可能です。\n
+[0.149.24082600] Update:\n
+フレアランクを設定せずプレイした楽曲のフレアランクが算出されるよう修正しました。\n
+お手数ですが、再度データの取得をお願いします。\n
+プレイヤーステータス取得機能をWORLD/A3/A20PLUSに対応しました。
     </string>
 
     <string name="strings_global____app_name">DDR Score Manager A</string>

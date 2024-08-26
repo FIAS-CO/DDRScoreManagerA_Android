@@ -2,9 +2,9 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.148.24082100] Update:\n
-- Enabled the retrieval of WORLD data on the Recent page.\n
-- You can now select the page to retrieve data from WORLD, A3, or A20PLUS. This can be configured in Preferences.\n
+[0.149.24082600] Update:\n
+- Fixed the issue so that Flare Rank is now calculated for songs played without setting a Flare Rank.\nPlease retrieve the data again.\n
+- Updated the player status retrieval feature to support WORLD, A3, and A20PLUS.\n
     </string>
     
     <string name="strings_global____app_name">DDR Score Manager A</string>
