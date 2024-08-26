@@ -2,7 +2,8 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.150.24082602] Update:\n
+[0.152.24082701] Update:\n
+- Batch retrieval from GATE server (detail) is now supported in WORLD.\n
 - Fixed the issue so that Flare Rank is now calculated for songs played without setting a Flare Rank.\n
   Please retrieve the data again.\n
 - Updated the player status retrieval feature to support WORLD, A3, and A20PLUS.\n

@@ -2,7 +2,8 @@
 <resources>
     
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.150.24082602] Update:\n
+[0.152.24082701] Update:\n
+- 「GATEサーバから一括取得(詳細)」をWORLDに対応しました。\n
 - フレアランクを設定せずプレイした楽曲のフレアランクが算出されるよう修正しました。\n
   お手数ですが、再度データの取得をお願いします。\n
 - プレイヤーステータス取得機能をWORLD/A3/A20PLUSに対応しました。
