@@ -58,7 +58,7 @@ public class HtmlParseUtil {
 
         String fullTitle = titleElement.html().trim();
         String[] titleComponents = fullTitle.split("<br>");
-        String title = titleComponents[0].trim();
+        String title = Jsoup.parse(titleComponents[0]).text();
 
         if (!title.equals(webMusicId.titleOnWebPage)) {
             throw new NameMismatchException(title, webMusicId.titleOnWebPage);
