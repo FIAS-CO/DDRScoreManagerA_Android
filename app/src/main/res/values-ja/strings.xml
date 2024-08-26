@@ -2,10 +2,10 @@
 <resources>
     
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.149.24082600] Update:\n
-フレアランクを設定せずプレイした楽曲のフレアランクが算出されるよう修正しました。\n
-お手数ですが、再度データの取得をお願いします。\n
-プレイヤーステータス取得機能をWORLD/A3/A20PLUSに対応しました。
+[0.150.24082602] Update:\n
+- フレアランクを設定せずプレイした楽曲のフレアランクが算出されるよう修正しました。\n
+  お手数ですが、再度データの取得をお願いします。\n
+- プレイヤーステータス取得機能をWORLD/A3/A20PLUSに対応しました。
     </string>
 
     <string name="strings_global____app_name">DDR Score Manager A</string>
