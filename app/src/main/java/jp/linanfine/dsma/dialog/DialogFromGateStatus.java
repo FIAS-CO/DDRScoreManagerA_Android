@@ -101,10 +101,12 @@ public class DialogFromGateStatus {
         FileReader.requestAd(mView.findViewById(R.id.adContainer), mParent);
 
         GateSetting mGateSetting = FileReader.readGateSetting(mParent);
-        if (mGateSetting.FromNewSite) {
+        if (mGateSetting.FromSite == GateSetting.SiteVersion.WORLD) {
+            mRequestUri = "https://p.eagate.573.jp/game/ddr/ddrworld/";
+        } else if (mGateSetting.FromSite == GateSetting.SiteVersion.A3) {
             mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
         } else {
-            mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/";
+            mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra20/p/";
         }
 
         if (mRivalId == null) {
@@ -125,6 +127,16 @@ public class DialogFromGateStatus {
     }
 
     private boolean analyzeStatus(String src) {
+        GateSetting mGateSetting = FileReader.readGateSetting(mParent);
+
+        if (mGateSetting.FromSite == GateSetting.SiteVersion.A20PLUS) {
+            return analyzeStatusForA20Plus(src);
+        }
+
+        return analyzeStatusForA3AndWorld(src);
+    }
+
+    private boolean analyzeStatusForA3AndWorld(String src) {
         WebView web = mView.findViewById(R.id.webView);
         String uri = web.getUrl();
 
@@ -135,35 +147,38 @@ public class DialogFromGateStatus {
 
         try {
             Document doc = Jsoup.parse(src);
-            Elements statusTable = doc.select("table#status tr");
+            setSummaryStatus(doc);
 
-            for (Element row : statusTable) {
-                String header = row.select("th").text();
-                String value = row.select("td").text();
+            mStatusData.PlayCountSingle = 0;
+            mStatusData.LastPlaySingle = "";
 
-                switch (header) {
-                    case "ダンサーネーム":
-                        mStatusData.DancerName = value;
-                        break;
-                    case "DDR-CODE":
-                        mStatusData.DdrCode = value;
-                        break;
-                    case "所属都道府県":
-                        mStatusData.Todofuken = value;
-                        break;
-                    case "総プレー回数":
-                        mStatusData.PlayCount = Integer.parseInt(value.replace("回", "").trim());
-                        break;
-                    case "最終プレー日時":
-                        mStatusData.LastPlay = value;
-                        break;
-                }
-            }
+            mStatusData.PlayCountDouble = 0;
+            mStatusData.LastPlayDouble = "";
 
-            // TODO ここ以降不要。StatusDataとかsaveStatusDataメソッドからも削ること
-            Elements playDataSingle = doc.select("div.diff_back#single tr");
-            Elements playDataDouble = doc.select("div.diff_back#double tr");
+            // TODO ここまで
+            FileReader.saveStatusData(mParent, mStatusData);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
 
+        return true;
+    }
+
+    private boolean analyzeStatusForA20Plus(String src) {
+        WebView web = mView.findViewById(R.id.webView);
+        String uri = web.getUrl();
+
+        assert uri != null;
+        if (!uri.equals(mRequestUri)) {
+            return false;
+        }
+
+        try {
+            Document doc = Jsoup.parse(src);
+            setSummaryStatus(doc);
+
+            Elements playDataSingle = doc.select("div#single table.small_table tr");
             for (Element row : playDataSingle) {
                 String header = row.select("th").text();
                 String value = row.select("td").text();
@@ -175,6 +190,7 @@ public class DialogFromGateStatus {
                 }
             }
 
+            Elements playDataDouble = doc.select("div#double table.small_table tr");
             for (Element row : playDataDouble) {
                 String header = row.select("th").text();
                 String value = row.select("td").text();
@@ -185,7 +201,6 @@ public class DialogFromGateStatus {
                     mStatusData.LastPlayDouble = value;
                 }
             }
-            // TODO ここまで
             FileReader.saveStatusData(mParent, mStatusData);
 
         } catch (Exception e) {
@@ -194,6 +209,35 @@ public class DialogFromGateStatus {
         }
 
         return true;
+    }
+
+    private void setSummaryStatus(Document doc) {
+        Elements statusTable = doc.select("table#status tr");
+
+        for (Element row : statusTable) {
+            String header = row.select("th").text();
+            String value = row.select("td").text();
+
+            switch (header) {
+                case "ダンサーネーム":
+                case "DANCER NAME": // WORLDのみ
+                    mStatusData.DancerName = value;
+                    break;
+                case "DDR-CODE":
+                    mStatusData.DdrCode = value;
+                    break;
+                case "所属都道府県":
+                case "所属エリア": // WORLDのみ
+                    mStatusData.Todofuken = value;
+                    break;
+                case "総プレー回数":
+                    mStatusData.PlayCount = Integer.parseInt(value.replace("回", "").trim());
+                    break;
+                case "最終プレー日時":
+                    mStatusData.LastPlay = value;
+                    break;
+            }
+        }
     }
 
     @android.webkit.JavascriptInterface
