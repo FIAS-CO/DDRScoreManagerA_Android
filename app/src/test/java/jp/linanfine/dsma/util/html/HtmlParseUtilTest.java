@@ -279,6 +279,24 @@ public class HtmlParseUtilTest {
         assertEquals(-1, scoreData.FlareRank);
     }
 
+    @Test
+    public void testParseMusicDetailForWorld_Rank0() throws HtmlParseUtil.ParseException, IOException {
+        String htmlContent = loadHTMLContent("WorldSiteDataDetail_Rank0");
+        WebMusicId webMusicId = new WebMusicId();
+        webMusicId.titleOnWebPage = "蒼が消えるとき";
+        webMusicId.idOnWebPage = "dummy";
+
+        ScoreData scoreData = HtmlParseUtil.parseMusicDetailForWorld(htmlContent, webMusicId);
+
+        assertEquals(MusicRank.AAA, scoreData.Rank);
+        assertEquals(999640, scoreData.Score);
+        assertEquals(323, scoreData.MaxCombo);
+        assertEquals(FullComboType.PerfectFullCombo, scoreData.FullComboType);
+        assertEquals(4, scoreData.PlayCount);
+        assertEquals(4, scoreData.ClearCount);
+        assertEquals(0, scoreData.FlareRank);
+    }
+
     private String loadHTMLContent(String fileName) throws IOException {
         String filePath = "src/test/resources/" + fileName + ".html";
         return new String(Files.readAllBytes(Paths.get(filePath)));
@@ -426,6 +444,14 @@ public class HtmlParseUtilTest {
         assertEquals(MusicRank.E, expertScore.getRank());
         assertEquals(FullComboType.None, expertScore.getFullComboType());
         assertEquals(-1, expertScore.getFlareRank()); // フレアランクなし
+
+        songEntry = findSongByName(result, "蒼が消えるとき");
+        DifficultyScore score = findScoreByDifficulty(songEntry, "difficult");
+        assertNotNull(score, "DIFFICULT score for '蒼が消えるとき' not found");
+        assertEquals(999640, score.getScore());
+        assertEquals(MusicRank.AAA, score.getRank());
+        assertEquals(FullComboType.PerfectFullCombo, score.getFullComboType());
+        assertEquals(0, score.getFlareRank()); // フレアランク0
     }
 
     private void testSpecificSongsDouble(List<MusicEntry> result) {

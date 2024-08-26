@@ -15,6 +15,21 @@ import jp.linanfine.dsma.value._enum.MusicRank;
 
 public class HtmlParseUtil {
 
+    public static List<MusicEntry> parseMusicList(String src) {
+        List<MusicEntry> musicEntries = new ArrayList<>();
+        Document doc = Jsoup.parse(src);
+        Elements musicRows = doc.select("tr.data");
+
+        for (Element row : musicRows) {
+            MusicEntry entry = parseMusicEntry(row);
+            if (entry != null) {
+                musicEntries.add(entry);
+            }
+        }
+
+        return musicEntries;
+    }
+
     public static List<MusicEntry> parseMusicListForWorld(String src) {
         Document doc = Jsoup.parse(src);
         GameMode gameMode = determineGameMode(doc);
@@ -53,14 +68,14 @@ public class HtmlParseUtil {
             return new ScoreData();
         }
 
-        int score = parseScore(doc);
+        int score = parseScoreForDetail(doc);
         sd.Score = score;
-        sd.Rank = parseRank(doc, score);
-        sd.MaxCombo = parseMaxCombo(doc);
-        sd.FullComboType = parseFullComboType(doc);
-        sd.PlayCount = parsePlayCount(doc);
-        sd.ClearCount = parseClearCount(doc);
-        sd.FlareRank = parseFlareRank(doc);
+        sd.Rank = parseRankForDetail(doc, score);
+        sd.MaxCombo = parseMaxComboForDetail(doc);
+        sd.FullComboType = parseFullComboTypeForDetail(doc);
+        sd.PlayCount = parsePlayCountForDetail(doc);
+        sd.ClearCount = parseClearCountForDetail(doc);
+        sd.FlareRank = parseFlareRankForDetail(doc);
 
         return sd;
     }
@@ -137,8 +152,8 @@ public class HtmlParseUtil {
         if (flareRankElement == null) return -1;
 
         String flareRankSrc = flareRankElement.attr("src");
-        if (flareRankSrc.contains("flare_nodisp")) return -1;
-        if (flareRankSrc.contains("flare_none")) return -1;
+        if (flareRankSrc.contains("flare_nodisp")) return determineFlareRankFromSkill(column);
+        if (flareRankSrc.contains("flare_none")) return determineFlareRankFromSkill(column);
         if (flareRankSrc.contains("flare_1")) return 1;
         if (flareRankSrc.contains("flare_2")) return 2;
         if (flareRankSrc.contains("flare_3")) return 3;
@@ -149,7 +164,26 @@ public class HtmlParseUtil {
         if (flareRankSrc.contains("flare_8")) return 8;
         if (flareRankSrc.contains("flare_9")) return 9;
         if (flareRankSrc.contains("flare_ex")) return 10;
-        return 0;
+
+        return -1;
+    }
+
+    private static int determineFlareRankFromSkill(Element column) {
+        Element flareSkillElement = column.selectFirst("div.data_flareskill");
+        if (flareSkillElement != null) {
+            String flareSkillText = flareSkillElement.text().trim();
+            if (!flareSkillText.equals("---")) {
+                try {
+                    int flareSkill = Integer.parseInt(flareSkillText);
+                    if (flareSkill > 0) {
+                        return 0; // フレアスキルが0より大きい場合、フレアランクは0
+                    }
+                } catch (NumberFormatException e) {
+                    // フレアスキルの解析に失敗した場合は無視
+                }
+            }
+        }
+        return -1; // フレアスキルがない、または0以下の場合、フレアランクは-1
     }
 
     private static MusicRank getRank(Element rankElement, int score) {
@@ -172,21 +206,6 @@ public class HtmlParseUtil {
         if (score < 950000) return MusicRank.AA;
         if (score < 990000) return MusicRank.AAp;
         return MusicRank.AAA;
-    }
-
-    public static List<MusicEntry> parseMusicList(String src) {
-        List<MusicEntry> musicEntries = new ArrayList<>();
-        Document doc = Jsoup.parse(src);
-        Elements musicRows = doc.select("tr.data");
-
-        for (Element row : musicRows) {
-            MusicEntry entry = parseMusicEntry(row);
-            if (entry != null) {
-                musicEntries.add(entry);
-            }
-        }
-
-        return musicEntries;
     }
 
     private static MusicEntry parseMusicEntry(Element row) {
@@ -261,7 +280,7 @@ public class HtmlParseUtil {
         return FullComboType.None;
     }
 
-    private static MusicRank parseRank(Document doc, int score) throws ParseException {
+    private static MusicRank parseRankForDetail(Document doc, int score) throws ParseException {
         Element rankElement = doc.select("th:contains(ハイスコア時のランク) + td").first();
         if (rankElement == null) {
             throw new ParseException("Rank element not found");
@@ -271,7 +290,7 @@ public class HtmlParseUtil {
         return getRank(score, rankText.equals("E"));
     }
 
-    private static int parseScore(Document doc) throws ParseException {
+    private static int parseScoreForDetail(Document doc) throws ParseException {
         Elements thElements = doc.select("th");
         for (Element th : thElements) {
             if (th.text().trim().equals("ハイスコア")) {
@@ -289,7 +308,7 @@ public class HtmlParseUtil {
         throw new ParseException("Score element not found");
     }
 
-    private static int parseMaxCombo(Document doc) throws ParseException {
+    private static int parseMaxComboForDetail(Document doc) throws ParseException {
         Element comboElement = doc.select("th:contains(最大コンボ数) + td").first();
         if (comboElement == null) {
             throw new ParseException("Max combo element not found");
@@ -302,7 +321,7 @@ public class HtmlParseUtil {
         }
     }
 
-    private static FullComboType parseFullComboType(Document doc) {
+    private static FullComboType parseFullComboTypeForDetail(Document doc) {
         Elements fcElements = doc.select("#clear_detail_table tr[id^='fc_']");
         for (Element element : fcElements) {
             String fcTypeText = element.select("th").text().trim();
@@ -345,7 +364,7 @@ public class HtmlParseUtil {
         return FullComboType.None;
     }
 
-    private static int parsePlayCount(Document doc) throws ParseException {
+    private static int parsePlayCountForDetail(Document doc) throws ParseException {
         Element playCountElement = doc.select("th:contains(プレー回数) + td").first();
         if (playCountElement == null) {
             throw new ParseException("Play count element not found");
@@ -358,7 +377,7 @@ public class HtmlParseUtil {
         }
     }
 
-    private static int parseClearCount(Document doc) throws ParseException {
+    private static int parseClearCountForDetail(Document doc) throws ParseException {
         Element clearCountElement = doc.select("th:contains(クリア回数) + td").first();
         if (clearCountElement == null) {
             throw new ParseException("Clear count element not found");
@@ -371,7 +390,7 @@ public class HtmlParseUtil {
         }
     }
 
-    private static int parseFlareRank(Document doc) throws ParseException {
+    private static int parseFlareRankForDetail(Document doc) throws ParseException {
         Element flareRankElement = doc.select("th:contains(フレアランク) + td").first();
         if (flareRankElement == null) {
             throw new ParseException("Flare rank element not found");
@@ -399,7 +418,27 @@ public class HtmlParseUtil {
             case "I":
                 return 1;
             default:
+                int flareSkill = parseFlareSkillForDetail(doc);
+                if (flareSkill > 0) {
+                    return 0;
+                }
                 return -1;
+        }
+    }
+
+    private static int parseFlareSkillForDetail(Document doc) throws ParseException {
+        Element flareSkillElement = doc.select("th:contains(フレアスキル) + td").first();
+        if (flareSkillElement == null) {
+            throw new ParseException("Flare skill element not found");
+        }
+        String flareSkillText = flareSkillElement.text().trim();
+        if (flareSkillText.equals("---")) {
+            return -1;
+        }
+        try {
+            return Integer.parseInt(flareSkillText);
+        } catch (NumberFormatException e) {
+            throw new ParseException("Invalid flare skill format: " + flareSkillText);
         }
     }
 
