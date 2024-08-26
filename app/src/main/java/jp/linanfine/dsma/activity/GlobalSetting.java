@@ -178,8 +178,10 @@ public class GlobalSetting extends Activity {
                     //setViewにてビューを設定します。
                     .setView(editView)
                     .setPositiveButton(GlobalSetting.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                        if (mHandledView != null && mHandledView.getWindowToken() != null) {
+                            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                            inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                        }
                         Editable text = editView.getText();
                         try {
                             int value = Integer.parseInt(text.toString());
@@ -192,8 +194,10 @@ public class GlobalSetting extends Activity {
                         }
                     })
                     .setNegativeButton(GlobalSetting.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                        if (mHandledView != null && mHandledView.getWindowToken() != null) {
+                            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                            inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                        }
                     })
                     .show();
         });
