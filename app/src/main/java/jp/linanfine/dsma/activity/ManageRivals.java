@@ -119,8 +119,10 @@ public class ManageRivals extends Activity {
                 //setViewにてビューを設定します。
                 .setView(mainView)
                 .setPositiveButton(ManageRivals.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
-                    InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                    if (mHandledView != null && mHandledView.getWindowToken() != null) {
+                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                    }
                     Editable text = ddrCodeText.getText();
                     String tt = text.toString();
                     String ddrCode = "";
@@ -402,8 +404,10 @@ public class ManageRivals extends Activity {
                                         //setViewにてビューを設定します。
                                         .setView(mainView)
                                         .setPositiveButton(ManageRivals.this.getResources().getString(R.string.strings_global____ok), (dialog12, whichButton) -> {
-                                            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                            inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                                            if (mHandledView != null && mHandledView.getWindowToken() != null) {
+                                                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                                inputMethodManager.hideSoftInputFromWindow(mHandledView.getWindowToken(), 0);
+                                            }
                                             Editable text = ddrCodeText.getText();
                                             String tt = text.toString();
                                             String ddrCode = "";
