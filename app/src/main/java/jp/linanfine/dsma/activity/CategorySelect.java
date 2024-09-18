@@ -99,6 +99,7 @@ public class CategorySelect extends Activity {
         str_items.add(getResources().getString(R.string.strings____Menu_System____manageRivals));
         str_items.add(getResources().getString(R.string.strings____Menu_System____ddrSa));
         str_items.add(getResources().getString(R.string.strings____Menu_System____getScore));
+        str_items.add("スキル帳");
         //str_items.add(getResources().getString(R.string.strings____Menu_System____openOcrMode));
 
         new AlertDialog.Builder(CategorySelect.this)
@@ -118,6 +119,9 @@ public class CategorySelect extends Activity {
                             break;
                         case 4:
                             userActionFromGateList();
+                            break;
+                        case 5:
+                            userActionFlareSkillNote();
                             break;
                     }
                 }).show();
@@ -214,6 +218,13 @@ public class CategorySelect extends Activity {
                 .setNegativeButton(getResources().getString(R.string.strings_global____cancel), (dialog, which) -> {
                 })
                 .show();
+    }
+
+    private void userActionFlareSkillNote() {
+        Intent intent = new Intent();
+        intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.FlareSkillNote");
+
+        startActivityForResult(intent, 1);
     }
 
     private void initialize() {

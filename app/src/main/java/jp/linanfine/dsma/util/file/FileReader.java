@@ -2454,4 +2454,23 @@ public class FileReader {
         }
         return ret.toString();
     }
+
+    public static void saveFlareSkillNotePlayerId(Context context, String id, String name) {
+        SharedPreferences prefs = context.getSharedPreferences("FlareSkillNotePlayerData", Context.MODE_PRIVATE);
+        Editor e = prefs.edit();
+        e.putString("id", id);
+        e.putString("name", name);
+
+        e.apply();
+    }
+
+    public static String readFlareSkillNotePlayerName(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("FlareSkillNotePlayerData", Context.MODE_PRIVATE);
+        return prefs.getString("name", "");
+    }
+
+    public static String readFlareSkillNotePlayerId(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("FlareSkillNotePlayerData", Context.MODE_PRIVATE);
+        return prefs.getString("id", "");
+    }
 }

@@ -404,4 +404,9 @@
     <string name="show_flare_rank">Flare Rank</string>
   <string name="show_flare_skill">Flare Skill</string>
 
+  <!--
+  FlareNote
+   -->
+  <string name="enter_username_and_press_button">사용자 이름을 입력한 후 버튼을 눌러주세요.</string>
+
 </resources>

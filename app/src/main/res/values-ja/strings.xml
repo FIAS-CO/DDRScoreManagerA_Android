@@ -480,4 +480,10 @@
     <string name="show_flare_rank">フレアランク</string>
     <string name="show_flare_skill">フレアスキル</string>
 
+
+    <!--
+    FlareNote
+     -->
+    <string name="enter_username_and_press_button">ユーザーネームを入力してからボタンを押してください。</string>
+
 </resources>

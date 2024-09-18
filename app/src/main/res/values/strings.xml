@@ -502,4 +502,11 @@
     <string name="show_flare_rank">Flare Rank</string>
     <string name="show_flare_skill">Flare Skill</string>
 
+
+    <!--
+    FlareNote
+     -->
+
+    <string name="enter_username_and_press_button">Please enter your username and then press the button.</string>
+
 </resources>

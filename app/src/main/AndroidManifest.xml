@@ -93,6 +93,9 @@
             android:name="jp.linanfine.dsma.activity.SongMemo">
         </activity>
         <activity
+            android:name="jp.linanfine.dsma.activity.FlareSkillNote">
+        </activity>
+        <activity
             android:name="jp.linanfine.dsma.activity.ScoreDataResponser"
             android:label="DDR Score Manager A"
             android:exported="true">
