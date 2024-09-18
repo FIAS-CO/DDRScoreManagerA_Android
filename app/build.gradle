@@ -5,7 +5,7 @@ android {
     compileSdk  34
     defaultConfig {
         applicationId "jp.linanfine.dsma"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdk 34
         //multiDexEnabled true
     }
