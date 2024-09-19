@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#000000"
@@ -26,7 +25,7 @@
             android:layout_height="wrap_content"
             android:background="#003399"
             android:padding="10dp"
-            android:text="@string/strings____Activity_DdrSa____exportToDdrSa"
+            android:text="@string/ddr_flarenote_title"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </LinearLayout>
@@ -48,7 +47,7 @@
                 android:id="@+id/playerName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Input user name"
+                android:hint="@string/flarenote_input_user_name"
                 android:imeOptions="actionDone|flagNoEnterAction"
                 android:inputType="text"
                 android:maxLength="9"
@@ -59,22 +58,37 @@
                 android:id="@+id/registerButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ユーザー登録" />
+                android:text="@string/flarenote_register_button" />
 
             <!-- 楽曲データ送信セクション -->
             <Button
                 android:id="@+id/sendDataButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:text="楽曲データ送信" />
+                android:text="@string/flarenote_send_data" />
 
+            <!-- メッセージ表示エリア -->
+            <TextView
+                android:id="@+id/messageText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/darker_gray"
+
+                android:layout_marginHorizontal="4dp"
+                android:padding="16dp"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginVertical="16dp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="0dp">
-
 
             <Button
                 android:id="@+id/goToFlareNoteTop"
@@ -82,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginBottom="24dp"
-                android:text="FlareNote Top" />
+                android:text="@string/flarenote_top" />
 
             <Button
                 android:id="@+id/goToFlareNoteUserSite"
@@ -90,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginBottom="24dp"
-                android:text="ユーザーページ" />
+                android:text="@string/flarenote_user_page" />
         </LinearLayout>
 
         <!-- ユーザー削除セクション -->
@@ -99,19 +113,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:text="ユーザー削除/ユーザー名変更" />
+                android:text="@string/flarenote_delete_user" />
 
-
-            <!-- メッセージ表示エリア -->
-            <TextView
-                android:id="@+id/messageText"
+            <!-- How to Use セクション -->
+            <LinearLayout
+                android:id="@+id/howToUseSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/darker_gray"
-                android:padding="16dp"
-                android:textAlignment="center"
-                android:textColor="@android:color/white"
-                android:textSize="16sp" />
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:layout_marginBottom="16dp"
+                android:elevation="4dp">
+
+                <TextView
+                    android:id="@+id/howToUseTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/flarenote_how_to_use_header"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:background="?android:attr/selectableItemBackground" />
+
+                <TextView
+                    android:id="@+id/howToUseContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="@string/flarenote_howtouse" />
+
+            </LinearLayout>
+
 
         </LinearLayout>
 

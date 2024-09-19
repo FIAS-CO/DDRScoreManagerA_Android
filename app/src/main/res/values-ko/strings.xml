@@ -408,5 +408,14 @@
   FlareNote
    -->
   <string name="enter_username_and_press_button">사용자 이름을 입력한 후 버튼을 눌러주세요.</string>
+  <string name="flarenote_howtouse">1. 사용자 이름 등록\n2. 곡 데이터 전송\n3. FlareNote에서 당신의 페이지 확인\n
+  ※이것은 베타 기능입니다.문제가 있으면 X(@sig_re)으로 연락주세요.</string>
+  <string name="flarenote_register_button">사용자 등록</string>
+  <string name="flarenote_send_data">곡 데이터 전송</string>
+  <string name="flarenote_user_page">사용자 페이지</string>
+  <string name="flarenote_delete_user">사용자 삭제 / 사용자 이름 변경</string>
+  <string name="flarenote_network_error">"NetworkError: %1$s"</string>
+  <string name="flarenote_user_deleted">사용자 %1$s 가 삭제되었습니다.</string>
+  <string name="flarenote_success_create_user">사용자  %1$s 가 정상적으로 생성되었습니다.</string>
 
 </resources>

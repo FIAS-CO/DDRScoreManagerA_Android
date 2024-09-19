@@ -34,18 +34,14 @@ import okhttp3.Response;
 public class FlareSkillNote extends Activity {
     private EditText usernameEditText;
     private Button registerButton;
-    private Button deleteButton;
-    private Button sendDataButton;
     private Button goToUserSiteButton;
     private TextView messageTextView;
     private OkHttpClient client;
 
     public void initialize() {
         usernameEditText = findViewById(R.id.playerName);
-        deleteButton = findViewById(R.id.deleteUserButton);
         registerButton = findViewById(R.id.registerButton);
         messageTextView = findViewById(R.id.messageText);
-        sendDataButton = findViewById(R.id.sendDataButton);
         goToUserSiteButton = findViewById(R.id.goToFlareNoteUserSite);
         client = new OkHttpClient();
 
@@ -54,13 +50,9 @@ public class FlareSkillNote extends Activity {
             createUser(username);
         });
 
-        deleteButton.setOnClickListener(v -> {
-            deleteUser();
-        });
+        this.<Button>findViewById(R.id.deleteUserButton).setOnClickListener(v -> deleteUser());
 
-        sendDataButton.setOnClickListener(v -> {
-            sendData();
-        });
+        this.<Button>findViewById(R.id.sendDataButton).setOnClickListener(v -> sendData());
 
         String name = FileReader.readFlareSkillNotePlayerName(FlareSkillNote.this);
         setupUrlButton(R.id.goToFlareNoteTop, "https://flarenote.fia-s.com");
@@ -73,6 +65,17 @@ public class FlareSkillNote extends Activity {
         } else {
             inNoUserMode();
         }
+
+        TextView howToUseTitle = findViewById(R.id.howToUseTitle);
+        final TextView howToUseContent = findViewById(R.id.howToUseContent);
+
+        howToUseTitle.setOnClickListener(v -> {
+            if (howToUseContent.getVisibility() == View.VISIBLE) {
+                howToUseContent.setVisibility(View.GONE);
+            } else {
+                howToUseContent.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @Override
@@ -110,7 +113,7 @@ public class FlareSkillNote extends Activity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                runOnUiThread(() -> messageTextView.setText("ネットワークエラー: " + e.getMessage()));
+                runOnUiThread(() -> messageTextView.setText(getString(R.string.flarenote_network_error, e.getMessage())));
             }
 
             @Override
@@ -121,7 +124,7 @@ public class FlareSkillNote extends Activity {
                         JSONObject jsonResponse = new JSONObject(responseData);
                         if (response.isSuccessful()) {
                             String name = jsonResponse.getString("name");
-                            messageTextView.setText("ユーザー '" + name + "' が正常に作成されました。");
+                            messageTextView.setText(getString(R.string.flarenote_success_create_user, name));
                             String id = jsonResponse.getString("id");
                             FileReader.saveFlareSkillNotePlayerId(FlareSkillNote.this, id, name);
 
@@ -129,10 +132,10 @@ public class FlareSkillNote extends Activity {
                         } else {
                             String error = jsonResponse.getString("error");
                             String detail = jsonResponse.optString("detail", "詳細なし");
-                            messageTextView.setText("エラー: " + error + "\n詳細: " + detail);
+                            messageTextView.setText(getString(R.string.flarenote_error_detail, error, detail));
                         }
                     } catch (JSONException e) {
-                        messageTextView.setText("レスポンスの解析に失敗しました: " + responseData);
+                        messageTextView.setText(getString(R.string.flarenote_fail_response_analyze, responseData));
                     }
                 });
             }
@@ -167,7 +170,7 @@ public class FlareSkillNote extends Activity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                runOnUiThread(() -> messageTextView.setText("ネットワークエラー: " + e.getMessage()));
+                runOnUiThread(() -> messageTextView.setText(getString(R.string.flarenote_network_error, e.getMessage())));
             }
 
             @Override
@@ -178,15 +181,15 @@ public class FlareSkillNote extends Activity {
                         JSONObject jsonResponse = new JSONObject(responseData);
                         if (response.isSuccessful()) {
                             String name = jsonResponse.getString("user");
-                            messageTextView.setText("ユーザー '" + name + "' が正常に削除されました。");
+                            messageTextView.setText(getString(R.string.flarenote_user_deleted, name));
 
                         } else {
                             String error = jsonResponse.getString("error");
                             String detail = jsonResponse.optString("detail", "詳細なし");
-                            messageTextView.setText("エラー: " + error + "\n詳細: " + detail);
+                            messageTextView.setText(getString(R.string.flarenote_error_detail, error, detail));
                         }
                     } catch (JSONException e) {
-                        messageTextView.setText("レスポンスの解析に失敗しました: " + responseData);
+                        messageTextView.setText(getString(R.string.flarenote_fail_response_analyze, responseData));
                     }
                 });
             }

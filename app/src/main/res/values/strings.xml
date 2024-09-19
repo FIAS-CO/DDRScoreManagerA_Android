@@ -507,6 +507,22 @@
     FlareNote
      -->
 
+    <string name="ddr_flarenote_title" translatable="false">DDR FlareNote(β)</string>
     <string name="enter_username_and_press_button">Please enter your username and then press the button.</string>
+    <string name="flarenote_howtouse">1. Register user name\n2. Send song data\n3. Check your page on FlareNote\n
+    * This is a beta feature.If you encounter any issues, please contact us on X (@sig_re).</string>
+    <string name="flarenote_register_button">Register User</string>
+    <string name="flarenote_send_data">Send Song Data</string>
+    <string name="flarenote_input_user_name" translatable="false">Input user name</string>
+    <string name="flarenote_top" translatable="false">FlareNote Top</string>
+    <string name="flarenote_user_page">Your page</string>
+    <string name="flarenote_delete_user">Delete User / Change Username</string>
+    <string name="flarenote_how_to_use_header" translatable="false">How to Use? / 使い方</string>
+    <string name="flarenote_network_error">"NetworkError: %1$s"</string>
+    <string name="flarenote_user_deleted">User %1$s deleted.</string>
+    <string name="flarenote_error_detail" translatable="false">Error: %1$s \\nDetail: %2$s</string>
+    <string name="flarenote_fail_response_analyze" translatable="false">Failed to parse the response.Please contact the administrator (X account: @sig_re): %1$s</string>
+    <string name="flarenote_success_create_user">User %1$s has been successfully created.</string>
+    <string name="flarenote_uploader" translatable="false">FlareNote Uploader</string>
 
 </resources>
