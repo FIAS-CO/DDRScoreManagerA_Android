@@ -2,11 +2,9 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.152.24082701] Update:\n
-- Batch retrieval from GATE server (detail) is now supported in WORLD.\n
-- Fixed the issue so that Flare Rank is now calculated for songs played without setting a Flare Rank.\n
-  Please retrieve the data again.\n
-- Updated the player status retrieval feature to support WORLD, A3, and A20PLUS.\n
+[0.153.240091901] Update:\n
+We have launched a webpage called DDR FlareNote as a service to share Flare Skill Charts.\n
+In conjunction with this, we have added a feature to upload Flare Skill target song data to FlareNote from this app. Please check \'FlareNote Uploader\' in the upper right menu.
     </string>
     
     <string name="strings_global____app_name">DDR Score Manager A</string>

@@ -2,11 +2,9 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.152.24082701] Update:\n
-- GATE 서버에서 한꺼번에 받아오기（상세）가 WORLD에 대응되었습니다.\n
-- 플레어 랭크를 설정하지 않고 플레이한 곡의 플레어 랭크가 계산되도록 수정했습니다.\n
-  번거로우시겠지만, 데이터를 다시 가져와 주시기 바랍니다.\n
-- 플레이어 상태 가져오기 기능을 WORLD, A3, A20PLUS에 대응하도록 업데이트했습니다.
+[0.153.24091901] Update:\n
+플레어 스킬 차트를 공유하는 서비스로 DDR FlareNote라는 웹 페이지를 공개했습니다.\n
+이에 따라 본 앱에서 플레어 스킬 대상 곡 데이터를 FlareNote에 업로드하는 기능을 추가했습니다. 오른쪽 상단 메뉴에서 \'FlareNote Uploader\'를 확인해 주세요.
     </string>
 
   <string name="strings_global____app_name">DDR Score Manager A</string>
