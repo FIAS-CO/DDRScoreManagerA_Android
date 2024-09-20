@@ -522,5 +522,7 @@ In conjunction with this, we have added a feature to upload Flare Skill target s
     <string name="flarenote_fail_response_analyze" translatable="false">Failed to parse the response.Please contact the administrator (X account: @sig_re): %1$s</string>
     <string name="flarenote_success_create_user">User %1$s has been successfully created.</string>
     <string name="flarenote_uploader" translatable="false">FlareNote Uploader</string>
+    <string name="flarenote_send_data_successfully">The data has been sent successfully.</string>
+    <string name="flarenote_push_button_after_registration">Please register a user and then Send data.</string>
 
 </resources>

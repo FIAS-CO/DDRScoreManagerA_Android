@@ -415,5 +415,7 @@
   <string name="flarenote_network_error">"NetworkError: %1$s"</string>
   <string name="flarenote_user_deleted">사용자 %1$s 가 삭제되었습니다.</string>
   <string name="flarenote_success_create_user">사용자  %1$s 가 정상적으로 생성되었습니다.</string>
+  <string name="flarenote_send_data_successfully">데이터가 정상적으로 전송되었습니다. </string>
+  <string name="flarenote_push_button_after_registration">사용자를 등록한 후 버튼을 눌러주세요.</string>
 
 </resources>

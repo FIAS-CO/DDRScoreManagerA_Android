@@ -492,5 +492,7 @@
     <string name="flarenote_network_error">"ネットワークエラー: %1$s"</string>
     <string name="flarenote_user_deleted">ユーザー \'%1$s\' を削除しました。</string>
     <string name="flarenote_success_create_user">ユーザー \'%1$s\' が正常に作成されました。</string>
+    <string name="flarenote_send_data_successfully">データが正常に送信されました。</string>
+    <string name="flarenote_push_button_after_registration">ユーザーを登録してからボタンを押してください</string>
 
 </resources>

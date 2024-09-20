@@ -200,7 +200,7 @@ public class FlareSkillNote extends Activity {
         String id = FileReader.readFlareSkillNotePlayerId(FlareSkillNote.this);
 
         if (id.isEmpty()) {
-            messageTextView.setText("ユーザーを登録してからボタンを押してください");
+            messageTextView.setText(getString(R.string.flarenote_push_button_after_registration));
             return;
         }
 
@@ -220,7 +220,7 @@ public class FlareSkillNote extends Activity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                runOnUiThread(() -> messageTextView.setText("ネットワークエラー: " + e.getMessage()));
+                runOnUiThread(() -> messageTextView.setText(getString(R.string.flarenote_network_error, e.getMessage())));
             }
 
             @Override
@@ -230,14 +230,14 @@ public class FlareSkillNote extends Activity {
                     try {
                         JSONObject jsonResponse = new JSONObject(responseData);
                         if (response.isSuccessful()) {
-                            messageTextView.setText("データが正常に送信されました。");
+                            messageTextView.setText(getString(R.string.flarenote_send_data_successfully));
                         } else {
                             String error = jsonResponse.getString("error");
-                            String detail = jsonResponse.optString("details", "詳細なし");
-                            messageTextView.setText("エラー: " + error + "\n詳細: " + detail);
+                            String detail = jsonResponse.optString("details", "no detail.");
+                            messageTextView.setText(getString(R.string.flarenote_error_detail, error, detail));
                         }
                     } catch (JSONException e) {
-                        messageTextView.setText("レスポンスの解析に失敗しました: " + responseData);
+                        messageTextView.setText(getString(R.string.flarenote_fail_response_analyze, responseData));
                     }
                 });
             }
