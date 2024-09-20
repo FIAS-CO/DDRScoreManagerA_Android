@@ -2,7 +2,7 @@
 <resources>
     
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.153.24091901] Update:\n
+[0.154.24092001] Update:\n
 フレアスキル帳を公開するサービスとしてDDR FlareNoteというWebページを公開しました。\n
 それに伴い、本アプリからフレアスキル対象曲データをFlareNoteにアップロードする機能を追加しました。右上メニューから"FlareNote Uploader"をご確認ください。
     </string>
