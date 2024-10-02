@@ -3,7 +3,6 @@ package jp.linanfine.dsma.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,7 +12,6 @@ import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -111,7 +109,7 @@ public class ScoreEdit extends Activity {
         View editScore = this.findViewById(R.id.editScore);
         editScore.setOnClickListener(view -> {
             //テキスト入力を受け付けるビューを作成します。
-            final EditText editView = (EditText) ScoreEdit.this.getLayoutInflater().inflate(R.layout.view_digit_edit_text, null).findViewById(R.id.editText);
+            final EditText editView = ScoreEdit.this.getLayoutInflater().inflate(R.layout.view_digit_edit_text, null).findViewById(R.id.editText);
             editView.setText(String.valueOf(mScore));
             editView.setOnFocusChangeListener((view1, focused) -> {
                 if (focused) {
@@ -131,24 +129,22 @@ public class ScoreEdit extends Activity {
                         closeKeyboard();
                         Editable text = editView.getText();
                         try {
-                            int value = Integer.valueOf(text.toString());
+                            int value = Integer.parseInt(text.toString());
                             if (0 <= value && value <= 1000000) {
                                 mScore = value;
                                 ScoreEdit.this.setView();
                             }
-                        } catch (Exception e) {
+                        } catch (Exception ignored) {
                         }
                     })
-                    .setNegativeButton(ScoreEdit.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> {
-                        closeKeyboard();
-                    })
+                    .setNegativeButton(ScoreEdit.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> closeKeyboard())
                     .show();
         });
 
         View editMaxCombo = this.findViewById(R.id.editMaxCombo);
         editMaxCombo.setOnClickListener(view -> {
             //テキスト入力を受け付けるビューを作成します。
-            final EditText editView = (EditText) ScoreEdit.this.getLayoutInflater().inflate(R.layout.view_digit_edit_text, null).findViewById(R.id.editText);
+            final EditText editView = ScoreEdit.this.getLayoutInflater().inflate(R.layout.view_digit_edit_text, null).findViewById(R.id.editText);
             editView.setText(String.valueOf(mCombo));
             editView.setOnFocusChangeListener((view12, focused) -> {
                 if (focused) {
@@ -164,32 +160,26 @@ public class ScoreEdit extends Activity {
                     .setTitle(ScoreEdit.this.getResources().getString(R.string.dialog_input_max_combo))
                     //setViewにてビューを設定します。
                     .setView(editView)
-                    .setPositiveButton(ScoreEdit.this.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            closeKeyboard();
-                            Editable text = editView.getText();
-                            try {
-                                int value = Integer.valueOf(text.toString());
-                                if (0 <= value && value <= 1000000) {
-                                    mCombo = value;
-                                    ScoreEdit.this.setView();
-                                }
-                            } catch (Exception e) {
+                    .setPositiveButton(ScoreEdit.this.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+                        closeKeyboard();
+                        Editable text = editView.getText();
+                        try {
+                            int value = Integer.parseInt(text.toString());
+                            if (0 <= value && value <= 1000000) {
+                                mCombo = value;
+                                ScoreEdit.this.setView();
                             }
+                        } catch (Exception ignored) {
                         }
                     })
-                    .setNegativeButton(ScoreEdit.this.getResources().getString(R.string.strings_global____cancel), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            closeKeyboard();
-                        }
-                    })
+                    .setNegativeButton(ScoreEdit.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> closeKeyboard())
                     .show();
         });
 
         View editPlayCount = this.findViewById(R.id.editPlayCount);
         editPlayCount.setOnClickListener(view -> {
             //テキスト入力を受け付けるビューを作成します。
-            final EditText editView = (EditText) ScoreEdit.this.getLayoutInflater().inflate(R.layout.view_digit_edit_text, null).findViewById(R.id.editText);
+            final EditText editView = ScoreEdit.this.getLayoutInflater().inflate(R.layout.view_digit_edit_text, null).findViewById(R.id.editText);
             editView.setText(String.valueOf(mPlay));
             editView.setOnFocusChangeListener((view13, focused) -> {
                 if (focused) {
@@ -209,33 +199,29 @@ public class ScoreEdit extends Activity {
                         closeKeyboard();
                         Editable text = editView.getText();
                         try {
-                            int value = Integer.valueOf(text.toString());
+                            int value = Integer.parseInt(text.toString());
                             if (0 <= value) {
                                 mPlay = value;
                                 ScoreEdit.this.setView();
                             }
-                        } catch (Exception e) {
+                        } catch (Exception ignored) {
                         }
                     })
-                    .setNegativeButton(ScoreEdit.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> {
-                        closeKeyboard();
-                    })
+                    .setNegativeButton(ScoreEdit.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> closeKeyboard())
                     .show();
         });
 
         View editClearCount = this.findViewById(R.id.editClearCount);
         editClearCount.setOnClickListener(view -> {
                     //テキスト入力を受け付けるビューを作成します。
-                    final EditText editView = (EditText) ScoreEdit.this.getLayoutInflater().inflate(R.layout.view_digit_edit_text, null).findViewById(R.id.editText);
+                    final EditText editView = ScoreEdit.this.getLayoutInflater().inflate(R.layout.view_digit_edit_text, null).findViewById(R.id.editText);
                     editView.setText(String.valueOf(mClear));
                     editView.setOnFocusChangeListener((view14, focused) -> {
                         if (focused) {
                             mHandledView = view14;
-                            mHandler.post(new Runnable() {
-                                public void run() {
-                                    InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                    inputMethodManager.showSoftInput(mHandledView, InputMethodManager.SHOW_FORCED);
-                                }
+                            mHandler.post(() -> {
+                                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                inputMethodManager.showSoftInput(mHandledView, InputMethodManager.SHOW_FORCED);
                             });
                         }
                     });
@@ -248,27 +234,25 @@ public class ScoreEdit extends Activity {
                                 closeKeyboard();
                                 Editable text = editView.getText();
                                 try {
-                                    int value = Integer.valueOf(text.toString());
+                                    int value = Integer.parseInt(text.toString());
                                     if (0 <= value) {
                                         mClear = value;
                                         ScoreEdit.this.setView();
                                     }
-                                } catch (Exception e) {
+                                } catch (Exception ignored) {
                                 }
                             })
-                            .setNegativeButton(ScoreEdit.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> {
-                                closeKeyboard();
-                            })
+                            .setNegativeButton(ScoreEdit.this.getResources().getString(R.string.strings_global____cancel), (dialog, whichButton) -> closeKeyboard())
                             .show();
                 }
         );
 
         TextView textView;
 
-        textView = (TextView) this.findViewById(R.id.musicName);
+        textView = this.findViewById(R.id.musicName);
         textView.setText(mMusicList.get(mItemId).Name);
 
-        textView = (TextView) this.findViewById(R.id.patternType);
+        textView = this.findViewById(R.id.patternType);
 
         View s = this.findViewById(R.id.patternTypeS);
         View d = this.findViewById(R.id.patternTypeD);
@@ -282,14 +266,14 @@ public class ScoreEdit extends Activity {
             scoredata = new MusicScore();
         }
 
-        stateView = (Spinner) this.findViewById(R.id.state);
-        scoreView = (TextView) this.findViewById(R.id.score);
-        flareRankView = (Spinner) this.findViewById(R.id.flareRank);
-        comboView = (TextView) this.findViewById(R.id.maxCombo);
-        playView = (TextView) this.findViewById(R.id.playCount);
-        clearView = (TextView) this.findViewById(R.id.clearCount);
+        stateView = this.findViewById(R.id.state);
+        scoreView = this.findViewById(R.id.score);
+        flareRankView = this.findViewById(R.id.flareRank);
+        comboView = this.findViewById(R.id.maxCombo);
+        playView = this.findViewById(R.id.playCount);
+        clearView = this.findViewById(R.id.clearCount);
 
-        ((Button) this.findViewById(R.id.clear)).setOnClickListener(view -> {
+        this.findViewById(R.id.clear).setOnClickListener(view -> {
             mScore = 0;
             mFlareRank = -1;
             mCombo = 0;
@@ -437,10 +421,10 @@ public class ScoreEdit extends Activity {
         mFc = fc;
         mRank = rankData;
 
-        Button cancel = (Button) this.findViewById(R.id.cancel);
+        Button cancel = this.findViewById(R.id.cancel);
         cancel.setOnClickListener(view -> ScoreEdit.this.finish());
 
-        Button ok = (Button) this.findViewById(R.id.ok);
+        Button ok = this.findViewById(R.id.ok);
         ok.setOnClickListener(view -> {
             MusicRank dataRank;
             int dataScore = mScore;
@@ -605,7 +589,7 @@ public class ScoreEdit extends Activity {
     public void onResume() {
         super.onResume();
         ActivitySetting.setTitleBarShown(this, this.findViewById(R.id.titleBar));
-        FileReader.requestAd((LinearLayout) this.findViewById(R.id.adContainer), this);
+        FileReader.requestAd(this.findViewById(R.id.adContainer), this);
     }
 
     @Override
