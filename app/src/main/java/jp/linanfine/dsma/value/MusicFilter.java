@@ -138,8 +138,8 @@ public class MusicFilter {
 
     public boolean FcMFC = true;
     public boolean FcPFC = true;
-    public boolean FcFC = true;
     public boolean FcGFC = true;
+    public boolean FcFC = true;
     public boolean FcLife4 = true;
     public boolean FcNoFC = true;
 
@@ -356,8 +356,8 @@ public class MusicFilter {
 
             if (!FcMFC && scoreData.FullComboType == FullComboType.MerverousFullCombo) return false;
             if (!FcPFC && scoreData.FullComboType == FullComboType.PerfectFullCombo) return false;
-            if (!FcFC && scoreData.FullComboType == FullComboType.FullCombo) return false;
-            if (!FcGFC && scoreData.FullComboType == FullComboType.GoodFullCombo) return false;
+            if (!FcGFC && scoreData.FullComboType == FullComboType.FullCombo) return false;
+            if (!FcFC && scoreData.FullComboType == FullComboType.GoodFullCombo) return false;
             if (!FcLife4 && scoreData.FullComboType == FullComboType.Life4) return false;
             if (!FcNoFC && scoreData.FullComboType == FullComboType.None) return false;
 

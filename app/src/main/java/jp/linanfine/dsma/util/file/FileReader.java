@@ -1291,8 +1291,8 @@ public class FileReader {
         e.putBoolean("RankNoPlay", filter.RankNoPlay);
         e.putBoolean("FcMFC", filter.FcMFC);
         e.putBoolean("FcPFC", filter.FcPFC);
-        e.putBoolean("FcFC", filter.FcFC);
-        e.putBoolean("FcGFC", filter.FcGFC);
+        e.putBoolean("FcFC", filter.FcGFC);
+        e.putBoolean("FcGFC", filter.FcFC);
         e.putBoolean("FcLife4", filter.FcLife4);
         e.putBoolean("FcNoFC", filter.FcNoFC);
 
@@ -1457,8 +1457,9 @@ public class FileReader {
         ret.RankNoPlay = pref.getBoolean("RankNoPlay", true);
         ret.FcMFC = pref.getBoolean("FcMFC", true);
         ret.FcPFC = pref.getBoolean("FcPFC", true);
-        ret.FcFC = pref.getBoolean("FcFC", true);
-        ret.FcGFC = pref.getBoolean("FcGFC", true);
+        // 本来はGreatFC = GFC, GoodFC = FCにしたいが、ここのキーのみ逆にする
+        ret.FcGFC = pref.getBoolean("FcFC", true);
+        ret.FcFC = pref.getBoolean("FcGFC", true);
         ret.FcLife4 = pref.getBoolean("FcLife4", true);
         ret.FcNoFC = pref.getBoolean("FcNoFC", true);
 

@@ -92,8 +92,8 @@ public class FilterSetting extends Activity {
         mMusicFilter.RankNoPlay = ((CheckBox) FilterSetting.this.findViewById(R.id.rankNoPlay)).isChecked();
         mMusicFilter.FcMFC = ((CheckBox) FilterSetting.this.findViewById(R.id.fcMFC)).isChecked();
         mMusicFilter.FcPFC = ((CheckBox) FilterSetting.this.findViewById(R.id.fcPFC)).isChecked();
-        mMusicFilter.FcFC = ((CheckBox) FilterSetting.this.findViewById(R.id.fcFC)).isChecked();
         mMusicFilter.FcGFC = ((CheckBox) FilterSetting.this.findViewById(R.id.fcGFC)).isChecked();
+        mMusicFilter.FcFC = ((CheckBox) FilterSetting.this.findViewById(R.id.fcFC)).isChecked();
         mMusicFilter.FcLife4 = ((CheckBox) FilterSetting.this.findViewById(R.id.fcLife4)).isChecked();
         mMusicFilter.FcNoFC = ((CheckBox) FilterSetting.this.findViewById(R.id.fcNoFC)).isChecked();
 
@@ -274,8 +274,8 @@ public class FilterSetting extends Activity {
 
         ((CheckBox) this.findViewById(R.id.fcMFC)).setChecked(mMusicFilter.FcMFC);
         ((CheckBox) this.findViewById(R.id.fcPFC)).setChecked(mMusicFilter.FcPFC);
-        ((CheckBox) this.findViewById(R.id.fcFC)).setChecked(mMusicFilter.FcFC);
         ((CheckBox) this.findViewById(R.id.fcGFC)).setChecked(mMusicFilter.FcGFC);
+        ((CheckBox) this.findViewById(R.id.fcFC)).setChecked(mMusicFilter.FcFC);
         ((CheckBox) this.findViewById(R.id.fcLife4)).setChecked(mMusicFilter.FcLife4);
         ((CheckBox) this.findViewById(R.id.fcNoFC)).setChecked(mMusicFilter.FcNoFC);
 
@@ -1403,8 +1403,8 @@ public class FilterSetting extends Activity {
 
         this.findViewById(R.id.fcMFC).setOnClickListener(ccl);
         this.findViewById(R.id.fcPFC).setOnClickListener(ccl);
-        this.findViewById(R.id.fcFC).setOnClickListener(ccl);
         this.findViewById(R.id.fcGFC).setOnClickListener(ccl);
+        this.findViewById(R.id.fcFC).setOnClickListener(ccl);
         this.findViewById(R.id.fcLife4).setOnClickListener(ccl);
         this.findViewById(R.id.fcNoFC).setOnClickListener(ccl);
 

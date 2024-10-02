@@ -952,8 +952,8 @@ public class CategorySelect extends Activity {
 
             mMainView.findViewById(R.id.fcMFC).setOnClickListener(fctypeClicked);
             mMainView.findViewById(R.id.fcPFC).setOnClickListener(fctypeClicked);
-            mMainView.findViewById(R.id.fcFC).setOnClickListener(fctypeClicked);
             mMainView.findViewById(R.id.fcGFC).setOnClickListener(fctypeClicked);
+            mMainView.findViewById(R.id.fcFC).setOnClickListener(fctypeClicked);
             mMainView.findViewById(R.id.fcLife4).setOnClickListener(fctypeClicked);
             mMainView.findViewById(R.id.fcCleared).setOnClickListener(fctypeClicked);
             mMainView.findViewById(R.id.fcFailed).setOnClickListener(fctypeClicked);

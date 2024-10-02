@@ -103,7 +103,7 @@ public class ScoreList extends Activity {
     /**
      * Full Combo Type配列
      */
-    private static final String[] FULL_COMBO_TYPE_LIST = {"FcMFC", "FcPFC", "FcFC", "FcGFC", "FcLife4", "FcNoFC", "FcFailed",
+    private static final String[] FULL_COMBO_TYPE_LIST = {"FcMFC", "FcPFC", "FcGFC", "FcFC", "FcLife4", "FcNoFC", "FcFailed",
             "FcNoPlay"};
 //add by taiheisan end
 
@@ -1936,16 +1936,16 @@ public class ScoreList extends Activity {
             } else if (mCategory.startsWith("Fc")) {
                 if (!mCategory.equals("FcMFC")) mMusicFilter.FcMFC = false;
                 if (!mCategory.equals("FcPFC")) mMusicFilter.FcPFC = false;
-                if (!mCategory.equals("FcFC")) mMusicFilter.FcFC = false;
                 if (!mCategory.equals("FcGFC")) mMusicFilter.FcGFC = false;
+                if (!mCategory.equals("FcFC")) mMusicFilter.FcFC = false;
                 if (!mCategory.equals("FcLife4")) mMusicFilter.FcLife4 = false;
                 if (!mCategory.equals("FcNoFC")) mMusicFilter.FcNoFC = false;
                 if (mCategory.startsWith("FcNoFC")) {
                     mMusicFilter.RankNoPlay = false;
                     mMusicFilter.FcMFC = false;
                     mMusicFilter.FcPFC = false;
-                    mMusicFilter.FcFC = false;
                     mMusicFilter.FcGFC = false;
+                    mMusicFilter.FcFC = false;
                 }
             } else if (mCategory.equals("WinLoseRivalWin (Close)")) {
                 mMusicFilter.RivalLose = false;
