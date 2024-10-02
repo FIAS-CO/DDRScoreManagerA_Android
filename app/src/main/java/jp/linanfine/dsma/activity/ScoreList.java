@@ -1872,8 +1872,8 @@ public class ScoreList extends Activity {
             } else if (mCategory.startsWith("FcRival")) {
                 if (!mCategory.equals("FcRivalMFC")) mMusicFilter.FcMFCrival = false;
                 if (!mCategory.equals("FcRivalPFC")) mMusicFilter.FcPFCrival = false;
-                if (!mCategory.equals("FcRivalFC")) mMusicFilter.FcFCrival = false;
                 if (!mCategory.equals("FcRivalGFC")) mMusicFilter.FcGFCrival = false;
+                if (!mCategory.equals("FcRivalFC")) mMusicFilter.FcFCrival = false;
                 if (!mCategory.equals("FcRivalLife4")) mMusicFilter.FcLife4rival = false;
                 if (!mCategory.equals("FcRivalNoFC")) mMusicFilter.FcNoFCrival = false;
                 if (!mCategory.equals("FcRivalFailed")) mMusicFilter.RankErival = false;

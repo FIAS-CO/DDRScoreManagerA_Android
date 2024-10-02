@@ -4516,7 +4516,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/fcFCRival"
+                                android:id="@+id/fcGFCRival"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
@@ -4541,7 +4541,7 @@
                                     android:layout_weight="1"
                                     android:scrollHorizontally="true"
                                     android:singleLine="true"
-                                    android:text="FC"
+                                    android:text="GFC"
                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                     android:textColor="@color/white"
                                     android:textSize="0sp" />
@@ -4549,7 +4549,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/fcGFCRival"
+                                android:id="@+id/fcFCRival"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
@@ -4574,7 +4574,7 @@
                                     android:layout_weight="1"
                                     android:scrollHorizontally="true"
                                     android:singleLine="true"
-                                    android:text="GFC"
+                                    android:text="FC"
                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                     android:textColor="@color/white"
                                     android:textSize="0sp" />

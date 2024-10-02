@@ -475,12 +475,11 @@ public class MusicFilter {
                 return false;
             if (!FcPFCrival && scoreData.FullComboType == FullComboType.PerfectFullCombo)
                 return false;
-            if (!FcFCrival && scoreData.FullComboType == FullComboType.FullCombo) return false;
-            if (!FcGFCrival && scoreData.FullComboType == FullComboType.GoodFullCombo) return false;
+            if (!FcGFCrival && scoreData.FullComboType == FullComboType.FullCombo) return false;
+            if (!FcFCrival && scoreData.FullComboType == FullComboType.GoodFullCombo) return false;
             if (!FcLife4rival && scoreData.FullComboType == FullComboType.Life4) return false;
             if (!FcNoFCrival && scoreData.FullComboType == FullComboType.None) return false;
 
-            //Log.e(String.valueOf(ScoreMinRival), String.valueOf(scoreData.Score));
             if (scoreData.Score < ScoreMinRival || ScoreMaxRival < scoreData.Score) return false;
             if (scoreData.MaxCombo < MaxComboMinRival || MaxComboMaxRival < scoreData.MaxCombo)
                 return false;

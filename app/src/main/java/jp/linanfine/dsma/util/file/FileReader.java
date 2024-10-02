@@ -1319,8 +1319,9 @@ public class FileReader {
         e.putBoolean("RankNoPlayrival", filter.RankNoPlayrival);
         e.putBoolean("FcMFCrival", filter.FcMFCrival);
         e.putBoolean("FcPFCrival", filter.FcPFCrival);
-        e.putBoolean("FcFCrival", filter.FcFCrival);
-        e.putBoolean("FcGFCrival", filter.FcGFCrival);
+        // 本来はGreatFC = GFC, GoodFC = FCにしたいが、ここのキーのみ逆にする
+        e.putBoolean("FcFCrival", filter.FcGFCrival);
+        e.putBoolean("FcGFCrival", filter.FcFCrival);
         e.putBoolean("FcLife4rival", filter.FcLife4rival);
         e.putBoolean("FcNoFCrival", filter.FcNoFCrival);
         e.putBoolean("RivalWin", filter.RivalWin);
@@ -1489,8 +1490,9 @@ public class FileReader {
         ret.RivalDraw = pref.getBoolean("RivalDraw", true);
         ret.FcMFCrival = pref.getBoolean("FcMFCrival", true);
         ret.FcPFCrival = pref.getBoolean("FcPFCrival", true);
-        ret.FcFCrival = pref.getBoolean("FcFCrival", true);
-        ret.FcGFCrival = pref.getBoolean("FcGFCrival", true);
+        // 本来はGreatFC = GFC, GoodFC = FCにしたいが、ここのキーのみ逆にする
+        ret.FcGFCrival = pref.getBoolean("FcFCrival", true);
+        ret.FcFCrival = pref.getBoolean("FcGFCrival", true);
         ret.FcLife4rival = pref.getBoolean("FcLife4rival", true);
         ret.FcNoFCrival = pref.getBoolean("FcNoFCrival", true);
         ret.ScoreMin = pref.getInt("ScoreMin", 0);

@@ -999,8 +999,8 @@ public class CategorySelect extends Activity {
 
             mMainView.findViewById(R.id.fcMFCRival).setOnClickListener(fctypeRivalClicked);
             mMainView.findViewById(R.id.fcPFCRival).setOnClickListener(fctypeRivalClicked);
-            mMainView.findViewById(R.id.fcFCRival).setOnClickListener(fctypeRivalClicked);
             mMainView.findViewById(R.id.fcGFCRival).setOnClickListener(fctypeRivalClicked);
+            mMainView.findViewById(R.id.fcFCRival).setOnClickListener(fctypeRivalClicked);
             mMainView.findViewById(R.id.fcLife4Rival).setOnClickListener(fctypeRivalClicked);
             mMainView.findViewById(R.id.fcClearedRival).setOnClickListener(fctypeRivalClicked);
             mMainView.findViewById(R.id.fcFailedRival).setOnClickListener(fctypeRivalClicked);
