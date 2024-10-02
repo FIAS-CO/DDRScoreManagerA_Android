@@ -89,6 +89,12 @@ public class FlareSkillNote extends Activity {
         initialize();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        FileReader.requestAd(this.findViewById(R.id.adContainer), this);
+    }
+
     private void createUser(String username) {
 
         if (username.isEmpty()) {
