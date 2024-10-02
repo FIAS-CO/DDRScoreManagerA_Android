@@ -3,8 +3,8 @@
     <string-array name="SpinnerItemsClearType">
         <item>Marvelous Full Combo</item>
         <item>Perfect Full Combo</item>
+        <item>Great Full Combo</item>
         <item>Full Combo</item>
-        <item>Good Full Combo</item>
         <item>Life4 Clear</item>
         <item>Clear</item>
         <item>Rank E</item>
