@@ -85,20 +85,17 @@ public class DialogFromGateList {
         WebViewClient client = new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
-                //Log.d("huga", url);
                 view.loadUrl("javascript:window.viewsourceactivity.viewSource(document.documentElement.outerHTML);");
             }
 
             @Override
             public void onPageStarted(WebView view, String url, android.graphics.Bitmap favicon) {
-                //Log.d("hage", url);
                 mWebProgress.setProgress(1);
             }
         };
 
         WebChromeClient chrome = new WebChromeClient() {
             public void onProgressChanged(WebView view, int progress) {
-                //try { Thread.sleep(10);} catch (InterruptedException e) {}
                 mWebProgress.setProgress(1 + progress);
                 mProgress.setProgress(mCurrentPage * 100 + (mPageCount == 0 ? 0 : progress));
                 mPercent.setText((100 * mCurrentPage + (mPageCount == 0 ? 0 : progress)) / (mPageCount == 0 ? 10000 : mPageCount) + "%");
