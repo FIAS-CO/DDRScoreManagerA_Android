@@ -152,7 +152,11 @@ public class DialogFromGateList {
             mUriH += "playdata/music_data_" + sd + ".html?offset=";
             mUriF = "";
         } else {
-            mUriH += "rival/rival_musicdata_" + sd + ".html?offset=";
+            if (mGateSetting.FromSite == GateSetting.SiteVersion.WORLD) {
+                mUriH += "rival/music_data_" + sd + ".html?offset=";
+            } else {
+                mUriH += "rival/rival_musicdata_" + sd + ".html?offset=";
+            }
             mUriF = "&rival_id=" + mRivalId;
         }
         mLogView.setText((mRivalName == null ? "My Score\n" : ("Rival: " + mRivalName + "\n")) + (mDouble ? "DP\n" : "SP\n") + mParent.getResources().getString(R.string.strings____Dialog_FromGate__Dialog_FromGateList____logGetPageCount));
