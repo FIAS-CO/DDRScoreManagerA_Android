@@ -94,10 +94,18 @@ public class DialogFromGateRivalList {
         }
         FileReader.requestAd(mView.findViewById(R.id.adContainer), mParent);
         GateSetting mGateSetting = FileReader.readGateSetting(mParent);
-        if (mGateSetting.FromSite != GateSetting.SiteVersion.A20PLUS) {
-            mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/rival/index.html";
-        } else {
-            mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra20/p/rival/index.html";
+
+        switch (mGateSetting.FromSite) {
+            case A20PLUS:
+                mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra20/p/rival/index.html";
+                break;
+            case A3:
+                mRequestUri = "https://p.eagate.573.jp/game/ddr/ddra3/p/rival/index.html";
+                break;
+            case WORLD:
+            default:
+                mRequestUri = "https://p.eagate.573.jp/game/ddr/ddrworld/rival/index.html";
+                break;
         }
         mWebView.loadUrl(mRequestUri);
     }
@@ -119,7 +127,7 @@ public class DialogFromGateRivalList {
             return false;
         }
 
-        String idSearchText = "p/rival/rival_status.html?rival_id=";
+        String idSearchText = "rival/rival_status.html?rival_id=";
         int idSearchTextLength = idSearchText.length();
         String nameSearchText = "\">";
         int nameSearchTextLength = nameSearchText.length();
