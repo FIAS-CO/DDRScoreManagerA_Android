@@ -148,7 +148,7 @@ public class ScoreList extends Activity {
     //private int                      mGlobalI                 = 0;
     private int mSouNext = 0;
     private boolean mSouTargetRival = false;
-    private ArrayList<UniquePattern> mSouList = new ArrayList<UniquePattern>();
+    private ArrayList<UniquePattern> mSouList = new ArrayList<>();
     private UniquePattern mSelectedItemPattern = null;
     private MusicData mSelectedMusicData = null;
     private EditText mTemporaryDialogEditText = null;
@@ -207,7 +207,7 @@ public class ScoreList extends Activity {
     private void userActionShowSystemMenu() {
 
         //選択項目を準備する。
-        ArrayList<String> str_items = new ArrayList<String>();
+        ArrayList<String> str_items = new ArrayList<>();
         str_items.add(getResources().getString(R.string.strings____Menu_System____preference));
         str_items.add(getResources().getString(R.string.strings____Menu_System____statistics));
         str_items.add(getResources().getString(R.string.strings____Menu_System____showStatus));
@@ -221,7 +221,7 @@ public class ScoreList extends Activity {
         }
 
         new AlertDialog.Builder(ScoreList.this)
-                .setItems((String[]) str_items.toArray(new String[0]), (dialog, which) -> {
+                .setItems(str_items.toArray(new String[0]), (dialog, which) -> {
                             switch (which) {
                                 case 0:
                                     userActionOpenPreference();
@@ -432,7 +432,7 @@ public class ScoreList extends Activity {
         int[] difficulties = new int[21];
         int[] patternTypes = new int[9];
         int[] versions = new int[20];
-        ArrayList<Integer> scores = new ArrayList<Integer>();
+        ArrayList<Integer> scores = new ArrayList<>();
         UniquePattern pat;
         ScoreData noScore = new ScoreData();
         for (int i = 0; i < count; ++i) {
@@ -609,8 +609,7 @@ public class ScoreList extends Activity {
                 return;
             }
             int mylistId = intent.getIntExtra("jp.linanfine.dsma.mylistid", -1);
-            String name = FileReader.readMyListName(this, mylistId);
-            c = name;
+            c = FileReader.readMyListName(this, mylistId);
         }
 
         View v = ScoreList.this.getLayoutInflater().inflate(R.layout.view_statistics, null);
@@ -716,48 +715,7 @@ public class ScoreList extends Activity {
                     }
                 })
                 .show();
-
     }
-
-
-    private void updateFlareRankStatistics() {
-        int[] flareRankCounts = new int[12]; // NoRank(-1) から RankEX(10) まで
-
-        for (MusicScore score : mScoreList.values()) {
-            updateFlareRankCount(flareRankCounts, score.BSP.FlareRank);
-            updateFlareRankCount(flareRankCounts, score.DSP.FlareRank);
-            updateFlareRankCount(flareRankCounts, score.ESP.FlareRank);
-            updateFlareRankCount(flareRankCounts, score.CSP.FlareRank);
-            updateFlareRankCount(flareRankCounts, score.BDP.FlareRank);
-            updateFlareRankCount(flareRankCounts, score.DDP.FlareRank);
-            updateFlareRankCount(flareRankCounts, score.EDP.FlareRank);
-            updateFlareRankCount(flareRankCounts, score.CDP.FlareRank);
-        }
-
-        displayFlareRankCounts(flareRankCounts);
-    }
-
-    private void updateFlareRankCount(int[] counts, int rank) {
-        if (rank >= -1 && rank <= 10) {
-            counts[rank + 1]++;
-        }
-    }
-
-    private void displayFlareRankCounts(int[] counts) {
-        ((TextView) findViewById(R.id.rankEXCount)).setText(String.valueOf(counts[11]));
-        ((TextView) findViewById(R.id.rank9Count)).setText(String.valueOf(counts[10]));
-        ((TextView) findViewById(R.id.rank8Count)).setText(String.valueOf(counts[9]));
-        ((TextView) findViewById(R.id.rank7Count)).setText(String.valueOf(counts[8]));
-        ((TextView) findViewById(R.id.rank6Count)).setText(String.valueOf(counts[7]));
-        ((TextView) findViewById(R.id.rank5Count)).setText(String.valueOf(counts[6]));
-        ((TextView) findViewById(R.id.rank4Count)).setText(String.valueOf(counts[5]));
-        ((TextView) findViewById(R.id.rank3Count)).setText(String.valueOf(counts[4]));
-        ((TextView) findViewById(R.id.rank2Count)).setText(String.valueOf(counts[3]));
-        ((TextView) findViewById(R.id.rank1Count)).setText(String.valueOf(counts[2]));
-        ((TextView) findViewById(R.id.rank0Count)).setText(String.valueOf(counts[1]));
-        ((TextView) findViewById(R.id.noRankCount)).setText(String.valueOf(counts[0]));
-    }
-
 
     private void userActionShowStatus() {
 
@@ -913,7 +871,7 @@ public class ScoreList extends Activity {
     }
 
     private void userActionCopyToClipboardList() {
-        ArrayList<String> str_items = new ArrayList<String>();
+        ArrayList<String> str_items = new ArrayList<>();
         final MusicDataAdapter mda = ((MusicDataAdapter) mScoreListView.getAdapter());
         if (mda.getCount() < 1) {
             return;
@@ -933,7 +891,7 @@ public class ScoreList extends Activity {
         str_items.add(this.getResources().getString(R.string.editcopyformats));
 
         new AlertDialog.Builder(ScoreList.this)
-                .setItems((String[]) str_items.toArray(new String[0]), (dialog, which) -> {
+                .setItems(str_items.toArray(new String[0]), (dialog, which) -> {
                             if (which == 3) {
                                 Intent intent = new Intent();
                                 intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.CopyFormatList");
@@ -959,7 +917,7 @@ public class ScoreList extends Activity {
     }
 
     private void userActionCopyToClipboard() {
-        final ArrayList<String> str_items = new ArrayList<String>();
+        final ArrayList<String> str_items = new ArrayList<>();
         MusicData md = mMusicList.get(mSelectedItemPattern.MusicId);
         ScoreData sd;
         if (!mScoreList.containsKey(mSelectedItemPattern.MusicId)) {
@@ -974,7 +932,7 @@ public class ScoreList extends Activity {
         str_items.add(this.getResources().getString(R.string.editcopyformats));
 
         new AlertDialog.Builder(ScoreList.this)
-                .setItems((String[]) str_items.toArray(new String[0]), (dialog, which) -> {
+                .setItems(str_items.toArray(new String[0]), (dialog, which) -> {
                             if (which == 3) {
                                 Intent intent = new Intent();
                                 intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.CopyFormatList");
@@ -1015,7 +973,7 @@ public class ScoreList extends Activity {
     }
 
     private void userActionAddToMyList() {
-        ArrayList<String> items = new ArrayList<String>();
+        ArrayList<String> items = new ArrayList<>();
         int count = FileReader.readMyListCount(ScoreList.this);
         for (int i = 0; i < count; i++) {
             items.add(FileReader.readMyListName(ScoreList.this, i));
@@ -1026,11 +984,11 @@ public class ScoreList extends Activity {
 
         new AlertDialog.Builder(ScoreList.this)
                 .setTitle(getResources().getString(R.string.dialog_add_to_list))
-                .setItems((String[]) items.toArray(new String[0]), (dialog, which) -> {
+                .setItems(items.toArray(new String[0]), (dialog, which) -> {
                             if (which == mMyListCount) {
                                 //テキスト入力を受け付けるビューを作成します。
                                 mTemporaryDialogEditText = (EditText) ScoreList.this.getLayoutInflater().inflate(R.layout.view_singleline_edit_text, null);
-                                mTemporaryDialogEditText.setText("MyList" + String.valueOf(mMyListCount));
+                                mTemporaryDialogEditText.setText("MyList" + mMyListCount);
                                 mTemporaryDialogEditText.setSelectAllOnFocus(true);
                                 new AlertDialog.Builder(ScoreList.this)
                                         .setIcon(drawable.ic_dialog_info)
@@ -1041,7 +999,7 @@ public class ScoreList extends Activity {
                                             FileReader.saveMyListCount(ScoreList.this, mMyListCount + 1);
                                             String name = mTemporaryDialogEditText.getText().toString();
                                             FileReader.saveMyListName(ScoreList.this, mMyListCount, name);
-                                            ArrayList<UniquePattern> list = new ArrayList<UniquePattern>();
+                                            ArrayList<UniquePattern> list = new ArrayList<>();
                                             list.add(mSelectedItemPattern);
                                             FileReader.saveMyList(ScoreList.this, mMyListCount, list);
                                             Toast.makeText(ScoreList.this, getResources().getString(R.string.toast_added_to_mylist1) + name + getResources().getString(R.string.toast_added_to_mylist2), Toast.LENGTH_SHORT).show();
@@ -1092,13 +1050,13 @@ public class ScoreList extends Activity {
     }
 
     private void userActionSelectRivalAction() {
-        ArrayList<String> str_items = new ArrayList<String>();
+        ArrayList<String> str_items = new ArrayList<>();
         str_items.add(getResources().getString(R.string.dialog_from_gate));
         str_items.add(getResources().getString(R.string.dialog_direct_edit));
 
         new AlertDialog.Builder(ScoreList.this)
                 .setTitle(mActiveRivalName)
-                .setItems((String[]) str_items.toArray(new String[0]), (dialog, which) -> {
+                .setItems(str_items.toArray(new String[0]), (dialog, which) -> {
                     switch (which) {
                         case 0:
                             userActionRivalFromGate();
@@ -1112,13 +1070,13 @@ public class ScoreList extends Activity {
 
     @SuppressWarnings("unused")
     private void userActionShare() {
-        ArrayList<String> str_items = new ArrayList<String>();
+        ArrayList<String> str_items = new ArrayList<>();
         str_items.add(getResources().getString(R.string.menu_music_share_copy));
         str_items.add(getResources().getString(R.string.menu_music_share_action_send));
 
         new AlertDialog.Builder(ScoreList.this)
                 .setTitle(getResources().getString(R.string.menu_music_share))
-                .setItems((String[]) str_items.toArray(new String[0]), (dialog, which) -> {
+                .setItems(str_items.toArray(new String[0]), (dialog, which) -> {
                             MusicData m = mSelectedItemPattern.musics.get(mSelectedItemPattern.MusicId);
                             MusicScore scoredata = mScoreList.get(mSelectedItemPattern.MusicId);
                             ScoreData escore;
@@ -1155,29 +1113,18 @@ public class ScoreList extends Activity {
                                     break;
                             }
                             String copyText = m.Name + " [" + mSelectedItemPattern.Pattern.toString() + "] " + String.valueOf(escore.Score);
-                            switch (which) {
-                                case 0: {
-                                    //ClipboardManager cm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                                    //cm.setText(copyText);
-                                    break;
-                                }
-                                case 1: {
-                                    break;
-                                }
-                            }
                         }
                 ).show();
     }
 
     private void userActionShowItemMenu() {
-        ArrayList<String> str_items = new ArrayList<String>();
+        ArrayList<String> str_items = new ArrayList<>();
         str_items.add(getResources().getString(R.string.dialog_copy_to_clipboard));
         str_items.add(getResources().getString(R.string.dialog_from_gate));
         str_items.add(getResources().getString(R.string.dialog_direct_edit));
         if (mActiveRivalId != null && mActiveRivalId != "00000000") {
             str_items.add(getResources().getString(R.string.menu_music_rivals));
         }
-        //str_items.add(getResources().getString(R.string.menu_music_share));
         str_items.add(getResources().getString(R.string.dialog_add_to_list));
 
         if (mCategory.equals("My List")) {
@@ -1379,7 +1326,7 @@ public class ScoreList extends Activity {
             }
             ((TextView) view.findViewById(R.id.name)).setText(md.Name);
             ((TextView) view.findViewById(R.id.pattern)).setTextColor(textColor);
-            ((TextView) view.findViewById(R.id.pattern)).setText(spdp + " " + pattern + " (" + String.valueOf(level) + ")");
+            ((TextView) view.findViewById(R.id.pattern)).setText(spdp + " " + pattern + " (" + level + ")");
 
             new AlertDialog.Builder(ScoreList.this)
                     .setIcon(android.R.drawable.ic_dialog_info)
@@ -1445,8 +1392,8 @@ public class ScoreList extends Activity {
         this.findViewById(R.id.sortSetting).setOnClickListener(v -> userActionOpenSortSetting());
 
         {
-            mFilterSpinner = (Spinner) this.findViewById(R.id.filterSelect);
-            mSortSpinner = (Spinner) this.findViewById(R.id.sortSelect);
+            mFilterSpinner = this.findViewById(R.id.filterSelect);
+            mSortSpinner = this.findViewById(R.id.sortSelect);
 
             mFilterSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
                 public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
@@ -1467,7 +1414,7 @@ public class ScoreList extends Activity {
             });
         }
 
-        mScoreListView = (ListView) this.findViewById(R.id.musicList);
+        mScoreListView = this.findViewById(R.id.musicList);
         mScoreListView.setOnScrollListener(new OnScrollListener() {
             public void onScroll(AbsListView arg0, int arg1, int arg2, int arg3) {
                 int s = mScoreListView.getFirstVisiblePosition();
@@ -1623,7 +1570,7 @@ public class ScoreList extends Activity {
 // add by taiheisan end
 
         if (mCategory.equals("Recents")) {
-            ImageView refreshButton = (ImageView) this.findViewById(R.id.refresh);
+            ImageView refreshButton = this.findViewById(R.id.refresh);
             refreshButton.setVisibility(View.VISIBLE);
 
             refreshButton.setOnClickListener(v -> userActionOpenFromGateRecent());
@@ -1717,8 +1664,7 @@ public class ScoreList extends Activity {
                 return;
             }
             int mylistId = intent.getIntExtra("jp.linanfine.dsma.mylistid", -1);
-            String name = FileReader.readMyListName(this, mylistId);
-            c = name;
+            c = FileReader.readMyListName(this, mylistId);
         }
         ((TextView) this.findViewById(R.id.musicName)).setText(c + " (" + String.valueOf(clearCount) + "/" + String.valueOf(count) + ")");
     }
@@ -1743,33 +1689,32 @@ public class ScoreList extends Activity {
     private void filterSortRefresh() {
         {
             int count = FileReader.readMusicFilterCount(this);
-            ArrayList<String> items = new ArrayList<String>();
+            ArrayList<String> items = new ArrayList<>();
             for (int i = 0; i < count; i++) {
                 items.add(FileReader.readMusicFilterName(this, i));
             }
             items.add(getResources().getString(R.string.filter_new));
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             mFilterSpinner.setAdapter(adapter);
         }
 
         {
             int count = FileReader.readMusicSortCount(this);
-            ArrayList<String> items = new ArrayList<String>();
+            ArrayList<String> items = new ArrayList<>();
             for (int i = 0; i < count; i++) {
                 items.add(FileReader.readMusicSortName(this, i));
             }
             items.add(getResources().getString(R.string.sort_new));
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             mSortSpinner.setAdapter(adapter);
         }
 
         if (mCategory.equals("Own Music")) {
             this.findViewById(R.id.filterLayout).setVisibility(View.GONE);
-            //this.findViewById(R.id.menuButton).setVisibility(View.GONE);
             mMusicSort = new MusicSort();
             mMusicSort._1stType = MusicSortType.SPDP;
             mMusicSort._1stOrder = SortOrder.Ascending;
@@ -1787,8 +1732,8 @@ public class ScoreList extends Activity {
             if (mCategory.equals("Recents")) {
                 ScoreList.this.findViewById(R.id.sortWrapper).setVisibility(View.GONE);
                 ArrayList<RecentData> recents = FileReader.readRecentList(this);
-                mMusicFilter.MusicIdList = new ArrayList<Integer>();
-                mMusicFilter.MusicPatternList = new ArrayList<PatternType>();
+                mMusicFilter.MusicIdList = new ArrayList<>();
+                mMusicFilter.MusicPatternList = new ArrayList<>();
                 int count = recents.size();
                 for (int i = 0; i < count; ++i) {
                     RecentData mid = recents.get(i);
@@ -1797,10 +1742,9 @@ public class ScoreList extends Activity {
                 }
                 mMusicSort = new MusicSortRecent(mMusicSort, recents);
             } else if (mCategory.equals("My List")) {
-                //Log.d("id", String.valueOf(mylistId));
                 ArrayList<UniquePattern> pats = FileReader.readMyList(this, mCategoryMyListMylistId);
-                mMusicFilter.MusicIdList = new ArrayList<Integer>();
-                mMusicFilter.MusicPatternList = new ArrayList<PatternType>();
+                mMusicFilter.MusicIdList = new ArrayList<>();
+                mMusicFilter.MusicPatternList = new ArrayList<>();
                 int count = pats.size();
                 for (int i = 0; i < count; i++) {
                     UniquePattern pat = pats.get(i);
@@ -2336,7 +2280,7 @@ public class ScoreList extends Activity {
     public void onResume() {
         super.onResume();
         ActivitySetting.setTitleBarShown(this, this.findViewById(R.id.titleBar));
-        FileReader.requestAd((LinearLayout) this.findViewById(R.id.adContainer), this);
+        FileReader.requestAd(this.findViewById(R.id.adContainer), this);
     }
 
     @Override
