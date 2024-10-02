@@ -144,44 +144,35 @@ public class FileReader {
 
     public static void requestAd(LinearLayout adContainer, Activity activity) {
         final Activity act = activity;
-        //if(readShowAd(activity))
-        {
-            if (mEnableAd) {
-                adContainer.removeAllViews();
-                long now = new Date().getTime();
-                long lastopened = readLastAdTapTime(act.getApplicationContext());
-                if (now - lastopened > 86400000) {
-                    AdView adGoogle = new AdView(activity);
-                    adGoogle.setAdSize(AdSize.BANNER);
+        if (mEnableAd) {
+            adContainer.removeAllViews();
+            long now = new Date().getTime();
+            long lastopened = readLastAdTapTime(act.getApplicationContext());
+            if (now - lastopened > 86400000) {
+                AdView adGoogle = new AdView(activity);
+                adGoogle.setAdSize(AdSize.BANNER);
 
-                    // Sample AdMob app ID: ca-app-pub-3940256099942544/6300978111
-                    // product app ID: ca-app-pub-8151928728657048/2728579739
-                    adGoogle.setAdUnitId("ca-app-pub-8151928728657048/2728579739");
-                    adGoogle.setAdListener(new AdListener() {
-                        public void onAdLeftApplication() {
-                            SharedPreferences pref = act.getApplicationContext().getSharedPreferences("AdSetting", Context.MODE_PRIVATE);
-                            Editor e = pref.edit();
-                            e.putLong("LastOpenedTime", new Date().getTime());
-                            e.commit();
-                        }
-                    });
-                    adContainer.addView(adGoogle);
-                    AdRequest adr = new AdRequest.Builder().build();
-                    //adr.addTestDevice("");
-                    adGoogle.loadAd(adr);
-                    adContainer.setVisibility(View.VISIBLE);
-                } else {
-                    adContainer.setVisibility(View.GONE);
-                }
+                // Sample AdMob app ID: ca-app-pub-3940256099942544/6300978111
+                // product app ID: ca-app-pub-8151928728657048/2728579739
+                adGoogle.setAdUnitId("ca-app-pub-8151928728657048/2728579739");
+                adGoogle.setAdListener(new AdListener() {
+                    public void onAdLeftApplication() {
+                        SharedPreferences pref = act.getApplicationContext().getSharedPreferences("AdSetting", Context.MODE_PRIVATE);
+                        Editor e = pref.edit();
+                        e.putLong("LastOpenedTime", new Date().getTime());
+                        e.commit();
+                    }
+                });
+                adContainer.addView(adGoogle);
+                AdRequest adr = new AdRequest.Builder().build();
+                adGoogle.loadAd(adr);
+                adContainer.setVisibility(View.VISIBLE);
             } else {
-                adContainer.removeAllViews();
                 adContainer.setVisibility(View.GONE);
             }
-        }
-        //else
-        {
-            //	adContainer.removeAllViews();
-            //	adContainer.setVisibility(View.GONE);
+        } else {
+            adContainer.removeAllViews();
+            adContainer.setVisibility(View.GONE);
         }
     }
 
