@@ -216,6 +216,7 @@ public class ScoreList extends Activity {
         str_items.add(getResources().getString(R.string.strings____Menu_System____getScore));
         str_items.add(getResources().getString(R.string.strings____Menu_System____getScoreDetail));
         str_items.add(getResources().getString(R.string.strings____Menu_System____omikuji));
+        str_items.add(getResources().getString(R.string.flarenote_uploader));
         if (mCategory.equals("Recents")) {
             str_items.add(getResources().getString(R.string.menu_refresh_recent));
         }
@@ -248,6 +249,9 @@ public class ScoreList extends Activity {
                                     userActionOmikuji();
                                     break;
                                 case 8:
+                                    userActionFlareSkillNote();
+                                    break;
+                                case 9:
                                     userActionOpenFromGateRecent();
                                     break;
                             }
@@ -1353,6 +1357,13 @@ public class ScoreList extends Activity {
         intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.SongMemo");
         intent.putExtra("jp.linanfine.dsma.musicid", mSelectedItemPattern.MusicId);
         intent.putExtra("jp.linanfine.dsma.musicname", mSelectedMusicData.Name);
+
+        startActivityForResult(intent, 1);
+    }
+
+    private void userActionFlareSkillNote() {
+        Intent intent = new Intent();
+        intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.FlareSkillNote");
 
         startActivityForResult(intent, 1);
     }
