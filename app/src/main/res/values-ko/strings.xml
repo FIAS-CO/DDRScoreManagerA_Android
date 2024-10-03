@@ -2,9 +2,9 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.154.24092001] Update:\n
-플레어 스킬 차트를 공유하는 서비스로 DDR FlareNote라는 웹 페이지를 공개했습니다.\n
-이에 따라 본 앱에서 플레어 스킬 대상 곡 데이터를 FlareNote에 업로드하는 기능을 추가했습니다. 오른쪽 상단 메뉴에서 \'FlareNote Uploader\'를 확인해 주세요.
+[0.155.24100301] Update:\n
+* 공식 사이트에 라이벌 기능이 추가되어, 본 앱에서도 WORLD 정보를 가져올 수 있도록 수정했습니다.\n
+* 공식 페이지에서 \'Great Full Combo = GFC\', \'Good Full Combo = FC\'로 표기된 것에 맞춰, 앱 내 표기를 수정했습니다.
     </string>
 
   <string name="strings_global____app_name">DDR Score Manager A</string>

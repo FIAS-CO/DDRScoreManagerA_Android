@@ -2,9 +2,9 @@
 <resources>
     
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.154.24092001] Update:\n
-フレアスキル帳を公開するサービスとしてDDR FlareNoteというWebページを公開しました。\n
-それに伴い、本アプリからフレアスキル対象曲データをFlareNoteにアップロードする機能を追加しました。右上メニューから"FlareNote Uploader"をご確認ください。
+[0.155.24100301] Update:\n
+・ライバル機能が公式サイトに追加されたので、本アプリでもWORLDの情報を取得できるよう修正しました。\n
+・公式ページのフルコン表記が「GreatFullCombo=GFC」「GoodFullCombo=FC」となったことに伴い、本アプリ内の表記を修正しました。
     </string>
 
     <string name="strings_global____app_name">DDR Score Manager A</string>

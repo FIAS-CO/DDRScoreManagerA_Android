@@ -2,9 +2,9 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.154.24092001] Update:\n
-We have launched a webpage called DDR FlareNote as a service to share Flare Skill Charts.\n
-In conjunction with this, we have added a feature to upload Flare Skill target song data to FlareNote from this app. Please check \'FlareNote Uploader\' in the upper right menu.
+[0.155.24100301] Update:\n
+* Since the Rival feature has been added to the official site, we have updated the app to retrieve WORLD information as well.\n
+* We have also updated the in-app notation to match the official page, where \'Great Full Combo = GFC\' and \'Good Full Combo = FC\'.\n
     </string>
     
     <string name="strings_global____app_name">DDR Score Manager A</string>
