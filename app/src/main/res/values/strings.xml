@@ -2,9 +2,9 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.155.24100301] Update:\n
-* Since the Rival feature has been added to the official site, we have updated the app to retrieve WORLD information as well.\n
-* We have also updated the in-app notation to match the official page, where \'Great Full Combo = GFC\' and \'Good Full Combo = FC\'.\n
+[0.156.24101801] Update:\n
+We have fixed a bug where some songs were not sent during export to DDR SA. \n
+We apologize for the inconvenience, and kindly ask you to send them again.
     </string>
     
     <string name="strings_global____app_name">DDR Score Manager A</string>

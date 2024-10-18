@@ -77,8 +77,8 @@ public class DialogDdrSaExport {
         	return;
         }
         
-		mWebProgress = (ProgressBar)mView.findViewById(R.id.webProgress);
-		mLogView = (TextView)mView.findViewById(R.id.log);
+		mWebProgress = mView.findViewById(R.id.webProgress);
+		mLogView = mView.findViewById(R.id.log);
 		
 		mLogView.setText(mParent.getResources().getString(R.string.exporting));
 		
@@ -101,12 +101,10 @@ public class DialogDdrSaExport {
     		}
     	};
 
-    	mWebView = (WebView) mView.findViewById(R.id.webView);
-        //mWebView.getSettings().setBlockNetworkImage(true);
+    	mWebView = mView.findViewById(R.id.webView);
     	mWebView.getSettings().setBuiltInZoomControls(true);
     	mWebView.setWebViewClient(client);
     	mWebView.setWebChromeClient(chrome);
-        //mWebView.getSettings().setJavaScriptEnabled(true);
     	mWebView.getSettings().setJavaScriptEnabled(true);
     	mWebView.addJavascriptInterface(this, "viewsourceactivity");
 
@@ -152,17 +150,16 @@ private class PostDataCreater extends AsyncTask<Void, Void, Void> {
 			WebMusicId wmi = mWebMusicIds.get(id);
 			if(wmi == null)
 			{
-				//Toast.makeText(mParent, String.valueOf(id), Toast.LENGTH_LONG).show();
 			}
 			else
 			{
 				sb.append(TextUtil.getSaExportText(id, mScoreList));
 				sb.append("\t");
-				sb.append(String.valueOf(wmi.idOnWebPage));
+				sb.append(wmi.idOnWebPage);
 				sb.append("\t");
 				try
 				{
-					sb.append(URLEncoder.encode(wmi.titleOnWebPage.replace("<", "&lt;").replace(">", "&gt;").replace("♡", "&#9825;"), "shift_jis"));
+					sb.append(URLEncoder.encode(TextUtil.escapeWebTitle(wmi.titleOnWebPage), "shift_jis"));
 				}
 				catch(UnsupportedEncodingException e)
 				{
@@ -172,7 +169,7 @@ private class PostDataCreater extends AsyncTask<Void, Void, Void> {
 			}
 		}
 		
-		mPostQuery = mPostQuery+sb.toString();
+		mPostQuery = mPostQuery+ sb;
 				
 		return null;
 	}
@@ -194,7 +191,7 @@ private class PostDataCreater extends AsyncTask<Void, Void, Void> {
 		{
 			return;
 		}
-		FileReader.requestAd((LinearLayout)mView.findViewById(R.id.adContainer), mParent);
+		FileReader.requestAd(mView.findViewById(R.id.adContainer), mParent);
 		
 		mDataCreater = new PostDataCreater();
 		mDataCreater.execute();
@@ -203,7 +200,7 @@ private class PostDataCreater extends AsyncTask<Void, Void, Void> {
 	public void cancel()
 	{
 		mCanceled = true;
-        WebView web = (WebView) mView.findViewById(R.id.webView);
+        WebView web = mView.findViewById(R.id.webView);
         web.stopLoading();
         if(mDialog != null)
         {
@@ -213,106 +210,91 @@ private class PostDataCreater extends AsyncTask<Void, Void, Void> {
 
 	@android.webkit.JavascriptInterface
     public void viewSource(final String src) {
-        mHandler.post(new Runnable() {
-            public void run() {
-            	mWebProgress.setProgress(0);
+        mHandler.post(() -> {
+            mWebProgress.setProgress(0);
 
-            	if(mCanceled)
-            	{
-            		return;
-            	}
-            	
-                WebView web = (WebView) mView.findViewById(R.id.webView);
-            	String uri = web.getUrl();
-            		//analyzeExportResult(src);
+            if(mCanceled)
+            {
+                return;
+            }
 
-        		String dat = src;
-        		if(!src.contains("<pre>") || !src.contains("</pre>"))
-        		{
-        			dat = "<pre>Authentication Failure</pre>";
-        		}
+            String dat = src;
+            if(!src.contains("<pre>") || !src.contains("</pre>"))
+            {
+                dat = "<pre>Authentication Failure</pre>";
+            }
 
-        		String result = dat.substring(0, dat.indexOf("</pre>")).substring(dat.indexOf("<pre>")+5);
-        		
-            		FileReader.saveText(mParent, dat, "Result.txt");
-            		
-            		if(result.startsWith("Authentication Failure"))
-            		{
-            			Toast.makeText(mParent, mParent.getResources().getString(R.string.authentication_failure), Toast.LENGTH_LONG).show();
-            		}
-            		else
-            		{
-            			Toast.makeText(mParent, mParent.getResources().getString(R.string.export_succeed), Toast.LENGTH_LONG).show();
+            String result = dat.substring(0, dat.indexOf("</pre>")).substring(dat.indexOf("<pre>")+5);
 
-            			View v = mParent.getLayoutInflater().inflate(R.layout.view_from_gate, null);
-            			TextView tv = (TextView)v.findViewById(R.id.log);
-            			tv.setHorizontallyScrolling(true);
-            			tv.setHorizontalScrollBarEnabled(true);
-            			tv.setEllipsize(TruncateAt.END);
-            			
-            			StringBuilder sb = new StringBuilder();
-            			String[] lines = result.split("\n");
-            			            
-            			String[] fctype = new String[] {"   ", "FC ", "PFC", "MFC"};
-            			boolean s = false;
-            			for(String line: lines)
-            			{
-            				String[] data = line.split("\t"); 
-            				if(s)
-            				{
-	            				if(data.length > 1)
-	            				{
-		            				sb.append(data[1]);
-		            				sb.append(" \t");
-		            				sb.append(data[2]);
-		            				sb.append(" \t");
-		            				sb.append(fctype[Integer.parseInt(data[3])]);
-		            				sb.append(" \t");
-		            				sb.append(data[4]);
-		            				sb.append(" \n");
-	            				}
-	            				else
-	            				{
-	            					break;
-	            				}
-            				}
-            				else if(line.startsWith("[Success]"))
-            				{
-                    			sb.append(mParent.getResources().getString(R.string.exported_count));
-                    			sb.append(line.substring(9));
-                    			sb.append("\n\n");
-                    			s = true;
-            				}
-            			}
-            			
-            			tv.setText(sb.toString());
-            			
-    				    new AlertDialog.Builder(mParent)
-				        .setIcon(android.R.drawable.ic_dialog_info)
-				        //setView縺ォ縺ヲ繝薙Η繝シ繧定ィュ螳壹＠縺セ縺吶
-				        .setTitle(mParent.getResources().getString(R.string.exported_scores))
-				        .setView(v)
-				        .setPositiveButton(mParent.getResources().getString(R.string.strings_global____ok), new DialogInterface.OnClickListener() {
-				            public void onClick(DialogInterface dialog, int whichButton) {
-					            
-				            }
-				        })
-				        .show();
+                FileReader.saveText(mParent, dat, "Result.txt");
 
-            		}
-            		
-                    (new Thread(new Runnable() {
-                        public void run() {
-                    		try { Thread.sleep(1000);} catch (InterruptedException e) {}
-                            mHandler.post(new Runnable() {
-                            	public void run() {
-                                    mDialog.cancel();
-                            	}
-                            });
+                if(result.startsWith("Authentication Failure"))
+                {
+                    Toast.makeText(mParent, mParent.getResources().getString(R.string.authentication_failure), Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(mParent, mParent.getResources().getString(R.string.export_succeed), Toast.LENGTH_LONG).show();
+
+                    View v = mParent.getLayoutInflater().inflate(R.layout.view_from_gate, null);
+                    TextView tv = v.findViewById(R.id.log);
+                    tv.setHorizontallyScrolling(true);
+                    tv.setHorizontalScrollBarEnabled(true);
+                    tv.setEllipsize(TruncateAt.END);
+
+                    StringBuilder sb = new StringBuilder();
+                    String[] lines = result.split("\n");
+
+                    String[] fctype = new String[] {"   ", "FC ", "PFC", "MFC"};
+                    boolean s = false;
+                    for(String line: lines)
+                    {
+                        String[] data = line.split("\t");
+                        if(s)
+                        {
+                            if(data.length > 1)
+                            {
+                                sb.append(data[1]);
+                                sb.append(" \t");
+                                sb.append(data[2]);
+                                sb.append(" \t");
+                                sb.append(fctype[Integer.parseInt(data[3])]);
+                                sb.append(" \t");
+                                sb.append(data[4]);
+                                sb.append(" \n");
+                            }
+                            else
+                            {
+                                break;
                             }
                         }
-                    )).start();
-            }
+                        else if(line.startsWith("[Success]"))
+                        {
+                            sb.append(mParent.getResources().getString(R.string.exported_count));
+                            sb.append(line.substring(9));
+                            sb.append("\n\n");
+                            s = true;
+                        }
+                    }
+
+                    tv.setText(sb.toString());
+
+                    new AlertDialog.Builder(mParent)
+                    .setIcon(android.R.drawable.ic_dialog_info)
+                    .setTitle(mParent.getResources().getString(R.string.exported_scores))
+                    .setView(v)
+                    .setPositiveButton(mParent.getResources().getString(R.string.strings_global____ok), (dialog, whichButton) -> {
+
+                    })
+                    .show();
+
+                }
+
+                (new Thread(() -> {
+                    try { Thread.sleep(1000);} catch (InterruptedException e) {}
+                    mHandler.post(() -> mDialog.cancel());
+                    }
+                )).start();
         });
     }
 	

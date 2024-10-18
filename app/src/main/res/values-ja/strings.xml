@@ -2,9 +2,9 @@
 <resources>
     
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.155.24100301] Update:\n
-・ライバル機能が公式サイトに追加されたので、本アプリでもWORLDの情報を取得できるよう修正しました。\n
-・公式ページのフルコン表記が「GreatFullCombo=GFC」「GoodFullCombo=FC」となったことに伴い、本アプリ内の表記を修正しました。
+[0.156.24101801] Update:\n
+DDR SAへのエクスポート時に一部の楽曲が送信されないバグを修正しました。\n
+お手数ですが、再度送信をお願いします。
     </string>
 
     <string name="strings_global____app_name">DDR Score Manager A</string>
