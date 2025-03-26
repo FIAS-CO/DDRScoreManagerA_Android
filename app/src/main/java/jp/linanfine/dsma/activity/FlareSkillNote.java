@@ -1,6 +1,8 @@
 package jp.linanfine.dsma.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +11,10 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ViewFlipper;
+
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,6 +23,7 @@ import java.io.IOException;
 import java.util.TreeMap;
 
 import jp.linanfine.dsma.R;
+import jp.linanfine.dsma.util.auth.GoogleAuthManager;
 import jp.linanfine.dsma.util.common.ActivitySetting;
 import jp.linanfine.dsma.util.file.FileReader;
 import jp.linanfine.dsma.util.flare.FlareSkillUpdater;
@@ -32,51 +39,33 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class FlareSkillNote extends Activity {
-    private EditText usernameEditText;
+    // メインViewFlipper（未登録/登録済み画面切替）
+    private ViewFlipper viewFlipper;
+    // Google認証ボタン切替用ViewFlipper
+    private ViewFlipper googleButtonsFlipper;
+
+    // 未登録ユーザー向けUI要素
+    private EditText playerNameEditText;
     private Button registerButton;
+    private Button googleLoginButton;
+    private TextView messageTextUnregistered;
+
+    // 登録済みユーザー向けUI要素
+    private TextView userNameDisplay;
+    private Button sendDataButton;
+    private Button googleConnectButton;
+    private Button googleDisconnectButton;
     private Button goToUserSiteButton;
-    private TextView messageTextView;
+    private Button deleteUserButton;
+    private TextView messageTextRegistered;
+
+    // 共通のHow to Useセクション
+    private TextView howToUseContent;
+
     private OkHttpClient client;
-
-    public void initialize() {
-        usernameEditText = findViewById(R.id.playerName);
-        registerButton = findViewById(R.id.registerButton);
-        messageTextView = findViewById(R.id.messageText);
-        goToUserSiteButton = findViewById(R.id.goToFlareNoteUserSite);
-        client = new OkHttpClient();
-
-        registerButton.setOnClickListener(v -> {
-            String username = usernameEditText.getText().toString();
-            createUser(username);
-        });
-
-        this.<Button>findViewById(R.id.deleteUserButton).setOnClickListener(v -> deleteUser());
-
-        this.<Button>findViewById(R.id.sendDataButton).setOnClickListener(v -> sendData());
-
-        String name = FileReader.readFlareSkillNotePlayerName(FlareSkillNote.this);
-        setupUrlButton(R.id.goToFlareNoteTop, "https://flarenote.fia-s.com");
-        setupUrlButton(R.id.goToFlareNoteUserSite, "https://flarenote.fia-s.com/personal-skill/" + name);
-
-        String playerName = FileReader.readFlareSkillNotePlayerName(FlareSkillNote.this);
-        if (!playerName.isEmpty()) {
-            usernameEditText.setText(playerName);
-            inUserRegisteredMode();
-        } else {
-            inNoUserMode();
-        }
-
-        TextView howToUseTitle = findViewById(R.id.howToUseTitle);
-        final TextView howToUseContent = findViewById(R.id.howToUseContent);
-
-        howToUseTitle.setOnClickListener(v -> {
-            if (howToUseContent.getVisibility() == View.VISIBLE) {
-                howToUseContent.setVisibility(View.GONE);
-            } else {
-                howToUseContent.setVisibility(View.VISIBLE);
-            }
-        });
-    }
+    private ProgressDialog progressDialog;
+    private boolean isGoogleLinked = false;
+    private GoogleAuthManager googleAuthManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -89,24 +78,120 @@ public class FlareSkillNote extends Activity {
         initialize();
     }
 
+    public void initialize() {
+        // ViewFlipperの初期化
+        viewFlipper = findViewById(R.id.viewFlipper);
+        googleButtonsFlipper = findViewById(R.id.googleButtonsFlipper);
+
+        // 共通
+        client = new OkHttpClient();
+
+        // 未登録ユーザー向けUI要素の初期化
+        playerNameEditText = findViewById(R.id.playerName);
+        registerButton = findViewById(R.id.registerButton);
+        googleLoginButton = findViewById(R.id.googleLoginButton);
+        messageTextUnregistered = findViewById(R.id.messageTextUnregistered);
+
+        // 登録済みユーザー向けUI要素の初期化
+        userNameDisplay = findViewById(R.id.userNameDisplay);
+        sendDataButton = findViewById(R.id.sendDataButton);
+        googleConnectButton = findViewById(R.id.googleConnectButton);
+        googleDisconnectButton = findViewById(R.id.googleDisconnectButton);
+        goToUserSiteButton = findViewById(R.id.goToFlareNoteUserSite);
+        deleteUserButton = findViewById(R.id.deleteUserButton);
+        messageTextRegistered = findViewById(R.id.messageTextRegistered);
+
+        // 共通部分のHow to Use初期化
+        howToUseContent = findViewById(R.id.howToUseContent);
+        findViewById(R.id.howToUseTitle).setOnClickListener(v -> {
+            if (howToUseContent.getVisibility() == View.VISIBLE) {
+                howToUseContent.setVisibility(View.GONE);
+            } else {
+                howToUseContent.setVisibility(View.VISIBLE);
+            }
+        });
+
+        // GoogleAuthManagerの初期化
+        googleAuthManager = GoogleAuthManager.getInstance();
+        googleAuthManager.initialize(this);
+
+        // ボタンのクリックリスナーを設定
+        registerButton.setOnClickListener(v -> {
+            String username = playerNameEditText.getText().toString();
+            createUser(username);
+        });
+
+        googleLoginButton.setOnClickListener(v -> loginWithGoogle());
+        googleConnectButton.setOnClickListener(v -> connectWithGoogle());
+        googleDisconnectButton.setOnClickListener(v -> disconnectGoogle());
+        sendDataButton.setOnClickListener(v -> sendData());
+        deleteUserButton.setOnClickListener(v -> confirmDeleteUser());
+
+        // URLボタンの設定
+        String userName = FileReader.readFlareSkillNotePlayerName(this);
+        setupUrlButton(R.id.goToFlareNoteTopUnregistered, "https://flarenote.fia-s.com");
+        setupUrlButton(R.id.goToFlareNoteTopRegistered, "https://flarenote.fia-s.com");
+        setupUrlButton(R.id.goToFlareNoteUserSite, "https://flarenote.fia-s.com/personal-skill/" + userName);
+
+        // 初期状態の設定
+        String playerId = FileReader.readFlareSkillNotePlayerId(this);
+        String playerName = FileReader.readFlareSkillNotePlayerName(this);
+
+        if (!playerId.isEmpty()) {
+            // 登録済みモード
+            userNameDisplay.setText(getString(R.string.flarenote_username) + ": " + playerName);
+
+            // Google連携状態を取得
+            isGoogleLinked = googleAuthManager.getGoogleLinkStatus(this, playerId);
+            updateGoogleButtons();
+
+            // 登録済み画面を表示
+            viewFlipper.setDisplayedChild(1);
+        } else {
+            // 未登録モード
+            viewFlipper.setDisplayedChild(0);
+        }
+
+        // サーバーでのユーザー状態を検証
+        validateUserOnServer();
+    }
+
     @Override
     public void onResume() {
         super.onResume();
         FileReader.requestAd(this.findViewById(R.id.adContainer), this);
     }
 
-    private void createUser(String username) {
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        // Google認証の結果を処理
+        if (requestCode == 9001) {
+            hideProgressDialog();
+            if (resultCode == RESULT_OK && data != null) {
+                googleAuthManager.handleSignInResult(data);
+            } else {
+                showMessage(getString(R.string.flarenote_google_auth_cancelled));
+            }
+        }
+    }
+
+    private void createUser(String username) {
         if (username.isEmpty()) {
-            messageTextView.setText(this.getResources().getString(R.string.enter_username_and_press_button));
+            showMessage(this.getResources().getString(R.string.enter_username_and_press_button));
             return;
         }
 
+        showProgressDialog();
+
         JSONObject jsonBody = new JSONObject();
         try {
-            jsonBody.put("name", username);  // "username" から "name" に変更
+            jsonBody.put("name", username);
         } catch (JSONException e) {
             e.printStackTrace();
+            hideProgressDialog();
+            return;
         }
 
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
@@ -119,51 +204,84 @@ public class FlareSkillNote extends Activity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                runOnUiThread(() -> messageTextView.setText(getString(R.string.flarenote_network_error, e.getMessage())));
+                runOnUiThread(() -> {
+                    hideProgressDialog();
+                    showMessage(getString(R.string.flarenote_network_error, e.getMessage()));
+                });
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String responseData = response.body().string();
                 runOnUiThread(() -> {
+                    hideProgressDialog();
                     try {
                         JSONObject jsonResponse = new JSONObject(responseData);
                         if (response.isSuccessful()) {
                             String name = jsonResponse.getString("name");
-                            messageTextView.setText(getString(R.string.flarenote_success_create_user, name));
                             String id = jsonResponse.getString("id");
                             FileReader.saveFlareSkillNotePlayerId(FlareSkillNote.this, id, name);
 
-                            inUserRegisteredMode();
+                            // 登録成功メッセージを表示
+                            showMessage(getString(R.string.flarenote_success_create_user, name));
+
+                            // ユーザー名を表示に設定
+                            userNameDisplay.setText(getString(R.string.flarenote_username) + ": " + name);
+
+                            // 画面を切り替え
+                            viewFlipper.setDisplayedChild(1);
                         } else {
                             String error = jsonResponse.getString("error");
                             String detail = jsonResponse.optString("detail", "詳細なし");
-                            messageTextView.setText(getString(R.string.flarenote_error_detail, error, detail));
+                            showMessage(getString(R.string.flarenote_error_detail, error, detail));
                         }
                     } catch (JSONException e) {
-                        messageTextView.setText(getString(R.string.flarenote_fail_response_analyze, responseData));
+                        showMessage(getString(R.string.flarenote_fail_response_analyze, responseData));
                     }
                 });
             }
         });
     }
 
+    private void confirmDeleteUser() {
+        String playerName = FileReader.readFlareSkillNotePlayerName(FlareSkillNote.this);
+        if (playerName.isEmpty()) {
+            return;
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.flarenote_confirm_deletion)
+                .setMessage(getString(R.string.flarenote_confirm_deletion_message, playerName))
+                .setPositiveButton(R.string.flarenote_delete, (dialog, which) -> deleteUser())
+                .setNegativeButton(R.string.flarenote_cancel, null)
+                .show();
+    }
+
     private void deleteUser() {
         String id = FileReader.readFlareSkillNotePlayerId(FlareSkillNote.this);
+        String playerName = FileReader.readFlareSkillNotePlayerName(FlareSkillNote.this);
 
         if (id.isEmpty()) {
             return;
         }
 
-        FileReader.saveFlareSkillNotePlayerId(FlareSkillNote.this, "", "");
+        showProgressDialog();
 
-        inNoUserMode();
+        // ローカルデータを先に削除
+        FileReader.saveFlareSkillNotePlayerId(FlareSkillNote.this, "", "");
+        googleAuthManager.saveGoogleLinkStatus(this, id, false);
+
+        // 未登録画面に切り替え
+        playerNameEditText.setText("");
+        viewFlipper.setDisplayedChild(0);
 
         JSONObject jsonBody = new JSONObject();
         try {
-            jsonBody.put("id", id);  // "username" から "name" に変更
+            jsonBody.put("id", id);
         } catch (JSONException e) {
             e.printStackTrace();
+            hideProgressDialog();
+            return;
         }
 
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
@@ -176,26 +294,29 @@ public class FlareSkillNote extends Activity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                runOnUiThread(() -> messageTextView.setText(getString(R.string.flarenote_network_error, e.getMessage())));
+                runOnUiThread(() -> {
+                    hideProgressDialog();
+                    showMessage(getString(R.string.flarenote_network_error, e.getMessage()));
+                });
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String responseData = response.body().string();
                 runOnUiThread(() -> {
+                    hideProgressDialog();
                     try {
                         JSONObject jsonResponse = new JSONObject(responseData);
                         if (response.isSuccessful()) {
                             String name = jsonResponse.getString("user");
-                            messageTextView.setText(getString(R.string.flarenote_user_deleted, name));
-
+                            showMessage(getString(R.string.flarenote_user_deleted, name));
                         } else {
                             String error = jsonResponse.getString("error");
-                            String detail = jsonResponse.optString("detail", "詳細なし");
-                            messageTextView.setText(getString(R.string.flarenote_error_detail, error, detail));
+                            String detail = jsonResponse.optString("details", "詳細なし");
+                            showMessage(getString(R.string.flarenote_error_detail, error, detail));
                         }
                     } catch (JSONException e) {
-                        messageTextView.setText(getString(R.string.flarenote_fail_response_analyze, responseData));
+                        showMessage(getString(R.string.flarenote_fail_response_analyze, responseData));
                     }
                 });
             }
@@ -206,9 +327,11 @@ public class FlareSkillNote extends Activity {
         String id = FileReader.readFlareSkillNotePlayerId(FlareSkillNote.this);
 
         if (id.isEmpty()) {
-            messageTextView.setText(getString(R.string.flarenote_push_button_after_registration));
+            showMessage(getString(R.string.flarenote_push_button_after_registration));
             return;
         }
+
+        showProgressDialog();
 
         TreeMap<Integer, MusicData> musicDataMap = FileReader.readMusicList(FlareSkillNote.this);
         TreeMap<Integer, MusicScore> musicScoreMap = FileReader.readScoreList(FlareSkillNote.this, null);
@@ -226,26 +349,196 @@ public class FlareSkillNote extends Activity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                runOnUiThread(() -> messageTextView.setText(getString(R.string.flarenote_network_error, e.getMessage())));
+                runOnUiThread(() -> {
+                    hideProgressDialog();
+                    showMessage(getString(R.string.flarenote_network_error, e.getMessage()));
+                });
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String responseData = response.body().string();
                 runOnUiThread(() -> {
+                    hideProgressDialog();
                     try {
                         JSONObject jsonResponse = new JSONObject(responseData);
                         if (response.isSuccessful()) {
-                            messageTextView.setText(getString(R.string.flarenote_send_data_successfully));
+                            showMessage(getString(R.string.flarenote_send_data_successfully));
                         } else {
                             String error = jsonResponse.getString("error");
                             String detail = jsonResponse.optString("details", "no detail.");
-                            messageTextView.setText(getString(R.string.flarenote_error_detail, error, detail));
+                            showMessage(getString(R.string.flarenote_error_detail, error, detail));
                         }
                     } catch (JSONException e) {
-                        messageTextView.setText(getString(R.string.flarenote_fail_response_analyze, responseData));
+                        showMessage(getString(R.string.flarenote_fail_response_analyze, responseData));
                     }
                 });
+            }
+        });
+    }
+
+    // Google認証関連の処理
+
+    // Googleアカウントでログイン
+    private void loginWithGoogle() {
+        showProgressDialog();
+        googleAuthManager.signIn(this, new GoogleAuthManager.GoogleAuthCallback() {
+            @Override
+            public void onSuccess(String idToken, GoogleSignInAccount account) {
+                googleAuthManager.findPlayerByGoogleToken(idToken, new GoogleAuthManager.FindPlayerCallback() {
+                    @Override
+                    public void onSuccess(boolean success, boolean found, GoogleAuthManager.Player player, String message) {
+                        hideProgressDialog();
+                        showMessage(message);
+
+                        if (success && found && player != null) {
+                            // ユーザーが見つかった場合、情報を保存
+                            FileReader.saveFlareSkillNotePlayerId(FlareSkillNote.this, player.getId(), player.getName());
+                            googleAuthManager.saveGoogleLinkStatus(FlareSkillNote.this, player.getId(), true);
+                            isGoogleLinked = true;
+
+                            runOnUiThread(() -> {
+                                // ユーザー名を表示
+                                userNameDisplay.setText(getString(R.string.flarenote_username) + ": " + player.getName());
+                                // Google連携ボタンを更新
+                                updateGoogleButtons();
+                                // 登録済み画面に切り替え
+                                viewFlipper.setDisplayedChild(1);
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(String error) {
+                        hideProgressDialog();
+                        showMessage(error);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(String error) {
+                hideProgressDialog();
+                showMessage(error);
+            }
+        });
+    }
+
+    // 既存ユーザーとGoogleアカウントを連携
+    private void connectWithGoogle() {
+        String playerId = FileReader.readFlareSkillNotePlayerId(FlareSkillNote.this);
+        if (playerId.isEmpty()) {
+            showMessage(getString(R.string.flarenote_user_not_registered));
+            return;
+        }
+
+        showProgressDialog();
+        googleAuthManager.signIn(this, new GoogleAuthManager.GoogleAuthCallback() {
+            @Override
+            public void onSuccess(String idToken, GoogleSignInAccount account) {
+                googleAuthManager.connectUserWithGoogleToken(playerId, idToken, new GoogleAuthManager.ConnectGoogleCallback() {
+                    @Override
+                    public void onSuccess(GoogleAuthManager.Player player, String message) {
+                        googleAuthManager.saveGoogleLinkStatus(FlareSkillNote.this, playerId, true);
+                        isGoogleLinked = true;
+
+                        runOnUiThread(() -> {
+                            hideProgressDialog();
+                            showMessage(message);
+                            updateGoogleButtons();
+                        });
+                    }
+
+                    @Override
+                    public void onFailure(String error) {
+                        runOnUiThread(() -> {
+                            hideProgressDialog();
+                            showMessage(error);
+                        });
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(String error) {
+                hideProgressDialog();
+                showMessage(error);
+            }
+        });
+    }
+
+    // Googleアカウント連携を解除
+    private void disconnectGoogle() {
+        String playerId = FileReader.readFlareSkillNotePlayerId(FlareSkillNote.this);
+        if (playerId.isEmpty()) {
+            return;
+        }
+
+        showProgressDialog();
+        googleAuthManager.unlinkGoogleFromPlayer(playerId, new GoogleAuthManager.UnlinkGoogleCallback() {
+            @Override
+            public void onSuccess(String message) {
+                googleAuthManager.saveGoogleLinkStatus(FlareSkillNote.this, playerId, false);
+                isGoogleLinked = false;
+
+                runOnUiThread(() -> {
+                    hideProgressDialog();
+                    showMessage(message);
+                    updateGoogleButtons();
+                });
+            }
+
+            @Override
+            public void onFailure(String error) {
+                runOnUiThread(() -> {
+                    hideProgressDialog();
+                    showMessage(error);
+                });
+            }
+        });
+    }
+
+    // サーバーでのユーザー状態を検証
+    private void validateUserOnServer() {
+        String playerId = FileReader.readFlareSkillNotePlayerId(FlareSkillNote.this);
+        if (playerId.isEmpty()) {
+            return;
+        }
+
+        googleAuthManager.validateUser(playerId, new GoogleAuthManager.ValidateUserCallback() {
+            @Override
+            public void onSuccess(boolean exists, boolean isGoogleLinked, String message) {
+                runOnUiThread(() -> {
+                    if (!exists) {
+                        // ユーザーが削除されている場合
+                        String errorMessage = "別端末からユーザーが削除されました。";
+                        showMessage(errorMessage);
+
+                        // ローカルデータをクリア
+                        FileReader.saveFlareSkillNotePlayerId(FlareSkillNote.this, "", "");
+                        googleAuthManager.saveGoogleLinkStatus(FlareSkillNote.this, playerId, false);
+
+                        // 未登録画面に切り替え
+                        playerNameEditText.setText("");
+                        viewFlipper.setDisplayedChild(0);
+                    } else if (FlareSkillNote.this.isGoogleLinked != isGoogleLinked) {
+                        // Google連携状態が変更されている場合
+                        FlareSkillNote.this.isGoogleLinked = isGoogleLinked;
+                        googleAuthManager.saveGoogleLinkStatus(FlareSkillNote.this, playerId, isGoogleLinked);
+
+                        // UIを更新
+                        updateGoogleButtons();
+
+                        if (!isGoogleLinked) {
+                            showMessage("別端末からGoogleアカウントとの連携が解除されました。");
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(String error) {
+                // エラーの場合は無視してUIの状態を維持
             }
         });
     }
@@ -261,25 +554,31 @@ public class FlareSkillNote extends Activity {
         startActivity(intent);
     }
 
-    private void inUserRegisteredMode() {
-        registerButtonEnable(registerButton, false);
-        textEditEnabled(false);
-        registerButtonEnable(goToUserSiteButton, true);
+    private void updateGoogleButtons() {
+        // Google連携状態に応じてViewFlipperの表示を切り替え
+        googleButtonsFlipper.setDisplayedChild(isGoogleLinked ? 1 : 0);
     }
 
-    private void inNoUserMode() {
-        registerButtonEnable(registerButton, true);
-        textEditEnabled(true);
-        registerButtonEnable(goToUserSiteButton, false);
+    private void showProgressDialog() {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage(getString(R.string.flarenote_processing));
+            progressDialog.setCancelable(false);
+        }
+        progressDialog.show();
     }
 
-    private void textEditEnabled(boolean enabled) {
-        usernameEditText.setEnabled(enabled);
-        usernameEditText.invalidate();
+    private void hideProgressDialog() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
     }
 
-    private void registerButtonEnable(Button registerButton, boolean enabled) {
-        registerButton.setEnabled(enabled);
-        registerButton.invalidate();
+    private void showMessage(String message) {
+        runOnUiThread(() -> {
+            // 両方のメッセージ表示欄に同じ内容を表示する
+            messageTextUnregistered.setText(message);
+            messageTextRegistered.setText(message);
+        });
     }
 }

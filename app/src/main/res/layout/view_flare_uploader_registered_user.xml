@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- ユーザー名表示 -->
+    <TextView
+        android:id="@+id/userNameDisplay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:text="ユーザー名：あああ"
+        android:layout_marginBottom="16dp" />
+
+    <!-- 楽曲データ送信ボタン -->
+    <Button
+        android:id="@+id/sendDataButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/flarenote_send_data" />
+
+    <!-- Google連携関連ボタン（状態に応じて表示切替） -->
+    <ViewFlipper
+        android:id="@+id/googleButtonsFlipper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/googleConnectButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/flarenote_connect_with_google"
+            android:drawableStart="@drawable/ic_google"
+            android:paddingStart="16dp"
+            android:background="#4285F4"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/googleDisconnectButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/flarenote_disconnect_google"
+            android:drawableStart="@drawable/ic_google"
+            android:paddingStart="16dp"
+            android:background="#F44336"
+            android:textColor="#FFFFFF" />
+    </ViewFlipper>
+
+    <!-- メッセージ表示エリア -->
+    <TextView
+        android:id="@+id/messageTextRegistered"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="4dp"
+        android:padding="16dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginVertical="16dp" />
+
+    <!-- リンクボタン -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="0dp">
+
+        <Button
+            android:id="@+id/goToFlareNoteTopRegistered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/flarenote_top" />
+
+        <Button
+            android:id="@+id/goToFlareNoteUserSite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/flarenote_user_page" />
+    </LinearLayout>
+
+    <!-- ユーザー削除ボタン -->
+    <Button
+        android:id="@+id/deleteUserButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/flarenote_delete_user" />
+</LinearLayout>

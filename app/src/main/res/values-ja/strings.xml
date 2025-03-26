@@ -494,5 +494,39 @@ DDR SAへのエクスポート時に一部の楽曲が送信されないバグ�
     <string name="flarenote_success_create_user">ユーザー \'%1$s\' が正常に作成されました。</string>
     <string name="flarenote_send_data_successfully">データが正常に送信されました。</string>
     <string name="flarenote_push_button_after_registration">ユーザーを登録してからボタンを押してください</string>
+    <!-- Google認証関連 -->
+    <string name="google_web_client_id">709569493981-q41hfgshokr29mmpmfdf3afeg9nod4fp.apps.googleusercontent.com</string>
 
+    <!-- GoogleAuthManagerメッセージ -->
+    <string name="google_auth_failed">Google認証に失敗しました: %1$s</string>
+    <string name="google_auth_cancelled">Google認証がキャンセルされました</string>
+    <string name="google_auth_no_response">サーバーからのレスポンスがありません</string>
+    <string name="google_auth_user_login">Googleアカウントで認証され、ユーザー「%1$s」としてログインしました</string>
+    <string name="google_auth_no_user">Googleアカウントに紐づけられたユーザーが見つかりませんでした。新規ユーザー登録を行ってください。</string>
+    <string name="google_auth_connection_completed">Googleアカウントとの連携が完了しました</string>
+    <string name="google_auth_connection_removed">Googleアカウントとの連携を解除しました</string>
+    <string name="google_auth_parse_failed">レスポンスの解析に失敗しました</string>
+    <string name="google_auth_unknown_error">不明なエラー</string>
+    <string name="google_auth_connection_failed">Googleアカウント連携に失敗しました: %1$s</string>
+    <string name="google_auth_disconnect_failed">Googleアカウント連携解除に失敗しました</string>
+
+    <!-- FlareNoteUploader Google認証関連 -->
+    <string name="flarenote_unregistered_user">ユーザー未登録の方</string>
+    <string name="flarenote_google_linked_user">Googleアカウント連携済みの方</string>
+    <string name="flarenote_login_with_google">Google アカウントでログイン</string>
+    <string name="flarenote_disconnect_google">Google アカウント連携を解除</string>
+    <string name="flarenote_connect_with_google">Google アカウントと連携</string>
+    <string name="flarenote_username">ユーザー名</string>
+    <string name="flarenote_processing">処理中…</string>
+    <string name="flarenote_confirm_deletion">アカウント削除の確認</string>
+    <string name="flarenote_confirm_deletion_message">本当に「%1$s」のアカウントを削除しますか？この操作は取り消せません。</string>
+    <string name="flarenote_delete">削除する</string>
+    <string name="flarenote_cancel">キャンセル</string>
+    <string name="flarenote_internal_error">内部エラー</string>
+    <string name="flarenote_no_user">ユーザーが見つかりません</string>
+    <string name="flarenote_root_view_error">内部エラー: rootViewControllerが見つかりません</string>
+    <string name="flarenote_google_auth_error">Google認証エラー</string>
+    <string name="flarenote_google_auth_cancelled">Google認証がキャンセルされました</string>
+    <string name="flarenote_user_not_registered">ユーザーが登録されていません</string>
+    <string name="flarenote_google_auth_error_detail">Google認証エラー: %1$s</string>
 </resources>
