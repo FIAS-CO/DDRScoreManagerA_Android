@@ -525,9 +525,6 @@ We apologize for the inconvenience, and kindly ask you to send them again.
     <string name="flarenote_send_data_successfully">The data has been sent successfully.</string>
     <string name="flarenote_push_button_after_registration">Please register a user and then Send data.</string>
 
-    <!-- Google認証関連 -->
-    <string name="google_web_client_id">709569493981-q41hfgshokr29mmpmfdf3afeg9nod4fp.apps.googleusercontent.com</string>
-
     <!-- GoogleAuthManagerメッセージ -->
     <string name="google_auth_failed">Google認証に失敗しました: %1$s</string>
     <string name="google_auth_cancelled">Google認証がキャンセルされました</string>

@@ -418,8 +418,6 @@ DDR SA로의 내보내기 중 일부 곡이 전송되지 않는 버그를 수정
   <string name="flarenote_send_data_successfully">데이터가 정상적으로 전송되었습니다. </string>
   <string name="flarenote_push_button_after_registration">사용자를 등록한 후 버튼을 눌러주세요.</string>
 
-  <!-- Google認証関連 -->
-  <string name="google_web_client_id">709569493981-q41hfgshokr29mmpmfdf3afeg9nod4fp.apps.googleusercontent.com</string>
 
   <!-- GoogleAuthManagerメッセージ -->
   <string name="google_auth_failed">Google認証に失敗しました: %1$s</string>

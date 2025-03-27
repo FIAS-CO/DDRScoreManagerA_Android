@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import jp.linanfine.dsma.BuildConfig;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -54,7 +55,7 @@ public class GoogleAuthManager {
     // Googleサインインクライアントの初期化
     public void initialize(Context context) {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(context.getString(jp.linanfine.dsma.R.string.google_web_client_id))
+                .requestIdToken(BuildConfig.GOOGLE_CLIENT_ID)
                 .requestEmail()
                 .build();
 
