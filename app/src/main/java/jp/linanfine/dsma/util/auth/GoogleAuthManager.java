@@ -72,16 +72,22 @@ public class GoogleAuthManager {
     // Googleサインイン結果を処理
     public void handleSignInResult(Intent data) {
         try {
+            Log.d(TAG, "Handling sign in result...");
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             GoogleSignInAccount account = task.getResult(ApiException.class);
             if (account != null && account.getIdToken() != null) {
+                Log.d(TAG, "Sign in success, id token: " + account.getIdToken().substring(0, 10) + "...");
                 callback.onSuccess(account.getIdToken(), account);
             } else {
+                Log.w(TAG, "Sign in failed: account or token is null");
                 callback.onFailure("アカウント情報の取得に失敗しました");
             }
         } catch (ApiException e) {
-            Log.w(TAG, "Google sign in failed", e);
+            Log.w(TAG, "Google sign in failed: " + e.getStatusCode() + ", " + e.getMessage(), e);
             callback.onFailure("Google認証に失敗しました: " + e.getStatusCode());
+        } catch (Exception e) {
+            Log.e(TAG, "Unexpected error in sign in handling", e);
+            callback.onFailure("認証処理中に予期せぬエラーが発生しました: " + e.getMessage());
         }
     }
 

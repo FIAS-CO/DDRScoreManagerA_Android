@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -170,6 +171,7 @@ public class FlareSkillNote extends Activity {
         if (requestCode == 9001) {
             hideProgressDialog();
             if (resultCode == RESULT_OK && data != null) {
+                Log.d("FlareSkillNote", "Sign-in result data: " + data);
                 googleAuthManager.handleSignInResult(data);
             } else {
                 showMessage(getString(R.string.flarenote_google_auth_cancelled));
