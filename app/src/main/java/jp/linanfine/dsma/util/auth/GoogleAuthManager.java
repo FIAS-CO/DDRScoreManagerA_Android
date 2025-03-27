@@ -30,9 +30,10 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class GoogleAuthManager {
+    public static final int RC_SIGN_IN = 9001;
+
     private static final String TAG = "GoogleAuthManager";
     private static final String BASE_URL = "https://fnapi.fia-s.com/api";
-    private static final int RC_SIGN_IN = 9001;
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     private static GoogleAuthManager instance;

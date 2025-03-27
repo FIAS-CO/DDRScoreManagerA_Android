@@ -168,7 +168,7 @@ public class FlareSkillNote extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
 
         // Google認証の結果を処理
-        if (requestCode == 9001) {
+        if (requestCode == GoogleAuthManager.RC_SIGN_IN) {
             hideProgressDialog();
             if (resultCode == RESULT_OK && data != null) {
                 Log.d("FlareSkillNote", "Sign-in result data: " + data);
