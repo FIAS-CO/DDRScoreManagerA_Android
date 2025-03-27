@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jp.linanfine.dsma"
     android:versionCode="156"
-    android:versionName="0.156.24101801" >
+    android:versionName="0.156.24101801">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -12,26 +12,28 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/strings_global____app_name"
-        android:theme="@style/AppTheme"
-        android:networkSecurityConfig="@xml/network_security_config">
-        
-        <meta-data android:name="com.google.android.gms.version"
-        android:value="@integer/google_play_services_version" />
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
         <!-- product app ID: ca-app-pub-8151928728657048~8053892759 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-8151928728657048~8053892759"/>
+            android:value="ca-app-pub-8151928728657048~8053892759" />
 
-        <activity android:name="com.google.android.gms.ads.AdActivity"
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
 
         <activity
             android:name="jp.linanfine.dsma.activity.CategorySelect"
-            android:label="@string/strings_global____app_name"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/strings_global____app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -39,71 +41,54 @@
         </activity>
         <activity
             android:name="jp.linanfine.dsma.activity.ScoreList"
-            android:label="@string/strings_global____app_name" >
-        </activity>
+            android:label="@string/strings_global____app_name" />
         <activity
             android:name="jp.linanfine.dsma.activity.ScoreEdit"
-            android:label="@string/strings_global____app_name" >
-        </activity>
+            android:label="@string/strings_global____app_name" />
         <activity
             android:name="jp.linanfine.dsma.activity.FilterSetting"
-            android:label="@string/strings_global____app_name" >
-        </activity>
+            android:label="@string/strings_global____app_name" />
         <activity
             android:name="jp.linanfine.dsma.activity.SortSetting"
-            android:label="@string/strings_global____app_name" >
-        </activity>
+            android:label="@string/strings_global____app_name" />
         <activity
             android:name="jp.linanfine.dsma.activity.GlobalSetting"
-            android:label="@string/strings_global____app_name" >
-        </activity>
+            android:label="@string/strings_global____app_name" />
         <activity
             android:name="jp.linanfine.dsma.activity.TextSizeSettingDefaultViews"
-            android:label="@string/strings_global____app_name" >
-        </activity>
+            android:label="@string/strings_global____app_name" />
         <activity
             android:name="jp.linanfine.dsma.activity.ManageRivals"
-            android:label="@string/strings_global____app_name" >
-        </activity>
+            android:label="@string/strings_global____app_name" />
         <activity
             android:name="jp.linanfine.dsma.activity.GateLogin"
-            android:label="@string/strings_global____app_name" >
-        </activity>
+            android:label="@string/strings_global____app_name" />
         <activity
             android:name="jp.linanfine.dsma.activity.GateLoginManually"
-            android:label="@string/strings_global____app_name" >
-        </activity>
+            android:label="@string/strings_global____app_name" />
         <activity
             android:name="jp.linanfine.dsma.activity.StatusActivity"
-            android:label="@string/strings_global____app_name" >
-        </activity>
+            android:label="@string/strings_global____app_name" />
         <activity
             android:name="jp.linanfine.dsma.activity.StatisticsTable"
-            android:label="@string/strings_global____app_name" >
-        </activity>
+            android:label="@string/strings_global____app_name" />
         <activity
             android:name="jp.linanfine.dsma.activity.DDRSA"
-            android:label="@string/strings_global____app_name" >
-        </activity>
+            android:label="@string/strings_global____app_name" />
         <activity
             android:name="jp.linanfine.dsma.activity.CopyFormatList"
-            android:label="@string/strings_global____app_name" >
-        </activity>
-        <activity
-            android:name="jp.linanfine.dsma.activity.SongMemo">
-        </activity>
-        <activity
-            android:name="jp.linanfine.dsma.activity.FlareSkillNote">
-        </activity>
+            android:label="@string/strings_global____app_name" />
+        <activity android:name="jp.linanfine.dsma.activity.SongMemo" />
+        <activity android:name="jp.linanfine.dsma.activity.FlareSkillNote" />
         <activity
             android:name="jp.linanfine.dsma.activity.ScoreDataResponser"
-            android:label="DDR Score Manager A"
-            android:exported="true">
+            android:exported="true"
+            android:label="DDR Score Manager A">
             <intent-filter>
                 <action android:name="jp.linanfine.dsma.GET_SCORE_DATA" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        </application>
+    </application>
 
 </manifest>
