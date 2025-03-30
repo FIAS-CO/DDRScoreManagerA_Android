@@ -38,8 +38,11 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.ConnectionResult;
 
 public class FlareSkillNote extends Activity {
+    private String TAG = "FlareSkillNote";
     // メインViewFlipper（未登録/登録済み画面切替）
     private ViewFlipper viewFlipper;
     // Google認証ボタン切替用ViewFlipper
@@ -83,6 +86,17 @@ public class FlareSkillNote extends Activity {
         // ViewFlipperの初期化
         viewFlipper = findViewById(R.id.viewFlipper);
         googleButtonsFlipper = findViewById(R.id.googleButtonsFlipper);
+
+        // Google Play Services の状態確認コードを追加
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            Log.e(TAG, "Google Play Services not available: " + resultCode);
+            // ユーザーに通知
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                apiAvailability.getErrorDialog(this, resultCode, 9000).show();
+            }
+        }
 
         // 共通
         client = new OkHttpClient();
@@ -167,11 +181,19 @@ public class FlareSkillNote extends Activity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        // ここにデバッグログを追加（TAGを使用）
+        Log.d(TAG, "onActivityResult: requestCode=" + requestCode + ", resultCode=" + resultCode);
+        if (data != null) {
+            Log.d(TAG, "Intent data: " + data.toString());
+        } else {
+            Log.d(TAG, "Intent data is null");
+        }
+
         // Google認証の結果を処理
         if (requestCode == GoogleAuthManager.RC_SIGN_IN) {
             hideProgressDialog();
             if (resultCode == RESULT_OK && data != null) {
-                Log.d("FlareSkillNote", "Sign-in result data: " + data);
+                Log.d(TAG, "Sign-in result data: " + data);
                 googleAuthManager.handleSignInResult(data);
             } else {
                 showMessage(getString(R.string.flarenote_google_auth_cancelled));

@@ -55,6 +55,7 @@ public class GoogleAuthManager {
 
     // Googleサインインクライアントの初期化
     public void initialize(Context context) {
+        Log.d(TAG, "Using Google Client ID: " + BuildConfig.GOOGLE_CLIENT_ID);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(BuildConfig.GOOGLE_CLIENT_ID)
                 .requestEmail()
@@ -66,15 +67,25 @@ public class GoogleAuthManager {
     // Googleサインインを開始
     public void signIn(Activity activity, GoogleAuthCallback callback) {
         this.callback = callback;
+        Log.d(TAG, "Starting Google Sign In");
         Intent signInIntent = googleSignInClient.getSignInIntent();
+        Log.d(TAG, "Created sign in intent: " + signInIntent);
         activity.startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    // Googleサインイン結果を処理
     public void handleSignInResult(Intent data) {
         try {
             Log.d(TAG, "Handling sign in result...");
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+
+            // 追加デバッグログ（TAGを使用）
+            if (task.isSuccessful()) {
+                Log.d(TAG, "Task is successful");
+            } else {
+                Exception e = task.getException();
+                Log.e(TAG, "Task failed with exception: " + (e != null ? e.getMessage() : "null"));
+            }
+
             GoogleSignInAccount account = task.getResult(ApiException.class);
             if (account != null && account.getIdToken() != null) {
                 Log.d(TAG, "Sign in success, id token: " + account.getIdToken().substring(0, 10) + "...");
