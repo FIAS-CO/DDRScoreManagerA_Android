@@ -83,16 +83,6 @@
             android:name="jp.linanfine.dsma.activity.FlareSkillNote"
             android:exported="true"
             android:label="@string/ddr_flarenote_title">
-            <!-- 既存の設定に以下を追加 -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <!-- OAuth 2.0リダイレクトURI -->
-                <data
-                    android:scheme="jp.linanfine.dsma"
-                    android:host="oauth2callback" />
-            </intent-filter>
         </activity>
         <activity
             android:name="jp.linanfine.dsma.activity.ScoreDataResponser"
