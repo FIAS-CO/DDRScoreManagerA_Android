@@ -1,344 +1,299 @@
-package jp.linanfine.dsma.util.auth;
+package jp.linanfine.dsma.util.auth
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.util.Log;
+import android.content.Context
+import android.content.SharedPreferences
+import android.util.Log
+import androidx.credentials.CredentialManager
+import androidx.credentials.CustomCredential
+import androidx.credentials.GetCredentialRequest
+import androidx.credentials.exceptions.GetCredentialException
+import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption
+import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
+import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
+import jp.linanfine.dsma.BuildConfig
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import org.json.JSONException
+import org.json.JSONObject
+import java.io.IOException
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
 
-import androidx.annotation.NonNull;
+class GoogleAuthManager private constructor() {
+    companion object {
+        private const val TAG = "GoogleAuthManager"
+        private const val BASE_URL = "https://fnapi.fia-s.com/api"
+        private val JSON = "application/json; charset=utf-8".toMediaType()
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInStatusCodes;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+        @Volatile
+        private var instance: GoogleAuthManager? = null
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-
-import jp.linanfine.dsma.R;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-
-public class GoogleAuthManager {
-    private static final String TAG = "GoogleAuthManager";
-    public static final int RC_SIGN_IN = 9001;
-    private static final String BASE_URL = "https://fnapi.fia-s.com/api";
-    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-
-    private static GoogleAuthManager instance;
-    private GoogleSignInClient mGoogleSignInClient;
-    private OkHttpClient httpClient;
-    private SharedPreferences prefs;
-
-    private GoogleAuthManager() {
-        httpClient = new OkHttpClient();
-    }
-
-    public static GoogleAuthManager getInstance() {
-        if (instance == null) {
-            instance = new GoogleAuthManager();
+        fun getInstance(): GoogleAuthManager {
+            return instance ?: synchronized(this) {
+                instance ?: GoogleAuthManager().also { instance = it }
+            }
         }
-        return instance;
     }
 
-    public void init(Context context, String clientId) {
-        // Google Sign-Inの設定
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(clientId)
-                .requestEmail()
-                .build();
+    private val httpClient = OkHttpClient()
+    private lateinit var prefs: SharedPreferences
 
-        mGoogleSignInClient = GoogleSignIn.getClient(context, gso);
-        prefs = context.getSharedPreferences("FlareNotePrefs", Context.MODE_PRIVATE);
+    fun init(context: Context) {
+        prefs = context.getSharedPreferences("FlareNotePrefs", Context.MODE_PRIVATE)
     }
 
     /**
-     * Google認証を開始する
+     * Google認証を実行してIDトークンを取得
      */
-    public void startGoogleSignIn(Activity activity) {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        activity.startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-
-    /**
-     * ActivityResultの処理
-     */
-    public GoogleSignInAccount processSignInResult(Intent data) throws ApiException {
-        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+    suspend fun authenticate(context: Context): String {
         try {
-            return task.getResult(ApiException.class);
-        } catch (ApiException e) {
-            Log.e(TAG, "Google sign in failed: status code=" + e.getStatusCode() +
-                    ", message=" + e.getMessage() +
-                    ", status=" + GoogleSignInStatusCodes.getStatusCodeString(e.getStatusCode()));
-            throw e;
+            val signInWithGoogleOption = GetSignInWithGoogleOption
+                .Builder(BuildConfig.GOOGLE_CLIENT_ID)
+                .build()
+
+            val credentialManager = CredentialManager.create(context)
+            val request = GetCredentialRequest.Builder()
+                .addCredentialOption(signInWithGoogleOption)
+                .build()
+
+            val result = credentialManager.getCredential(
+                request = request,
+                context = context
+            )
+
+            val credential = result.credential
+
+            return when (credential) {
+                is CustomCredential -> {
+                    if (credential.type == GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) {
+                        try {
+                            val googleIdTokenCredential = GoogleIdTokenCredential
+                                .createFrom(credential.data)
+                            googleIdTokenCredential.idToken
+                        } catch (e: GoogleIdTokenParsingException) {
+                            Log.e(TAG, "IDトークン解析エラー", e)
+                            throw IOException("Googleトークン解析エラー: ${e.message}")
+                        }
+                    } else {
+                        Log.e(TAG, "不明な認証情報タイプ: ${credential.type}")
+                        throw IOException("不明な認証情報タイプ")
+                    }
+                }
+                else -> {
+                    Log.e(TAG, "想定外の認証情報: ${credential.javaClass.simpleName}")
+                    throw IOException("想定外の認証情報タイプ")
+                }
+            }
+        } catch (e: GetCredentialException) {
+            Log.e(TAG, "Google認証エラー", e)
+            throw IOException("Google認証エラー: ${e.message}")
         }
     }
+
+    /**
+     * Google認証でユーザーを検索する
+     */
+    suspend fun findUserWithGoogle(context: Context): FindUserResult {
+        val idToken = authenticate(context)
+        return findUserByGoogleToken(idToken)
+    }
+
+    /**
+     * 既存ユーザーとGoogleアカウントを連携する
+     */
+    suspend fun connectWithGoogle(context: Context, userId: String): User {
+        val idToken = authenticate(context)
+        return connectUserWithGoogle(userId, idToken)
+    }
+
     /**
      * Googleアカウントからユーザーを検索
      */
-    public void findUserByGoogleToken(String idToken, final ApiCallback<FindUserResult> callback) {
+    private suspend fun findUserByGoogleToken(idToken: String): FindUserResult = withContext(Dispatchers.IO) {
         try {
-            JSONObject requestBody = new JSONObject();
-            requestBody.put("googleToken", idToken);
+            val requestBody = JSONObject().apply {
+                put("googleToken", idToken)
+            }
 
-            Request request = new Request.Builder()
-                    .url(BASE_URL + "/auth/find-player-by-google")
-                    .post(RequestBody.create(JSON, requestBody.toString()))
-                    .build();
+            val request = Request.Builder()
+                .url("$BASE_URL/auth/find-player-by-google")
+                .post(requestBody.toString().toRequestBody(JSON))
+                .build()
 
-            httpClient.newCall(request).enqueue(new Callback() {
-                @Override
-                public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                    callback.onFailure(e.getMessage());
+            httpClient.newCall(request).execute().use { response ->
+                if (!response.isSuccessful) {
+                    throw IOException("サーバーエラー: ${response.code}")
                 }
 
-                @Override
-                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                    if (!response.isSuccessful()) {
-                        callback.onFailure("サーバーエラー: " + response.code());
-                        return;
-                    }
+                val responseBody = response.body?.string() ?: throw IOException("レスポンスボディが空です")
+                val json = JSONObject(responseBody)
 
-                    try {
-                        String responseBody = response.body().string();
-                        JSONObject json = new JSONObject(responseBody);
+                val result = FindUserResult().apply {
+                    success = json.optBoolean("success", false)
+                    found = json.optBoolean("found", false)
 
-                        FindUserResult result = new FindUserResult();
-                        result.success = json.optBoolean("success", false);
-                        result.found = json.optBoolean("found", false);
-
-                        if (result.success && result.found) {
-                            JSONObject playerJson = json.getJSONObject("player");
-                            result.player = new User(
-                                    playerJson.getString("id"),
-                                    playerJson.getString("name")
-                            );
-                        }
-
-                        callback.onSuccess(result);
-                    } catch (JSONException e) {
-                        callback.onFailure("レスポンスの解析に失敗しました: " + e.getMessage());
+                    if (success && found) {
+                        val playerJson = json.getJSONObject("player")
+                        player = User(
+                            playerJson.getString("id"),
+                            playerJson.getString("name")
+                        )
                     }
                 }
-            });
-        } catch (JSONException e) {
-            callback.onFailure("リクエストの作成に失敗しました: " + e.getMessage());
+
+                result
+            }
+        } catch (e: Exception) {
+            when (e) {
+                is JSONException -> throw IOException("リクエストまたはレスポンスの解析に失敗しました: ${e.message}")
+                else -> throw e
+            }
         }
     }
 
     /**
      * ユーザーとGoogleアカウントを紐づける
      */
-    public void connectUserWithGoogle(String userId, String idToken, final ApiCallback<User> callback) {
+    private suspend fun connectUserWithGoogle(userId: String, idToken: String): User = withContext(Dispatchers.IO) {
         try {
-            JSONObject requestBody = new JSONObject();
-            requestBody.put("playerId", userId);
-            requestBody.put("googleToken", idToken);
+            val requestBody = JSONObject().apply {
+                put("playerId", userId)
+                put("googleToken", idToken)
+            }
 
-            Request request = new Request.Builder()
-                    .url(BASE_URL + "/auth/connect-google")
-                    .post(RequestBody.create(JSON, requestBody.toString()))
-                    .build();
+            val request = Request.Builder()
+                .url("$BASE_URL/auth/connect-google")
+                .post(requestBody.toString().toRequestBody(JSON))
+                .build()
 
-            httpClient.newCall(request).enqueue(new Callback() {
-                @Override
-                public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                    callback.onFailure(e.getMessage());
+            httpClient.newCall(request).execute().use { response ->
+                if (!response.isSuccessful) {
+                    throw IOException("サーバーエラー: ${response.code}")
                 }
 
-                @Override
-                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                    if (!response.isSuccessful()) {
-                        callback.onFailure("サーバーエラー: " + response.code());
-                        return;
-                    }
+                val responseBody = response.body?.string() ?: throw IOException("レスポンスボディが空です")
+                val json = JSONObject(responseBody)
 
-                    try {
-                        String responseBody = response.body().string();
-                        JSONObject json = new JSONObject(responseBody);
-
-                        boolean success = json.optBoolean("success", false);
-                        if (success && json.has("player")) {
-                            JSONObject playerJson = json.getJSONObject("player");
-                            User user = new User(
-                                    playerJson.getString("id"),
-                                    playerJson.getString("name")
-                            );
-                            callback.onSuccess(user);
-                        } else {
-                            String error = json.optString("error", "不明なエラー");
-                            callback.onFailure(error);
-                        }
-                    } catch (JSONException e) {
-                        callback.onFailure("レスポンスの解析に失敗しました: " + e.getMessage());
-                    }
+                val success = json.optBoolean("success", false)
+                if (success && json.has("player")) {
+                    val playerJson = json.getJSONObject("player")
+                    User(
+                        playerJson.getString("id"),
+                        playerJson.getString("name")
+                    )
+                } else {
+                    val error = json.optString("error", "不明なエラー")
+                    throw IOException(error)
                 }
-            });
-        } catch (JSONException e) {
-            callback.onFailure("リクエストの作成に失敗しました: " + e.getMessage());
+            }
+        } catch (e: Exception) {
+            when (e) {
+                is JSONException -> throw IOException("リクエストまたはレスポンスの解析に失敗しました: ${e.message}")
+                else -> throw e
+            }
         }
     }
 
     /**
      * Googleアカウントとの紐づけを解除
      */
-    public void disconnectGoogle(String userId, final ApiCallback<String> callback) {
+    suspend fun disconnectGoogle(userId: String): String = withContext(Dispatchers.IO) {
         try {
-            JSONObject requestBody = new JSONObject();
-            requestBody.put("playerId", userId);
+            val requestBody = JSONObject().apply {
+                put("playerId", userId)
+            }
 
-            Request request = new Request.Builder()
-                    .url(BASE_URL + "/auth/unlink-google")
-                    .post(RequestBody.create(JSON, requestBody.toString()))
-                    .build();
+            val request = Request.Builder()
+                .url("$BASE_URL/auth/unlink-google")
+                .post(requestBody.toString().toRequestBody(JSON))
+                .build()
 
-            httpClient.newCall(request).enqueue(new Callback() {
-                @Override
-                public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                    callback.onFailure(e.getMessage());
+            httpClient.newCall(request).execute().use { response ->
+                if (!response.isSuccessful) {
+                    throw IOException("サーバーエラー: ${response.code}")
                 }
 
-                @Override
-                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                    if (!response.isSuccessful()) {
-                        callback.onFailure("サーバーエラー: " + response.code());
-                        return;
-                    }
+                val responseBody = response.body?.string() ?: throw IOException("レスポンスボディが空です")
+                val json = JSONObject(responseBody)
 
-                    try {
-                        String responseBody = response.body().string();
-                        JSONObject json = new JSONObject(responseBody);
-
-                        boolean success = json.optBoolean("success", false);
-                        if (success) {
-                            String message = json.optString("message", "Google連携を解除しました");
-                            callback.onSuccess(message);
-                        } else {
-                            String error = json.optString("error", "不明なエラー");
-                            callback.onFailure(error);
-                        }
-                    } catch (JSONException e) {
-                        callback.onFailure("レスポンスの解析に失敗しました: " + e.getMessage());
-                    }
+                val success = json.optBoolean("success", false)
+                if (success) {
+                    json.optString("message", "Google連携を解除しました")
+                } else {
+                    val error = json.optString("error", "不明なエラー")
+                    throw IOException(error)
                 }
-            });
-        } catch (JSONException e) {
-            callback.onFailure("リクエストの作成に失敗しました: " + e.getMessage());
+            }
+        } catch (e: Exception) {
+            when (e) {
+                is JSONException -> throw IOException("リクエストまたはレスポンスの解析に失敗しました: ${e.message}")
+                else -> throw e
+            }
         }
     }
 
     /**
      * サーバー上のユーザー状態を検証
      */
-    public void validateUser(String userId, final ApiCallback<UserValidationResult> callback) {
+    suspend fun validateUser(userId: String): UserValidationResult = withContext(Dispatchers.IO) {
         try {
-            JSONObject requestBody = new JSONObject();
-            requestBody.put("id", userId);
+            val requestBody = JSONObject().apply {
+                put("id", userId)
+            }
 
-            Request request = new Request.Builder()
-                    .url(BASE_URL + "/validate-user")
-                    .post(RequestBody.create(JSON, requestBody.toString()))
-                    .build();
+            val request = Request.Builder()
+                .url("$BASE_URL/validate-user")
+                .post(requestBody.toString().toRequestBody(JSON))
+                .build()
 
-            httpClient.newCall(request).enqueue(new Callback() {
-                @Override
-                public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                    callback.onFailure(e.getMessage());
+            httpClient.newCall(request).execute().use { response ->
+                if (!response.isSuccessful) {
+                    throw IOException("サーバーエラー: ${response.code}")
                 }
 
-                @Override
-                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                    if (!response.isSuccessful()) {
-                        callback.onFailure("サーバーエラー: " + response.code());
-                        return;
-                    }
+                val responseBody = response.body?.string() ?: throw IOException("レスポンスボディが空です")
+                val json = JSONObject(responseBody)
 
-                    try {
-                        String responseBody = response.body().string();
-                        JSONObject json = new JSONObject(responseBody);
-
-                        UserValidationResult result = new UserValidationResult();
-                        result.exists = json.optBoolean("exists", false);
-                        result.isGoogleLinked = json.optBoolean("isGoogleLinked", false);
-
-                        callback.onSuccess(result);
-                    } catch (JSONException e) {
-                        callback.onFailure("レスポンスの解析に失敗しました: " + e.getMessage());
-                    }
+                UserValidationResult().apply {
+                    exists = json.optBoolean("exists", false)
+                    isGoogleLinked = json.optBoolean("isGoogleLinked", false)
                 }
-            });
-        } catch (JSONException e) {
-            callback.onFailure("リクエストの作成に失敗しました: " + e.getMessage());
+            }
+        } catch (e: Exception) {
+            when (e) {
+                is JSONException -> throw IOException("リクエストまたはレスポンスの解析に失敗しました: ${e.message}")
+                else -> throw e
+            }
         }
     }
 
     /**
      * Google連携状態をローカルに保存
      */
-    public void saveGoogleLinkStatus(String userId, boolean isLinked) {
-        prefs.edit().putBoolean("google_linked_" + userId, isLinked).apply();
+    fun saveGoogleLinkStatus(userId: String, isLinked: Boolean) {
+        prefs.edit().putBoolean("google_linked_$userId", isLinked).apply()
     }
 
     /**
      * Google連携状態をローカルから取得
      */
-    public boolean getGoogleLinkStatus(String userId) {
-        return prefs.getBoolean("google_linked_" + userId, false);
-    }
-
-    /**
-     * サインアウト
-     */
-    public void signOut(Context context, OnCompleteListener<Void> listener) {
-        mGoogleSignInClient.signOut().addOnCompleteListener(listener);
+    fun getGoogleLinkStatus(userId: String): Boolean {
+        return prefs.getBoolean("google_linked_$userId", false)
     }
 
     // 内部クラス定義
+    data class User(val id: String, val name: String)
 
-    public static class User {
-        private String id;
-        private String name;
-
-        public User(String id, String name) {
-            this.id = id;
-            this.name = name;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public String getName() {
-            return name;
-        }
+    class FindUserResult {
+        var success: Boolean = false
+        var found: Boolean = false
+        var player: User? = null
     }
 
-    public static class FindUserResult {
-        public boolean success;
-        public boolean found;
-        public User player;
-    }
-
-    public static class UserValidationResult {
-        public boolean exists;
-        public boolean isGoogleLinked;
-    }
-
-    public interface ApiCallback<T> {
-        void onSuccess(T result);
-        void onFailure(String errorMessage);
+    class UserValidationResult {
+        var exists: Boolean = false
+        var isGoogleLinked: Boolean = false
     }
 }
