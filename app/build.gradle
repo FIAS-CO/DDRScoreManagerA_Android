@@ -1,20 +1,21 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application' // 'apply plugin:' を 'id' に置き換え
+    id 'org.jetbrains.kotlin.android' // Kotlin プラグインを追加
+}
 
 android {
     namespace 'jp.linanfine.dsma'
-    compileSdk  34
+    compileSdk  35
     defaultConfig {
         applicationId "jp.linanfine.dsma"
         minSdkVersion 24
-        targetSdk 34
-        //multiDexEnabled true
+        targetSdk 35
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
     }
-    //buildToolsVersion "25.0.2"
     buildTypes {
         release {
             minifyEnabled false
@@ -37,6 +38,14 @@ android {
 
     testOptions {
         unitTests.includeAndroidResources = true
+    }
+    sourceSets {
+        main {
+            java.srcDirs += 'src/main/kotlin'
+        }
+    }
+    kotlinOptions {
+        jvmTarget = "1.8" // Kotlin の JVM ターゲットバージョンを 1.8 に設定
     }
 }
 

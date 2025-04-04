@@ -12,6 +12,7 @@ import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import jp.linanfine.dsma.BuildConfig
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.json.JSONException
 import org.json.JSONObject
@@ -100,12 +101,24 @@ class GoogleAuthManager private constructor() {
         return findUserByGoogleToken(idToken)
     }
 
+    fun findUserWithGoogleSync(context: Context): FindUserResult {
+        return runBlocking {
+            findUserWithGoogle(context)
+        }
+    }
+
     /**
      * 既存ユーザーとGoogleアカウントを連携する
      */
     suspend fun connectWithGoogle(context: Context, userId: String): User {
         val idToken = authenticate(context)
         return connectUserWithGoogle(userId, idToken)
+    }
+
+    fun connectWithGoogleSync(context: Context, userId: String): User {
+        return runBlocking {
+            connectWithGoogle(context, userId)
+        }
     }
 
     /**
@@ -234,6 +247,12 @@ class GoogleAuthManager private constructor() {
         }
     }
 
+    fun disconnectGoogleSync(userId: String): String {
+        return runBlocking {
+            disconnectGoogle(userId)
+        }
+    }
+
     /**
      * サーバー上のユーザー状態を検証
      */
@@ -266,6 +285,12 @@ class GoogleAuthManager private constructor() {
                 is JSONException -> throw IOException("リクエストまたはレスポンスの解析に失敗しました: ${e.message}")
                 else -> throw e
             }
+        }
+    }
+
+    fun validateUserSync(userId: String): UserValidationResult {
+        return runBlocking {
+            validateUser(userId)
         }
     }
 
