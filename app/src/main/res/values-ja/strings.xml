@@ -485,6 +485,9 @@ DDR SAへのエクスポート時に一部の楽曲が送信されないバグ�
     <string name="enter_username_and_press_button">ユーザーネームを入力してからボタンを押してください。</string>
     <string name="flarenote_howtouse">1. ユーザー名を登録\n2. 楽曲データを送信\n3. FlareNoteであなたのページを確認\n
     ※これはβ版機能です。もしなにか問題があればX(@sig_re)までご連絡ください。</string>
+    <string name="flarenote_googleauth_header">Googleアカウント連携機能</string>
+    <string name="flarenote_googleauth_detail">・Googleアカウントと連携すると、他の端末でも同じアカウントを使用できます\n
+        ・ユーザー登録後、「Google アカウントと連携」ボタンからアカウントを連携できます\n・次回からは「Google アカウントでログイン」でアカウントを呼び出せます</string>
     <string name="flarenote_register_button">ユーザー登録</string>
     <string name="flarenote_send_data">楽曲データ送信</string>
     <string name="flarenote_user_page">ユーザーページ</string>

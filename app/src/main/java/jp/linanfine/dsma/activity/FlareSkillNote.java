@@ -134,6 +134,23 @@ public class FlareSkillNote extends Activity {
             }
         });
 
+        // HowTo使用のトグル
+        final TextView googleAuthTitle = findViewById(R.id.googleAuthTitle);
+        final TextView googleAuthContent = findViewById(R.id.googleAuthContent);
+
+        // XML側から表示したかった
+        googleAuthTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_right, 0);
+
+        googleAuthTitle.setOnClickListener(v -> {
+            if (googleAuthContent.getVisibility() == View.VISIBLE) {
+                googleAuthContent.setVisibility(View.GONE);
+                googleAuthTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_right, 0);
+            } else {
+                googleAuthContent.setVisibility(View.VISIBLE);
+                googleAuthTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down, 0);
+            }
+        });
+
         // ユーザーデータのロード
         loadUserData();
     }

@@ -509,6 +509,9 @@ We apologize for the inconvenience, and kindly ask you to send them again.
     <string name="enter_username_and_press_button">Please enter your username and then press the button.</string>
     <string name="flarenote_howtouse">1. Register user name\n2. Send song data\n3. Check your page on FlareNote\n
     * This is a beta feature.If you encounter any issues, please contact us on X (@sig_re).</string>
+    <string name="flarenote_googleauth_header">Google Account Integration</string>
+    <string name="flarenote_googleauth_detail">• By linking your Google account, you can use the same account on different devices\n
+        • After registering, you can link your account using the \"Connect with Google Account\" button\n• On your next visit, you can use \"Login with Google Account\" to access your account</string>
     <string name="flarenote_register_button">Register User</string>
     <string name="flarenote_send_data">Send Song Data</string>
     <string name="flarenote_input_user_name" translatable="false">Input user name</string>

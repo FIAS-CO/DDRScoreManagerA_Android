@@ -408,6 +408,9 @@ DDR SA로의 내보내기 중 일부 곡이 전송되지 않는 버그를 수정
   <string name="enter_username_and_press_button">사용자 이름을 입력한 후 버튼을 눌러주세요.</string>
   <string name="flarenote_howtouse">1. 사용자 이름 등록\n2. 곡 데이터 전송\n3. FlareNote에서 당신의 페이지 확인\n
   ※이것은 베타 기능입니다.문제가 있으면 X(@sig_re)으로 연락주세요.</string>
+  <string name="flarenote_googleauth_header">Google 계정 연동 기능</string>
+  <string name="flarenote_googleauth_detail">• Google 계정과 연동하면 다른 기기에서도 동일한 계정을 사용할 수 있습니다\n
+    • 사용자 등록 후, "Google 계정과 연결\" 버튼을 통해 계정을 연동할 수 있습니다\n• 다음 방문 시에는 'Google 계정으로 로그인'으로 계정에 접근할 수 있습니다</string>
   <string name="flarenote_register_button">사용자 등록</string>
   <string name="flarenote_send_data">곡 데이터 전송</string>
   <string name="flarenote_user_page">사용자 페이지</string>
