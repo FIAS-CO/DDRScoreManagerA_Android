@@ -21,6 +21,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
+import androidx.core.content.edit
 
 class GoogleAuthManager private constructor() {
     companion object {
@@ -48,7 +49,7 @@ class GoogleAuthManager private constructor() {
     /**
      * Google認証を実行してIDトークンを取得
      */
-    suspend fun authenticate(context: Context): String {
+    private suspend fun authenticate(context: Context): String {
         try {
             val signInWithGoogleOption = GetSignInWithGoogleOption
                 .Builder(BuildConfig.GOOGLE_CLIENT_ID)
@@ -96,7 +97,7 @@ class GoogleAuthManager private constructor() {
     /**
      * Google認証でユーザーを検索する
      */
-    suspend fun findUserWithGoogle(context: Context): FindUserResult {
+    private suspend fun findUserWithGoogle(context: Context): FindUserResult {
         val idToken = authenticate(context)
         return findUserByGoogleToken(idToken)
     }
@@ -110,7 +111,7 @@ class GoogleAuthManager private constructor() {
     /**
      * 既存ユーザーとGoogleアカウントを連携する
      */
-    suspend fun connectWithGoogle(context: Context, userId: String): User {
+    private suspend fun connectWithGoogle(context: Context, userId: String): User {
         val idToken = authenticate(context)
         return connectUserWithGoogle(userId, idToken)
     }
@@ -212,7 +213,7 @@ class GoogleAuthManager private constructor() {
     /**
      * Googleアカウントとの紐づけを解除
      */
-    suspend fun disconnectGoogle(userId: String): String = withContext(Dispatchers.IO) {
+    private suspend fun disconnectGoogle(userId: String): String = withContext(Dispatchers.IO) {
         try {
             val requestBody = JSONObject().apply {
                 put("playerId", userId)
@@ -256,7 +257,7 @@ class GoogleAuthManager private constructor() {
     /**
      * サーバー上のユーザー状態を検証
      */
-    suspend fun validateUser(userId: String): UserValidationResult = withContext(Dispatchers.IO) {
+    private suspend fun validateUser(userId: String): UserValidationResult = withContext(Dispatchers.IO) {
         try {
             val requestBody = JSONObject().apply {
                 put("id", userId)
@@ -298,7 +299,7 @@ class GoogleAuthManager private constructor() {
      * Google連携状態をローカルに保存
      */
     fun saveGoogleLinkStatus(userId: String, isLinked: Boolean) {
-        prefs.edit().putBoolean("google_linked_$userId", isLinked).apply()
+        prefs.edit { putBoolean("google_linked_$userId", isLinked) }
     }
 
     /**
