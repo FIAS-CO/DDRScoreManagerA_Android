@@ -183,10 +183,6 @@ class GoogleAuthManager private constructor() {
                 .build()
 
             httpClient.newCall(request).execute().use { response ->
-                if (!response.isSuccessful) {
-                    throw IOException("サーバーエラー: ${response.code}")
-                }
-
                 val responseBody = response.body?.string() ?: throw IOException("レスポンスボディが空です")
                 val json = JSONObject(responseBody)
 
@@ -199,7 +195,14 @@ class GoogleAuthManager private constructor() {
                     )
                 } else {
                     val error = json.optString("error", "不明なエラー")
-                    throw IOException(error)
+                    val details = json.optString("details", "")
+
+                    // detailsがある場合は、errorメッセージと一緒に例外に含める
+                    if (details.isNotEmpty()) {
+                        throw IOException("$error\n詳細: $details")
+                    } else {
+                        throw IOException(error)
+                    }
                 }
             }
         } catch (e: Exception) {
