@@ -121,11 +121,16 @@ public class FlareSkillNote extends Activity {
         final TextView howToUseTitle = findViewById(R.id.howToUseTitle);
         final TextView howToUseContent = findViewById(R.id.howToUseContent);
 
+        // XML側から表示したかった
+        howToUseTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_right, 0);
+
         howToUseTitle.setOnClickListener(v -> {
             if (howToUseContent.getVisibility() == View.VISIBLE) {
                 howToUseContent.setVisibility(View.GONE);
+                howToUseTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_right, 0);
             } else {
                 howToUseContent.setVisibility(View.VISIBLE);
+                howToUseTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down, 0);
             }
         });
 

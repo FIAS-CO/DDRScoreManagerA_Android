@@ -67,6 +67,7 @@
                 android:layout_marginBottom="16dp"
                 android:elevation="4dp">
 
+                <!-- 末尾に▼とか表示してるんだけど、Javaからしか設定できずプレビューでは表示されない -->
                 <TextView
                     android:id="@+id/howToUseTitle"
                     android:layout_width="match_parent"
@@ -75,7 +76,8 @@
                     android:text="@string/flarenote_how_to_use_header"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:background="?android:attr/selectableItemBackground" />
+                    android:textColor="@color/lightgray"
+                    android:background="?android:attr/selectableItemBackground"/>
 
                 <TextView
                     android:id="@+id/howToUseContent"
@@ -83,6 +85,7 @@
                     android:layout_height="wrap_content"
                     android:padding="16dp"
                     android:visibility="gone"
+                    android:textColor="@color/lightgray"
                     android:text="@string/flarenote_howtouse" />
             </LinearLayout>
         </LinearLayout>
