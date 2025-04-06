@@ -34,10 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/flarenote_connect_with_google"
-            android:drawableStart="@drawable/ic_google"
-            android:paddingStart="16dp"
-            android:background="#4285F4"
-            android:textColor="#FFFFFF" />
+            android:drawableStart="@drawable/ic_google" />
 
         <Button
             android:id="@+id/googleDisconnectButton"
@@ -46,8 +43,7 @@
             android:text="@string/flarenote_disconnect_google"
             android:drawableStart="@drawable/ic_google"
             android:paddingStart="16dp"
-            android:background="#F44336"
-            android:textColor="#FFFFFF" />
+            android:paddingEnd="16dp" />
     </ViewFlipper>
 
     <!-- メッセージ表示エリア -->

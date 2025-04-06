@@ -8,12 +8,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/flarenote_unregistered_user"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp"
+        android:text="@string/flarenote_unregistered_user"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <!-- 通常登録フォーム -->
     <EditText
@@ -36,37 +36,35 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        android:layout_marginVertical="16dp" />
+        android:layout_marginVertical="16dp"
+        android:background="@android:color/darker_gray" />
 
     <!-- Google登録セクション -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="@string/flarenote_google_linked_user"
-        android:textSize="16sp"
-        android:textStyle="bold"
         android:textColor="@android:color/white"
-        android:layout_marginBottom="8dp" />
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/googleLoginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/flarenote_login_with_google"
         android:drawableStart="@drawable/ic_google"
-        android:paddingStart="16dp"
-        android:background="#4285F4"
-        android:textColor="#FFFFFF" />
+        android:text="@string/flarenote_login_with_google"
+        android:insetBottom="0dp" />
 
     <!-- メッセージ表示エリア -->
     <TextView
         android:id="@+id/messageTextUnregistered"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/darker_gray"
-        android:layout_marginTop="16dp"
         android:layout_marginHorizontal="4dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray"
         android:padding="16dp"
         android:textAlignment="center"
         android:textColor="@android:color/white"
@@ -75,8 +73,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        android:layout_marginVertical="16dp" />
+        android:layout_marginVertical="16dp"
+        android:background="@android:color/darker_gray" />
 
     <!-- FlareNoteトップへのリンク -->
     <Button
