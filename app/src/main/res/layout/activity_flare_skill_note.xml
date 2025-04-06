@@ -10,8 +10,25 @@
         android:id="@+id/titleBar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#003399" >
-        <!-- ヘッダー内容（略） -->
+        android:background="#003399"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/sou_icon_content_description"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#003399"
+            android:padding="10dp"
+            android:text="@string/ddr_flarenote_title"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
 
     <!-- スクロール可能な内容部分 -->
