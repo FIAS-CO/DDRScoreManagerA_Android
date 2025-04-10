@@ -517,7 +517,7 @@ We apologize for the inconvenience, and kindly ask you to send them again.
     <string name="flarenote_input_user_name" translatable="false">Input user name</string>
     <string name="flarenote_top" translatable="false">FlareNote Top</string>
     <string name="flarenote_user_page">Your page</string>
-    <string name="flarenote_delete_user">Delete User / Change Username</string>
+    <string name="flarenote_delete_user">Delete User</string>
     <string name="flarenote_how_to_use_header" translatable="false">How to Use? / 使い方</string>
     <string name="flarenote_network_error">"NetworkError: %1$s"</string>
     <string name="flarenote_user_deleted">User %1$s deleted.</string>
@@ -561,4 +561,5 @@ We apologize for the inconvenience, and kindly ask you to send them again.
     <string name="flarenote_google_auth_cancelled">Google Authentication Cancelled</string>
     <string name="flarenote_user_not_registered">User Not Registered</string>
     <string name="flarenote_google_auth_error_detail">Google Authentication Error: %1$s</string>
+    <string name="flarenote_json_error_contact_developer">An error has occurred. Please contact the developer (X:@sig_re).</string>
 </resources>

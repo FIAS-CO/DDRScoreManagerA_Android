@@ -491,7 +491,7 @@ DDR SAへのエクスポート時に一部の楽曲が送信されないバグ�
     <string name="flarenote_register_button">ユーザー登録</string>
     <string name="flarenote_send_data">楽曲データ送信</string>
     <string name="flarenote_user_page">ユーザーページ</string>
-    <string name="flarenote_delete_user">ユーザー削除/ユーザー名変更</string>
+    <string name="flarenote_delete_user">ユーザー削除</string>
     <string name="flarenote_network_error">"ネットワークエラー: %1$s"</string>
     <string name="flarenote_user_deleted">ユーザー \'%1$s\' を削除しました。</string>
     <string name="flarenote_success_create_user">ユーザー \'%1$s\' が正常に作成されました。</string>
@@ -531,4 +531,5 @@ DDR SAへのエクスポート時に一部の楽曲が送信されないバグ�
     <string name="flarenote_user_not_registered">ユーザーが登録されていません</string>
     <string name="flarenote_google_auth_error_detail">Google認証エラー: %1$s</string>
     <string name="google_auth_trying_to_connect">Google連携を試行中です…</string>
+    <string name="flarenote_json_error_contact_developer">エラーが発生しました。開発者(@sig_re)までご連絡ください。</string>
 </resources>

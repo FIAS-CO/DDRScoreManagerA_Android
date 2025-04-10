@@ -414,7 +414,7 @@ DDR SA로의 내보내기 중 일부 곡이 전송되지 않는 버그를 수정
   <string name="flarenote_register_button">사용자 등록</string>
   <string name="flarenote_send_data">곡 데이터 전송</string>
   <string name="flarenote_user_page">사용자 페이지</string>
-  <string name="flarenote_delete_user">사용자 삭제 / 사용자 이름 변경</string>
+  <string name="flarenote_delete_user">사용자 삭제</string>
   <string name="flarenote_network_error">"NetworkError: %1$s"</string>
   <string name="flarenote_user_deleted">사용자 %1$s 가 삭제되었습니다.</string>
   <string name="flarenote_success_create_user">사용자  %1$s 가 정상적으로 생성되었습니다.</string>
@@ -455,4 +455,5 @@ DDR SA로의 내보내기 중 일부 곡이 전송되지 않는 버그를 수정
   <string name="flarenote_user_not_registered">사용자가 등록되지 않았습니다</string>
   <string name="flarenote_google_auth_error_detail">Google 인증 오류: %1$s</string>
   <string name="google_auth_trying_to_connect">Google 연결을 시도하는 중입니다…</string>
+  <string name="flarenote_json_error_contact_developer">오류가 발생했습니다. 개발자(@sig_re)에게 문의하십시오.</string>
 </resources>

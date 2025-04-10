@@ -5,9 +5,11 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -175,11 +177,15 @@ public class FlareSkillNote extends Activity {
         try {
             jsonBody.put("name", username);
         } catch (JSONException e) {
-            e.printStackTrace();
+            // メッセージをセット
+            setMessage(getString(R.string.flarenote_json_error_contact_developer));
+
+            // スタックトレースをログに出力
+            Log.e("FlareSkillNote", "JSONException occurred while creating JSON body. Contact developer.", e);
         }
 
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-        RequestBody body = RequestBody.create(JSON, jsonBody.toString());
+        RequestBody body = RequestBody.create(jsonBody.toString(), JSON);
         Request request = new Request.Builder()
                 .url("https://fnapi.fia-s.com/api/create-user")
                 .post(body)
@@ -187,7 +193,7 @@ public class FlareSkillNote extends Activity {
 
         client.newCall(request).enqueue(new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 runOnUiThread(() -> {
                     setMessage(getString(R.string.flarenote_network_error, e.getMessage()));
                     setLoading(false);
@@ -195,7 +201,7 @@ public class FlareSkillNote extends Activity {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 assert response.body() != null;
                 final String responseData = response.body().string();
                 runOnUiThread(() -> {
@@ -248,11 +254,15 @@ public class FlareSkillNote extends Activity {
         try {
             jsonBody.put("id", id);
         } catch (JSONException e) {
-            e.printStackTrace();
+            // メッセージをセット
+            setMessage(getString(R.string.flarenote_json_error_contact_developer));
+
+            // スタックトレースをログに出力
+            Log.e("FlareSkillNote", "JSONException occurred while creating JSON body. Contact developer.", e);
         }
 
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-        RequestBody body = RequestBody.create(JSON, jsonBody.toString());
+        RequestBody body = RequestBody.create(jsonBody.toString(), JSON);
         Request request = new Request.Builder()
                 .url("https://fnapi.fia-s.com/api/delete-user")
                 .post(body)
@@ -260,7 +270,7 @@ public class FlareSkillNote extends Activity {
 
         client.newCall(request).enqueue(new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 runOnUiThread(() -> {
                     setMessage(getString(R.string.flarenote_network_error, e.getMessage()));
                     setLoading(false);
@@ -268,7 +278,7 @@ public class FlareSkillNote extends Activity {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 assert response.body() != null;
                 final String responseData = response.body().string();
                 runOnUiThread(() -> {
@@ -323,7 +333,7 @@ public class FlareSkillNote extends Activity {
         String json = new TopFlareSkillProcessor().processTopFlareSkills(id, musicScoreMap, musicDataMap);
 
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-        RequestBody body = RequestBody.create(JSON, json);
+        RequestBody body = RequestBody.create(json, JSON);
         Request request = new Request.Builder()
                 .url("https://fnapi.fia-s.com/api/player-scores")
                 .post(body)
@@ -331,7 +341,7 @@ public class FlareSkillNote extends Activity {
 
         client.newCall(request).enqueue(new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 runOnUiThread(() -> {
                     setMessage(getString(R.string.flarenote_network_error, e.getMessage()));
                     setLoading(false);
@@ -339,7 +349,7 @@ public class FlareSkillNote extends Activity {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 assert response.body() != null;
                 final String responseData = response.body().string();
                 runOnUiThread(() -> {
@@ -538,9 +548,7 @@ public class FlareSkillNote extends Activity {
                     }
                 });
             } catch (Exception e) {
-                runOnUiThread(() -> {
-                    setLoading(false);
-                });
+                runOnUiThread(() -> setLoading(false));
             }
         }).start();
     }
