@@ -517,7 +517,7 @@ DDR SAへのエクスポート時に一部の楽曲が送信されないバグ�
     <string name="flarenote_login_with_google">Google アカウントでログイン</string>
     <string name="flarenote_disconnect_google">Google アカウント連携を解除</string>
     <string name="flarenote_connect_with_google">Google アカウントと連携</string>
-    <string name="flarenote_username">ユーザー名</string>
+    <string name="flarenote_username">ユーザー名: %1$s</string>
     <string name="flarenote_processing">処理中…</string>
     <string name="flarenote_confirm_deletion">アカウント削除の確認</string>
     <string name="flarenote_confirm_deletion_message">本当に「%1$s」のアカウントを削除しますか？この操作は取り消せません。</string>
@@ -530,4 +530,5 @@ DDR SAへのエクスポート時に一部の楽曲が送信されないバグ�
     <string name="flarenote_google_auth_cancelled">Google認証がキャンセルされました</string>
     <string name="flarenote_user_not_registered">ユーザーが登録されていません</string>
     <string name="flarenote_google_auth_error_detail">Google認証エラー: %1$s</string>
+    <string name="google_auth_trying_to_connect">Google連携を試行中です…</string>
 </resources>

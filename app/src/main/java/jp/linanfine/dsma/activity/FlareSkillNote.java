@@ -192,7 +192,7 @@ public class FlareSkillNote extends Activity {
         if (isUserRegistered) {
             // 登録済みユーザー用UI表示
             viewFlipper.setDisplayedChild(1);
-            userNameDisplay.setText(getString(R.string.flarenote_username) + ": " + userName);
+            userNameDisplay.setText(getString(R.string.flarenote_username, userName));
 
             // Google連携状態に応じたボタン表示
             googleButtonsFlipper.setDisplayedChild(isGoogleLinked ? 1 : 0);
@@ -458,9 +458,7 @@ public class FlareSkillNote extends Activity {
                 // メソッド名を確認して正しいメソッドを呼び出す
                 runOnUiThread(() -> {
                     try {
-                        // 非同期メソッドを呼び出す代わりに、実装を簡略化
-                        // 本来はgoogleAuthManagerの正しいメソッドを呼び出す
-                        setMessage("Google連携を試行中です...");
+                        setMessage(getString(R.string.google_auth_trying_to_connect));
 
                         // 仮実装（実際にはこれがJava側から呼べるメソッドで置き換える）
                         new Thread(() -> {
