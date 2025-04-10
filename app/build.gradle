@@ -23,7 +23,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-            buildConfigField("String", "GOOGLE_CLIENT_ID", "\"709569493981-cq5noeg9q5p7uopcr45plep9it9utbd5.apps.googleusercontent.com\"")
+            buildConfigField("String", "GOOGLE_CLIENT_ID", "\"709569493981-c86rj1eve11mikrje2166e4m59jvs5o1.apps.googleusercontent.com\"")
         }
         debug {
             buildConfigField("String", "GOOGLE_CLIENT_ID", "\"709569493981-c86rj1eve11mikrje2166e4m59jvs5o1.apps.googleusercontent.com\"")
