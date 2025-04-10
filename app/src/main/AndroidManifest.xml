@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jp.linanfine.dsma"
-    android:versionCode="156"
-    android:versionName="0.156.24101801">
+    android:versionCode="157"
+    android:versionName="0.157.25041001">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

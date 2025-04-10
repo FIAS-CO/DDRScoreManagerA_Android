@@ -2,9 +2,9 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.156.24101801] Update:\n
-DDR SA로의 내보내기 중 일부 곡이 전송되지 않는 버그를 수정했습니다.\n
-불편을 끼쳐 드려 죄송합니다. 다시 전송해 주시기 바랍니다.
+[0.157.25041001] Update:\n
+・FlareNoteUploader에서 Google 계정과 FlareNote 계정의 연동이 가능해졌습니다\n
+・연동을 통해 기기 변경이나 여러 기기에서도 동일한 FlareNote 계정을 쉽게 이용할 수 있습니다
     </string>
 
   <string name="strings_global____app_name">DDR Score Manager A</string>

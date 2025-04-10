@@ -2,9 +2,9 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.156.24101801] Update:\n
-We have fixed a bug where some songs were not sent during export to DDR SA. \n
-We apologize for the inconvenience, and kindly ask you to send them again.
+[0.157.25041001] Update:\n
+・Google account integration with FlareNote accounts is now available in FlareNoteUploader\n
+・This integration allows you to easily use the same FlareNote account across multiple devices or when changing devices
     </string>
     
     <string name="strings_global____app_name">DDR Score Manager A</string>
