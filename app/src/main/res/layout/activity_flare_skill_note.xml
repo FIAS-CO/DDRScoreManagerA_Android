@@ -51,10 +51,14 @@
                 android:layout_height="wrap_content">
 
                 <!-- 未登録ユーザー向けレイアウトをインクルード -->
-                <include layout="@layout/view_flare_uploader_unregistered_user" />
+                <include
+                    android:id="@+id/unregisteredUserView"
+                    layout="@layout/view_flare_uploader_unregistered_user" />
 
                 <!-- 登録済みユーザー向けレイアウトをインクルード -->
-                <include layout="@layout/view_flare_uploader_registered_user" />
+                <include
+                    android:id="@+id/registeredUserView"
+                    layout="@layout/view_flare_uploader_registered_user" />
             </ViewFlipper>
 
             <!-- 共通のHow to Useセクション - 状態に関係なく常に表示 -->

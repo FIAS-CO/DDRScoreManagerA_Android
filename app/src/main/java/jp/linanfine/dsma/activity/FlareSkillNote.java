@@ -7,10 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.ViewFlipper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,6 +15,9 @@ import java.io.IOException;
 import java.util.TreeMap;
 
 import jp.linanfine.dsma.R;
+import jp.linanfine.dsma.databinding.ActivityFlareSkillNoteBinding;
+import jp.linanfine.dsma.databinding.ViewFlareUploaderRegisteredUserBinding;
+import jp.linanfine.dsma.databinding.ViewFlareUploaderUnregisteredUserBinding;
 import jp.linanfine.dsma.util.auth.GoogleAuthManager;
 import jp.linanfine.dsma.util.common.ActivitySetting;
 import jp.linanfine.dsma.util.file.FileReader;
@@ -35,111 +34,90 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class FlareSkillNote extends Activity {
-    private EditText usernameEditText;
-    private Button goToUserSiteButton;
+    private ActivityFlareSkillNoteBinding binding;
+
+    private ViewFlareUploaderUnregisteredUserBinding unregisteredBinding;
+    private ViewFlareUploaderRegisteredUserBinding registeredBinding;
+
     private OkHttpClient client;
-    private ViewFlipper viewFlipper;
-
-    private TextView messageTextUnregistered;
-
-    // 登録済みユーザー向けUI要素
-    private TextView userNameDisplay;
-    private ViewFlipper googleButtonsFlipper;
-    private TextView messageTextRegistered;
+    private GoogleAuthManager googleAuthManager;
 
     private boolean isUserRegistered = false;
     private boolean isGoogleLinked = false;
     private String userId = "";
     private String userName = "";
 
-    private GoogleAuthManager googleAuthManager;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        ActivitySetting.setFullScreen(this);
+
+        // ViewBindingの初期化
+        binding = ActivityFlareSkillNoteBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        unregisteredBinding = binding.unregisteredUserView;
+        registeredBinding = binding.registeredUserView;
+
+        initialize();
+    }
 
     public void initialize() {
-        // ViewFlipper設定
-        viewFlipper = findViewById(R.id.viewFlipper);
-
-        // 共通UI要素
         client = new OkHttpClient();
-
-        // 未登録ユーザー向けUI要素
-        usernameEditText = findViewById(R.id.playerName);
-        Button registerButton = findViewById(R.id.registerButton);
-        // 未登録ユーザー向けUI要素
-        Button googleLoginButton = findViewById(R.id.googleLoginButton);
-        messageTextUnregistered = findViewById(R.id.messageTextUnregistered);
-
-        // 登録済みユーザー向けUI要素
-        userNameDisplay = findViewById(R.id.userNameDisplay);
-        Button sendDataButton = findViewById(R.id.sendDataButton);
-        Button deleteUserButton = findViewById(R.id.deleteUserButton);
-        googleButtonsFlipper = findViewById(R.id.googleButtonsFlipper);
-        Button googleConnectButton = findViewById(R.id.googleConnectButton);
-        Button googleDisconnectButton = findViewById(R.id.googleDisconnectButton);
-        messageTextRegistered = findViewById(R.id.messageTextRegistered);
-        Button goToFlareNoteTopRegistered = findViewById(R.id.goToFlareNoteTopRegistered);
-        goToUserSiteButton = findViewById(R.id.goToFlareNoteUserSite);
 
         // GoogleAuthManagerのインスタンス化とinitialize
         googleAuthManager = GoogleAuthManager.Companion.getInstance();
         googleAuthManager.init(this);
 
         // ボタンイベントの設定
-        registerButton.setOnClickListener(v -> {
-            createUser(usernameEditText.getText().toString());
-        });
-
-        findViewById(R.id.deleteUserButton).setOnClickListener(v -> showDeleteConfirmation());
-
-        sendDataButton.setOnClickListener(v -> sendData());
+        unregisteredBinding.registerButton.setOnClickListener(v ->
+                createUser(unregisteredBinding.playerName.getText().toString()));
 
         // GoogleLoginボタン（未登録ユーザー用）
-        googleLoginButton.setOnClickListener(v -> findUserWithGoogle());
-
-        // Google連携・解除ボタン（登録済みユーザー用）
-        googleConnectButton.setOnClickListener(v -> linkGoogleAccount());
-        googleDisconnectButton.setOnClickListener(v -> unlinkGoogleAccount());
+        unregisteredBinding.googleLoginButton.setOnClickListener(v -> findUserWithGoogle());
 
         // 「FlareNote TOP」ボタン
-        findViewById(R.id.goToFlareNoteTopUnregistered).setOnClickListener(v ->
+        unregisteredBinding.goToFlareNoteTopUnregistered.setOnClickListener(v ->
                 openUrl("https://flarenote.fia-s.com"));
-        goToFlareNoteTopRegistered.setOnClickListener(v ->
+
+        registeredBinding.deleteUserButton.setOnClickListener(v -> showDeleteConfirmation());
+
+        registeredBinding.sendDataButton.setOnClickListener(v -> sendData());
+
+        // Google連携・解除ボタン（登録済みユーザー用）
+        registeredBinding.googleConnectButton.setOnClickListener(v -> linkGoogleAccount());
+        registeredBinding.googleDisconnectButton.setOnClickListener(v -> unlinkGoogleAccount());
+
+        registeredBinding.goToFlareNoteTopRegistered.setOnClickListener(v ->
                 openUrl("https://flarenote.fia-s.com"));
 
         // 「ユーザーページ」ボタン
-        goToUserSiteButton.setOnClickListener(v ->
+        registeredBinding.goToFlareNoteUserSite.setOnClickListener(v ->
                 openUrl("https://flarenote.fia-s.com/personal-skill/" + userName));
 
-        // HowTo使用のトグル
-        final TextView howToUseTitle = findViewById(R.id.howToUseTitle);
-        final TextView howToUseContent = findViewById(R.id.howToUseContent);
-
         // XML側から表示したかった
-        howToUseTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_right, 0);
+        binding.howToUseTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_right, 0);
 
-        howToUseTitle.setOnClickListener(v -> {
-            if (howToUseContent.getVisibility() == View.VISIBLE) {
-                howToUseContent.setVisibility(View.GONE);
-                howToUseTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_right, 0);
+        binding.howToUseTitle.setOnClickListener(v -> {
+            if (binding.howToUseContent.getVisibility() == View.VISIBLE) {
+                binding.howToUseContent.setVisibility(View.GONE);
+                binding.howToUseTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_right, 0);
             } else {
-                howToUseContent.setVisibility(View.VISIBLE);
-                howToUseTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down, 0);
+                binding.howToUseContent.setVisibility(View.VISIBLE);
+                binding.howToUseTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down, 0);
             }
         });
 
-        // HowTo使用のトグル
-        final TextView googleAuthTitle = findViewById(R.id.googleAuthTitle);
-        final TextView googleAuthContent = findViewById(R.id.googleAuthContent);
+        binding.googleAuthTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_right, 0);
 
-        // XML側から表示したかった
-        googleAuthTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_right, 0);
-
-        googleAuthTitle.setOnClickListener(v -> {
-            if (googleAuthContent.getVisibility() == View.VISIBLE) {
-                googleAuthContent.setVisibility(View.GONE);
-                googleAuthTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_right, 0);
+        binding.googleAuthTitle.setOnClickListener(v -> {
+            if (binding.googleAuthContent.getVisibility() == View.VISIBLE) {
+                binding.googleAuthContent.setVisibility(View.GONE);
+                binding.googleAuthTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_right, 0);
             } else {
-                googleAuthContent.setVisibility(View.VISIBLE);
-                googleAuthTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down, 0);
+                binding.googleAuthContent.setVisibility(View.VISIBLE);
+                binding.googleAuthTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down, 0);
             }
         });
 
@@ -148,20 +126,9 @@ public class FlareSkillNote extends Activity {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        View mainView = this.getLayoutInflater().inflate(R.layout.activity_flare_skill_note, null);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        ActivitySetting.setFullScreen(this);
-        this.setContentView(mainView);
-
-        initialize();
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
-        FileReader.requestAd(this.findViewById(R.id.adContainer), this);
+        FileReader.requestAd(binding.adContainer, this);
 
         // サーバーでユーザーとGoogle連携状態を検証
         validateUserOnServer();
@@ -183,16 +150,16 @@ public class FlareSkillNote extends Activity {
     private void updateUI() {
         if (isUserRegistered) {
             // 登録済みユーザー用UI表示
-            viewFlipper.setDisplayedChild(1);
-            userNameDisplay.setText(getString(R.string.flarenote_username, userName));
+            binding.viewFlipper.setDisplayedChild(1);
+            registeredBinding.userNameDisplay.setText(getString(R.string.flarenote_username, userName));
 
             // Google連携状態に応じたボタン表示
-            googleButtonsFlipper.setDisplayedChild(isGoogleLinked ? 1 : 0);
-            goToUserSiteButton.setEnabled(true);
+            registeredBinding.googleButtonsFlipper.setDisplayedChild(isGoogleLinked ? 1 : 0);
+            registeredBinding.goToFlareNoteUserSite.setEnabled(true);
         } else {
             // 未登録ユーザー用UI表示
-            viewFlipper.setDisplayedChild(0);
-            goToUserSiteButton.setEnabled(false);
+            binding.viewFlipper.setDisplayedChild(0);
+            registeredBinding.goToFlareNoteUserSite.setEnabled(false);
         }
     }
 
@@ -449,7 +416,6 @@ public class FlareSkillNote extends Activity {
         // バックグラウンドスレッドでGoogle認証を実行
         new Thread(() -> {
             try {
-
                 runOnUiThread(() -> {
                     try {
                         setMessage(getString(R.string.google_auth_trying_to_connect));
@@ -462,7 +428,7 @@ public class FlareSkillNote extends Activity {
                                     isGoogleLinked = true;
                                     googleAuthManager.saveGoogleLinkStatus(userId, true);
 
-                                    googleButtonsFlipper.setDisplayedChild(1); // 解除ボタンを表示
+                                    registeredBinding.googleButtonsFlipper.setDisplayedChild(1); // 解除ボタンを表示
                                     setMessage(getString(R.string.google_auth_connection_completed));
                                     setLoading(false);
                                 });
@@ -507,13 +473,13 @@ public class FlareSkillNote extends Activity {
         new Thread(() -> {
             try {
                 // Google連携解除を実行
-                String message = googleAuthManager.disconnectGoogleSync(userId);
+                googleAuthManager.disconnectGoogleSync(userId);
 
                 runOnUiThread(() -> {
                     isGoogleLinked = false;
                     googleAuthManager.saveGoogleLinkStatus(userId, false);
 
-                    googleButtonsFlipper.setDisplayedChild(0); // 連携ボタンを表示
+                    registeredBinding.googleButtonsFlipper.setDisplayedChild(0); // 連携ボタンを表示
                     setMessage(getString(R.string.google_auth_connection_removed));
                     setLoading(false);
                 });
@@ -562,13 +528,13 @@ public class FlareSkillNote extends Activity {
                         isGoogleLinked = false;
                         googleAuthManager.saveGoogleLinkStatus(userId, false);
 
-                        googleButtonsFlipper.setDisplayedChild(0); // 連携ボタンを表示
+                        registeredBinding.googleButtonsFlipper.setDisplayedChild(0); // 連携ボタンを表示
                     } else {
                         // サーバーと連携状態を同期
                         isGoogleLinked = result.isGoogleLinked();
                         googleAuthManager.saveGoogleLinkStatus(userId, result.isGoogleLinked());
 
-                        googleButtonsFlipper.setDisplayedChild(isGoogleLinked ? 1 : 0);
+                        registeredBinding.googleButtonsFlipper.setDisplayedChild(isGoogleLinked ? 1 : 0);
                     }
                 });
             } catch (Exception e) {
@@ -586,20 +552,26 @@ public class FlareSkillNote extends Activity {
     }
 
     private void setLoading(boolean loading) {
-
         // UI要素の有効/無効切り替え
-        findViewById(R.id.playerName).setEnabled(!loading);
-        findViewById(R.id.registerButton).setEnabled(!loading);
-        findViewById(R.id.googleLoginButton).setEnabled(!loading);
-        findViewById(R.id.sendDataButton).setEnabled(!loading);
-        findViewById(R.id.deleteUserButton).setEnabled(!loading);
-        findViewById(R.id.googleConnectButton).setEnabled(!loading);
-        findViewById(R.id.googleDisconnectButton).setEnabled(!loading);
+        unregisteredBinding.playerName.setEnabled(!loading);
+        unregisteredBinding.registerButton.setEnabled(!loading);
+        unregisteredBinding.googleLoginButton.setEnabled(!loading);
+        registeredBinding.sendDataButton.setEnabled(!loading);
+        registeredBinding.deleteUserButton.setEnabled(!loading);
+        registeredBinding.googleConnectButton.setEnabled(!loading);
+        registeredBinding.googleDisconnectButton.setEnabled(!loading);
     }
 
     private void setMessage(String message) {
         // 両方のメッセージ表示用TextViewに同じメッセージをセット
-        messageTextUnregistered.setText(message);
-        messageTextRegistered.setText(message);
+        unregisteredBinding.messageTextUnregistered.setText(message);
+        registeredBinding.messageTextRegistered.setText(message);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // バインディングをクリア
+        binding = null;
     }
 }
