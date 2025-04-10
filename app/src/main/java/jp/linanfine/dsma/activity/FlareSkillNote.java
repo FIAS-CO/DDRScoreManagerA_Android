@@ -36,30 +36,21 @@ import okhttp3.Response;
 
 public class FlareSkillNote extends Activity {
     private EditText usernameEditText;
-    private Button registerButton;
     private Button goToUserSiteButton;
     private OkHttpClient client;
     private ViewFlipper viewFlipper;
 
-    // 未登録ユーザー向けUI要素
-    private Button googleLoginButton;
     private TextView messageTextUnregistered;
 
     // 登録済みユーザー向けUI要素
     private TextView userNameDisplay;
-    private Button sendDataButton;
-    private Button deleteUserButton;
     private ViewFlipper googleButtonsFlipper;
-    private Button googleConnectButton;
-    private Button googleDisconnectButton;
     private TextView messageTextRegistered;
-    private Button goToFlareNoteTopRegistered;
 
     private boolean isUserRegistered = false;
     private boolean isGoogleLinked = false;
     private String userId = "";
     private String userName = "";
-    private boolean isLoading = false;
 
     private GoogleAuthManager googleAuthManager;
 
@@ -72,19 +63,20 @@ public class FlareSkillNote extends Activity {
 
         // 未登録ユーザー向けUI要素
         usernameEditText = findViewById(R.id.playerName);
-        registerButton = findViewById(R.id.registerButton);
-        googleLoginButton = findViewById(R.id.googleLoginButton);
+        Button registerButton = findViewById(R.id.registerButton);
+        // 未登録ユーザー向けUI要素
+        Button googleLoginButton = findViewById(R.id.googleLoginButton);
         messageTextUnregistered = findViewById(R.id.messageTextUnregistered);
 
         // 登録済みユーザー向けUI要素
         userNameDisplay = findViewById(R.id.userNameDisplay);
-        sendDataButton = findViewById(R.id.sendDataButton);
-        deleteUserButton = findViewById(R.id.deleteUserButton);
+        Button sendDataButton = findViewById(R.id.sendDataButton);
+        Button deleteUserButton = findViewById(R.id.deleteUserButton);
         googleButtonsFlipper = findViewById(R.id.googleButtonsFlipper);
-        googleConnectButton = findViewById(R.id.googleConnectButton);
-        googleDisconnectButton = findViewById(R.id.googleDisconnectButton);
+        Button googleConnectButton = findViewById(R.id.googleConnectButton);
+        Button googleDisconnectButton = findViewById(R.id.googleDisconnectButton);
         messageTextRegistered = findViewById(R.id.messageTextRegistered);
-        goToFlareNoteTopRegistered = findViewById(R.id.goToFlareNoteTopRegistered);
+        Button goToFlareNoteTopRegistered = findViewById(R.id.goToFlareNoteTopRegistered);
         goToUserSiteButton = findViewById(R.id.goToFlareNoteUserSite);
 
         // GoogleAuthManagerのインスタンス化とinitialize
@@ -237,6 +229,7 @@ public class FlareSkillNote extends Activity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                assert response.body() != null;
                 final String responseData = response.body().string();
                 runOnUiThread(() -> {
                     try {
@@ -254,7 +247,7 @@ public class FlareSkillNote extends Activity {
                             updateUI();
                         } else {
                             String error = jsonResponse.getString("error");
-                            String detail = jsonResponse.optString("detail", "詳細なし");
+                            String detail = jsonResponse.optString("detail", "no detail");
                             setMessage(getString(R.string.flarenote_error_detail, error, detail));
                         }
                     } catch (JSONException e) {
@@ -309,6 +302,7 @@ public class FlareSkillNote extends Activity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                assert response.body() != null;
                 final String responseData = response.body().string();
                 runOnUiThread(() -> {
                     try {
@@ -379,6 +373,7 @@ public class FlareSkillNote extends Activity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                assert response.body() != null;
                 final String responseData = response.body().string();
                 runOnUiThread(() -> {
                     try {
@@ -455,15 +450,13 @@ public class FlareSkillNote extends Activity {
         new Thread(() -> {
             try {
 
-                // メソッド名を確認して正しいメソッドを呼び出す
                 runOnUiThread(() -> {
                     try {
                         setMessage(getString(R.string.google_auth_trying_to_connect));
 
-                        // 仮実装（実際にはこれがJava側から呼べるメソッドで置き換える）
                         new Thread(() -> {
                             try {
-                                GoogleAuthManager.User user = googleAuthManager.connectWithGoogleSync(FlareSkillNote.this, userId);
+                                googleAuthManager.connectWithGoogleSync(FlareSkillNote.this, userId);
 
                                 runOnUiThread(() -> {
                                     isGoogleLinked = true;
@@ -593,10 +586,6 @@ public class FlareSkillNote extends Activity {
     }
 
     private void setLoading(boolean loading) {
-        isLoading = loading;
-
-        // ローディング表示の切り替え
-        // 実際のローディングUI要素がある場合はここで制御
 
         // UI要素の有効/無効切り替え
         findViewById(R.id.playerName).setEnabled(!loading);
