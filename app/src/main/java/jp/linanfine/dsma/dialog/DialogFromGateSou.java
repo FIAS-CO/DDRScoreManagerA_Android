@@ -731,7 +731,15 @@ public class DialogFromGateSou {
                         Thread.sleep(1000);
                     } catch (InterruptedException ignored) {
                     }
-                    mHandler.post(() -> mDialog.cancel());
+                    mHandler.post(() -> {
+                        if (mDialog != null && mDialog.isShowing()) {
+                            try {
+                                mDialog.cancel();
+                            } catch (Exception e) {
+                                Log.e("DialogFromGateSou", "Error canceling dialog", e);
+                            }
+                        }
+                    });
                 }
                 )).start();
                 return;
