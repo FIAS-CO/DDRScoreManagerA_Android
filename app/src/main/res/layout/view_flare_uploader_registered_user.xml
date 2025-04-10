@@ -34,7 +34,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/flarenote_connect_with_google"
-            android:drawableStart="@drawable/ic_google" />
+            android:drawableStart="@drawable/ic_google"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingEnd="48dp"
+            android:drawablePadding="8dp"/>
 
         <Button
             android:id="@+id/googleDisconnectButton"
