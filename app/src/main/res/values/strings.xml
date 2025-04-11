@@ -2,7 +2,9 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.158.25041101] Update:\n
+[0.160.25041103] Update:
+・Fixed a bug where Google authentication was failing
+(Previous Update)
 ・Google account integration with FlareNote accounts is now available in FlareNoteUploader\n
 ・This integration allows you to easily use the same FlareNote account across multiple devices or when changing devices
     </string>

@@ -2,7 +2,9 @@
 <resources>
     
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.158.25041101] Update:\n
+[0.160.25041103] Update:\n
+・Google認証に失敗するバグを修正しました\n
+(前回のUpdate)
 ・FlareNoteUploaderでGoogleアカウントとFlareNoteアカウントの連携が可能になりました\n
 ・連携することで、機種変更や複数端末でも同じFlareNoteアカウントを簡単に利用できます
     </string>
