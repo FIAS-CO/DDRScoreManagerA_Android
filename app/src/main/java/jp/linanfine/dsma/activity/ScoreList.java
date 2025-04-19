@@ -1205,6 +1205,45 @@ public class ScoreList extends Activity {
                                             userActionSongMemo();
                                     }
                                 }
+                            } else if (mCategory.equals("Own Music")) {
+                                if (mActiveRivalId != null && !mActiveRivalId.equals("00000000")) {
+                                    switch (which) {
+                                        case 0:
+                                            userActionCopyToClipboard();
+                                            break;
+                                        case 1:
+                                            userActionFromGate();
+                                            break;
+                                        case 2:
+                                            userActionDirectEdit();
+                                            break;
+                                        case 3:
+                                            userActionSelectRivalAction();
+                                            break;
+                                        case 4:
+                                            userActionAddToMyList();
+                                            break;
+                                        case 5:
+                                            userActionSongMemo();
+                                    }
+                                } else {
+                                    switch (which) {
+                                        case 0:
+                                            userActionCopyToClipboard();
+                                            break;
+                                        case 1:
+                                            userActionFromGate();
+                                            break;
+                                        case 2:
+                                            userActionDirectEdit();
+                                            break;
+                                        case 3:
+                                            userActionAddToMyList();
+                                            break;
+                                        case 4:
+                                            userActionSongMemo();
+                                    }
+                                }
                             } else {
                                 if (mActiveRivalId != null && mActiveRivalId != "00000000") {
                                     switch (which) {
