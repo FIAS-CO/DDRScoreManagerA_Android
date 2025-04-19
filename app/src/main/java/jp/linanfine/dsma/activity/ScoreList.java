@@ -2290,7 +2290,7 @@ public class ScoreList extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-        ActivitySetting.setTitleBarShown(this, this.findViewById(R.id.titleBar));
+        ActivitySetting.setTitleBarShown(this.findViewById(R.id.titleBar));
         FileReader.requestAd(this.findViewById(R.id.adContainer), this);
     }
 

@@ -917,7 +917,7 @@ public class StatisticsTable extends Activity {
 	public void onResume()
 	{
         super.onResume();
-        ActivitySetting.setTitleBarShown(this, this.findViewById(R.id.titleBar));
+        ActivitySetting.setTitleBarShown(this.findViewById(R.id.titleBar));
 		FileReader.requestAd((LinearLayout)this.findViewById(R.id.adContainer), this);
 	}
 

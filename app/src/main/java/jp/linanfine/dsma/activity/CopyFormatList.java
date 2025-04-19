@@ -1,12 +1,9 @@
 package jp.linanfine.dsma.activity;
 
-import java.util.TreeMap;
-
 import jp.linanfine.dsma.util.common.ActivitySetting;
 import jp.linanfine.dsma.util.common.TextUtil;
 import jp.linanfine.dsma.util.file.FileReader;
 import jp.linanfine.dsma.value.MusicData;
-import jp.linanfine.dsma.value.MusicScore;
 import jp.linanfine.dsma.value.ScoreData;
 import jp.linanfine.dsma.value.UniquePattern;
 import jp.linanfine.dsma.value._enum.FullComboType;
@@ -16,33 +13,27 @@ import jp.linanfine.dsma.R;
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.View.OnFocusChangeListener;
 import android.view.Window;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 public class CopyFormatList extends Activity {
-	
+
 	 Handler mHandler = new Handler();
 	 View mHandledView;
-	 
+
 	 String[] mFormats;
 	 UniquePattern mTargetPattern;
 	 MusicData mTargetMusicData;
 	 ScoreData mTargetScoreData;
-	 
+
 	 private void initialize()
 	 {
 
@@ -51,7 +42,7 @@ public class CopyFormatList extends Activity {
 	        {
 	        	return;
 	        }
-	        
+
 			 Button cancel = (Button)this.findViewById(R.id.cancel);
 			 cancel.setOnClickListener(new OnClickListener() {
 					public void onClick(View view) {
@@ -66,9 +57,9 @@ public class CopyFormatList extends Activity {
 						CopyFormatList.this.finish();
 					}
 		        });
-			 
+
 			 mFormats = FileReader.readCopyFormats(this);
-			 
+
 			 mTargetPattern = new UniquePattern();
 			 mTargetPattern.Pattern = PatternType.ESP;
 			 mTargetMusicData = new MusicData();
@@ -81,7 +72,7 @@ public class CopyFormatList extends Activity {
 			 mTargetScoreData.MaxCombo = 34;
 			 mTargetScoreData.Rank = MusicRank.Ap;
 			 mTargetScoreData.Score = 98760;
-			 
+
 			 final EditText format0 = (EditText)this.findViewById(R.id.format0);
 			 final TextView preview0 = (TextView)this.findViewById(R.id.preview0);
 			 format0.addTextChangedListener(new TextWatcher() {
@@ -115,17 +106,17 @@ public class CopyFormatList extends Activity {
 				public void onTextChanged(CharSequence arg0, int arg1,int arg2, int arg3) {}
 			 });
 			 format2.setText(mFormats[2]);
-			 
+
 	 }
 
 		@Override
 		public void onResume()
 		{
 	        super.onResume();
-	        ActivitySetting.setTitleBarShown(this, this.findViewById(R.id.titleBar));
+	        ActivitySetting.setTitleBarShown(this.findViewById(R.id.titleBar));
 			FileReader.requestAd((LinearLayout)this.findViewById(R.id.adContainer), this);
 		}
-		
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -133,7 +124,7 @@ public class CopyFormatList extends Activity {
         //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         ActivitySetting.setFullScreen(this);
 		setContentView(R.layout.activity_copy_format_list);
-		
+
 		initialize();
 	}
 

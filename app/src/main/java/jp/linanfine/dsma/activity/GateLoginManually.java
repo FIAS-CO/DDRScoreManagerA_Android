@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -18,7 +17,6 @@ import android.widget.Toast;
 
 import jp.linanfine.dsma.R;
 import jp.linanfine.dsma.util.common.ActivitySetting;
-import jp.linanfine.dsma.util.common.TextUtil;
 import jp.linanfine.dsma.util.file.FileReader;
 
 public class GateLoginManually extends Activity {
@@ -40,7 +38,7 @@ public class GateLoginManually extends Activity {
 	public void onResume()
 	{
         super.onResume();
-        ActivitySetting.setTitleBarShown(this, this.findViewById(R.id.titleBar));
+        ActivitySetting.setTitleBarShown(this.findViewById(R.id.titleBar));
 		FileReader.requestAd((LinearLayout)this.findViewById(R.id.adContainer), this);
 	}
 

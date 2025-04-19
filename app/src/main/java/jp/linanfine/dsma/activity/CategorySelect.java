@@ -1237,7 +1237,7 @@ public class CategorySelect extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-        ActivitySetting.setTitleBarShown(this, mMainView.findViewById(R.id.titleBar));
+        ActivitySetting.setTitleBarShown(mMainView.findViewById(R.id.titleBar));
 
         if (!new File(this.getFilesDir().getPath() + "/" + "WebMusicIds.txt").exists() ||
                 !new File(this.getFilesDir().getPath() + "/" + "MusicNames.txt").exists() ||
