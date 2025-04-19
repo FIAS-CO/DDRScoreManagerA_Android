@@ -2,9 +2,11 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.156.24101801] Update:\n
-We have fixed a bug where some songs were not sent during export to DDR SA. \n
-We apologize for the inconvenience, and kindly ask you to send them again.
+[0.160.25041103] Update:
+・Fixed a bug where Google authentication was failing
+(Previous Update)
+・Google account integration with FlareNote accounts is now available in FlareNoteUploader\n
+・This integration allows you to easily use the same FlareNote account across multiple devices or when changing devices
     </string>
     
     <string name="strings_global____app_name">DDR Score Manager A</string>
@@ -500,6 +502,7 @@ We apologize for the inconvenience, and kindly ask you to send them again.
     <string name="show_flare_rank">Flare Rank</string>
     <string name="show_flare_skill">Flare Skill</string>
 
+    <string name="ScoreList_header_title" translatable="false">%1$s (%2$d/%3$d)</string>
 
     <!--
     FlareNote
@@ -509,12 +512,15 @@ We apologize for the inconvenience, and kindly ask you to send them again.
     <string name="enter_username_and_press_button">Please enter your username and then press the button.</string>
     <string name="flarenote_howtouse">1. Register user name\n2. Send song data\n3. Check your page on FlareNote\n
     * This is a beta feature.If you encounter any issues, please contact us on X (@sig_re).</string>
+    <string name="flarenote_googleauth_header">Google Account Integration</string>
+    <string name="flarenote_googleauth_detail">• By linking your Google account, you can use the same account on different devices\n
+        • After registering, you can link your account using the \"Connect with Google Account\" button\n• On your next visit, you can use \"Login with Google Account\" to access your account</string>
     <string name="flarenote_register_button">Register User</string>
     <string name="flarenote_send_data">Send Song Data</string>
     <string name="flarenote_input_user_name" translatable="false">Input user name</string>
     <string name="flarenote_top" translatable="false">FlareNote Top</string>
     <string name="flarenote_user_page">Your page</string>
-    <string name="flarenote_delete_user">Delete User / Change Username</string>
+    <string name="flarenote_delete_user">Delete User</string>
     <string name="flarenote_how_to_use_header" translatable="false">How to Use? / 使い方</string>
     <string name="flarenote_network_error">"NetworkError: %1$s"</string>
     <string name="flarenote_user_deleted">User %1$s deleted.</string>
@@ -525,5 +531,38 @@ We apologize for the inconvenience, and kindly ask you to send them again.
     <string name="flarenote_send_data_successfully">The data has been sent successfully.</string>
     <string name="flarenote_push_button_after_registration">Please register a user and then Send data.</string>
 
-    <string name="ScoreList_header_title" translatable="false">%1$s (%2$d/%3$d)</string>
+    <!-- GoogleAuthManagerメッセージ -->
+    <string name="google_auth_failed">Google authentication failed: %1$s</string>
+    <string name="google_auth_cancelled">Google authentication was cancelled</string>
+    <string name="google_auth_no_response">No response from server</string>
+    <string name="google_auth_user_login">Authenticated with Google account, logged in as user "%1$s"</string>
+    <string name="google_auth_no_user">No user linked to this Google account. Please register a new user.</string>
+    <string name="google_auth_connection_completed">Google account connection completed</string>
+    <string name="google_auth_connection_removed">Google account connection removed</string>
+    <string name="google_auth_parse_failed">Failed to parse response</string>
+    <string name="google_auth_unknown_error">Unknown error</string>
+    <string name="google_auth_connection_failed">Google account connection failed: %1$s</string>
+    <string name="google_auth_disconnect_failed">Failed to disconnect Google account</string>
+    <string name="google_auth_trying_to_connect">Attempting to connect with Google…</string>
+
+    <!-- FlareNoteUploader Google認証関連 -->
+    <string name="flarenote_unregistered_user">Unregistered User</string>
+    <string name="flarenote_google_linked_user">Google Account Linked User</string>
+    <string name="flarenote_login_with_google">Login with Google Account</string>
+    <string name="flarenote_disconnect_google">Disconnect Google Account</string>
+    <string name="flarenote_connect_with_google">Connect with Google Account</string>
+    <string name="flarenote_username">Username: %1$s</string>
+    <string name="flarenote_processing">Processing…</string>
+    <string name="flarenote_confirm_deletion">Confirm Account Deletion</string>
+    <string name="flarenote_confirm_deletion_message">Are you sure you want to delete account "%1$s"? This action cannot be undone.</string>
+    <string name="flarenote_delete">Delete</string>
+    <string name="flarenote_cancel">Cancel</string>
+    <string name="flarenote_internal_error">Internal Error</string>
+    <string name="flarenote_no_user">No user found</string>
+    <string name="flarenote_root_view_error">Internal error: rootViewController not found</string>
+    <string name="flarenote_google_auth_error">Google Authentication Error</string>
+    <string name="flarenote_google_auth_cancelled">Google Authentication Cancelled</string>
+    <string name="flarenote_user_not_registered">User Not Registered</string>
+    <string name="flarenote_google_auth_error_detail">Google Authentication Error: %1$s</string>
+    <string name="flarenote_json_error_contact_developer">An error has occurred. Please contact the developer (X:@sig_re).</string>
 </resources>

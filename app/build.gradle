@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application' // 'apply plugin:' を 'id' に置き換え
+    id 'org.jetbrains.kotlin.android' // Kotlin プラグインを追加
 }
 
 android {
@@ -15,12 +16,17 @@ android {
             }
         }
     }
+    buildFeatures {
+        viewBinding true
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            buildConfigField("String", "GOOGLE_CLIENT_ID", "\"709569493981-c86rj1eve11mikrje2166e4m59jvs5o1.apps.googleusercontent.com\"")
         }
         debug {
+            buildConfigField("String", "GOOGLE_CLIENT_ID", "\"709569493981-c86rj1eve11mikrje2166e4m59jvs5o1.apps.googleusercontent.com\"")
         }
     }
     compileOptions {
@@ -29,15 +35,28 @@ android {
     }
     productFlavors {
     }
+    buildFeatures {
+        buildConfig = true
+    }
 
     testOptions {
         unitTests.includeAndroidResources = true
+    }
+    sourceSets {
+        main {
+            java.srcDirs += 'src/main/kotlin'
+        }
+    }
+    kotlinOptions {
+        jvmTarget = "1.8" // Kotlin の JVM ターゲットバージョンを 1.8 に設定
     }
 }
 
 var roomVersion = "2.6.1"
 dependencies {
     implementation 'com.google.android.gms:play-services-ads:23.3.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.24'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
 
     // Room components
     implementation "androidx.room:room-runtime:$roomVersion"
