@@ -1,15 +1,20 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application' // 'apply plugin:' を 'id' に置き換え
+}
 
 android {
     namespace 'jp.linanfine.dsma'
-    compileSdk  34
+    compileSdk  35
     defaultConfig {
         applicationId "jp.linanfine.dsma"
         minSdkVersion 24
-        targetSdk 34
-        //multiDexEnabled true
+        targetSdk 35
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
-    //buildToolsVersion "25.0.2"
     buildTypes {
         release {
             minifyEnabled false
@@ -33,7 +38,6 @@ android {
 var roomVersion = "2.6.1"
 dependencies {
     implementation 'com.google.android.gms:play-services-ads:23.3.0'
-    //compile 'com.android.support:multidex:1.0.0'
 
     // Room components
     implementation "androidx.room:room-runtime:$roomVersion"
@@ -52,6 +56,11 @@ dependencies {
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.13.0' // XML サポート
 
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+
+    implementation 'com.google.android.gms:play-services-auth:21.3.0'
+    implementation "androidx.credentials:credentials:1.5.0"
+    implementation "androidx.credentials:credentials-play-services-auth:1.5.0"
+    implementation "com.google.android.libraries.identity.googleid:googleid:1.1.1"
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
