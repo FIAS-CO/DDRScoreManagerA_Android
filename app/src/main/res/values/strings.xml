@@ -525,4 +525,5 @@ We apologize for the inconvenience, and kindly ask you to send them again.
     <string name="flarenote_send_data_successfully">The data has been sent successfully.</string>
     <string name="flarenote_push_button_after_registration">Please register a user and then Send data.</string>
 
+    <string name="ScoreList_header_title" translatable="false">%1$s (%2$d/%3$d)</string>
 </resources>
