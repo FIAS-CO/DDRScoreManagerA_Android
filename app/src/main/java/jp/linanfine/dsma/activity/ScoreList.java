@@ -1,7 +1,6 @@
 package jp.linanfine.dsma.activity;
 
 import android.R.drawable;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -10,9 +9,7 @@ import android.content.ClipDescription;
 import android.content.ClipboardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -73,7 +70,6 @@ import jp.linanfine.dsma.value.adapter.MusicDataAdapterSurfaceView;
 
 public class ScoreList extends Activity {
 
-//add by taiheisan start
     /**
      * Series Title配列
      */
@@ -105,30 +101,25 @@ public class ScoreList extends Activity {
      */
     private static final String[] FULL_COMBO_TYPE_LIST = {"FcMFC", "FcPFC", "FcGFC", "FcFC", "FcLife4", "FcNoFC", "FcFailed",
             "FcNoPlay"};
-//add by taiheisan end
 
-    private Handler mHandler = new Handler();
-
-    ////////////////////////　View　////////////////////////
+    /// 　View  ///
     private ListView mScoreListView = null;
     private Spinner mFilterSpinner = null;
     private Spinner mSortSpinner = null;
-    private ProgressDialog mSouProgressDialog = null;
 
-    ////////////////////////　設定　////////////////////////
+    /// 　設定　///
     private MusicFilter mMusicFilter = null;
     private MusicSort mMusicSort = null;
     private AppearanceSettingsSp mAppearance = null;
     private GestureSettings mGestures = null;
     private boolean mUseAsyncDraw = true;
-    private boolean mUseOldStyleDraw = false;
 
-    ////////////////////////　インテント情報　////////////////////////
+    /// 　インテント情報　///
     private String mCategory = null;
     private int mCategoryOwnMusicMusicId = 0;
     private int mCategoryMyListMylistId = 0;
 
-    ////////////////////////　データ　////////////////////////
+    /// 　データ　///
     private IdToWebMusicIdList mWebMusicIds = null;
     private TreeMap<Integer, MusicData> mMusicList = null;
     private TreeMap<Integer, MusicScore> mScoreList = null;
@@ -138,17 +129,15 @@ public class ScoreList extends Activity {
     private TreeMap<Integer, String[]> mComments = null;
     private MusicDataAdapter mListViewAdapter = null;
 
-    ////////////////////////　スレッド命令　////////////////////////
+    /// スレッド命令　///
     private boolean mCancelSouThread = false;
 
-    ////////////////////////　一時情報　////////////////////////
+    /// 　一時情報　///
     private boolean mScrollPositionUpdateLock = false;
     private int mScrollPosition = 0;
     private int mMyListCount = 0;
-    //private int                      mGlobalI                 = 0;
-    private int mSouNext = 0;
     private boolean mSouTargetRival = false;
-    private ArrayList<UniquePattern> mSouList = new ArrayList<>();
+    private final ArrayList<UniquePattern> mSouList = new ArrayList<>();
     private UniquePattern mSelectedItemPattern = null;
     private MusicData mSelectedMusicData = null;
     private EditText mTemporaryDialogEditText = null;
@@ -293,25 +282,29 @@ public class ScoreList extends Activity {
     }
 
     private int getDifficultyOfPattern(int musicId, PatternType pat) {
+        MusicData musicData = mMusicList.get(musicId);
+        if (musicData == null) {
+            return 0;
+        }
         switch (pat) {
             case bSP:
-                return mMusicList.get(musicId).Difficulty_bSP;
+                return musicData.Difficulty_bSP;
             case BSP:
-                return mMusicList.get(musicId).Difficulty_BSP;
+                return musicData.Difficulty_BSP;
             case DSP:
-                return mMusicList.get(musicId).Difficulty_DSP;
+                return musicData.Difficulty_DSP;
             case ESP:
-                return mMusicList.get(musicId).Difficulty_ESP;
+                return musicData.Difficulty_ESP;
             case CSP:
-                return mMusicList.get(musicId).Difficulty_CSP;
+                return musicData.Difficulty_CSP;
             case BDP:
-                return mMusicList.get(musicId).Difficulty_BDP;
+                return musicData.Difficulty_BDP;
             case DDP:
-                return mMusicList.get(musicId).Difficulty_DDP;
+                return musicData.Difficulty_DDP;
             case EDP:
-                return mMusicList.get(musicId).Difficulty_EDP;
+                return musicData.Difficulty_EDP;
             case CDP:
-                return mMusicList.get(musicId).Difficulty_CDP;
+                return musicData.Difficulty_CDP;
             default:
                 return 0;
         }
@@ -391,13 +384,10 @@ public class ScoreList extends Activity {
 
     private void userActionShowStatistics() {
         int count = mListViewAdapter.getCount();
-        int scoreMed = -1;
         int scoreMin = count > 0 ? 1000000 : 0;
         int scoreMax = 0;
         long scoreTotal = 0;
-        double scoreAve = -1.0d;
         double scoreVarTotal = 0.0d;
-        double scoreVar = -1.0d;
         int danceLevelAAA = 0;
         int danceLevelAAp = 0;
         int danceLevelAA = 0;
@@ -574,13 +564,13 @@ public class ScoreList extends Activity {
             ++patternTypes[getTypeNoOfPattern(pat.Pattern)];
             ++versions[getNoOfSeriesTitle(mMusicList.get(pat.MusicId).SeriesTitle)];
         }
-        scoreAve = (double) scoreTotal / count;
+        double scoreAve = (double) scoreTotal / count;
         Collections.sort(scores);
-        scoreMed = count > 0 ? scores.get(count / 2) : 0;
+        int scoreMed = count > 0 ? scores.get(count / 2) : 0;
         for (int i = 0; i < count; ++i) {
             scoreVarTotal += Math.pow(scores.get(i) - scoreAve, 2);
         }
-        scoreVar = Math.sqrt(scoreVarTotal / (count > 0 ? count : 1));
+        double scoreVar = Math.sqrt(scoreVarTotal / (count > 0 ? count : 1));
         String c = mCategory;
         if (c.equals("Abc***NUM***")) c = "AbcNUM";
         c = c
@@ -764,7 +754,6 @@ public class ScoreList extends Activity {
         alertDialogBuilder.setMessage(getResources().getString(R.string.sou_dialog_message_lang));
         alertDialogBuilder.setPositiveButton(getResources().getString(R.string.dialog_sou_myscore),
                 (dialog, which) -> {
-                    mSouNext = 0;
                     mSouTargetRival = false;
                     mSouList.clear();
                     MusicDataAdapter mda = ((MusicDataAdapter) mScoreListView.getAdapter());
@@ -774,10 +763,9 @@ public class ScoreList extends Activity {
                     }
                     showDialogFromGateSou();
                 });
-        if (mActiveRivalId != null && mActiveRivalId != "00000000") {
+        if (mActiveRivalId != null && !mActiveRivalId.equals("00000000")) {
             alertDialogBuilder.setNeutralButton(getResources().getString(R.string.dialog_sou_rivalscore),
                     (dialog, which) -> {
-                        mSouNext = 0;
                         mSouTargetRival = true;
                         mSouList.clear();
                         MusicDataAdapter mda = ((MusicDataAdapter) mScoreListView.getAdapter());
@@ -816,7 +804,7 @@ public class ScoreList extends Activity {
         int id = mFilterSpinner.getSelectedItemPosition();
         if (id == mFilterSpinner.getAdapter().getCount() - 1) {
             FileReader.saveMusicFilterCount(ScoreList.this, id + 1);
-            FileReader.saveMusicFilterName(ScoreList.this, id, "Filter" + String.valueOf(id));
+            FileReader.saveMusicFilterName(ScoreList.this, id, "Filter" + id);
             FileReader.saveActiveMusicFilter(ScoreList.this, id);
 
             Intent intent = new Intent();
@@ -836,7 +824,7 @@ public class ScoreList extends Activity {
         int id = mSortSpinner.getSelectedItemPosition();
         if (id == mSortSpinner.getAdapter().getCount() - 1) {
             FileReader.saveMusicSortCount(ScoreList.this, id + 1);
-            FileReader.saveMusicSortName(ScoreList.this, id, "Sort" + String.valueOf(id));
+            FileReader.saveMusicSortName(ScoreList.this, id, "Sort" + id);
             FileReader.saveActiveMusicSort(ScoreList.this, id);
 
             Intent intent = new Intent();
@@ -859,19 +847,13 @@ public class ScoreList extends Activity {
         showDialogFromGate();
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void copyText(String text) {
-        if (Build.VERSION.SDK_INT < 11) {
-            ClipboardManager cbm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-            cbm.setText(text);
-        } else {
-            ClipData.Item item = new ClipData.Item(text);
-            String[] mimeType = new String[1];
-            mimeType[0] = ClipDescription.MIMETYPE_TEXT_PLAIN;
-            ClipData cd = new ClipData(new ClipDescription("text_data", mimeType), item);
-            ClipboardManager cbm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-            cbm.setPrimaryClip(cd);
-        }
+        ClipData.Item item = new ClipData.Item(text);
+        String[] mimeType = new String[1];
+        mimeType[0] = ClipDescription.MIMETYPE_TEXT_PLAIN;
+        ClipData cd = new ClipData(new ClipDescription("text_data", mimeType), item);
+        ClipboardManager cbm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        cbm.setPrimaryClip(cd);
     }
 
     private void userActionCopyToClipboardList() {
@@ -1039,7 +1021,7 @@ public class ScoreList extends Activity {
         initialize();
     }
 
-    private boolean userActionOpenOwnMusic() {
+    private void userActionOpenOwnMusic() {
         if (!mCategory.equals("Own Music")) {
             Intent intent = new Intent();
             intent.setClassName("jp.linanfine.dsma", "jp.linanfine.dsma.activity.ScoreList");
@@ -1047,10 +1029,7 @@ public class ScoreList extends Activity {
             intent.putExtra("jp.linanfine.dsma.musicid", mSelectedItemPattern.MusicId);
 
             startActivityForResult(intent, 1);
-
-            return true;
         }
-        return false;
     }
 
     private void userActionSelectRivalAction() {
@@ -1070,55 +1049,6 @@ public class ScoreList extends Activity {
                             break;
                     }
                 }).show();
-    }
-
-    @SuppressWarnings("unused")
-    private void userActionShare() {
-        ArrayList<String> str_items = new ArrayList<>();
-        str_items.add(getResources().getString(R.string.menu_music_share_copy));
-        str_items.add(getResources().getString(R.string.menu_music_share_action_send));
-
-        new AlertDialog.Builder(ScoreList.this)
-                .setTitle(getResources().getString(R.string.menu_music_share))
-                .setItems(str_items.toArray(new String[0]), (dialog, which) -> {
-                            MusicData m = mSelectedItemPattern.musics.get(mSelectedItemPattern.MusicId);
-                            MusicScore scoredata = mScoreList.get(mSelectedItemPattern.MusicId);
-                            ScoreData escore;
-                            switch (mSelectedItemPattern.Pattern) {
-                                case bSP:
-                                    escore = scoredata.bSP;
-                                    break;
-                                case BSP:
-                                    escore = scoredata.BSP;
-                                    break;
-                                case DSP:
-                                    escore = scoredata.DSP;
-                                    break;
-                                case ESP:
-                                    escore = scoredata.ESP;
-                                    break;
-                                case CSP:
-                                    escore = scoredata.CSP;
-                                    break;
-                                case BDP:
-                                    escore = scoredata.BDP;
-                                    break;
-                                case DDP:
-                                    escore = scoredata.DDP;
-                                    break;
-                                case EDP:
-                                    escore = scoredata.EDP;
-                                    break;
-                                case CDP:
-                                    escore = scoredata.CDP;
-                                    break;
-                                default:
-                                    escore = new ScoreData();
-                                    break;
-                            }
-                            String copyText = m.Name + " [" + mSelectedItemPattern.Pattern.toString() + "] " + String.valueOf(escore.Score);
-                        }
-                ).show();
     }
 
     private void userActionShowItemMenu() {
@@ -1205,8 +1135,47 @@ public class ScoreList extends Activity {
                                             userActionSongMemo();
                                     }
                                 }
+                            } else if (mCategory.equals("Own Music")) {
+                                if (mActiveRivalId != null && !mActiveRivalId.equals("00000000")) {
+                                    switch (which) {
+                                        case 0:
+                                            userActionCopyToClipboard();
+                                            break;
+                                        case 1:
+                                            userActionFromGate();
+                                            break;
+                                        case 2:
+                                            userActionDirectEdit();
+                                            break;
+                                        case 3:
+                                            userActionSelectRivalAction();
+                                            break;
+                                        case 4:
+                                            userActionAddToMyList();
+                                            break;
+                                        case 5:
+                                            userActionSongMemo();
+                                    }
+                                } else {
+                                    switch (which) {
+                                        case 0:
+                                            userActionCopyToClipboard();
+                                            break;
+                                        case 1:
+                                            userActionFromGate();
+                                            break;
+                                        case 2:
+                                            userActionDirectEdit();
+                                            break;
+                                        case 3:
+                                            userActionAddToMyList();
+                                            break;
+                                        case 4:
+                                            userActionSongMemo();
+                                    }
+                                }
                             } else {
-                                if (mActiveRivalId != null && mActiveRivalId != "00000000") {
+                                if (mActiveRivalId != null && !mActiveRivalId.equals("00000000")) {
                                     switch (which) {
                                         case 0:
                                             userActionCopyToClipboard();
@@ -1272,6 +1241,7 @@ public class ScoreList extends Activity {
             String pattern = "";
             int level = 0;
             int textColor = 0x00000000;
+            assert md != null;
             switch (pat.Pattern) {
                 case bSP:
                     textColor = 0xff66ffff;
@@ -1376,9 +1346,8 @@ public class ScoreList extends Activity {
         mAppearance = FileReader.readAppearanceSettings(this);
         mGestures = FileReader.readGestureSettings(this);
         mUseAsyncDraw = FileReader.readUseAsyncDraw(this);
-        mUseOldStyleDraw = FileReader.readUseOldStyleDraw(this);
 
-        mSouProgressDialog = new ProgressDialog(this);
+        ProgressDialog mSouProgressDialog = new ProgressDialog(this);
         mSouProgressDialog.setTitle(getResources().getString(R.string.sou_progress_title));
         mSouProgressDialog.setMessage(getResources().getString(R.string.sou_progress_message));
         mSouProgressDialog.setIndeterminate(false);
@@ -1391,7 +1360,6 @@ public class ScoreList extends Activity {
                 (dialog, which) -> {
                     if (dialog != null) {
                         dialog.cancel();
-                        dialog = null;
                     }
                 }
         );
@@ -1452,24 +1420,18 @@ public class ScoreList extends Activity {
             return !execUserAction(UserActionFrom.ItemLongClick);
         });
 
-// add by taiheisan start
         // ListViewタッチイベント
         mScoreListView.setOnTouchListener(new View.OnTouchListener() {
 
-            // add by linanfine start
             private ListViewItemMakerSurfaceView.MgrView lastPressed = null;
-            // add by linanfine end
 
             private float lastTouchX;
-            private float currentX;
-
-            // フリックの遊び部分（最低限移動しないといけない距離）
-            private float adjust = 150;
 
             public boolean onTouch(View v, MotionEvent event) {
+                // フリックの遊び部分（最低限移動しないといけない距離）
+                float adjust = 150;
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        // add by linanfine start
                         if (lastPressed != null) {
                             lastPressed.setIsPressed(false);
                         }
@@ -1484,12 +1446,10 @@ public class ScoreList extends Activity {
                                 }
                             }
                         }
-                        // add by linanfine end
                         lastTouchX = event.getX();
                         break;
 
                     case MotionEvent.ACTION_UP:
-                        // add by linanfine start
                         if (lastPressed != null) {
                             lastPressed.setIsPressed(false);
                             lastPressed = null;
@@ -1497,8 +1457,7 @@ public class ScoreList extends Activity {
                         if (!mGestures.GestureEnabled) {
                             break;
                         }
-                        // add by linanfine end
-                        currentX = event.getX();
+                        float currentX = event.getX();
                         if (lastTouchX + adjust < currentX) {
                             // 右フリック（一つ前に戻る）
                             initializeByFlick(-1);
@@ -1519,7 +1478,7 @@ public class ScoreList extends Activity {
              * @param val 増加値(左：+1、右：-1)
              */
             private void initializeByFlick(int val) {
-                String[] categoryArray = null;    // カテゴリ配列格納
+                String[] categoryArray;    // カテゴリ配列格納
                 int categoryIndex = 0;                // カテゴリ配列Index
 
                 // 現在どのカテゴリかにより分岐
@@ -1569,16 +1528,15 @@ public class ScoreList extends Activity {
 
                 // カテゴリをセット
                 mCategory = categoryArray[categoryIndex];
-// add by linanfine start
+
                 mScrollPosition = 0;
                 ScoreList.this.restoreScrollPosition();
                 mScrollPositionUpdateLock = true;
-// add by linanfine end
+
                 // 再表示
                 initialize();
             }
         });
-// add by taiheisan end
 
         if (mCategory.equals("Recents")) {
             ImageView refreshButton = this.findViewById(R.id.refresh);
@@ -1642,9 +1600,9 @@ public class ScoreList extends Activity {
                 }
             }
         }
-        String c = mCategory;
-        if (c.equals("Abc***NUM***")) c = "AbcNUM";
-        c = c
+        String category = mCategory;
+        if (category.equals("Abc***NUM***")) category = "AbcNUM";
+        category = category
                 .replace("Abc", "Name ")
                 .replace("Dif", "Difficulty ")
                 .replace("SerWORLD", "DDR WORLD")
@@ -1661,38 +1619,40 @@ public class ScoreList extends Activity {
                 .replace("Rank", "Dance Level ")
                 .replace("Fc", "")
         ;
-        if (c.equals("Own Music")) {
+        if (category.equals("Own Music")) {
             Intent intent = getIntent();
             if (intent == null) {
                 return;
             }
             int itemId = intent.getIntExtra("jp.linanfine.dsma.musicid", -1);
-            c = mMusicList.get(itemId).Name;
+            category = mMusicList.get(itemId).Name;
         }
-        if (c.equals("My List")) {
+        if (category.equals("My List")) {
             Intent intent = getIntent();
             if (intent == null) {
                 return;
             }
             int mylistId = intent.getIntExtra("jp.linanfine.dsma.mylistid", -1);
-            c = FileReader.readMyListName(this, mylistId);
+            category = FileReader.readMyListName(this, mylistId);
         }
-        ((TextView) this.findViewById(R.id.musicName)).setText(c + " (" + String.valueOf(clearCount) + "/" + String.valueOf(count) + ")");
+        // ヘッダタイトル。musicNameじゃない
+        String label = getString(R.string.ScoreList_header_title, category, clearCount, count);
+        ((TextView) this.findViewById(R.id.musicName)).setText(label);
     }
 
     private void listRefresh() {
-        MusicDataAdapterArguments mdaa = new MusicDataAdapterArguments();
-        mdaa.UseAsyncDraw = mUseAsyncDraw;
-        mdaa.Musics = mMusicList;
-        mdaa.WebMusicIds = mWebMusicIds;
-        mdaa.Scores = mScoreList;
-        mdaa.Comments = mComments;
-        mdaa.Filter = mMusicFilter;
-        mdaa.Sort = mMusicSort;
-        mdaa.RivalName = mActiveRivalName;
-        mdaa.RivalScores = mActiveRivalScoreList;
+        MusicDataAdapterArguments arguments = new MusicDataAdapterArguments();
+        arguments.UseAsyncDraw = mUseAsyncDraw;
+        arguments.Musics = mMusicList;
+        arguments.WebMusicIds = mWebMusicIds;
+        arguments.Scores = mScoreList;
+        arguments.Comments = mComments;
+        arguments.Filter = mMusicFilter;
+        arguments.Sort = mMusicSort;
+        arguments.RivalName = mActiveRivalName;
+        arguments.RivalScores = mActiveRivalScoreList;
         mScrollPositionUpdateLock = true;
-        mListViewAdapter = new MusicDataAdapterSurfaceView(this, mAppearance, mdaa);
+        mListViewAdapter = new MusicDataAdapterSurfaceView(this, mAppearance, arguments);
         mScoreListView.setFastScrollEnabled(true);
         mScoreListView.setAdapter(mListViewAdapter);
     }
@@ -2222,14 +2182,6 @@ public class ScoreList extends Activity {
             return super.onSingleTapUp(event);
         }
 
-        private boolean isSwipeDown(MotionEvent e1, MotionEvent e2, float velocityY) {
-            return isSwipe(e2.getY(), e1.getY(), velocityY);
-        }
-
-        private boolean isSwipeUp(MotionEvent e1, MotionEvent e2, float velocityY) {
-            return isSwipe(e1.getY(), e2.getY(), velocityY);
-        }
-
         private boolean isSwipeLeft(MotionEvent e1, MotionEvent e2, float velocityX) {
             return isSwipe(e1.getX(), e2.getX(), velocityX);
         }
@@ -2290,7 +2242,7 @@ public class ScoreList extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-        ActivitySetting.setTitleBarShown(this, this.findViewById(R.id.titleBar));
+        ActivitySetting.setTitleBarShown(this.findViewById(R.id.titleBar));
         FileReader.requestAd(this.findViewById(R.id.adContainer), this);
     }
 
@@ -2303,8 +2255,6 @@ public class ScoreList extends Activity {
         ActivitySetting.setFullScreen(this);
         this.setContentView(mainView);
 
-
-//add by taiheisan end
         // 画面遷移パラメータはOnCreateでのみ取得（Flick操作によるカテゴリ変更を有効にする）
         Intent intent = getIntent();
         if (intent == null) {
@@ -2313,7 +2263,6 @@ public class ScoreList extends Activity {
         mCategory = intent.getStringExtra("jp.linanfine.dsma.category");
         mCategoryOwnMusicMusicId = intent.getIntExtra("jp.linanfine.dsma.musicid", -1);
         mCategoryMyListMylistId = intent.getIntExtra("jp.linanfine.dsma.mylistid", -1);
-//add by taiheisan end
 
         initialize();
     }

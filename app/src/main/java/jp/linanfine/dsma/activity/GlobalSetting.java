@@ -231,7 +231,7 @@ public class GlobalSetting extends Activity {
             FileReader.saveCloseCategoryOnBackKeyPressed(GlobalSetting.this, ((CheckBox) GlobalSetting.this.findViewById(R.id.closeCategoryOnBackKeyPressed)).isChecked());
             FileReader.saveAppearanceSettings(GlobalSetting.this, mAppearances);
             FileReader.saveGestureSettings(GlobalSetting.this, mGestures);
-            ActivitySetting.setTitleBarShown(GlobalSetting.this, GlobalSetting.this.findViewById(R.id.titleBar));
+            ActivitySetting.setTitleBarShown(GlobalSetting.this.findViewById(R.id.titleBar));
         };
 
         ((CheckBox) GlobalSetting.this.findViewById(R.id.gestureEnableFlick)).setOnCheckedChangeListener(ccl);
@@ -486,7 +486,7 @@ public class GlobalSetting extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-        ActivitySetting.setTitleBarShown(this, this.findViewById(R.id.titleBar));
+        ActivitySetting.setTitleBarShown(this.findViewById(R.id.titleBar));
         FileReader.requestAd(this.findViewById(R.id.adContainer), this);
     }
 

@@ -502,6 +502,7 @@
     <string name="show_flare_rank">Flare Rank</string>
     <string name="show_flare_skill">Flare Skill</string>
 
+    <string name="ScoreList_header_title" translatable="false">%1$s (%2$d/%3$d)</string>
 
     <!--
     FlareNote
