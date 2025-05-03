@@ -72,7 +72,7 @@ dependencies {
 
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.0' // Java 8 日付/時間型のサポート
-    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.13.0' // XML サポート
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.19.0' // XML サポート
 
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'
 
