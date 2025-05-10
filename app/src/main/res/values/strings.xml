@@ -2,11 +2,10 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.160.25041103] Update:
-・Fixed a bug where Google authentication was failing
-(Previous Update)
-・Google account integration with FlareNote accounts is now available in FlareNoteUploader\n
-・This integration allows you to easily use the same FlareNote account across multiple devices or when changing devices
+[0.163.25051101] Update:\n
+- I retried the update from a month ago for linking Google accounts with FlareNote accounts via FlareNoteUploader.\n
+- By linking the accounts, you can easily use the same FlareNote account even when changing devices or using multiple devices.\n
+- If you encounter any issues, please contact us on X (@DDRScoreManager).
     </string>
     
     <string name="strings_global____app_name">DDR Score Manager A</string>

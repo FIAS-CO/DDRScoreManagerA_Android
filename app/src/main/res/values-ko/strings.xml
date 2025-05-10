@@ -2,11 +2,10 @@
 <resources>
 
     <string name="strings____Dialog_UpdateInfo____updates">
-[0.160.25041103] 업데이트:
-・Google 인증 실패 버그를 수정했습니다
-(이전 업데이트)
-・FlareNoteUploader에서 Google 계정과 FlareNote 계정의 연동이 가능해졌습니다\n
-・연동을 통해 기기 변경이나 여러 기기에서도 동일한 FlareNote 계정을 쉽게 이용할 수 있습니다
+[0.163.25051101] Update:\n
+- 한 달 전에 진행했던 FlareNoteUploader를 통한 Google 계정과 FlareNote 계정 연동 업데이트에 다시 도전했습니다.\n
+- 계정을 연동하면 기기를 변경하거나 여러 기기에서 동일한 FlareNote 계정을 쉽게 사용할 수 있습니다.\n
+- 문제가 있으시면 X(@DDRScoreManager) 계정으로 연락해 주세요.
     </string>
 
   <string name="strings_global____app_name">DDR Score Manager A</string>
