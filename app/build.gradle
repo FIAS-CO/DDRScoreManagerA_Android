@@ -55,7 +55,7 @@ android {
 var roomVersion = "2.6.1"
 dependencies {
     implementation 'com.google.android.gms:play-services-ads:23.3.0'
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.24'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.25'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
 
     // Room components
