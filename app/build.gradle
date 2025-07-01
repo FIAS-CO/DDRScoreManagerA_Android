@@ -68,7 +68,7 @@ dependencies {
     implementation "androidx.room:room-ktx:$roomVersion"
 
     implementation 'org.jsoup:jsoup:1.14.3'
-    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
 
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.19.0'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.0' // Java 8 日付/時間型のサポート
